@@ -79,7 +79,7 @@ class WeddingDesign1Controller extends Controller
         // Simpan data ke database
         WeddingDesign1::create($data);
 
-        return redirect()->route('wedding-design1')->with('sucess', 'Berhasil menambahkan data');
+        return redirect()->route('wedding-design1')->with('success', 'Berhasil menambahkan data');
     }
 
 
@@ -102,7 +102,7 @@ class WeddingDesign1Controller extends Controller
     public function edit(string $id)
     {
         $data = WeddingDesign1::findOrFail($id);
-        return view('wedding-design1.edit', [
+        return view('admin-design1.edit', [
             'data' => $data,
         ]);
     }

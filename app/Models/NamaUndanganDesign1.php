@@ -16,8 +16,8 @@ class NamaUndanganDesign1 extends Model
         'nama_undangan',
         'undangan_alt1_id',
     ];
-    public function undanganAlt1(): BelongsTo
+    public function weddingDesign1(): BelongsTo
     {
-        return $this->belongsTo(UndanganAlt1::class, 'undangan_alt1_id', 'id');
+        return $this->belongsTo(WeddingDesign1::class, 'undangan_alt1_id', 'id');
     }
 }

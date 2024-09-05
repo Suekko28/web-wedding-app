@@ -68,12 +68,12 @@ class WeddingDesign1 extends Model
 
     public function namaUndangan(): HasMany
     {
-        return $this->hasMany(NamaUndanganAlt1::class, 'undangan_alt1_id', 'id');
+        return $this->hasMany(NamaUndanganDesign1::class, 'wedding_design1_id', 'id');
     }
 
     public function alt1Models(): HasMany
     {
-        return $this->hasMany(UcapanAlt1::class, 'undangan_alt1_id', 'id');
+        return $this->hasMany(UcapanDesign1::class, 'wedding_design1_id', 'id');
     }
 
 }

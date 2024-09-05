@@ -27,6 +27,7 @@
                                 <p class="mb-7">Your Admin Dashboard</p>
 
                                 <form method="POST" action="{{ route('register') }}">
+                                    @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">{{ __('Name') }}</label>
                                         <input id="name" type="text"
@@ -71,11 +72,10 @@
                                             name="password_confirmation" required autocomplete="new-password">
                                     </div>
 
-                                    <a href="/main/authentication-login"
-                                        class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign Up</a>
+                                    <button class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign Up</button>
                                     <div class="d-flex align-items-center">
                                         <p class="fs-4 mb-0 text-dark">Already have an Account?</p>
-                                        <a class="text-primary fw-medium ms-2" href="{{ route('login')}}">Sign In</a>
+                                        <a class="text-primary fw-medium ms-2" href="{{ route('login') }}">Sign In</a>
                                     </div>
                                 </form>
                             </div>
