@@ -5,6 +5,7 @@
 
 <!-- Favicon icon-->
 <link rel="shortcut icon" type="image/png" href="{{ URL::asset('build/images/logos/favicon.png') }}" />
+<link rel="stylesheet" href="{{ asset('css/style-admin.css') }}">
 
 <!-- Core Css -->
 <!-- <script src="{{ URL::asset('build/css/styles.css') }}"></script> -->
