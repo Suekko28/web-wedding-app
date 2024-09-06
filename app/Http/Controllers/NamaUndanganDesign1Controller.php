@@ -20,7 +20,7 @@ class NamaUndanganDesign1Controller extends Controller
         return view('user-design1.index', [
             'weddingDesign1' => $weddingDesign1,
             'nama_undangan' => $nama_undangan,
-        ]); 
+        ]);
     }
 
     /**
@@ -31,7 +31,7 @@ class NamaUndanganDesign1Controller extends Controller
         $weddingDesign1 = WeddingDesign1::findOrFail($weddingDesign1Id);
         return view('user-design1.create', compact('weddingDesign1Id', 'weddingDesign1'));
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -82,9 +82,12 @@ class NamaUndanganDesign1Controller extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id, $weddingDesign1Id)
     {
-        //
+        $nama_undangan = NamaUndanganDesign1::findOrFail($id);
+        return view('user-design1.show', [
+            'nama_undangan' => $nama_undangan
+        ]);
     }
 
     /**
@@ -92,22 +95,46 @@ class NamaUndanganDesign1Controller extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = NamaUndanganDesign1::findOrFail($id);
+        $weddingDesign1Id = $data->wedding_design1_id;
+        return view('user-design1.edit', [
+            'data' => $data,
+            'weddingDesign1Id' => $weddingDesign1Id,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $weddingDesign1Id, string $id)
     {
-        //
+        // Mendapatkan instance NamaUndangan berdasarkan ID
+        $nama_undangan = NamaUndanganDesign1::findOrFail($id);
+
+        // Update nama undangan
+        $nama_undangan->nama_undangan = $request->nama_undangan;
+
+        // Simpan perubahan
+        $nama_undangan->save();
+
+        // Redirect ke halaman list dengan pesan sukses
+        return redirect()->route('nama-undangan-list1', $weddingDesign1Id)->with('success', 'Berhasil memperbarui data');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, $id = null)
     {
-        //
+        // Hapus data tunggal berdasarkan ID yang diterima
+        $data = NamaUndanganDesign1::find($id);
+        if ($data) {
+            $data->delete();
+            // Redirect back to the previous page
+            return redirect()->back()->with('success', 'Data berhasil dihapus');
+        } else {
+            return redirect()->back()->with('error', 'Data tidak ditemukan');
+        }
     }
+
 }

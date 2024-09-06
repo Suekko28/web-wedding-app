@@ -6,9 +6,9 @@
 
     @include('layouts.breadcrumb', ['title' => 'Wedding Design 1', 'subtitle' => 'Dashboard'])
     <div class="card w-100 position-relative overflow-hidden">
-        <div class="px-4 py-3 border-bottom">
+        {{-- <div class="px-4 py-3 border-bottom">
             <h4 class="card-title mb-0">Basic Table</h4>
-        </div>
+        </div> --}}
         <div class="card-body p-4">
             <a class="btn btn-primary mb-3" href="{{ url('wedding-design1/create') }}">+ Buat Undangan</a>
             @include('layouts.message')
@@ -66,15 +66,15 @@
                                         </button>
                                         <a href="{{ route('wedding-design1.show', ['wedding_design1' => $item->id]) }}"
                                             class="btn btn-info rounded mb-2">
-                                            <i class="fa fa-eye" style="color:white;"></i>
+                                            <i class="fa fa-circle-info" style="color:white;"></i>
                                         </a>
-                                        {{-- <a href="{{ route('undangan-alt1-home', [
-                                                    'nama_mempelai_laki' => $item->nama_mempelai_laki,
-                                                    'nama_mempelai_perempuan' => $item->nama_mempelai_perempuan,
-                                                ]) }}"
-                                                    target="_blank" class="btn btn-primary rounded mb-2">
-                                                    <i class="fa fa-link" style="color:white;"></i>
-                                                </a> --}}
+                                        <a href="{{route('wedding-design1-home-preview' , [
+                                            'nama_mempelai_laki' => $item->nama_mempelai_laki,
+                                            'nama_mempelai_perempuan' => $item->nama_mempelai_perempuan
+                                        ])}}"
+                                        target="_blank" class="btn btn-primary rounded mb-2">
+                                        <i class="fa fa-eye" style="color:white;"></i>
+                                    </a>
                                     </div>
                                 </td>
                             </tr>
@@ -83,6 +83,8 @@
                     </tbody>
                 </table>
             </div>
+            <div class="p-2">{{ $data->links() }}</div>
+
         </div>
     </div>
 

@@ -14,10 +14,10 @@ class NamaUndanganDesign1 extends Model
 
     protected $fillable = [
         'nama_undangan',
-        'undangan_alt1_id',
+        'wedding_design1_id',
     ];
     public function weddingDesign1(): BelongsTo
     {
-        return $this->belongsTo(WeddingDesign1::class, 'undangan_alt1_id', 'id');
+        return $this->belongsTo(WeddingDesign1::class, 'wedding_design1_id', 'id');
     }
 }

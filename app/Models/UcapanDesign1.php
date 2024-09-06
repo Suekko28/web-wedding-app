@@ -16,7 +16,7 @@ class UcapanDesign1 extends Model
         'nama',
         'ucapan',
         'kehadiran',
-        'undangan_alt1_id',
+        'wedding_design1_id',
     ];
 
     public function undanganAlt1RSVP(): BelongsTo {

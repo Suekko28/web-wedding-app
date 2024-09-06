@@ -20,7 +20,7 @@
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">Home</span>
         </li>
-   
+
         <li class="sidebar-item">
             <a class="sidebar-link {{ request()->is('main/page-pricing') ? 'active' : '' }}" href="/main/page-pricing"
                 aria-expanded="false">
@@ -31,56 +31,56 @@
             </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link has-arrow {{ request()->is('main/blog-posts', 'main/blog-detail') ? 'active' : '' }}"
-              href="javascript:void(0)" aria-expanded="false">
-              <span class="d-flex">
-                  <i class="ti ti-chart-donut-3"></i>
-              </span>
-              <span class="hide-menu">Wedding Design</span>
-          </a>
-          <ul aria-expanded="false"
-              class="collapse first-level {{ request()->is('main/blog-posts', 'main/blog-detail') ? 'in' : '' }}">
-              <li class="sidebar-item">
-                  <a class="sidebar-link {{ request()->is('main/blog-posts') ? 'active' : '' }}"
-                      href="{{route('wedding-design1')}}" aria-expanded="false">
-                      <div class="round-16 d-flex align-items-center justify-content-center">
-                          <i class="ti ti-circle"></i>
-                      </div>
-                      <span class="hide-menu">Design 1</span>
-                  </a>
-              </li>
-              <li class="sidebar-item">
-                  <a href="/main/blog-detail"
-                      class="sidebar-link {{ request()->is('main/blog-detail') ? 'active' : '' }}">
-                      <div class="round-16 d-flex align-items-center justify-content-center">
-                          <i class="ti ti-circle"></i>
-                      </div>
-                      <span class="hide-menu">Design 2</span>
-                  </a>
-              </li>
-          </ul>
-      </li>
-      @if(auth()->user()->role == 1)
-        <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/page-pricing') ? 'active' : '' }}" href="/main/page-pricing"
-                aria-expanded="false">
-                <span>
-                    <i class="ti ti-currency-dollar"></i>
+            <a class="sidebar-link has-arrow {{ request()->is('main/blog-posts', 'main/blog-detail') ? 'active' : '' }}"
+                href="javascript:void(0)" aria-expanded="false">
+                <span class="d-flex">
+                    <i class="ti ti-chart-donut-3"></i>
                 </span>
-                <span class="hide-menu">Promo</span>
+                <span class="hide-menu">Wedding Design</span>
             </a>
+            <ul aria-expanded="false"
+                class="collapse first-level {{ request()->is('main/blog-posts', 'main/blog-detail') ? 'in' : '' }}">
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/blog-posts') ? 'active' : '' }}"
+                        href="{{ route('wedding-design1') }}" aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Design 1</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('wedding-design2') }}"
+                        class="sidebar-link {{ request()->is('main/blog-detail') ? 'active' : '' }}">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Design 2</span>
+                    </a>
+                </li>
+            </ul>
         </li>
-        <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/page-pricing') ? 'active' : '' }}" href="/main/page-pricing"
-                aria-expanded="false">
-                <span>
-                    <i class="ti ti-currency-dollar"></i>
-                </span>
-                <span class="hide-menu">Blog</span>
-            </a>
-        </li>
+        @if (auth()->user()->role == 1)
+            <li class="sidebar-item">
+                <a class="sidebar-link {{ request()->is('main/page-pricing') ? 'active' : '' }}"
+                    href="/main/page-pricing" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-currency-dollar"></i>
+                    </span>
+                    <span class="hide-menu">Promo</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link {{ request()->is('main/page-pricing') ? 'active' : '' }}"
+                    href="/main/page-pricing" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-currency-dollar"></i>
+                    </span>
+                    <span class="hide-menu">Blog</span>
+                </a>
+            </li>
         @endif
-       
+
         <!-- ---------------------------------- -->
         <!-- PAGES -->
         <!-- ---------------------------------- -->
@@ -97,8 +97,8 @@
             <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
             <span class="fs-2">Designer</span>
         </div>
-        <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button"
-            aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
+        <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button" aria-label="logout"
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
             <i class="ti ti-power fs-6"></i>
         </button>
     </div>

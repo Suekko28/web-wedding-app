@@ -14,7 +14,7 @@ class WeddingDesign1Controller extends Controller
      */
     public function index()
     {
-        $data = WeddingDesign1::orderBy('id', 'desc')->paginate(5);
+        $data = WeddingDesign1::orderBy('id', 'desc')->paginate(10);
         return view('admin-design1.index', [
             'data' => $data,
         ]);
@@ -89,7 +89,7 @@ class WeddingDesign1Controller extends Controller
     public function show(string $id)
     {
         $data = WeddingDesign1::findOrFail($id);
-        $nama_undangan = $data->namaUndangan();
+        $nama_undangan = $data->namaUndangan;
         return view('admin-design1.show', [
             'data' => $data,
             'nama_undangan' => $nama_undangan
@@ -112,7 +112,7 @@ class WeddingDesign1Controller extends Controller
      */
     public function update(WeddingDesign1FormRequest $request, $id)
     {
-        $weddingDesign = WeddingDesign1::findOrFail($id);
+        $weddingDesign1 = WeddingDesign1::findOrFail($id);
 
         // Simpan gambar ke penyimpanan
         $data = $request->all();
@@ -120,36 +120,36 @@ class WeddingDesign1Controller extends Controller
         // Simpan jalur penyimpanan untuk gambar utama
         if ($request->hasFile('banner_img')) {
             // Hapus gambar lama jika ada
-            if ($weddingDesign->banner_img) {
-                Storage::delete($weddingDesign->banner_img);
+            if ($weddingDesign1->banner_img) {
+                Storage::delete($weddingDesign1->banner_img);
             }
             $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design1', $request->file('banner_img')->getClientOriginalName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
-            if ($weddingDesign->foto_prewedding) {
-                Storage::delete($weddingDesign->foto_prewedding);
+            if ($weddingDesign1->foto_prewedding) {
+                Storage::delete($weddingDesign1->foto_prewedding);
             }
             $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design1', $request->file('foto_prewedding')->getClientOriginalName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
-            if ($weddingDesign->foto_mempelai_laki) {
-                Storage::delete($weddingDesign->foto_mempelai_laki);
+            if ($weddingDesign1->foto_mempelai_laki) {
+                Storage::delete($weddingDesign1->foto_mempelai_laki);
             }
             $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design1', $request->file('foto_mempelai_laki')->getClientOriginalName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
-            if ($weddingDesign->foto_mempelai_perempuan) {
-                Storage::delete($weddingDesign->foto_mempelai_perempuan);
+            if ($weddingDesign1->foto_mempelai_perempuan) {
+                Storage::delete($weddingDesign1->foto_mempelai_perempuan);
             }
             $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design1', $request->file('foto_mempelai_perempuan')->getClientOriginalName());
         }
 
         if ($request->hasFile('music')) {
-            if ($weddingDesign->music) {
-                Storage::delete($weddingDesign->music);
+            if ($weddingDesign1->music) {
+                Storage::delete($weddingDesign1->music);
             }
             $data['music'] = $request->file('music')->storeAs('public/wedding-design1-music', $request->file('music')->getClientOriginalName());
         }
@@ -159,13 +159,13 @@ class WeddingDesign1Controller extends Controller
             $galeri_field = 'galeri_img' . $index;
             if ($request->hasFile($galeri_field)) {
                 // Hapus gambar lama jika ada
-                if ($weddingDesign->$galeri_field) {
-                    Storage::delete($weddingDesign->$galeri_field);
+                if ($weddingDesign1->$galeri_field) {
+                    Storage::delete($weddingDesign1->$galeri_field);
                 }
                 $data[$galeri_field] = $request->file($galeri_field)->storeAs('public/wedding-design1', $request->file($galeri_field)->getClientOriginalName());
             } else {
                 // Jika file galeri tidak diunggah, tetap gunakan yang lama
-                $data[$galeri_field] = $weddingDesign->$galeri_field;
+                $data[$galeri_field] = $weddingDesign1->$galeri_field;
             }
         }
 
@@ -173,18 +173,18 @@ class WeddingDesign1Controller extends Controller
         foreach (['foto_pertemuan', 'foto_pendekatan', 'foto_lamaran', 'foto_pernikahan'] as $file) {
             if ($request->hasFile($file)) {
                 // Hapus gambar lama jika ada
-                if ($weddingDesign->$file) {
-                    Storage::delete($weddingDesign->$file);
+                if ($weddingDesign1->$file) {
+                    Storage::delete($weddingDesign1->$file);
                 }
                 $data[$file] = $request->file($file)->storeAs('public/wedding-design1', $request->file($file)->getClientOriginalName());
             } else {
                 // Jika file tidak diunggah, tetap gunakan yang lama
-                $data[$file] = $weddingDesign->$file;
+                $data[$file] = $weddingDesign1->$file;
             }
         }
 
         // Perbarui data di database
-        $weddingDesign->update($data);
+        $weddingDesign1->update($data);
 
         return redirect()->route('wedding-design1')->with('success', 'Data berhasil diperbarui.');
     }

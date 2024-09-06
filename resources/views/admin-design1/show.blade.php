@@ -151,8 +151,8 @@
             </form>
 
             <table class="table table-bordered">
-                <h6>Daftar Tamu Undangan <a href="{{ route('nama-undangan-list', ['id' => $data]) }}" target="_blank"
-                        rel="noopener noreferrer" class="link-underline-primary"><u>Sharelink</u></a></h6>
+                <h6>Daftar Tamu Undangan <a href="{{ route('nama-undangan-list1', ['id' => $data]) }}" target="_blank"
+                        rel="noopener noreferrer" class="underline-primary"><u>Sharelink</u></a></h6>
                 <thead>
                     <tr class="text-nowrap text-center">
                         <th>No</th>

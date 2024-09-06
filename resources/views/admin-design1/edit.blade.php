@@ -11,8 +11,9 @@
                 <div class="container-fluid">
                     @include('layouts.message')
                     <!-- Small boxes (Stat box) -->
-                    <form action="{{ route('wedding-design1.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('wedding-design1.update', $data->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="card-body container bg-white mt-5">
                             <div class="mempelai text-center fw-bold fs-5">Banner Image & Music</div>
                             <div class="fs-3">

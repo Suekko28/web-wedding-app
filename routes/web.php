@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeDesign1Controller;
+use App\Http\Controllers\IndexDesign1Controller;
 use App\Http\Controllers\NamaUndanganDesign1Controller;
+use App\Http\Controllers\NamaUndanganDesign2Controller;
 use App\Http\Controllers\WeddingDesign1Controller;
+use App\Http\Controllers\WeddingDesign2Controller;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -39,7 +43,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/wedding-design1', WeddingDesign1Controller::class);
     Route::get('/wedding-design1', [WeddingDesign1Controller::class, 'index'])->name('wedding-design1');
-    // Route::get('/wedding-design1/{id}/show', [WeddingDesign1Controller::class, 'show'])->name('wedding-design1.show');
+
+    Route::resource('/wedding-design2', WeddingDesign2Controller::class);
+    Route::get('/wedding-design2', [WeddingDesign2Controller::class, 'index'])->name('wedding-design2');
+
 
 });
 
@@ -51,17 +58,51 @@ Route::middleware(['auth', 'psi'])->group(function () {
     Route::resource('/wedding-design1', WeddingDesign1Controller::class);
     Route::get('/wedding-design1', [WeddingDesign1Controller::class, 'index'])->name('wedding-design1');
 
+    Route::resource('/wedding-design2', WeddingDesign2Controller::class);
+    Route::get('/wedding-design2', [WeddingDesign2Controller::class, 'index'])->name('wedding-design2');
+
+
 
 });
 
+// Route undangan design 1
+Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=')->group(function () {
+    Route::get('/preview', [HomeDesign1Controller::class, 'show'])->name('wedding-design1-home-preview');
+    Route::get('/preview/index', [IndexDesign1Controller::class, 'show'])->name('wedding-design1-preview');
+});
+
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}', [HomeDesign1Controller::class, 'showDetail'])->name('wedding-design1-home');
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign1Controller::class, 'showDetail'])->name('wedding-design1-index');
+Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign1Controller::class, 'store'])->name('wedding-design1-post');
+
+
 Route::resource('/nama-undangan', NamaUndanganDesign1Controller::class);
-Route::get('/nama-undangan/design1/{id}/list', [NamaUndanganDesign1Controller::class, 'index'])->name('nama-undangan-list');
+Route::get('/nama-undangan/design1/{id}/list', [NamaUndanganDesign1Controller::class, 'index'])->name('nama-undangan-list1');
 Route::get('/nama-undangan/design1/{id}/create', [NamaUndanganDesign1Controller::class, 'create'])->name('nama-undangan-create');
 Route::get('/nama-undangan/design1/{id}/edit', [NamaUndanganDesign1Controller::class, 'edit'])->name('nama-undangan-edit');
 Route::post('/nama-undangan/design1/{id}/list', [NamaUndanganDesign1Controller::class, 'store'])->name('nama-undangan-store');
-Route::put('/nama-undangan/design1/{undangandesign1Id}/{id}', [NamaUndanganDesign1Controller::class, 'update'])->name('nama-undangan-update');
+Route::put('/nama-undangan/design1/{weddingDesign1Id}/{id}', [NamaUndanganDesign1Controller::class, 'update'])->name('nama-undangan-update');
 Route::delete('/nama-undangan/design1/{id}', [NamaUndanganDesign1Controller::class, 'destroy'])->name('nama-undangan.destroy');
 
+
+// Route undangan design 2
+
+Route::resource('/nama-undangan', NamaUndanganDesign2Controller::class);
+Route::get('/nama-undangan/design2/{id}/list', [NamaUndanganDesign2Controller::class, 'index'])->name('nama-undangan-list2');
+Route::get('/nama-undangan/design2/{id}/create', [NamaUndanganDesign2Controller::class, 'create'])->name('nama-undangan-create');
+Route::get('/nama-undangan/design2/{id}/edit', [NamaUndanganDesign2Controller::class, 'edit'])->name('nama-undangan-edit');
+Route::post('/nama-undangan/design2/{id}/list', [NamaUndanganDesign2Controller::class, 'store'])->name('nama-undangan-store');
+Route::put('/nama-undangan/design2/{weddingDesign2Id}/{id}', [NamaUndanganDesign2Controller::class, 'update'])->name('nama-undangan-update');
+Route::delete('/nama-undangan/design2/{id}', [NamaUndanganDesign2Controller::class, 'destroy'])->name('nama-undangan.destroy');
+
+
+Route::get('/wedding-1', function () {
+    return view('wedding-design1.home-preview');
+});
+
+Route::get('/wedding-1/index', function () {
+    return view('wedding-design1.index-preview');
+});
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -4,7 +4,7 @@
 }
 
 body {
-    background-image: url("./assets/5447182-1-1@2x.png");
+    background-image: url("../assets/5447182-1-1@2x.png");
     background-size: cover; /* atau background-size: 100% 100%; */
     background-position: center;
     background-repeat: no-repeat;
@@ -612,7 +612,7 @@ audio {
     font-size: 12px;
     color: #fff;
     font-family: "Cormorant Garamond";
-    background-image: url(./assets/button@2x.png);
+    background-image: url(../assets/button@2x.png);
     background-position: center;
     background-size: cover;
 }
@@ -1328,7 +1328,7 @@ audio {
     display: flex;
     position: relative;
     height: 550px;
-    background-image: url("./assets/caption.png");
+    background-image: url("../assets/caption.png");
     background-position: right;
     background-size: cover;
 }
@@ -2514,7 +2514,7 @@ textarea {
         border-radius: 120px;
         overflow: hidden;
         flex-shrink: 0;
-        background-image: url(./assets/piringan-1@2x.png);
+        background-image: url(../assets/piringan-1@2x.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top;
