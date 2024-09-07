@@ -82,9 +82,12 @@ class NamaUndanganDesign2Controller extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id, $weddingDesign1Id)
     {
-        //
+        $nama_undangan = NamaUndanganDesign2::findOrFail($id);
+        return view('user-design2.show', [
+            'nama_undangan' => $nama_undangan
+        ]);
     }
 
     /**
@@ -92,22 +95,45 @@ class NamaUndanganDesign2Controller extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = NamaUndanganDesign2::findOrFail($id);
+        $weddingDesign2Id = $data->wedding_design2_id;
+        return view('user-design2.edit', [
+            'data' => $data,
+            'weddingDesign2Id' => $weddingDesign2Id,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $weddingDesign2Id, string $id)
     {
-        //
+        // Mendapatkan instance NamaUndangan berdasarkan ID
+        $nama_undangan = NamaUndanganDesign2::findOrFail($id);
+
+        // Update nama undangan
+        $nama_undangan->nama_undangan = $request->nama_undangan;
+
+        // Simpan perubahan
+        $nama_undangan->save();
+
+        // Redirect ke halaman list dengan pesan sukses
+        return redirect()->route('nama-undangan-list2', $weddingDesign2Id)->with('success', 'Berhasil memperbarui data');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, $id = null)
     {
-        //
+        // Hapus data tunggal berdasarkan ID yang diterima
+        $data = NamaUndanganDesign2::find($id);
+        if ($data) {
+            $data->delete();
+            // Redirect back to the previous page
+            return redirect()->back()->with('success', 'Data berhasil dihapus');
+        } else {
+            return redirect()->back()->with('error', 'Data tidak ditemukan');
+        }
     }
 }

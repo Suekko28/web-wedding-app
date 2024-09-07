@@ -119,7 +119,7 @@ input {
 .profile-container {
     height: 360px;
     width: 360px;
-    background-image: url("./assets/Wing.png");
+    background-image: url("../assets/Wing.png");
     position: relative;
     display: flex;
     align-items: center;
@@ -135,7 +135,7 @@ input {
     width: 208px;
     height: 240px;
     position: absolute;
-    background-image: url("./assets/profile-pict-woman.jpg");
+    /* background-image: url("../assets/profile-pict-woman.jpg"); */
     border-radius: 200px 200px 40px 40px;
 }
 .side-view-bride-groom-embraced-icon {
@@ -748,7 +748,7 @@ a {
     justify-content: flex-start;
     width: 100%;
     z-index: 1;
-    background-image: url("./assets/bg-kedua-mempelai.png");
+    background-image: url("../assets/bg-kedua-mempelai.png");
     background-position: center;
 }
 .side-view-bride-groom-hiding-f-icon {

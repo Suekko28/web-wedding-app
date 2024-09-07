@@ -68,13 +68,13 @@
                                             class="btn btn-info rounded mb-2">
                                             <i class="fa fa-circle-info" style="color:white;"></i>
                                         </a>
-                                        {{-- <a href="{{route('wedding-design2-home-preview' , [
+                                        <a href="{{route('wedding-design2-home-preview' , [
                                             'nama_mempelai_laki' => $item->nama_mempelai_laki,
                                             'nama_mempelai_perempuan' => $item->nama_mempelai_perempuan
                                         ])}}"
                                         target="_blank" class="btn btn-primary rounded mb-2">
                                         <i class="fa fa-eye" style="color:white;"></i>
-                                    </a> --}}
+                                    </a>
                                     </div>
                                 </td>
                             </tr>

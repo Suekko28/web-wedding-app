@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeDesign1Controller;
+use App\Http\Controllers\HomeDesign2Controller;
 use App\Http\Controllers\IndexDesign1Controller;
+use App\Http\Controllers\IndexDesign2Controller;
 use App\Http\Controllers\NamaUndanganDesign1Controller;
 use App\Http\Controllers\NamaUndanganDesign2Controller;
 use App\Http\Controllers\WeddingDesign1Controller;
@@ -85,7 +87,16 @@ Route::put('/nama-undangan/design1/{weddingDesign1Id}/{id}', [NamaUndanganDesign
 Route::delete('/nama-undangan/design1/{id}', [NamaUndanganDesign1Controller::class, 'destroy'])->name('nama-undangan.destroy');
 
 
+
 // Route undangan design 2
+Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=')->group(function () {
+    Route::get('/preview', [HomeDesign2Controller::class, 'show'])->name('wedding-design2-home-preview');
+    Route::get('/preview/index', [IndexDesign2Controller::class, 'show'])->name('wedding-design2-preview');
+});
+
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}', [HomeDesign2Controller::class, 'showDetail'])->name('wedding-design2-home');
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign2Controller::class, 'showDetail'])->name('wedding-design2-index');
+Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign2Controller::class, 'store'])->name('wedding-design2-post');
 
 Route::resource('/nama-undangan', NamaUndanganDesign2Controller::class);
 Route::get('/nama-undangan/design2/{id}/list', [NamaUndanganDesign2Controller::class, 'index'])->name('nama-undangan-list2');
@@ -96,12 +107,28 @@ Route::put('/nama-undangan/design2/{weddingDesign2Id}/{id}', [NamaUndanganDesign
 Route::delete('/nama-undangan/design2/{id}', [NamaUndanganDesign2Controller::class, 'destroy'])->name('nama-undangan.destroy');
 
 
+
+
+
+Route::get('/', function () {
+    return view('landingpage.index');
+});
+
 Route::get('/wedding-1', function () {
     return view('wedding-design1.home-preview');
 });
 
 Route::get('/wedding-1/index', function () {
     return view('wedding-design1.index-preview');
+});
+
+
+Route::get('/wedding-2', function () {
+    return view('wedding-design2.home-preview');
+});
+
+Route::get('/wedding-2/index', function () {
+    return view('wedding-design2.index-preview');
 });
 
 
