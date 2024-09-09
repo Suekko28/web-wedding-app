@@ -22,7 +22,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/page-pricing') ? 'active' : '' }}" href="/main/page-pricing"
+            <a class="sidebar-link {{ request()->is('main/page-pricing') ? 'active' : '' }}" href="{{route('dashboard')}}"
                 aria-expanded="false">
                 <span>
                     <i class="ti ti-currency-dollar"></i>
@@ -39,9 +39,9 @@
                 <span class="hide-menu">Wedding Design</span>
             </a>
             <ul aria-expanded="false"
-                class="collapse first-level {{ request()->is('main/blog-posts', 'main/blog-detail') ? 'in' : '' }}">
+                class="collapse first-level {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}">
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/blog-posts') ? 'active' : '' }}"
+                    <a class="sidebar-link {{ request()->is('wedding-design1') ? 'active' : '' }}"
                         href="{{ route('wedding-design1') }}" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
@@ -51,19 +51,28 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="{{ route('wedding-design2') }}"
-                        class="sidebar-link {{ request()->is('main/blog-detail') ? 'active' : '' }}">
+                        class="sidebar-link {{ request()->is('wedding-design2') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Design 2</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('wedding-design3') }}"
+                        class="sidebar-link {{ request()->is('wedding-design3') ? 'active' : '' }}">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Design 3</span>
+                    </a>
+                </li>
             </ul>
         </li>
         @if (auth()->user()->role == 1)
             <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('main/page-pricing') ? 'active' : '' }}"
-                    href="/main/page-pricing" aria-expanded="false">
+                <a class="sidebar-link {{ request()->is('promo.index') ? 'active' : '' }}"
+                    href="{{route('promo.index')}}" aria-expanded="false">
                     <span>
                         <i class="ti ti-currency-dollar"></i>
                     </span>
@@ -71,8 +80,8 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('main/page-pricing') ? 'active' : '' }}"
-                    href="/main/page-pricing" aria-expanded="false">
+                <a class="sidebar-link {{ request()->is('blog.index') ? 'active' : '' }}"
+                    href="{{route('blog.index')}}" aria-expanded="false">
                     <span>
                         <i class="ti ti-currency-dollar"></i>
                     </span>
@@ -87,7 +96,7 @@
     </ul>
 </nav>
 
-<div class="fixed-profile p-3 mx-4 mb-2 bg-secondary-subtle rounded mt-3">
+{{-- <div class="fixed-profile p-3 mx-4 mb-2 bg-secondary-subtle rounded mt-3">
     <div class="hstack gap-3">
         <div class="john-img">
             <img src="{{ URL::asset('build/images/profile/user-1.jpg') }}" class="rounded-circle" width="40"
@@ -102,7 +111,7 @@
             <i class="ti ti-power fs-6"></i>
         </button>
     </div>
-</div>
+</div> --}}
 
 <!-- ---------------------------------- -->
 <!-- Start Vertical Layout Sidebar -->

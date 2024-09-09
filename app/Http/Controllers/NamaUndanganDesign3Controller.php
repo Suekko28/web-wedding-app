@@ -2,40 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NamaUndanganDesign2;
-use App\Models\WeddingDesign2;
+use App\Models\NamaUndanganDesign3;
+use App\Models\WeddingDesign3;
 use Illuminate\Http\Request;
 use Validator;
 
-class NamaUndanganDesign2Controller extends Controller
+class NamaUndanganDesign3Controller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index($weddingDesign2Id)
+    public function index($weddingDesign3Id)
     {
-        $weddingDesign2 = WeddingDesign2::findOrFail($weddingDesign2Id);
-        $nama_undangan = $weddingDesign2->namaUndangan()->paginate(10);
+        $weddingDesign3 = WeddingDesign3::findOrFail($weddingDesign3Id);
+        $nama_undangan = $weddingDesign3->namaUndangan()->paginate(10);
 
-        return view('user-design2.index', [
-            'weddingDesign2' => $weddingDesign2,
+        return view('user-design3.index', [
+            'weddingDesign3' => $weddingDesign3,
             'nama_undangan' => $nama_undangan,
         ]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
-    public function create($weddingDesign2Id)
+    public function create($weddingDesign3Id)
     {
-        $weddingDesign2 = WeddingDesign2::findOrFail($weddingDesign2Id);
-        return view('user-design2.create', compact('weddingDesign2Id', 'weddingDesign2'));
+        $weddingDesign3 = WeddingDesign3::findOrFail($weddingDesign3Id);
+        return view('user-design3.create', compact('weddingDesign3Id', 'weddingDesign3'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $weddingDesign2)
+    public function store(Request $request, $weddingDesign3)
     {
         // Definisikan pesan untuk validasi
         $messages = [
@@ -54,8 +55,8 @@ class NamaUndanganDesign2Controller extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Mendapatkan instance weddingDesign2$weddingDesign2 berdasarkan ID
-        $weddingDesign2 = WeddingDesign2::findOrFail($weddingDesign2);
+        // Mendapatkan instance weddingDesign3$weddingDesign3 berdasarkan ID
+        $weddingDesign3 = WeddingDesign3::findOrFail($weddingDesign3);
 
         // Memecah nama undangan menjadi array
         $nama_undangans = explode("\n", $request->nama_undangan);
@@ -68,24 +69,23 @@ class NamaUndanganDesign2Controller extends Controller
             ];
 
             // Buat instance NamaUndangan
-            $namaUndangan = new NamaUndanganDesign2($data);
+            $namaUndangan = new NamaUndanganDesign3($data);
 
-            // Simpan model NamaUndangan terkait dengan weddingDesign2$weddingDesign2
-            $weddingDesign2->namaUndangan()->save($namaUndangan);
+            // Simpan model NamaUndangan terkait dengan weddingDesign3$weddingDesign3
+            $weddingDesign3->namaUndangan()->save($namaUndangan);
         }
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('nama-undangan-list2', $weddingDesign2)->with('success', 'Berhasil menambahkan data');
+        return redirect()->route('nama-undangan-list3', $weddingDesign3)->with('success', 'Berhasil menambahkan data');
     }
-
 
     /**
      * Display the specified resource.
      */
-    public function show($id, $weddingDesign2Id)
+    public function show($id, $weddingDesign3Id)
     {
-        $nama_undangan = NamaUndanganDesign2::findOrFail($id);
-        return view('user-design2.show', [
+        $nama_undangan = NamaUndanganDesign3::findOrFail($id);
+        return view('user-design3.show', [
             'nama_undangan' => $nama_undangan
         ]);
     }
@@ -95,21 +95,21 @@ class NamaUndanganDesign2Controller extends Controller
      */
     public function edit(string $id)
     {
-        $data = NamaUndanganDesign2::findOrFail($id);
-        $weddingDesign2Id = $data->wedding_design2_id;
-        return view('user-design2.edit', [
+        $data = NamaUndanganDesign3::findOrFail($id);
+        $weddingDesign3Id = $data->wedding_design3_id;
+        return view('user-design3.edit', [
             'data' => $data,
-            'weddingDesign2Id' => $weddingDesign2Id,
+            'weddingDesign3Id' => $weddingDesign3Id,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $weddingDesign2Id, string $id)
+    public function update(Request $request, string $weddingDesign3Id, string $id)
     {
         // Mendapatkan instance NamaUndangan berdasarkan ID
-        $nama_undangan = NamaUndanganDesign2::findOrFail($id);
+        $nama_undangan = NamaUndanganDesign3::findOrFail($id);
 
         // Update nama undangan
         $nama_undangan->nama_undangan = $request->nama_undangan;
@@ -118,7 +118,7 @@ class NamaUndanganDesign2Controller extends Controller
         $nama_undangan->save();
 
         // Redirect ke halaman list dengan pesan sukses
-        return redirect()->route('nama-undangan-list2', $weddingDesign2Id)->with('success', 'Berhasil memperbarui data');
+        return redirect()->route('nama-undangan-list3', $weddingDesign3Id)->with('success', 'Berhasil memperbarui data');
     }
 
     /**
@@ -127,7 +127,7 @@ class NamaUndanganDesign2Controller extends Controller
     public function destroy(Request $request, $id = null)
     {
         // Hapus data tunggal berdasarkan ID yang diterima
-        $data = NamaUndanganDesign2::find($id);
+        $data = NamaUndanganDesign3::find($id);
         if ($data) {
             $data->delete();
             // Redirect back to the previous page

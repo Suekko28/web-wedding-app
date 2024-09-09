@@ -1,14 +1,22 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeDesign1Controller;
 use App\Http\Controllers\HomeDesign2Controller;
+use App\Http\Controllers\HomeDesign3Controller;
 use App\Http\Controllers\IndexDesign1Controller;
 use App\Http\Controllers\IndexDesign2Controller;
+use App\Http\Controllers\IndexDesign3Controller;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NamaUndanganDesign1Controller;
 use App\Http\Controllers\NamaUndanganDesign2Controller;
+use App\Http\Controllers\NamaUndanganDesign3Controller;
+use App\Http\Controllers\PromoController;
+use App\Http\Controllers\UserBlogController;
 use App\Http\Controllers\WeddingDesign1Controller;
 use App\Http\Controllers\WeddingDesign2Controller;
+use App\Http\Controllers\WeddingDesign3Controller;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -48,6 +56,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/wedding-design2', WeddingDesign2Controller::class);
     Route::get('/wedding-design2', [WeddingDesign2Controller::class, 'index'])->name('wedding-design2');
+    
+    Route::resource('/wedding-design3', WeddingDesign3Controller::class);
+    Route::get('/wedding-design3', [WeddingDesign3Controller::class, 'index'])->name('wedding-design3');
+
+    Route::resource('/blog', BlogController::class);
+
+    Route::resource('/promo', PromoController::class);
+
 
 
 });
@@ -89,7 +105,7 @@ Route::delete('/nama-undangan/design1/{id}', [NamaUndanganDesign1Controller::cla
 
 
 // Route undangan design 2
-Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=')->group(function () {
+Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=untuk')->group(function () {
     Route::get('/preview', [HomeDesign2Controller::class, 'show'])->name('wedding-design2-home-preview');
     Route::get('/preview/index', [IndexDesign2Controller::class, 'show'])->name('wedding-design2-preview');
 });
@@ -107,12 +123,35 @@ Route::put('/nama-undangan/design2/{weddingDesign2Id}/{id}', [NamaUndanganDesign
 Route::delete('/nama-undangan/design2/{id}', [NamaUndanganDesign2Controller::class, 'destroy'])->name('nama-undangan.destroy');
 
 
-
-
-
-Route::get('/', function () {
-    return view('landingpage.index');
+// Route undangan design 3
+Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=to')->group(function () {
+    Route::get('/preview', [HomeDesign3Controller::class, 'show'])->name('wedding-design3-home-preview');
+    Route::get('/preview/index', [IndexDesign3Controller::class, 'show'])->name('wedding-design3-preview');
 });
+
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}', [HomeDesign3Controller::class, 'showDetail'])->name('wedding-design3-home');
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign3Controller::class, 'showDetail'])->name('wedding-design3-index');
+Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign3Controller::class, 'store'])->name('wedding-design3-post');
+
+Route::resource('/nama-undangan', NamaUndanganDesign3Controller::class);
+Route::get('/nama-undangan/design3/{id}/list', [NamaUndanganDesign3Controller::class, 'index'])->name('nama-undangan-list3');
+Route::get('/nama-undangan/design3/{id}/create', [NamaUndanganDesign3Controller::class, 'create'])->name('nama-undangan-create');
+Route::get('/nama-undangan/design3/{id}/edit', [NamaUndanganDesign3Controller::class, 'edit'])->name('nama-undangan-edit');
+Route::post('/nama-undangan/design3/{id}/list', [NamaUndanganDesign3Controller::class, 'store'])->name('nama-undangan-store');
+Route::put('/nama-undangan/design3/{weddingDesign3Id}/{id}', [NamaUndanganDesign3Controller::class, 'update'])->name('nama-undangan-update');
+Route::delete('/nama-undangan/design3/{id}', [NamaUndanganDesign3Controller::class, 'destroy'])->name('nama-undangan.destroy');
+
+
+
+
+
+
+
+Route::resource('/', LandingPageController::class);
+Route::resource('/blog', UserBlogController::class);
+
+
+
 
 Route::get('/wedding-1', function () {
     return view('wedding-design1.home-preview');
