@@ -2,13 +2,15 @@
 <html lang="en" dir="ltr" data-bs-theme="@yield('theme', 'light')" data-color-theme="Blue_Theme" data-layout="vertical">
 <head>
     @include('layouts.head')
-    <title>@yield('title', 'Modernize Bootstrap Admin')</title>
+    <title>@yield('title', 'JejakKebahagiaan')</title>
     @yield('css')
+    <link rel="website icon" type="png" href="{{('img/small-logo.jpg')}}"></head>
+
 </head>
 <body class="link-sidebar">
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ URL::asset('build/images/logos/favicon.png') }}" alt="loader" class="lds-ripple img-fluid" />
+        <img src="{{ asset('img/small-logo.jpg') }}" alt="loader" class="lds-ripple img-fluid" />
     </div>
     <div id="main-wrapper">
 

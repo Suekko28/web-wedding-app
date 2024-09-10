@@ -12,7 +12,7 @@ class UserBlogController extends Controller
      */
     public function index()
     {
-        $data = Blog::orderBy('id', 'desc');
+        $data = Blog::orderBy('id', 'desc')->paginate(10);
         return view('user-blog.index', compact('data'));
     }
 

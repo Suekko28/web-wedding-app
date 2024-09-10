@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Modernize Bootstrap Admin')
+@section('title', 'JejakKebahagiaan')
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Wedding Design 1', 'subtitle' => 'Dashboard'])
+    @include('layouts.breadcrumb', ['title' => 'Wedding Design 3', 'subtitle' => 'Dashboard'])
 
 
     <section class="content">

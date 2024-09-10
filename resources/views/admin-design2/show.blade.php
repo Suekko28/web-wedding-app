@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Modernize Bootstrap Admin')
+@section('title', 'JejakKebahagiaan')
 
 @section('pageContent')
 

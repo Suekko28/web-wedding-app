@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         // Insert Admin User
         DB::table('users')->insert([
             'name' => 'Admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin123@gmail.com',
             'password' => Hash::make('admin123'), // Ganti dengan password yang aman
             'role' => 1, // Role 1 for Admin
         ]);

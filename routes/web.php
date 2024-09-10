@@ -143,14 +143,14 @@ Route::delete('/nama-undangan/design3/{id}', [NamaUndanganDesign3Controller::cla
 
 
 
-
-
-
+// User Route
 
 Route::resource('/', LandingPageController::class);
-Route::resource('/blog', UserBlogController::class);
+Route::resource('/blog-view', UserBlogController::class);
 
-
+Route::get('/template', function () {
+    return view('index');
+});
 
 
 Route::get('/wedding-1', function () {
@@ -168,6 +168,14 @@ Route::get('/wedding-2', function () {
 
 Route::get('/wedding-2/index', function () {
     return view('wedding-design2.index-preview');
+});
+
+Route::get('/wedding-3', function () {
+    return view('wedding-design3.home-preview');
+});
+
+Route::get('/wedding-3/index', function () {
+    return view('wedding-design3.index-preview');
 });
 
 

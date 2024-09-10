@@ -3,7 +3,7 @@
 @section('navbar')
     <section class="blog-detail" id="blog-detail">
         <div class="blog-image">
-            <img class="img-fluid" src="{{ asset('storage/blog/' . $data->image) }}" alt="" style="height: 100%">
+            <img class="img-fluid object-fit-cover" src="{{ asset('storage/blog/' . $data->image) }}" alt="" style="height: 100%" width="100%">
         </div>
     </section>
 

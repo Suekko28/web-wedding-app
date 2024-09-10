@@ -1,6 +1,6 @@
 @extends('layouts.master-auth')
 
-@section('title', 'Modernize Bootstrap Admin')
+@section('title', 'JejakKebahagiaan')
 
 @section('pageContent')
     <div id="main-wrapper" class="auth-customizer-none">
@@ -12,12 +12,9 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="/main/index" class="text-nowrap logo-img text-center d-block mb-5 w-100">
-                                    <img src="{{ URL::asset('build/images/logos/dark-logo.svg') }}" class="dark-logo"
-                                        alt="Logo-Dark" />
-                                    <img src="{{ URL::asset('build/images/logos/light-logo.svg') }}" class="light-logo"
-                                        alt="Logo-light" />
+                                    <img src="{{ asset('img/logo.png') }}" alt="logo">
                                 </a>
-    
+                                @include('layouts.message')
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="mb-3">

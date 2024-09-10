@@ -1,6 +1,6 @@
 @extends('layouts.master-auth')
 
-@section('title', 'Modernize Bootstrap Admin')
+@section('title', 'JejakKebahagiaan')
 
 @section('pageContent')
   <div id="main-wrapper">

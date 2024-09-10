@@ -3,8 +3,7 @@
 <!-- ---------------------------------- -->
 <div class="brand-logo d-flex align-items-center justify-content-between">
     <a href="/main/index" class="text-nowrap logo-img">
-        <img src="{{ URL::asset('build/images/logos/dark-logo.svg') }}" class="dark-logo" alt="Logo-Dark" />
-        <img src="{{ URL::asset('build/images/logos/light-logo.svg') }}" class="light-logo" alt="Logo-light" />
+        <img src="{{ asset('img/logo.png') }}" alt="logo">
     </a>
     <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
         <i class="ti ti-x"></i>
@@ -22,16 +21,16 @@
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/page-pricing') ? 'active' : '' }}" href="{{route('dashboard')}}"
+            <a class="sidebar-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{route('dashboard')}}"
                 aria-expanded="false">
                 <span>
-                    <i class="ti ti-currency-dollar"></i>
+                    <i class="ti ti-dashboard"></i>
                 </span>
                 <span class="hide-menu">Dashboard</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('main/blog-posts', 'main/blog-detail') ? 'active' : '' }}"
+            <a class="sidebar-link has-arrow {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}"
                 href="javascript:void(0)" aria-expanded="false">
                 <span class="d-flex">
                     <i class="ti ti-chart-donut-3"></i>
@@ -71,19 +70,19 @@
         </li>
         @if (auth()->user()->role == 1)
             <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('promo.index') ? 'active' : '' }}"
+                <a class="sidebar-link {{ request()->is('promo') ? 'active' : '' }}"
                     href="{{route('promo.index')}}" aria-expanded="false">
                     <span>
-                        <i class="ti ti-currency-dollar"></i>
+                        <i class="ti ti-basket"></i>
                     </span>
                     <span class="hide-menu">Promo</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('blog.index') ? 'active' : '' }}"
+                <a class="sidebar-link {{ request()->is('blog') ? 'active' : '' }}"
                     href="{{route('blog.index')}}" aria-expanded="false">
                     <span>
-                        <i class="ti ti-currency-dollar"></i>
+                        <i class="ti ti-notes"></i>
                     </span>
                     <span class="hide-menu">Blog</span>
                 </a>

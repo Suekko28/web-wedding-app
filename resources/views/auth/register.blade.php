@@ -1,6 +1,6 @@
 @extends('layouts.master-auth')
 
-@section('title', 'Modernize Bootstrap Admin')
+@section('title', 'JejakKebahagiaan')
 
 @section('pageContent')
     <div id="main-wrapper" class="auth-customizer-none">
@@ -9,10 +9,7 @@
                 <div class="row">
                     <div class="col-xl-7 col-xxl-8">
                         <a href="/main/index" class="text-nowrap logo-img d-block px-4 py-9 w-100">
-                            <img src="{{ URL::asset('build/images/logos/dark-logo.svg') }}" class="dark-logo"
-                                alt="Logo-Dark" />
-                            <img src="{{ URL::asset('build/images/logos/light-logo.svg') }}" class="light-logo"
-                                alt="Logo-light" />
+                            <img src="{{ asset('img/logo.png') }}" alt="logo">
                         </a>
                         <div class="d-none d-xl-flex align-items-center justify-content-center h-n80">
                             <img src="{{ URL::asset('build/images/backgrounds/login-security.svg') }}" alt="modernize-img"

@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Modernize Bootstrap Admin')
+@section('title', 'JejakKebahagiaan')
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 1'])
+    @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Wedding Design 3'])
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body p-4">
             <section class="content">
