@@ -96,11 +96,11 @@ Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/in
 
 Route::resource('/nama-undangan', NamaUndanganDesign1Controller::class);
 Route::get('/nama-undangan/design1/{id}/list', [NamaUndanganDesign1Controller::class, 'index'])->name('nama-undangan-list1');
-Route::get('/nama-undangan/design1/{id}/create', [NamaUndanganDesign1Controller::class, 'create'])->name('nama-undangan-create');
-Route::get('/nama-undangan/design1/{id}/edit', [NamaUndanganDesign1Controller::class, 'edit'])->name('nama-undangan-edit');
-Route::post('/nama-undangan/design1/{id}/list', [NamaUndanganDesign1Controller::class, 'store'])->name('nama-undangan-store');
-Route::put('/nama-undangan/design1/{weddingDesign1Id}/{id}', [NamaUndanganDesign1Controller::class, 'update'])->name('nama-undangan-update');
-Route::delete('/nama-undangan/design1/{id}', [NamaUndanganDesign1Controller::class, 'destroy'])->name('nama-undangan.destroy');
+Route::get('/nama-undangan/design1/{id}/create', [NamaUndanganDesign1Controller::class, 'create'])->name('nama-undangan-create1');
+Route::get('/nama-undangan/design1/{id}/edit', [NamaUndanganDesign1Controller::class, 'edit'])->name('nama-undangan-edit1');
+Route::post('/nama-undangan/design1/{id}/list', [NamaUndanganDesign1Controller::class, 'store'])->name('nama-undangan-store1');
+Route::put('/nama-undangan/design1/{weddingDesign1Id}/{id}', [NamaUndanganDesign1Controller::class, 'update'])->name('nama-undangan-update1');
+Route::delete('/nama-undangan/design1/{id}', [NamaUndanganDesign1Controller::class, 'destroy'])->name('nama-undangan.destroy1');
 
 
 
@@ -116,11 +116,11 @@ Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/in
 
 Route::resource('/nama-undangan', NamaUndanganDesign2Controller::class);
 Route::get('/nama-undangan/design2/{id}/list', [NamaUndanganDesign2Controller::class, 'index'])->name('nama-undangan-list2');
-Route::get('/nama-undangan/design2/{id}/create', [NamaUndanganDesign2Controller::class, 'create'])->name('nama-undangan-create');
-Route::get('/nama-undangan/design2/{id}/edit', [NamaUndanganDesign2Controller::class, 'edit'])->name('nama-undangan-edit');
-Route::post('/nama-undangan/design2/{id}/list', [NamaUndanganDesign2Controller::class, 'store'])->name('nama-undangan-store');
-Route::put('/nama-undangan/design2/{weddingDesign2Id}/{id}', [NamaUndanganDesign2Controller::class, 'update'])->name('nama-undangan-update');
-Route::delete('/nama-undangan/design2/{id}', [NamaUndanganDesign2Controller::class, 'destroy'])->name('nama-undangan.destroy');
+Route::get('/nama-undangan/design2/{id}/create', [NamaUndanganDesign2Controller::class, 'create'])->name('nama-undangan-create2');
+Route::get('/nama-undangan/design2/{id}/edit', [NamaUndanganDesign2Controller::class, 'edit'])->name('nama-undangan-edit2');
+Route::post('/nama-undangan/design2/{id}/list', [NamaUndanganDesign2Controller::class, 'store'])->name('nama-undangan-store2');
+Route::put('/nama-undangan/design2/{weddingDesign2Id}/{id}', [NamaUndanganDesign2Controller::class, 'update'])->name('nama-undangan-update2');
+Route::delete('/nama-undangan/design2/{id}', [NamaUndanganDesign2Controller::class, 'destroy'])->name('nama-undangan.destroy2');
 
 
 // Route undangan design 3
@@ -135,11 +135,11 @@ Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/in
 
 Route::resource('/nama-undangan', NamaUndanganDesign3Controller::class);
 Route::get('/nama-undangan/design3/{id}/list', [NamaUndanganDesign3Controller::class, 'index'])->name('nama-undangan-list3');
-Route::get('/nama-undangan/design3/{id}/create', [NamaUndanganDesign3Controller::class, 'create'])->name('nama-undangan-create');
-Route::get('/nama-undangan/design3/{id}/edit', [NamaUndanganDesign3Controller::class, 'edit'])->name('nama-undangan-edit');
-Route::post('/nama-undangan/design3/{id}/list', [NamaUndanganDesign3Controller::class, 'store'])->name('nama-undangan-store');
-Route::put('/nama-undangan/design3/{weddingDesign3Id}/{id}', [NamaUndanganDesign3Controller::class, 'update'])->name('nama-undangan-update');
-Route::delete('/nama-undangan/design3/{id}', [NamaUndanganDesign3Controller::class, 'destroy'])->name('nama-undangan.destroy');
+Route::get('/nama-undangan/design3/{id}/create', [NamaUndanganDesign3Controller::class, 'create'])->name('nama-undangan-create3');
+Route::get('/nama-undangan/design3/{id}/edit', [NamaUndanganDesign3Controller::class, 'edit'])->name('nama-undangan-edit3');
+Route::post('/nama-undangan/design3/{id}/list', [NamaUndanganDesign3Controller::class, 'store'])->name('nama-undangan-store3');
+Route::put('/nama-undangan/design3/{weddingDesign3Id}/{id}', [NamaUndanganDesign3Controller::class, 'update'])->name('nama-undangan-update3');
+Route::delete('/nama-undangan/design3/{id}', [NamaUndanganDesign3Controller::class, 'destroy'])->name('nama-undangan.destroy3');
 
 
 

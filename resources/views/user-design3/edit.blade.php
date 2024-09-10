@@ -16,7 +16,7 @@
             <div class="container-fluid">
                 @include('layouts.message')
                 <!-- Small boxes (Stat box) -->
-                <form action="{{ route('nama-undangan-update',['weddingDesign3Id' => $weddingDesign3Id, 'id' => $data->id]) }}" method="post"
+                <form action="{{ route('nama-undangan-update3',['weddingDesign3Id' => $weddingDesign3Id, 'id' => $data->id]) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -33,7 +33,7 @@
 
                         <div class="d-flex flex-row-reverse mt-5">
                             <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                            <a href="{{ route('nama-undangan-list2', ['id' => $weddingDesign3Id]) }}"
+                            <a href="{{ route('nama-undangan-list3', ['id' => $weddingDesign3Id]) }}"
                                 class="btn btn-danger">Batal</a>
                         </div>
 

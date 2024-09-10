@@ -16,7 +16,7 @@
             <div class="container-fluid">
                 @include('layouts.message')
                 <!-- Small boxes (Stat box) -->
-                <form action="{{ route('nama-undangan-update',['weddingDesign2Id' => $weddingDesign2Id, 'id' => $data->id]) }}" method="post"
+                <form action="{{ route('nama-undangan-update2',['weddingDesign2Id' => $weddingDesign2Id, 'id' => $data->id]) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

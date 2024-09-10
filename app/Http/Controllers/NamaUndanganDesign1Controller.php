@@ -76,7 +76,7 @@ class NamaUndanganDesign1Controller extends Controller
         }
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('nama-undangan-list', $weddingDesign1Id)->with('success', 'Berhasil menambahkan data');
+        return redirect()->route('nama-undangan-list1', $weddingDesign1Id)->with('success', 'Berhasil menambahkan data');
     }
 
     /**

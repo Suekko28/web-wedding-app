@@ -16,7 +16,7 @@
             <div class="container-fluid">
                 @include('layouts.message')
                 <!-- Small boxes (Stat box) -->
-                <form action="{{ route('nama-undangan-store', ['id' => $weddingDesign2Id]) }}" method="post"
+                <form action="{{ route('nama-undangan-store2', ['id' => $weddingDesign2Id]) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="wedding_design2_id" value="{{ $weddingDesign2->id }}">

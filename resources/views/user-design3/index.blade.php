@@ -12,7 +12,7 @@
     <!-- Row -->
     <main>
         <div class="container-xxl flex-grow-1 container-p-y">
-            <a class="btn btn-primary mb-3" href="{{ route('nama-undangan-create', ['id' => $weddingDesign3->id]) }}">+
+            <a class="btn btn-primary mb-3" href="{{ route('nama-undangan-create3', ['id' => $weddingDesign3->id]) }}">+
                 Nama
                 Undangan</a>
             @include('layouts.message')
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="table-responsive text-nowrap p-3">
-                    <form id="deleteForm" action="{{ route('nama-undangan.destroy', ['id' => $weddingDesign3->id]) }}"
+                    <form id="deleteForm" action="{{ route('nama-undangan.destroy3', ['id' => $weddingDesign3->id]) }}"
                         method="POST">
                         @csrf
                         @method('DELETE')
@@ -266,7 +266,7 @@
                     if (result.isConfirmed) {
                         // Replace the delete form action with the correct route and ID
                         document.getElementById('deleteForm').action =
-                            "{{ route('nama-undangan.destroy', ['id' => ':id']) }}".replace(':id',
+                            "{{ route('nama-undangan.destroy3', ['id' => ':id']) }}".replace(':id',
                                 itemId);
                         document.getElementById('deleteForm').submit();
                         Swal.fire(
