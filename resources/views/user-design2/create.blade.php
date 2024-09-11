@@ -8,7 +8,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Dashboard', 'subtitle' => 'Home'])
+    {{-- @include('layouts.breadcrumb', ['title' => 'Dashboard', 'subtitle' => 'Home']) --}}
     <!-- Row -->
     <main>
 

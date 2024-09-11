@@ -10,6 +10,34 @@
 
     @include('layouts.breadcrumb', ['title' => 'Nama Undangan', 'subtitle' => 'Dashboard'])
     <!-- Row -->
+    <style>
+        .radio_group {
+            display: flex;
+            gap: 16px;
+        }
+
+        .radio_group label {
+            padding: 7px 51px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0.6px solid #b0b0b0;
+            border-radius: 100px;
+        }
+
+        .radio_group input:checked+.radio_label {
+            background: var(--bs-blue);
+            color: white;
+        }
+
+        .radio_group input {
+            display: none;
+        }
+
+        label {
+            font-size: 16px;
+        }
+    </style>
     <main>
         <div class="container-xxl flex-grow-1 container-p-y">
             <a class="btn btn-primary mb-3" href="{{ route('nama-undangan-create3', ['id' => $weddingDesign3->id]) }}">+
@@ -130,13 +158,13 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="shareModalLabel">Modal title</h1>
+                                    <h1 class="modal-title fs-5" id="shareModalLabel">Share Link</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <!-- Isi modal -->
-                                    <p>Content of your modal goes here...</p>
+                                    {{-- <p>Content of your modal goes here...</p> --}}
                                     <div>
                                         {{-- <button class="btn btn-primary"
                                             onclick="copyLink('{{ $item->id }}', '{{ $weddingDesign3->nama_mempelai_laki }}', '{{ $weddingDesign3->nama_mempelai_perempuan }}', '{{ $item->nama_undangan }}')">
@@ -253,7 +281,7 @@
             button.addEventListener('click', function(event) {
                 event.preventDefault();
                 var itemId = this.getAttribute(
-                'nama_undangan-id'); // Corrected the attribute to 'nama_undangan-id'
+                    'nama_undangan-id'); // Corrected the attribute to 'nama_undangan-id'
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",

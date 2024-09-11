@@ -41,7 +41,7 @@
                 class="collapse first-level {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('wedding-design1') ? 'active' : '' }}"
-                        href="{{ route('wedding-design1') }}" aria-expanded="false">
+                        href="{{ route('wedding-design1.index') }}" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('wedding-design2') }}"
+                    <a href="{{ route('wedding-design2.index') }}"
                         class="sidebar-link {{ request()->is('wedding-design2') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('wedding-design3') }}"
+                    <a href="{{ route('wedding-design3.index') }}"
                         class="sidebar-link {{ request()->is('wedding-design3') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
@@ -86,6 +86,56 @@
                     </span>
                     <span class="hide-menu">Blog</span>
                 </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link has-arrow {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}"
+                    href="javascript:void(0)" aria-expanded="false">
+                    <span class="d-flex">
+                        <i class="ti ti-chart-donut-3"></i>
+                    </span>
+                    <span class="hide-menu">Product</span>
+                </a>
+                <ul aria-expanded="false"
+                    class="collapse first-level {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link {{ request()->is('wedding-design1') ? 'active' : '' }}"
+                            href="{{ route('wedding-design1.index') }}" aria-expanded="false">
+                            <div class="round-16 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-circle"></i>
+                            </div>
+                            <span class="hide-menu">Undangan Digital</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ route('wedding-design2.index') }}"
+                            class="sidebar-link {{ request()->is('wedding-design2') ? 'active' : '' }}">
+                            <div class="round-16 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-circle"></i>
+                            </div>
+                            <span class="hide-menu">Cetak Foto</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ route('seserahan.index') }}"
+                            class="sidebar-link {{ request()->is('seserahan') ? 'active' : '' }}">
+                            <div class="round-16 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-circle"></i>
+                            </div>
+                            <span class="hide-menu">Seserahan</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="{{ route('gambarin.index') }}"
+                            class="sidebar-link {{ request()->is('gambarin') ? 'active' : '' }}">
+                            <div class="round-16 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-circle"></i>
+                            </div>
+                            <span class="hide-menu">Gambarin</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
         @endif
 

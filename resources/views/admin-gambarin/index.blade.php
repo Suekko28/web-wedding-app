@@ -4,13 +4,13 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Blog', 'subtitle' => 'Dashboard'])
+    @include('layouts.breadcrumb', ['title' => 'Gambarin', 'subtitle' => 'Dashboard'])
     <div class="card w-100 position-relative overflow-hidden">
         {{-- <div class="px-4 py-3 border-bottom">
             <h4 class="card-title mb-0">Basic Table</h4>
         </div> --}}
         <div class="card-body p-4">
-            <a class="btn btn-primary mb-3" href="{{ url('blog/create') }}">+ Buat Blog</a>
+            <a class="btn btn-primary mb-3" href="{{ url('gambarin/create') }}">+ Buat Gambarin</a>
             @include('layouts.message')
             <div class="search">
                 <div class="mb-3">
@@ -29,7 +29,8 @@
                             {{-- <th>Nama Undangan</th> --}}
                             <th>Foto</th>
                             <th>Judul</th>
-                            <th>Deskripsi</th>
+                            <th>Harga</th>
+                            <th>Link</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -46,15 +47,16 @@
                                         height="120" alt="Foto Prewedding">
                                 </td> --}}
                                 <td>
-                                    <img class="img-fluid" src="{{ asset('storage/blog/' . $item->image) }}" alt="" width="120"
-                                        height="120" alt="Foto Blog">
+                                    <img class="img-fluid" src="{{ asset('storage/gambarin/' . $item->image) }}"
+                                        alt="" width="120" height="120" alt="Foto gambarin">
                                 </td>
                                 <td>{{ $item->judul }} </td>
-                                <td>{{ Str::limit($item->deskripsi, 300) }} </td>
+                                <td>Rp {{ number_format($item->harga, 0, ',', '.') }} </td>
+                                <td> <a href="{{ $item->link }}" target="_blank">{{ Str::limit($item->link, 20) }}</a>
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical">
-                                        <a href="{{ url('blog/' . $item->id) . '/edit' }}"
+                                        <a href="{{ url('gambarin/' . $item->id) . '/edit' }}"
                                             class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
                                                 style="color:white;"></i></a>
                                         <button class="btn btn-danger delete-btn rounded mb-2"
@@ -95,7 +97,7 @@
                     if (result.isConfirmed) {
                         // Set the action URL for the delete form
                         document.getElementById('deleteForm').action =
-                            "{{ url('blog') }}/" + itemId;
+                            "{{ url('gambarin') }}/" + itemId;
                         // Submit the form
                         document.getElementById('deleteForm').submit();
                         Swal.fire(

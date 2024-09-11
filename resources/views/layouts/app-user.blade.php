@@ -34,7 +34,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link trigger active" aria-current="page" href="#hero">Beranda</a>
+                            <a class="nav-link trigger" aria-current="page" href="{{ url('/') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link trigger" href="#promo">Promo</a>
@@ -55,7 +55,7 @@
     </nav>
     @yield('navbar')
 
-   @include('layouts.footer')
+    @include('layouts.footer')
 </body>
 <!-- BOOTSTRAP 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

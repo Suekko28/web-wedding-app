@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GambarinController;
 use App\Http\Controllers\HomeDesign1Controller;
 use App\Http\Controllers\HomeDesign2Controller;
 use App\Http\Controllers\HomeDesign3Controller;
@@ -13,10 +14,14 @@ use App\Http\Controllers\NamaUndanganDesign1Controller;
 use App\Http\Controllers\NamaUndanganDesign2Controller;
 use App\Http\Controllers\NamaUndanganDesign3Controller;
 use App\Http\Controllers\PromoController;
+use App\Http\Controllers\SeserahanController;
 use App\Http\Controllers\UserBlogController;
+use App\Http\Controllers\UserGambarinController;
+use App\Http\Controllers\UserSeserahanController;
 use App\Http\Controllers\WeddingDesign1Controller;
 use App\Http\Controllers\WeddingDesign2Controller;
 use App\Http\Controllers\WeddingDesign3Controller;
+use App\Models\Seserahan;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -52,17 +57,18 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 
     Route::resource('/wedding-design1', WeddingDesign1Controller::class);
-    Route::get('/wedding-design1', [WeddingDesign1Controller::class, 'index'])->name('wedding-design1');
 
     Route::resource('/wedding-design2', WeddingDesign2Controller::class);
-    Route::get('/wedding-design2', [WeddingDesign2Controller::class, 'index'])->name('wedding-design2');
-    
+
     Route::resource('/wedding-design3', WeddingDesign3Controller::class);
-    Route::get('/wedding-design3', [WeddingDesign3Controller::class, 'index'])->name('wedding-design3');
 
     Route::resource('/blog', BlogController::class);
 
     Route::resource('/promo', PromoController::class);
+
+    Route::resource('/gambarin', GambarinController::class);
+
+    Route::resource('/seserahan', SeserahanController::class);
 
 
 
@@ -74,10 +80,8 @@ Route::middleware(['auth', 'psi'])->group(function () {
         return redirect()->route('dashboard');
     });
     Route::resource('/wedding-design1', WeddingDesign1Controller::class);
-    Route::get('/wedding-design1', [WeddingDesign1Controller::class, 'index'])->name('wedding-design1');
 
     Route::resource('/wedding-design2', WeddingDesign2Controller::class);
-    Route::get('/wedding-design2', [WeddingDesign2Controller::class, 'index'])->name('wedding-design2');
 
 
 
@@ -147,6 +151,8 @@ Route::delete('/nama-undangan/design3/{id}', [NamaUndanganDesign3Controller::cla
 
 Route::resource('/', LandingPageController::class);
 Route::resource('/blog-view', UserBlogController::class);
+Route::resource('/gambarin-view', UserGambarinController::class);
+Route::resource('/seserahan-view', UserSeserahanController::class);
 
 Route::get('/template', function () {
     return view('index');

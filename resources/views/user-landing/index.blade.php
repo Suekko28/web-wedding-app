@@ -19,7 +19,8 @@
                             <div class="card card-promo-custom">
                                 <a href="{{ $item->link }}" target="_blank">
                                     <img class="rounded-4 object-fit-cover"
-                                        src="{{ asset('storage/promo/' . $item->image) }}" alt="Foto Promo" width="100%" height="100%">
+                                        src="{{ asset('storage/promo/' . $item->image) }}" alt="Foto Promo" width="100%"
+                                        height="100%">
                                 </a>
                             </div>
                         </div>
@@ -57,7 +58,7 @@
                             <div class="card-produk-img"></div>
                             <div class="card-produk-title">Gambarin & Figura</div>
                             <div class="card-produk-detail">Undangan Digital</div>
-                            <a href="#" class="btn btn-custom-2 mt-2 mb-4">Lihat Detail</a>
+                            <a href="{{ route('gambarin-view.index') }}" class="btn btn-custom-2 mt-2 mb-4">Lihat Detail</a>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-3">
@@ -65,7 +66,8 @@
                             <div class="card-produk-img"></div>
                             <div class="card-produk-title">Seserahan</div>
                             <div class="card-produk-detail">Undangan Digital</div>
-                            <a href="#" class="btn btn-custom-2 mt-2 mb-4">Lihat Detail</a>
+                            <a href="{{ route('seserahan-view.index') }}" class="btn btn-custom-2 mt-2 mb-4">Lihat
+                                Detail</a>
                         </div>
                     </div>
                 </div>
@@ -109,11 +111,13 @@
                     <div class="card card-tanya-kami-custom-left">
                         <h4>Kami siap membantu kebutuhan anda</h4>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-custom">Hubungi Kami</button>
+                            <a href="https://wa.me/6281934060621" target="_blank">
+                                <button type="button" class="btn btn-custom">Hubungi Kami</button>
+                            </a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-sm-12 col-md-6 mb-3">
                     <div class="card card-tanya-kami-custom-right">
                     </div>

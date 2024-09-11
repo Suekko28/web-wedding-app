@@ -44,6 +44,17 @@ a {
     font-size: 14px !important;
     padding-top: 11px !important;
 }
+
+.btn-custom-4 {
+    width: 100% !important;
+    height: 40px !important;
+    background-color: #fd267d !important;
+    border-radius: 32px !important;
+    color: white !important;
+    border: 1px solid #fd267d !important;
+    font-size: 14px !important;
+    padding-top: 11px !important;
+}
 .btn-market-place {
     display: flex;
     gap: 10px;
@@ -221,7 +232,6 @@ a {
 .card-blog-custom {
     width: 100%;
     min-width: 228px;
-    min-height: 360px;
     background-color: transparent;
     border-radius: 24px;
     border: 1px solid transparent;
@@ -261,10 +271,10 @@ a {
 }
 
 .blog-hero-img {
-    width: 720px;
     height: 480px;
-    background-color: #c0baba ;
+    background-color: #c0baba;
 }
+
 /* BLOG END */
 
 /* TANYA KAMI */
@@ -273,7 +283,16 @@ a {
     padding: 32px 0;
     background-color: #d8d8d8;
 }
+.tanya-kami2 {
+    min-height: 480px;
+    padding: 32px 0;
+}
 .tanya-kami h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #292929 !important;
+}
+.tanya-kami2 h4 {
     font-size: 18px;
     font-weight: 700;
     color: #292929 !important;
@@ -336,7 +355,7 @@ a {
 /* FOOTER END */
 
 /* BREAKPOINT */
-@media (max-width: 762px) {
+@media (max-width: 768px) {
     .card-tanya-kami-custom-left {
         text-align: center;
     }
@@ -348,6 +367,10 @@ a {
     }
     .market-place-button-container {
         flex-direction: column !important;
+    }
+
+    .col-lg-3 {
+        margin-bottom: 32px;
     }
 }
 
