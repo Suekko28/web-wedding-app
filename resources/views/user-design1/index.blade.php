@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Modernize Bootstrap Admin')
+@section('title', 'JejakKebahagiaan')
 
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('build/libs/prismjs/themes/prism-okaidia.min.css') }}">
@@ -8,7 +8,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Nama Undangan', 'subtitle' => 'Dashboard'])
+    {{-- @include('layouts.breadcrumb', ['title' => 'Nama Undangan', 'subtitle' => 'Dashboard']) --}}
     <!-- Row -->
     <main>
         <div class="container-xxl flex-grow-1 container-p-y">
