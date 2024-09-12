@@ -108,8 +108,8 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{ route('wedding-design2.index') }}"
-                            class="sidebar-link {{ request()->is('wedding-design2') ? 'active' : '' }}">
+                        <a href="{{ route('cetakfoto.index') }}"
+                            class="sidebar-link {{ request()->is('cetakfoto') ? 'active' : '' }}">
                             <div class="round-16 d-flex align-items-center justify-content-center">
                                 <i class="ti ti-circle"></i>
                             </div>
