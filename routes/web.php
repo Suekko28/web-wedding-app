@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CetakFotoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GambarinController;
 use App\Http\Controllers\HomeDesign1Controller;
@@ -15,7 +16,9 @@ use App\Http\Controllers\NamaUndanganDesign2Controller;
 use App\Http\Controllers\NamaUndanganDesign3Controller;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\SeserahanController;
+use App\Http\Controllers\UndanganDigitalController;
 use App\Http\Controllers\UserBlogController;
+use App\Http\Controllers\UserCetakFotoController;
 use App\Http\Controllers\UserGambarinController;
 use App\Http\Controllers\UserSeserahanController;
 use App\Http\Controllers\WeddingDesign1Controller;
@@ -69,6 +72,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/gambarin', GambarinController::class);
 
     Route::resource('/seserahan', SeserahanController::class);
+
+    Route::resource('/cetakfoto', CetakFotoController::class);
+
+    Route::resource('/undangandigital', UndanganDigitalController::class);
 
 
 
@@ -153,6 +160,7 @@ Route::resource('/', LandingPageController::class);
 Route::resource('/blog-view', UserBlogController::class);
 Route::resource('/gambarin-view', UserGambarinController::class);
 Route::resource('/seserahan-view', UserSeserahanController::class);
+Route::resource('/cetakfoto-view', UserCetakFotoController::class);
 
 Route::get('/template', function () {
     return view('index');

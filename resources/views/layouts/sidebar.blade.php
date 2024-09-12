@@ -97,10 +97,10 @@
                     <span class="hide-menu">Product</span>
                 </a>
                 <ul aria-expanded="false"
-                    class="collapse first-level {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}">
+                    class="collapse first-level {{ request()->is('undangandigital', 'cetakfoto', 'seserahan', 'gambarin') ? 'in' : '' }}">
                     <li class="sidebar-item">
-                        <a class="sidebar-link {{ request()->is('wedding-design1') ? 'active' : '' }}"
-                            href="{{ route('wedding-design1.index') }}" aria-expanded="false">
+                        <a class="sidebar-link {{ request()->is('undangandigital') ? 'active' : '' }}"
+                            href="{{ route('undangandigital.index') }}" aria-expanded="false">
                             <div class="round-16 d-flex align-items-center justify-content-center">
                                 <i class="ti ti-circle"></i>
                             </div>

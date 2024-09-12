@@ -12,7 +12,7 @@
 
     <!-- CSS STYLE -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
-    <link rel="website icon" type="png" href="{{ asset('img/small-logo.jpg') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('img/small-logo.jpg') }}" />
 </head>
 
 <body>

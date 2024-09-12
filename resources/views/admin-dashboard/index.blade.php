@@ -23,7 +23,7 @@
         <div class="col-lg-4 col-md-6">
             <!-- Card -->
             <div class="card">
-                <img class="card-img-top img-responsive" src="{{ URL::asset('build/images/blog/dashboard-img1.png') }}"
+                <img class="card-img-top img-responsive" src="{{ asset('assets/dashboard-img1.png') }}"
                     alt="Card image cap" />
                 <div class="card-body">
                     <h4 class="card-title">Wedding Design 1</h4>
@@ -41,7 +41,7 @@
         <div class="col-lg-4 col-md-6">
             <!-- Card -->
             <div class="card">
-                <img class="card-img-top img-responsive" src="{{ URL::asset('build/images/blog/dashboard-img2.png') }}"
+                <img class="card-img-top img-responsive" src="{{ asset('assets/dashboard-img2.png') }}"
                     alt="Card image cap" />
                 <div class="card-body">
                     <h4 class="card-title">Wedding Design 2</h4>
@@ -60,7 +60,7 @@
         <div class="col-lg-4 col-md-6">
             <!-- Card -->
             <div class="card">
-                <img class="card-img-top img-responsive" src="{{ URL::asset('build/images/blog/dashboard-img3.png') }}"
+                <img class="card-img-top img-responsive" src="{{ asset('assets/dashboard-img3.png')}}"
                     alt="Card image cap" />
                 <div class="card-body">
                     <h4 class="card-title">Wedding Design 3</h4>
