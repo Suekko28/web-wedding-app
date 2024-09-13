@@ -50,7 +50,7 @@
                                         <option value="1" {{ old('kategori') == '1' ? 'selected' : '' }}>Undangan Pernikahan</option>
                                         <option value="2" {{ old('kategori') == '2' ? 'selected' : '' }}>Ulang Tahun</option>
                                         <option value="3" {{ old('kategori') == '3' ? 'selected' : '' }}>Seminar</option>
-                                        <option value="4" {{ old('kategori') == '3' ? 'selected' : '' }}>Akikah</option>
+                                        <option value="4" {{ old('kategori') == '4' ? 'selected' : '' }}>Akikah</option>
                                     </select>
 
                                 </div>

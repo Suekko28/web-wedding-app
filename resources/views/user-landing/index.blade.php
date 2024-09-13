@@ -42,7 +42,7 @@
                             <div class="card-produk-img"></div>
                             <div class="card-produk-title">Undangan Digital</div>
                             <div class="card-produk-detail">Undangan Digital</div>
-                            <a href="#" class="btn btn-custom-2 mt-2 mb-4">Lihat Detail</a>
+                            <a href="{{route('undangandigital-view.index')}}" class="btn btn-custom-2 mt-2 mb-4">Lihat Detail</a>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-3">

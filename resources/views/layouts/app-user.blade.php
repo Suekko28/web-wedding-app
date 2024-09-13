@@ -13,6 +13,7 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <link rel="shortcut icon" type="image/png" href="{{ asset('img/small-logo.jpg') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>

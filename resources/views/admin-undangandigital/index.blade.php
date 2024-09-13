@@ -56,13 +56,21 @@
                                 <td>Rp {{ number_format($item->harga, 0, ',', '.') }} </td>
                                 <td> <a href="{{ $item->link_preview }}"
                                         target="_blank">{{ Str::limit($item->link_preview, 20) }}</a>
-                                </td>
                                 <td> <a href="{{ $item->link_pesan }}"
                                         target="_blank">{{ Str::limit($item->link_pesan, 20) }}</a>
                                 </td>
-                                {{ $item->kategori }}
                                 <td>
-
+                                    @if ($item->kategori == 1)
+                                        Undangan Pernikahan
+                                    @elseif($item->kategori == 2)
+                                        Ulang Tahun
+                                    @elseif($item->kategori == 3)
+                                        Seminar
+                                    @elseif($item->kategori == 4)
+                                        Akikah
+                                    @else
+                                        Tidak Ada Kategori
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical">

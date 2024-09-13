@@ -21,6 +21,7 @@ use App\Http\Controllers\UserBlogController;
 use App\Http\Controllers\UserCetakFotoController;
 use App\Http\Controllers\UserGambarinController;
 use App\Http\Controllers\UserSeserahanController;
+use App\Http\Controllers\UserUndanganDigitalController;
 use App\Http\Controllers\WeddingDesign1Controller;
 use App\Http\Controllers\WeddingDesign2Controller;
 use App\Http\Controllers\WeddingDesign3Controller;
@@ -161,6 +162,7 @@ Route::resource('/blog-view', UserBlogController::class);
 Route::resource('/gambarin-view', UserGambarinController::class);
 Route::resource('/seserahan-view', UserSeserahanController::class);
 Route::resource('/cetakfoto-view', UserCetakFotoController::class);
+Route::resource('/undangandigital-view', UserUndanganDigitalController::class);
 
 Route::get('/template', function () {
     return view('index');

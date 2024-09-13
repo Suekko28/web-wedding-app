@@ -187,6 +187,54 @@ a {
     font-weight: 700;
     color: #292929 !important;
 }
+
+.text-preview {
+    color: #fd267d !important;
+}
+
+.btn-text-preview {
+    width: 100% !important;
+    height: 40px !important;
+    background-color: transparent !important;
+    border-radius: 32px !important;
+    color: #fd267d !important;
+    border: 1px solid #fd267d !important;
+    font-size: 14px !important;
+    padding-top: 11px !important;
+}
+
+.widgets-tabs {
+    padding-top: 120px;
+}
+
+.nav-pills .nav-link {
+    border-radius: 64px;
+}
+
+.tab-content {
+    width: 100% !important;
+}
+
+.produk-hero {
+    padding-top: 120px;
+}
+
+.produk-hero-img {
+    height: 580px;
+    border-radius: 48px;
+    background-color: #c0baba;
+}
+
+.fa-circle-check {
+    color: #00fd84 !important;
+    margin-right: 10px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: #fd267d1a;
+}
 /* PRODUK END */
 
 /* BLOG */
