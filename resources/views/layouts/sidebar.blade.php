@@ -21,7 +21,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{route('dashboard')}}"
+            <a class="sidebar-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}"
                 aria-expanded="false">
                 <span>
                     <i class="ti ti-dashboard"></i>
@@ -70,8 +70,8 @@
         </li>
         @if (auth()->user()->role == 1)
             <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('promo') ? 'active' : '' }}"
-                    href="{{route('promo.index')}}" aria-expanded="false">
+                <a class="sidebar-link {{ request()->is('promo') ? 'active' : '' }}" href="{{ route('promo.index') }}"
+                    aria-expanded="false">
                     <span>
                         <i class="ti ti-basket"></i>
                     </span>
@@ -79,8 +79,8 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('blog') ? 'active' : '' }}"
-                    href="{{route('blog.index')}}" aria-expanded="false">
+                <a class="sidebar-link {{ request()->is('blog') ? 'active' : '' }}" href="{{ route('blog.index') }}"
+                    aria-expanded="false">
                     <span>
                         <i class="ti ti-notes"></i>
                     </span>
@@ -89,7 +89,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link has-arrow {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}"
+                <a class="sidebar-link has-arrow {{ request()->is('undangandigital', 'cetakfoto', 'seserahan', 'gambarin') ? 'in' : '' }}"
                     href="javascript:void(0)" aria-expanded="false">
                     <span class="d-flex">
                         <i class="ti ti-chart-donut-3"></i>
