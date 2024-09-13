@@ -59,10 +59,10 @@
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-medium">Does't have account?</p>
                                         @if (Route::has('register'))
-                                        <a class="text-primary fw-medium ms-2" href="{{ route('register') }}">
-                                            {{ __('Register') }}
-                                        </a>
-                                    @endif
+                                            <a class="text-primary fw-medium ms-2" href="{{ route('register') }}">
+                                                {{ __('Register') }}
+                                            </a>
+                                        @endif
                                     </div>
                                 </form>
                             </div>
