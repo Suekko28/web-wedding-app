@@ -25,7 +25,6 @@ use App\Http\Controllers\UserUndanganDigitalController;
 use App\Http\Controllers\WeddingDesign1Controller;
 use App\Http\Controllers\WeddingDesign2Controller;
 use App\Http\Controllers\WeddingDesign3Controller;
-use App\Models\Seserahan;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -54,7 +53,7 @@ Auth::routes([
     'verify' => false,
 ]);
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/home', function () {
         return redirect()->route('dashboard');
@@ -82,7 +81,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 });
 
-Route::middleware(['auth', 'psi'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/home', function () {
         return redirect()->route('dashboard');

@@ -81,6 +81,7 @@
             </div>
         </div>
     </section>
+
     <script>
         var imageModal = document.getElementById('imageModal');
         imageModal.addEventListener('show.bs.modal', function(event) {
