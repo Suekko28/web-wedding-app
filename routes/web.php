@@ -193,5 +193,10 @@ Route::get('/wedding-3/index', function () {
     return view('wedding-design3.index-preview');
 });
 
+Route::get('/storage-link' , function(){
+    Artisan::call('storage:link');
+    return 'Storage Linkdes Succesfully';
+});
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
