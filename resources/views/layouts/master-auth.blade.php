@@ -8,9 +8,9 @@
 </head>
 <body class="link-sidebar">
     <!-- Preloader -->
-    <div class="preloader">
+    {{-- <div class="preloader">
         <img src="{{ asset('img/small-logo.jpg') }}" alt="loader" class="lds-ripple img-fluid" />
-    </div>
+    </div> --}}
 
     @yield('pageContent')
     @include('layouts.customizer')
