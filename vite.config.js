@@ -9,6 +9,8 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/scss/styles.scss',
                 'resources/js/app.js',
+                'resources/css/styles-rtl.css',
+                'resources/scss/styles.scss',
             ],
             refresh: true,
         }),
