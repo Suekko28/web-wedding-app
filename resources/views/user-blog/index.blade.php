@@ -17,21 +17,24 @@
                 {{-- <h4 class="text-center mb-5">Blog</h4> --}}
                 <div class="row">
                     @foreach ($data as $item)
-                        <div class="col-lg-3 col-md-6 col-12 mb-5">
+                    <div class="col-sm-12 col-md-3">
+                        <a href="{{ route('blog-view.show' , $item->id) }}" class="card card-blog-custom">
                             <div class="card card-blog-custom">
                                 <div class="card-blog-img">
-                                    <img class="rounded-4 img-fluid" src="{{ asset('storage/blog/' . $item->image) }}"
-                                        alt="Foto Blog" width="100%" height="100%">
+                                    <img class="rounded-4 img-fluid object-fit-cover"
+                                        src="{{ asset('storage/blog/' . $item->image) }}" alt="Foto Blog" width="100%"
+                                        height="100%">
                                 </div>
-                                <div class="card-blog-date">{{ $item->created_at->format('d F Y') }}</div>
-                                <div class="card-blog-title">
-                                    <a href="{{ route('blog-view.show', $item->id) }}"
-                                        class="text-black">{{ $item->judul }}</a>
-                                </div>
-                                <div class="card-blog-detail">{{ $item->deskripsi }}
+                                <div class="card-blog-detail">
+                                    <div class="card-blog-container-title">
+                                        <div class="card-blog-date">{{ $item->created_at->format('d F Y') }}</div>
+                                        <div class="card-blog-title">{{ $item->judul }}</div>
+                                    </div>
+                                    <div class="card-blog-paragraph">{!! $item->deskripsi !!}</div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
+                    </div>
                     @endforeach
                     <div class="p-2">{{ $data->links() }}</div>
                 </div>

@@ -12,7 +12,7 @@
         <div class="container">
             <h6 class="date-blog">{{ $data->created_at->format('d F Y , H:i') }} WIB</h6>
             <h3 class="title-blog">{{ $data->judul }}</h3>
-            <p class="content-blog">{{ $data->deskripsi }}</p>
+            <p class="content-blog">{!! $data->deskripsi !!}</p>
         </div>
     </section>
 @endsection

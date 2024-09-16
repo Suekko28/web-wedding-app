@@ -2,9 +2,10 @@
 @section('navbar')
     <!-- HERO -->
     <section class="hero" id="hero">
-        <h4>Bikin Doi Makin Happy Terus</h4>
-        <p>Undangan Digital</p>
-        <a href="#produk" class="trigger btn btn-custom">lihat Layanan</a>
+        <div class="title">Siap Membantu Kamu Dalam Membahagiakan Orang Tersayangmu</div>
+        <p>Mulai dari Undangan Digital, Cetak Foto, Kreasi Foto dan Seserahan menjadi solusi dalam membahagiakan orang
+            tersayangmu</p>
+        <a href="#produk" class="trigger btn btn-primary">lihat Layanan</a>
     </section>
     <!-- HERO END -->
 
@@ -16,13 +17,10 @@
                 <div class="row">
                     @foreach ($dataPromo as $item)
                         <div class="col-sm-12 col-md-4">
-                            <div class="card card-promo-custom">
-                                <a href="{{ $item->link }}" target="_blank">
-                                    <img class="rounded-4 object-fit-cover"
-                                        src="{{ asset('storage/promo/' . $item->image) }}" alt="Foto Promo" width="100%"
-                                        height="100%">
-                                </a>
-                            </div>
+                            <a href="{{ $item->link }}" target="_blank">
+                                <img class="card card-promo-custom" src="{{ asset('storage/promo/' . $item->image) }}"
+                                    alt="Foto Promo">
+                            </a>
                         </div>
                     @endforeach
                 </div>
@@ -39,35 +37,63 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <div class="card-produk-img"></div>
-                            <div class="card-produk-title">Undangan Digital</div>
-                            <div class="card-produk-detail">Undangan Digital</div>
-                            <a href="{{route('undangandigital-view.index')}}" class="btn btn-custom-2 mt-2 mb-4">Lihat Detail</a>
+                            <img class="card-produk-img" src="{{ asset('img/Jejakkebahagiaan_UndanganDigital.jpg') }}"
+                                alt="Seserahan">
+                            <div class="card-produk-detail">
+                                <div class="card-produk-container-title">
+                                    <div class="card-produk-title">Undangan Digital</div>
+                                </div>
+                                <div class="card-produk-detail">Buat website undangan digital</div>
+                                <div class="action-button">
+                                    <a href="{{ route('undangandigital-view.index') }}" class="btn btn-secondary">Lihat
+                                        Detail</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <div class="card-produk-img"></div>
-                            <div class="card-produk-title">Cetak Foto & Figura</div>
-                            <div class="card-produk-detail">Undangan Digital</div>
-                            <a href="{{route('cetakfoto-view.index')}}" class="btn btn-custom-2 mt-2 mb-4">Lihat Detail</a>
+                            <img class="card-produk-img" src="{{ asset('img/Jejakkebahagiaan_CetakFoto.jpg') }}"
+                                alt="Seserahan">
+                            <div class="card-produk-detail">
+                                <div class="card-produk-container-title">
+                                    <div class="card-produk-title">Paket Cetak Foto & Figura</div>
+                                </div>
+                                <div class="card-produk-detail">Cetak moment spesialmu dalam figura</div>
+                                <div class="action-button">
+                                    <a href="{{ route('cetakfoto-view.index') }}" class="btn btn-secondary">Lihat Detail</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <div class="card-produk-img"></div>
-                            <div class="card-produk-title">Gambarin & Figura</div>
-                            <div class="card-produk-detail">Undangan Digital</div>
-                            <a href="{{ route('gambarin-view.index') }}" class="btn btn-custom-2 mt-2 mb-4">Lihat Detail</a>
+                            <img class="card-produk-img" src="{{ asset('img/Jejakkebahagiaan_Gambarin.jpg') }}"
+                                alt="Seserahan">
+                            <div class="card-produk-detail">
+                                <div class="card-produk-container-title">
+                                    <div class="card-produk-title">Gambarin & Cetak</div>
+                                </div>
+                                <div class="card-produk-detail">Kreasikan moment spesialmu di dalam figura</div>
+                                <div class="action-button">
+                                    <a href="{{ route('gambarin-view.index') }}" class="btn btn-secondary">Lihat Detail</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <div class="card-produk-img"></div>
-                            <div class="card-produk-title">Seserahan</div>
-                            <div class="card-produk-detail">Undangan Digital</div>
-                            <a href="{{ route('seserahan-view.index') }}" class="btn btn-custom-2 mt-2 mb-4">Lihat
-                                Detail</a>
+                            <img class="card-produk-img" src="{{ asset('img/Jejakkebahagiaan_Seserahan.jpg') }}"
+                                alt="Seserahan">
+                            <div class="card-produk-detail">
+                                <div class="card-produk-container-title">
+                                    <div class="card-produk-title">Seserahan</div>
+                                </div>
+                                <div class="card-produk-detail">Pilih dekorasi seserahan sesuai dengan kebutuhanmu</div>
+                                <div class="action-button">
+                                    <a href="{{ route('seserahan-view.index') }}" class="btn btn-secondary">Lihat Detail</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,25 +106,33 @@
     <section class="blog" id="blog">
         <div class="container-custom">
             <h4>Blog</h4>
-            <div class="over">
+            <div class="row">
                 @foreach ($dataBlog as $item)
-                    <div class="card card-blog-custom">
-                        <div class="card-blog-img">
-                            <img class="rounded-4 img-fluid" src="{{ asset('storage/blog/' . $item->image) }}"
-                                alt="Foto Blog" width="100%" height="100%">
-                        </div>
-                        <div class="card-blog-date">{{ $item->created_at->format('d F Y') }}</div>
-                        <div class="card-blog-title">
-                            <a href="{{ route('blog-view.show', $item->id) }}" class="text-black">{{ $item->judul }}</a>
-                        </div>
-                        <div class="card-blog-detail">{{ $item->deskripsi }}
-                        </div>
+                    <div class="col-sm-12 col-md-3">
+                        <a href="{{ route('blog-view.show' , $item->id) }}" class="card card-blog-custom">
+                            <div class="card card-blog-custom">
+                                <div class="card-blog-img">
+                                    <img class="rounded-4 img-fluid object-fit-cover"
+                                        src="{{ asset('storage/blog/' . $item->image) }}" alt="Foto Blog" width="100%"
+                                        height="100%">
+                                </div>
+                                <div class="card-blog-detail">
+                                    <div class="card-blog-container-title">
+                                        <div class="card-blog-date">{{ $item->created_at->format('d F Y') }}</div>
+                                        <div class="card-blog-title">{{ $item->judul }}</div>
+                                    </div>
+                                    <div class="card-blog-paragraph">{!! $item->deskripsi !!}</div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 @endforeach
+
             </div>
-            <div class="row justify-content-center">
-                <a href="{{ route('blog-view.index') }}" class="btn btn-custom-3 my-4">Lihat Selengkapnya</a>
+            <div class="action-button">
+                <a href="{{route('blog-view.index')}}" class="btn btn-secondary">Lihat Selengkapnya</a>
             </div>
+        </div>
         </div>
     </section>
     <!-- BLOG END -->
@@ -106,23 +140,11 @@
     <!-- TANYA KAMI -->
     <section class="tanya-kami" id="tanya-kami">
         <div class="container-custom">
-            <div class="row">
-                <div class="col-sm-12 col-md-6 mb-3 d-flex align-items-center">
-                    <div class="card card-tanya-kami-custom-left">
-                        <h4>Kami siap membantu kebutuhan anda</h4>
-                        <div class="mb-3">
-                            <a href="https://wa.me/6281934060621" target="_blank">
-                                <button type="button" class="btn btn-custom">Hubungi Kami</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-6 mb-3">
-                    <div class="card card-tanya-kami-custom-right">
-                    </div>
-                </div>
+            <div class="title">
+                <h4>Kami siap membantu kebutuhan anda</h4>
+                <a href="https://wa.me/62895321816795" target="_blank" class="btn btn-primary">Hubungi Kami</a>
             </div>
+            <img class="img" src="{{ asset('img/Jejakkebahagiaan_Hubungi.jpg') }}" alt="Seserahan">
         </div>
     </section>
     <!-- TANYA KAMI END -->
@@ -132,7 +154,7 @@
         <div class="container-custom">
             <h4>Market Place</h4>
             <div class="market-place-button-container mt-3">
-                <a href="#" class="btn-market-place">
+                <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-market-place">
                     <img src="{{ asset('img/tokopedia.png') }}" alt="tokopedia">
                     <span>tokopedia</span>
                 </a>
@@ -140,12 +162,29 @@
                     <img src="{{ asset('img/shopee.png') }}" alt="shopee">
                     <span>Shopee</span>
                 </a>
-                <a href="#" class="btn-market-place">
-                    <img src="{{ asset('img/tiktok.png') }}" alt="tiktok">
-                    <span>Tiktok Shop</span>
-                </a>
             </div>
         </div>
     </section>
     <!-- MARKET PLACE END -->
+
+
+    <!-- FOOTER -->
+    <section class="footer" id="footer">
+        <div class="follow-us">
+            <span>Follow Us</span>
+            <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
+                <img src="{{ asset('img/icon-facebook.svg') }}" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/jejakkebahagiaan/" target="_blank">
+                <img src="{{ asset('img/icon-instagram.svg') }}" alt="Instagram">
+            </a>
+            <a href="https://www.tiktok.com/@jejakkebahagiaan?_t=8pjtPh8o2JL&_r=1" target="_blank">
+                <img src="{{ asset('img/icon-tiktok.svg') }}" alt="Tiktok">
+            </a>
+        </div>
+        <span>
+            © 2024 Jejak Kebahagiaan. All Rights Reserved.
+        </span>
+    </section>
+    <!-- FOOTER END -->
 @endsection

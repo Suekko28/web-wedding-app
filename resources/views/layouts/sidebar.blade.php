@@ -117,6 +117,16 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
+                        <a href="{{ route('gambarin.index') }}"
+                            class="sidebar-link {{ request()->is('gambarin') ? 'active' : '' }}">
+                            <div class="round-16 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-circle"></i>
+                            </div>
+                            <span class="hide-menu">Gambarin</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
                         <a href="{{ route('seserahan.index') }}"
                             class="sidebar-link {{ request()->is('seserahan') ? 'active' : '' }}">
                             <div class="round-16 d-flex align-items-center justify-content-center">
@@ -126,15 +136,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
-                        <a href="{{ route('gambarin.index') }}"
-                            class="sidebar-link {{ request()->is('gambarin') ? 'active' : '' }}">
-                            <div class="round-16 d-flex align-items-center justify-content-center">
-                                <i class="ti ti-circle"></i>
-                            </div>
-                            <span class="hide-menu">Gambarin</span>
-                        </a>
-                    </li>
+
                 </ul>
             </li>
         @endif

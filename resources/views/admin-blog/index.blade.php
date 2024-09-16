@@ -50,7 +50,7 @@
                                         height="120" alt="Foto Blog">
                                 </td>
                                 <td>{{ $item->judul }} </td>
-                                <td>{{ Str::limit($item->deskripsi, 300) }} </td>
+                                <td>{!! Str::limit($item->deskripsi, 300) !!} </td>
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical">

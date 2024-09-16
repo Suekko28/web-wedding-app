@@ -14,20 +14,14 @@
         </section>
         <section class="blog-view" id="blog-view">
             <div class="blog-cover">
-                {{-- <h4 class="text-center mb-5">Blog</h4> --}}
+                <h4 class="text-center mb-5">Portofolio Kami</h4>
                 <div class="row">
                     @foreach ($data as $item)
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <div class="card-blog-custom">
-                                <div class="card-blog-img">
-                                    <!-- Wrap the image in an anchor tag to trigger the modal -->
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"
-                                        data-image="{{ asset('storage/seserahan/' . $item->image) }}">
-                                        <img class="rounded-4 img-fluid"
-                                            src="{{ asset('storage/seserahan/' . $item->image) }}" alt="Foto Seserahan"
-                                            width="100%" height="100%">
-                                    </a>
-                                </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="card-produk-custom">
+                                <img class="card-produk-img object-fit-cover"
+                                    src="{{ asset('storage/seserahan/' . $item->image) }}" alt="Foto Seserahan"
+                                    width="100%" height="100%">
                             </div>
                         </div>
                     @endforeach
@@ -59,28 +53,18 @@
         </section>
 
     </div>
-    <section class="tanya-kami2 mt-5" id="tanya-kami2">
-        <div class="container-custom">
-            <div class="row">
-                <div class="col-sm-12 col-md-6 mb-3 d-flex align-items-center">
-                    <div class="card card-tanya-kami-custom-left">
-                        <h4>Kami siap membantu kebutuhan anda</h4>
-                        <div class="mb-3">
-                            <!-- WhatsApp Button -->
-                            <a href="https://wa.me/6281934060621" target="_blank">
-                                <button type="button" class="btn btn-custom">Hubungi Kami</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-sm-12 col-md-6 mb-3">
-                    <div class="card card-tanya-kami-custom-right">
-                    </div>
-                </div>
+    <!-- TANYA KAMI -->
+    <section class="tanya-kami" id="tanya-kami">
+        <div class="container-custom">
+            <div class="title">
+                <h4>Kami siap membantu kebutuhan anda</h4>
+                <a href="https://wa.me/62895321816795" target="_blank" class="btn btn-primary">Hubungi Kami</a>
             </div>
+            <img class="img" src="{{ asset('img/Jejakkebahagiaan_Hubungi.jpg') }}" alt="Seserahan">
         </div>
     </section>
+    <!-- TANYA KAMI END -->
 
     <script>
         var imageModal = document.getElementById('imageModal');

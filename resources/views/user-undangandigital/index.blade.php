@@ -35,7 +35,7 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled"
-                            aria-selected="false">Akikah</button>
+                            aria-selected="false">Aqiqah</button>
                     </li>
                 </ul>
             </div>
@@ -46,28 +46,30 @@
                         <div class="row">
                             @foreach ($dataUndanganPernikahan as $item)
                                 <!-- Ulangi untuk setiap kategori -->
-                                <div class="col-lg-3 col-md-6 col-12"> <!-- Set ukuran kolom yang sama -->
-                                    <div class="card card-blog-custom">
-                                        <div class="card-blog-img">
-                                            <img class="rounded-4 img-fluid object-fit-cover"
-                                                src="{{ asset('storage/undangandigital/' . $item->image) }}" alt="Foto Blog"
-                                                width="100%" height="100%">
-                                        </div>
-                                        <div class="card-blog-title">
-                                            {{ $item->judul }}
-                                        </div>
-                                        <div class="card-blog-detail text-black">IDR
-                                            {{ number_format($item->harga, 0, ',', '.') }}
-                                        </div>
-                                        <div class="d-flex gap-3">
-                                            <div class="btn btn-text-preview">
-                                                <a class="text-preview" href="{{ $item->link_preview }}"
-                                                    target="__blank">Preview</a>
+                                <div class="col-sm-12 col-md-3">
+                                    <div class="card card-produk-custom">
+                                        <img class="card-produk-img object-fit-cover"
+                                            src="{{ asset('storage/undangandigital/' . $item->image) }}" alt="Foto Blog"
+                                            width="100%" height="100%">
+                                        <div class="card-produk-detail">
+                                            <div class="card-produk-container-title">
+                                                <div class="card-produk-title">{{ $item->judul }}
+                                                </div>
                                             </div>
-                                            <div class="btn btn-custom-4">
-                                                <a class="text-white" href="{{ $item->link_pesan }}"
-                                                    target="__blank">Pesan</a>
+                                            <div class="card-produk-detail">IDR
+                                                {{ number_format($item->harga, 0, ',', '.') }}
                                             </div>
+                                            <div class="d-flex gap-3">
+                                                <div class="btn btn-text-preview">
+                                                    <a class="text-preview" href="{{ $item->link_preview }}"
+                                                        target="__blank">Preview</a>
+                                                </div>
+                                                <div class="btn btn-custom-4">
+                                                    <a class="text-white" href="{{ $item->link_pesan }}"
+                                                        target="__blank">Pesan</a>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -80,28 +82,30 @@
                         <div class="row">
                             @foreach ($dataUlangTahun as $item)
                                 <!-- Ulangi untuk setiap kategori -->
-                                <div class="col-lg-3 col-md-6 col-12"> <!-- Set ukuran kolom yang sama -->
-                                    <div class="card card-blog-custom">
-                                        <div class="card-blog-img">
-                                            <img class="rounded-4 img-fluid object-fit-cover"
-                                                src="{{ asset('storage/undangandigital/' . $item->image) }}" alt="Foto Blog"
-                                                width="100%" height="100%">
-                                        </div>
-                                        <div class="card-blog-title">
-                                            {{ $item->judul }}
-                                        </div>
-                                        <div class="card-blog-detail text-black">IDR
-                                            {{ number_format($item->harga, 0, ',', '.') }}
-                                        </div>
-                                        <div class="d-flex gap-3">
-                                            <div class="btn btn-text-preview">
-                                                <a class="text-preview" href="{{ $item->link_preview }}"
-                                                    target="__blank">Preview</a>
+                                <div class="col-sm-12 col-md-3">
+                                    <div class="card card-produk-custom">
+                                        <img class="card-produk-img object-fit-cover"
+                                            src="{{ asset('storage/undangandigital/' . $item->image) }}" alt="Foto Blog"
+                                            width="100%" height="100%">
+                                        <div class="card-produk-detail">
+                                            <div class="card-produk-container-title">
+                                                <div class="card-produk-title">{{ $item->judul }}
+                                                </div>
                                             </div>
-                                            <div class="btn btn-custom-4">
-                                                <a class="text-white" href="{{ $item->link_pesan }}"
-                                                    target="__blank">Pesan</a>
+                                            <div class="card-produk-detail">IDR
+                                                {{ number_format($item->harga, 0, ',', '.') }}
                                             </div>
+                                            <div class="d-flex gap-3">
+                                                <div class="btn btn-text-preview">
+                                                    <a class="text-preview" href="{{ $item->link_preview }}"
+                                                        target="__blank">Preview</a>
+                                                </div>
+                                                <div class="btn btn-custom-4">
+                                                    <a class="text-white" href="{{ $item->link_pesan }}"
+                                                        target="__blank">Pesan</a>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -114,29 +118,30 @@
                         tabindex="0">
                         <div class="row">
                             @foreach ($dataSeminar as $item)
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="card card-blog-custom">
-                                        <div class="card-blog-img">
-                                            <img class="rounded-4 img-fluid object-fit-cover"
-                                                src="{{ asset('storage/undangandigital/' . $item->image) }}"
-                                                alt="Foto Blog" width="100%" height="100%">
-                                        </div>
-                                        <div class="card-blog-title">
-                                            {{ $item->judul }}
-                                        </div>
-                                        <div class="card-blog-detail text-black">IDR
-                                            {{ number_format($item->harga, 0, ',', '.') }}
-                                        </div>
-                                        <div class="d-flex gap-3">
-                                            <div class="btn btn-text-preview">
-                                                <a class="text-preview" href="{{ $item->link_preview }}"
-                                                    target="__blank">Preview</a>
+                                <div class="col-sm-12 col-md-3">
+                                    <div class="card card-produk-custom">
+                                        <img class="card-produk-img object-fit-cover"
+                                            src="{{ asset('storage/undangandigital/' . $item->image) }}" alt="Foto Blog"
+                                            width="100%" height="100%">
+                                        <div class="card-produk-detail">
+                                            <div class="card-produk-container-title">
+                                                <div class="card-produk-title">{{ $item->judul }}
+                                                </div>
+                                            </div>
+                                            <div class="card-produk-detail">IDR
+                                                {{ number_format($item->harga, 0, ',', '.') }}
+                                            </div>
+                                            <div class="d-flex gap-3">
+                                                <div class="btn btn-text-preview">
+                                                    <a class="text-preview" href="{{ $item->link_preview }}"
+                                                        target="__blank">Preview</a>
+                                                </div>
+                                                <div class="btn btn-custom-4">
+                                                    <a class="text-white" href="{{ $item->link_pesan }}"
+                                                        target="__blank">Pesan</a>
+                                                </div>
                                             </div>
 
-                                            <div class="btn btn-custom-4">
-                                                <a class="text-white" href="{{ $item->link_pesan }}"
-                                                    target="__blank">Pesan</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -148,29 +153,30 @@
                         tabindex="0">
                         <div class="row">
                             @foreach ($dataAkikah as $item)
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="card card-blog-custom">
-                                        <div class="card-blog-img">
-                                            <img class="rounded-4 img-fluid object-fit-cover"
-                                                src="{{ asset('storage/undangandigital/' . $item->image) }}"
-                                                alt="Foto Blog" width="100%" height="100%">
-                                        </div>
-                                        <div class="card-blog-title">
-                                            {{ $item->judul }}
-                                        </div>
-                                        <div class="card-blog-detail text-black">IDR
-                                            {{ number_format($item->harga, 0, ',', '.') }}
-                                        </div>
-                                        <div class="d-flex gap-3">
-                                            <div class="btn btn-text-preview">
-                                                <a class="text-preview" href="{{ $item->link_preview }}"
-                                                    target="__blank">Preview</a>
+                                <div class="col-sm-12 col-md-3">
+                                    <div class="card card-produk-custom">
+                                        <img class="card-produk-img object-fit-cover"
+                                            src="{{ asset('storage/undangandigital/' . $item->image) }}" alt="Foto Blog"
+                                            width="100%" height="100%">
+                                        <div class="card-produk-detail">
+                                            <div class="card-produk-container-title">
+                                                <div class="card-produk-title">{{ $item->judul }}
+                                                </div>
+                                            </div>
+                                            <div class="card-produk-detail">IDR
+                                                {{ number_format($item->harga, 0, ',', '.') }}
+                                            </div>
+                                            <div class="d-flex gap-3">
+                                                <div class="btn btn-text-preview">
+                                                    <a class="text-preview" href="{{ $item->link_preview }}"
+                                                        target="__blank">Preview</a>
+                                                </div>
+                                                <div class="btn btn-custom-4">
+                                                    <a class="text-white" href="{{ $item->link_pesan }}"
+                                                        target="__blank">Pesan</a>
+                                                </div>
                                             </div>
 
-                                            <div class="btn btn-custom-4">
-                                                <a class="text-white" href="{{ $item->link_pesan }}"
-                                                    target="__blank">Pesan</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -226,26 +232,16 @@
         </section>
 
     </div>
-    <section class="tanya-kami2 mt-5" id="tanya-kami2">
-        <div class="container-custom">
-            <div class="row">
-                <div class="col-sm-12 col-md-6 mb-3 d-flex align-items-center">
-                    <div class="card card-tanya-kami-custom-left">
-                        <h4>Kami siap membantu kebutuhan anda</h4>
-                        <div class="mb-3">
-                            <!-- WhatsApp Button -->
-                            <a href="https://wa.me/6281934060621" target="_blank">
-                                <button type="button" class="btn btn-custom">Hubungi Kami</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-sm-12 col-md-6 mb-3">
-                    <div class="card card-tanya-kami-custom-right">
-                    </div>
-                </div>
+    <!-- TANYA KAMI -->
+    <section class="tanya-kami" id="tanya-kami">
+        <div class="container-custom">
+            <div class="title">
+                <h4>Kami siap membantu kebutuhan anda</h4>
+                <a href="https://wa.me/62895321816795" target="_blank" class="btn btn-primary">Hubungi Kami</a>
             </div>
+            <img class="img" src="{{ asset('img/Jejakkebahagiaan_Hubungi.jpg') }}" alt="Seserahan">
         </div>
     </section>
+    <!-- TANYA KAMI END -->
 @endsection

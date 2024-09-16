@@ -14,6 +14,43 @@ a {
     text-decoration: none;
     font-weight: bold;
 }
+
+.btn-primary {
+    min-width: 240px !important;
+    font-size: 14px !important;
+    height: 40px !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 32px !important;
+    background-color: #fd267d !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: rgba(253, 38, 125, 0.25) -4px 4px 12px 0;
+}
+.btn-primary:hover {
+    cursor: pointer !important;
+    background-color: #ff64a9 !important;
+}
+.btn-secondary {
+    height: 40px !important;
+    width: 100%;
+    background-color: transparent !important;
+    border-radius: 32px !important;
+    color: #fd267d !important;
+    border: 1px solid #fd267d !important;
+    font-size: 14px !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.btn-secondary:hover {
+    cursor: pointer;
+    color: #ff64a9 !important;
+    border: 1px solid #ff64a9 !important;
+}
 .btn-custom {
     width: 240px !important;
     height: 40px !important;
@@ -99,12 +136,19 @@ a {
 .hero {
     height: 544px;
     margin-top: 64px;
-    background-color: #d8d8d8;
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
+}
+.hero .title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #292929 !important;
+    max-width: 640px;
+    text-align: center;
 }
 .hero h4 {
     font-size: 18px;
@@ -112,16 +156,22 @@ a {
     color: #292929 !important;
 }
 .hero p {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     color: #656565;
+    max-width: 800px;
+    text-align: center;
+}
+.hero .btn-primary {
+    font-size: 18px !important;
+    height: 56px !important;
 }
 /* HERO END */
 
 /* PROMO */
 .promo {
     min-height: 420px;
-    background-color: #d8d8d8;
+    background-color: #fff;
 }
 .promo-cover {
     padding-top: 50px;
@@ -137,8 +187,7 @@ a {
 }
 .card-promo-custom {
     width: 100%;
-    height: 312px;
-    overflow: hidden;
+    aspect-ratio: 1/1;
     background-color: #ffffff;
     border-radius: 48px;
     border: 1px solid #ffffff;
@@ -150,7 +199,7 @@ a {
 /* PRODUK */
 .produk {
     min-height: 468px;
-    background-color: #d8d8d8;
+    background-color: #fff;
 }
 .produk-cover {
     padding-top: 50px;
@@ -173,19 +222,31 @@ a {
     margin-bottom: 21px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
+}
+.card-produk-custom .card-produk-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 .card-produk-custom .card-produk-img {
     width: 100%;
-    height: 228px;
-    overflow: hidden;
+    aspect-ratio: 1/1;
     border-radius: 24px;
-    background-color: #c0baba;
+    background-position: center;
 }
 .card-produk-custom .card-produk-title {
     font-size: 16px;
     font-weight: 700;
     color: #292929 !important;
+}
+.card-produk-custom .action-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: 100% !important;
+    margin-top: 8px;
 }
 
 .text-preview {
@@ -238,16 +299,10 @@ a {
 /* PRODUK END */
 
 /* BLOG */
-
-.blog-image {
-    height: 544px;
-    object-fit: cover;
-    width: 100%;
-}
 .blog {
     padding-top: 50px;
     min-height: 512px;
-    background-color: #d8d8d8;
+    background-color: #fff;
 }
 .over {
     display: flex;
@@ -279,20 +334,30 @@ a {
 }
 .card-blog-custom {
     width: 100%;
-    min-width: 228px;
+    min-height: 360px;
     background-color: transparent;
     border-radius: 24px;
     border: 1px solid transparent;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
+    text-decoration: none;
 }
 .card-blog-custom .card-blog-img {
     width: 100%;
-    height: 228px;
-    overflow: hidden;
+    aspect-ratio: 1/1;
     border-radius: 24px;
     background-color: #c0baba;
+}
+.card-blog-custom .card-blog-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.card-blog-custom .card-blog-container-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 .card-blog-custom .card-blog-date {
     font-size: 12px;
@@ -300,9 +365,34 @@ a {
     color: #292929 !important;
 }
 .card-blog-custom .card-blog-title {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 16px !important;
+    font-weight: 700 !important;
     color: #292929 !important;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+.card-blog-custom .card-blog-paragraph {
+    font-size: 14px;
+    font-weight: 400;
+    color: #656565 !important;
+    overflow: hidden;
+    width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.blog .action-button {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: center;
+}
+.blog .action-button .btn-secondary {
+    width: 33%;
 }
 
 .blog-view {
@@ -329,30 +419,21 @@ a {
 .tanya-kami {
     min-height: 480px;
     padding: 32px 0;
-    background-color: #d8d8d8;
-}
-.tanya-kami2 {
-    min-height: 480px;
-    padding: 32px 0;
+    background-color: #fff;
 }
 .tanya-kami h4 {
     font-size: 18px;
     font-weight: 700;
     color: #292929 !important;
 }
-.tanya-kami2 h4 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #292929 !important;
-}
-.card-tanya-kami-custom-right {
+.card-tanya-kami-custom-left {
     width: 100%;
-    min-height: 320px;
+    min-height: 480px;
     background-color: #c0baba;
     border-radius: 48px;
     border: 1px solid transparent;
 }
-.card-tanya-kami-custom-left {
+.card-tanya-kami-custom-right {
     width: 100%;
     height: auto;
     background-color: transparent;
@@ -366,13 +447,33 @@ a {
     border: 1px solid #bbbbbb !important;
     box-shadow: none !important;
 }
+.tanya-kami .img {
+    width: 60%;
+    aspect-ratio: 3/2;
+}
+.tanya-kami .container-custom {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+}
+.tanya-kami .title {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 40%;
+}
+.tanya-kami .btn-primary {
+    max-width: 398px;
+}
 /* TANYA KAMI END */
 
 /* MARKET PLACE */
 .market-place {
     min-height: 92px;
     padding: 32px 0;
-    background-color: #d8d8d8;
+    background-color: #fff;
 }
 .market-place h4 {
     font-size: 18px;
@@ -391,13 +492,21 @@ a {
 
 /* FOOTER */
 .footer {
-    height: 32px;
+    height: 48px;
     background-color: #ffffff;
     text-align: center;
     font-size: 12px;
     font-weight: 400;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 24px;
+    padding-left: 24px;
+}
+.footer .follow-us {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
     align-items: center;
 }
 /* FOOTER END */
