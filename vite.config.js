@@ -36,6 +36,8 @@ export default defineConfig({
             input: [
                 'resources/css/styles-rtl.css',
                 'resources/scss/styles.scss',
+                'resources/sass/app.scss',
+                'resources/js/app.js',
             ],
             refresh: true,
         }),
@@ -48,7 +50,7 @@ export default defineConfig({
                         fs.copy(folder.src_assets + 'images', folder.dist_assets + 'images'),
                         fs.copy(folder.src_assets + 'fonts', folder.dist_assets + 'fonts'),
                         fs.copy(folder.src_assets + 'js', folder.dist_assets + 'js'),
-                        // fs.copy(folder.src_assets + 'libs', folder.dist_assets + 'libs'),
+                        fs.copy(folder.src_assets + 'libs', folder.dist_assets + 'libs'),
                     ]);
 
                 } catch (error) {
