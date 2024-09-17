@@ -419,7 +419,6 @@ a {
     height: 554px;
     overflow: hidden;
     width: 100%;
-
 }
 
 /* BLOG END */
@@ -535,7 +534,6 @@ a {
         width: 100%;
         justify-content: center;
         align-items: center;
-
     }
 }
 
@@ -554,13 +552,12 @@ a {
     .tanya-kami .container-custom {
         display: flex;
         flex-direction: column;
-
     }
 
     .tanya-kami .title {
         width: 100%;
+        align-items: center;
     }
-    
 }
 
 @media (max-width: 1390px) {
