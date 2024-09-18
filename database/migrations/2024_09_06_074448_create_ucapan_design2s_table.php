@@ -18,7 +18,7 @@ return new class extends Migration
             ->references('id')
             ->on('wedding_design1')
             ->onDelete('cascade');
-            $table->string('nama');
+            $table->string('nama', 50);
             $table->text('ucapan');
             $table->integer('kehadiran');
             $table->timestamps();
