@@ -12,8 +12,7 @@
             /* Adjust the width */
         }
     </style>
-    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css">
-
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css" />
 
     @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Blog'])
     <div class="card w-100 position-relative overflow-hidden">
@@ -82,7 +81,8 @@
         ImageUpload,
         Table,
         TableToolbar,
-        MediaEmbed
+        MediaEmbed,
+        Clipboard // Clipboard plugin enabled
     } from 'ckeditor5';
 
     ClassicEditor
@@ -90,7 +90,7 @@
             plugins: [
                 Essentials, Paragraph, Bold, Italic, Font, Alignment,
                 Link, List, Image, ImageToolbar, ImageUpload,
-                Table, TableToolbar, MediaEmbed
+                Table, TableToolbar, MediaEmbed, Clipboard // Clipboard plugin enabled
             ],
             toolbar: [
                 'undo', 'redo', '|', 'bold', 'italic', '|',
@@ -100,6 +100,11 @@
                 'link', 'imageUpload', 'insertTable', 'mediaEmbed', '|',
                 'blockQuote'
             ],
+            clipboard: {
+                // Clipboard configuration (optional, but recommended for better handling of pasted content)
+                removeFormatting: true, // Removes unwanted formatting from pasted content
+                pastePlainTextOnly: false // Allows rich text pasting
+            },
             image: {
                 toolbar: [
                     'imageTextAlternative', 'imageStyle:full', 'imageStyle:side'
@@ -113,7 +118,6 @@
             mediaEmbed: {
                 previewsInData: true
             }
-
         })
         .then(editor => {
             window.editor = editor;
