@@ -21,7 +21,8 @@
                             <div class="card-produk-custom">
                                 <img class="card-produk-img object-fit-cover"
                                     src="{{ asset('storage/seserahan/' . $item->image) }}" alt="Foto Seserahan"
-                                    width="100%" height="100%">
+                                    width="100%" height="100%" data-bs-toggle="modal" data-bs-target="#imageModal"
+                                    data-image="{{ asset('storage/seserahan/' . $item->image) }}">
                             </div>
                         </div>
                     @endforeach
@@ -32,18 +33,16 @@
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="imageModalLabel">Gambar Seserahan</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <img id="modalImage" src="" alt="Seserahan" class="img-fluid">
+                                    <img id="modalImage" src="" alt="Seserahan"
+                                        class="img-fluid justify-content-center">
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    {{-- <div class="p-2">{{ $data->links() }}</div> --}}
                 </div>
             </div>
             <div class="text-center mt-5">
