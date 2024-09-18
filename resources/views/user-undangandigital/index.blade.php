@@ -4,11 +4,11 @@
     <div class="container">
         <section class="blog-hero" id="blog-hero">
             <div class="d-flex flex-wrap">
-                <div class="col-lg-6 col-md-6 col-12 align-content-center">
+                <div class="col-12 col-lg-6 align-content-center">
                     <h4 class="text-black">Bagikan Momen Bahagiamu Dengan Mudah</h4>
                     <span>Solusi untuk undangan pernikahanmu jadi lebih mudah dengan fitur yang lengkap</span>
                 </div>
-                <div class="col-lg-6 col-md-6 col-12 blog-hero-img">
+                <div class="col-12 col-lg-6 blog-hero-img">
                 </div>
             </div>
         </section>
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-12 produk-hero-img">
+                <div class="col-12 col-lg-6 produk-hero-img">
                 </div>
             </div>
         </section>

@@ -520,7 +520,11 @@ a {
 /* FOOTER END */
 
 /* BREAKPOINT */
+
 @media (max-width: 768px) {
+    .hero {
+        padding: 32px;
+    }
     .card-tanya-kami-custom-left {
         text-align: center;
     }
@@ -535,7 +539,17 @@ a {
         justify-content: center;
         align-items: center;
     }
+
+    .blog .action-button .btn-secondary {
+        width: 70%;
+    }
+
+    .tanya-kami .img {
+        width: 80%;
+        aspect-ratio: 3 / 2;
+    }
 }
+
 
 @media (max-width: 996px) {
     .container-custom {
@@ -557,12 +571,20 @@ a {
     .tanya-kami .title {
         width: 100%;
         align-items: center;
+        text-align: center;
     }
 }
 
 @media (max-width: 1390px) {
     .blog .container-custom .over {
         overflow-x: scroll !important;
+    }
+}
+
+@media (max-width: 570px) {
+    .blog-hero {
+        padding: 32px;
+        padding-top: 120px;
     }
 }
 
