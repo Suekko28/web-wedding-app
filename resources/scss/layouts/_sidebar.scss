@@ -68,8 +68,8 @@
         }
 
         &:hover {
-          background: var(--bs-primary-bg-subtle);
-          color: var(--bs-primary);
+          background: #fd267d;
+          color: var(--bs-white);
 
           &.has-arrow::after {
             border-color: var(--bs-primary);
@@ -97,7 +97,7 @@
           .sidebar-link {
             &:hover {
               background-color: transparent;
-              color: var(--bs-primary);
+              color: var(--bs-white);
             }
           }
 
@@ -138,7 +138,7 @@
         .sidebar-item {
           .sidebar-link.active {
             background-color: transparent !important;
-            color: var(--bs-primary) !important;
+            color:#fd267d !important;
           }
         }
       }

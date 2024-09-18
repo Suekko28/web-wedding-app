@@ -2,7 +2,7 @@
 <!-- Start Vertical Layout Sidebar -->
 <!-- ---------------------------------- -->
 <div class="brand-logo d-flex align-items-center justify-content-between">
-    <a href="/main/index" class="text-nowrap logo-img">
+    <a href="{{route('dashboard')}}" class="text-nowrap logo-img">
         <img src="{{ asset('img/logo.png') }}" alt="logo">
     </a>
     <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">

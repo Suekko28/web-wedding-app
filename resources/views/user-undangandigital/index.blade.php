@@ -5,7 +5,7 @@
         <section class="blog-hero" id="blog-hero">
             <div class="d-flex flex-wrap">
                 <div class="col-12 col-lg-6 align-content-center">
-                    <h4 class="text-black">Bagikan Momen Bahagiamu Dengan Mudah</h4>
+                    <h4 class="caption">Bagikan Momen Bahagiamu Dengan Mudah</h4>
                     <span>Solusi untuk undangan pernikahanmu jadi lebih mudah dengan fitur yang lengkap</span>
                 </div>
                 <div class="col-12 col-lg-6 blog-hero-img">
@@ -191,7 +191,7 @@
         <section class="produk-hero" id="blog-hero">
             <div class="d-flex flex-wrap">
                 <div class="col-lg-6 col-md-6 col-12">
-                    <h4 class="text-black">Fitur yang Tersedia di setiap undangannya</h4>
+                    <h4>Fitur yang Tersedia di setiap undangannya</h4>
                     <p>Lengkapi website undangan digitalmu dengan beragam fitur yang dapat memenuhi kebutuhanmu.</p>
                     <div class="d-flex flex-column">
                         <div class="fitur-list">

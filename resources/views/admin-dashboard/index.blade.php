@@ -10,7 +10,7 @@
 
     @include('layouts.breadcrumb', ['title' => 'Dashboard', 'subtitle' => 'Home'])
     <!-- Row -->
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12">
             <!-- 1. card with img -->
             <div class="d-flex border-bottom title-part-padding px-0 mb-3 align-items-center">
@@ -74,7 +74,7 @@
             <!-- Card -->
         </div>
 
-    </div>
+    </div> --}}
 @endsection
 
 @section('scripts')

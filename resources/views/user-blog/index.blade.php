@@ -5,7 +5,7 @@
         <section class="blog-hero" id="blog-hero">
             <div class="d-flex flex-wrap">
                 <div class="col-12 col-lg-6 align-content-center">
-                    <h4 class="text-black">Bahwa Sumber dari Segala Kisah adalah Kasih</h4>
+                    <h4 class="caption">Bahwa Sumber dari Segala Kisah adalah Kasih</h4>
                     <span>Joko Pinurbo</span>
                 </div>
                 <div class="col-12 col-lg-6 blog-hero-img">

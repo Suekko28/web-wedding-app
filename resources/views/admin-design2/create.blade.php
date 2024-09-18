@@ -11,7 +11,7 @@
                 <div class="container-fluid">
                     @include('layouts.message')
                     <!-- Small boxes (Stat box) -->
-                    <form action="{{ route('wedding-design2') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('wedding-design2.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         {{-- <div class="card-body container bg-white mt-5">
@@ -356,7 +356,7 @@
 
                             <div class="d-flex flex-row-reverse mt-5">
                                 <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                <a href="{{ route('wedding-design2') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('wedding-design2.index') }}" class="btn btn-danger">Batal</a>
                             </div>
                         </div>
 
