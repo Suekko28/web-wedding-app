@@ -13,8 +13,9 @@ class Gambarin extends Model
 
     protected $fillable = [
         'image',
+        'id_gambarin',
         'judul',
         'harga',
-        'link'
+        'link',
     ];
 }

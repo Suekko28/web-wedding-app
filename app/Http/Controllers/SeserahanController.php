@@ -40,14 +40,30 @@ class SeserahanController extends Controller
         $nama_image = rand() . $image->getClientOriginalName();
         $image->storeAs('public/seserahan', $nama_image);
 
+        // Buat ID Seserahan
+        $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
+        $latestSeserahan = Seserahan::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
+
+        // Menentukan urutan ID Seserahan
+        if ($latestSeserahan) {
+            $lastId = intval(substr($latestSeserahan->id_seserahan, -4)); // Mengambil 4 digit terakhir dari id_seserahan
+            $newIdNumber = $lastId + 1; // Menambah 1 dari id terakhir
+        } else {
+            $newIdNumber = 1; // Jika belum ada data, mulai dari 1
+        }
+
+        $idSeserahan = 'PDT-SSH-' . $currentDate . '-' . sprintf('%04d', $newIdNumber); // Format PDT-SSH-Ymd0001
+
+        // Mengisi data untuk disimpan ke database
         $data['user_id'] = $userId;
         $data['image'] = $nama_image;
+        $data['id_seserahan'] = $idSeserahan;
 
         Seserahan::create($data);
 
         return redirect()->route('seserahan.index')->with('success', 'Data berhasil ditambahkan');
-
     }
+
 
     /**
      * Display the specified resource.

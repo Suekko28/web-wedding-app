@@ -36,9 +36,24 @@ class GambarinController extends Controller
         $image = $request->file('image');
         $nama_image = rand() . $image->getClientOriginalName();
         $image->storeAs('public/gambarin', $nama_image);
+        $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
+        $latestGambarin = Gambarin::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
+
+        // Menentukan urutan ID Seserahan
+        if ($latestGambarin) {
+            $lastId = intval(substr($latestGambarin->id_gambarin, -4)); // Mengambil 4 digit terakhir dari id_gambarin
+            $newIdNumber = $lastId + 1; // Menambah 1 dari id terakhir
+        } else {
+            $newIdNumber = 1; // Jika belum ada data, mulai dari 1
+        }
+
+        $idGambarin = 'PDT-GMBN-' . $currentDate . '-' . sprintf('%04d', $newIdNumber); // Format PDT-SSH-Ymd0001
+
 
         $data['user_id'] = $userId;
         $data['image'] = $nama_image;
+        $data['id_gambarin'] = $idGambarin;
+
 
         Gambarin::create($data);
 

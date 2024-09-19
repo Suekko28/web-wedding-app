@@ -23,6 +23,7 @@ class SeserahanFormRequest extends FormRequest
     {
         return [
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            // 'id_seserahan' => ['required'],
 
         ];
     }

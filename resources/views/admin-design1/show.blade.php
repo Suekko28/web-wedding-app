@@ -176,7 +176,7 @@
             </table>
 
             <div class="d-flex flex-row-reverse mt-5 mb-3">
-                <a href="{{ route('wedding-design1') }}" class="btn btn-primary ">Kembali</a>
+                <a href="{{ route('wedding-design1') }}" class="btn btn-secondary ">Kembali</a>
             </div>
         </div>
 

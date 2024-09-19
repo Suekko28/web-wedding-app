@@ -13,5 +13,6 @@ class Seserahan extends Model
 
     protected $fillable = [
         'image',
+        'id_seserahan'
     ];
 }

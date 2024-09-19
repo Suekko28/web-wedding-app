@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="d-grid py-4 px-7 pt-8">
-        <a class=" btn btn-outline-primary" href="{{ route('logout') }}"
+        <a class=" btn btn-secondary" href="{{ route('logout') }}"
             onclick="event.preventDefault();
                  document.getElementById('logout-form').submit();">
             {{ __('Logout') }}

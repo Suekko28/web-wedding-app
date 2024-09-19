@@ -116,13 +116,13 @@
                     <div class="fs-3">
                         <div class="form-group mb-3">
                             <label for="tgl_akad">Tanggal Akad <span class="mandatory">*</span></label>
-                            <input type="date" class="form-control" id="tgl_akad" name="tgl_akad"
-                                placeholder="" value="{{ $data->tgl_akad }}" disabled>
+                            <input type="date" class="form-control" id="tgl_akad" name="tgl_akad" placeholder=""
+                                value="{{ $data->tgl_akad }}" disabled>
                         </div>
                         <div class="form-group mb-3">
                             <label for="mulai_akad">Mulai Akad <span class="mandatory">*</span></label>
-                            <input type="time" class="form-control" id="mulai_akad" name="mulai_akad"
-                                placeholder="" value="{{ $data->mulai_akad }}" disabled>
+                            <input type="time" class="form-control" id="mulai_akad" name="mulai_akad" placeholder=""
+                                value="{{ $data->mulai_akad }}" disabled>
                         </div>
 
                         <div class="form-group mb-3">
@@ -159,8 +159,8 @@
             </form>
 
             <table class="table table-bordered">
-                <h6>Daftar Tamu Undangan <a href="{{ route('nama-undangan-list2', ['id' => $data]) }}"
-                        target="_blank" rel="noopener noreferrer" class="link-underline-primary"><u>Sharelink</u></a>
+                <h6>Daftar Tamu Undangan <a href="{{ route('nama-undangan-list2', ['id' => $data]) }}" target="_blank"
+                        rel="noopener noreferrer" class="link-underline-primary"><u>Sharelink</u></a>
                 </h6>
                 <thead>
                     <tr class="text-nowrap text-center">
@@ -184,7 +184,7 @@
             </table>
 
             <div class="d-flex flex-row-reverse mt-5 mb-3">
-                <a href="{{ route('wedding-design2') }}" class="btn btn-primary ">Kembali</a>
+                <a href="{{ route('wedding-design2') }}" class="btn btn-secondary ">Kembali</a>
             </div>
         </div>
 

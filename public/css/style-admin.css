@@ -8,6 +8,18 @@
     background-color: #fd267d !important;
     border: none !important;
 }
+
+.btn-secondary {
+    color: #fd267d !important;
+    background-color: transparent !important;
+    border: 1px solid #fd267d !important;
+}
+
+.btn-secondary:hover {
+    cursor: pointer;
+    color: #ff64a9 !important;
+    border: 1px solid #ff64a9 !important;
+}
 /* Button End */
 
 

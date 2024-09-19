@@ -291,12 +291,14 @@
                             <div class="mempelai text-center fw-bold fs-5">Kirim Hadiah</div>
                             <div class="fs-3">
                                 <div class="form-group mb-3">
-                                    <label for="nama_rek1">Nama Rek Tertera <span class="fst-italic">(Opsional)</span></label>
+                                    <label for="nama_rek1">Nama Rek Tertera <span
+                                            class="fst-italic">(Opsional)</span></label>
                                     <input type="text" class="form-control" id="nama_rek1" name="nama_rek1"
                                         placeholder="BCA, BRI, Dll" value="{{ old('nama_rek1') }}">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="no_rek1">No. Rek Tertera <span class="fst-italic">(Opsional)</span></label>
+                                    <label for="no_rek1">No. Rek Tertera <span
+                                            class="fst-italic">(Opsional)</span></label>
                                     <input type="text" class="form-control" id="no_rek1" name="no_rek1"
                                         placeholder="Masukkan nomor rekening" value="{{ old('no_rek1') }}">
                                 </div>
@@ -305,14 +307,16 @@
                                     <input type="text" class="form-control" id="atas_nama1" name="atas_nama1"
                                         placeholder="Rudi Hermawan" value="{{ old('atas_nama1') }}">
                                 </div>
-                        
+
                                 <div class="form-group mb-3">
-                                    <label for="nama_rek2">Nama Rek Tertera <span class="fst-italic">(Opsional)</span></label>
+                                    <label for="nama_rek2">Nama Rek Tertera <span
+                                            class="fst-italic">(Opsional)</span></label>
                                     <input type="text" class="form-control" id="nama_rek2" name="nama_rek2"
                                         placeholder="BCA, BRI, Dll" value="{{ old('nama_rek2') }}">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="no_rek2">No. Rek Tertera <span class="fst-italic">(Opsional)</span></label>
+                                    <label for="no_rek2">No. Rek Tertera <span
+                                            class="fst-italic">(Opsional)</span></label>
                                     <input type="text" class="form-control" id="no_rek2" name="no_rek2"
                                         placeholder="Masukkan nomor rekening" value="{{ old('no_rek2') }}">
                                 </div>
@@ -321,20 +325,21 @@
                                     <input type="text" class="form-control" id="atas_nama2" name="atas_nama2"
                                         placeholder="Rudi Hermawan" value="{{ old('atas_nama2') }}">
                                 </div>
-                        
+
                                 <div class="form-group mb-3">
-                                    <label for="alamat_tertera">Alamat Tertera <span class="fst-italic">(Opsional)</span></label>
+                                    <label for="alamat_tertera">Alamat Tertera <span
+                                            class="fst-italic">(Opsional)</span></label>
                                     <textarea class="form-control" rows="5" id="alamat_tertera" name="alamat_tertera"
                                         placeholder="Masukan alamat tertera kirim hadiah">{{ old('alamat_tertera') }}</textarea>
                                 </div>
                             </div>
-                        
+
                             <div class="d-flex flex-row-reverse mt-5">
                                 <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                <a href="{{ route('wedding-design2.index') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('wedding-design2.index') }}" class="btn btn-secondary">Batal</a>
                             </div>
                         </div>
-                        
+
 
 
 

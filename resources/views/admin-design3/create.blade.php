@@ -354,7 +354,7 @@
 
                             <div class="d-flex flex-row-reverse mt-5">
                                 <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                <a href="{{ route('wedding-design3.index') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('wedding-design3.index') }}" class="btn btn-secondary">Batal</a>
                             </div>
                         </div>
 
