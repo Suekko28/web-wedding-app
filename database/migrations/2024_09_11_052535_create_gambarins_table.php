@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('gambarin', function (Blueprint $table) {
             $table->id();
-            $table->string('id_gambarin');
-            $table->string('image', 100);
+            $table->string('id_gambarin', 100);
+            $table->string('image');
             $table->string('judul');
             $table->bigInteger('harga');
             $table->string('link');

@@ -171,8 +171,9 @@
             </form>
 
             <table class="table table-bordered">
-                <h6>Daftar Tamu Undangan <a href="{{ route('nama-undangan-list3', ['id' => $data]) }}" target="_blank"
-                        rel="noopener noreferrer" class="link-underline-primary"><u>Sharelink</u></a></h6>
+                <h6>Daftar Tamu Undangan <a class="badge btn-primary"
+                        href="{{ route('nama-undangan-list3', ['id' => $data]) }}" target="_blank"
+                        rel="noopener noreferrer" class="underline-primary"><u>Sharelink</u></a></h6>
                 <thead>
                     <tr class="text-nowrap text-center">
                         <th>No</th>
@@ -196,7 +197,7 @@
             </table>
 
             <div class="d-flex flex-row-reverse mt-5 mb-3">
-                <a href="{{ route('wedding-design3') }}" class="btn btn-primary ">Kembali</a>
+                <a href="{{ route('wedding-design3.index') }}" class="btn btn-secondary ">Kembali</a>
             </div>
         </div>
 

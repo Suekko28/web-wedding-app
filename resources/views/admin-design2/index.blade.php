@@ -22,33 +22,23 @@
             </div>
             <div class="table-responsive mb-4 border rounded-1">
                 <table class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
-                        <tr>
-                            <th>
-                                <h6 class="fs-4 fw-semibold mb-0">No</h6>
-                            </th>
-                            <th>
-                                <h6 class="fs-4 fw-semibold mb-0">Mempelai</h6>
-                            </th>
-                            <th>
-                                <h6 class="fs-4 fw-semibold mb-0">Tanggal Pernikahan</h6>
-                            </th>
-                            <th>
-                                <h6 class="fs-4 fw-semibold mb-0">Aksi</h6>
-                            </th>
+                    <thead>
+                        <tr class="text-nowrap text-center">
+                            <th>No</th>
+                            <th>ID Wedding</th>
+                            <th>Mempelai</th>
+                            <th>Tanggal Pernikahan</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = $data->firstItem(); ?>
                         @foreach ($data as $item)
-                            <tr>
+                            <tr class="text-center">
+                                <td scope="row">{{ $i }}</td>
+                                <td>{{ $item->id_weddingdesign2 }}</td>
                                 <td>
-                                    <div class="d-flex align-items-center">
-                                        <h6 class="fs-4 fw-semibold mb-0">{{ $i }}</h6>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 fw-normal fs-4">{{ $item->nama_mempelai_laki }} &
+                                    <p>{{ $item->nama_mempelai_laki }} &
                                         {{ $item->nama_mempelai_perempuan }}</p>
                                 </td>
                                 <td>
@@ -68,13 +58,13 @@
                                             class="btn btn-info rounded mb-2">
                                             <i class="fa fa-circle-info" style="color:white;"></i>
                                         </a>
-                                        <a href="{{route('wedding-design2-home-preview' , [
+                                        <a href="{{ route('wedding-design2-home-preview', [
                                             'nama_mempelai_laki' => $item->nama_mempelai_laki,
-                                            'nama_mempelai_perempuan' => $item->nama_mempelai_perempuan
-                                        ])}}"
-                                        target="_blank" class="btn btn-primary rounded mb-2">
-                                        <i class="fa fa-eye" style="color:white;"></i>
-                                    </a>
+                                            'nama_mempelai_perempuan' => $item->nama_mempelai_perempuan,
+                                        ]) }}"
+                                            target="_blank" class="btn btn-primary rounded mb-2">
+                                            <i class="fa fa-eye" style="color:white;"></i>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

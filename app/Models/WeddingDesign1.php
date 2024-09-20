@@ -14,6 +14,7 @@ class WeddingDesign1 extends Model
 
     protected $fillable = [
         // 'nama_undangan',
+        'id_weddingdesign1',
         'banner_img',
         'foto_prewedding',
         'foto_mempelai_laki',

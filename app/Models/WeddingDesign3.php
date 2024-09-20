@@ -13,6 +13,7 @@ class WeddingDesign3 extends Model
     protected $table = 'wedding_design3';
     protected $fillable = [
         // 'nama_undangan',
+        'id_weddingdesign3',
         'banner_img',
         'foto_prewedding',
         'foto_mempelai_laki',

@@ -84,9 +84,26 @@ class WeddingDesign3Controller extends Controller
             }
         }
 
+        $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
+        $latestWeddingDesign3 = WeddingDesign3::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
+
+        // Menentukan urutan ID Seserahan
+        if ($latestWeddingDesign3) {
+            $lastId = intval(substr($latestWeddingDesign3->id_weddingdesign3, -4)); // Mengambil 4 digit terakhir dari id_weddingdesign3
+            $newIdNumber = $lastId + 1; // Menambah 1 dari id terakhir
+        } else {
+            $newIdNumber = 1; // Jika belum ada data, mulai dari 1
+        }
+
+        $idWeddingDesign3 = 'PDT-WDDS3-' . $currentDate . '-' . sprintf('%04d', $newIdNumber); // Format PDT-SSH-Ymd0001
+        
+        $data['id_weddingdesign3'] = $idWeddingDesign3;
+
+
+
         WeddingDesign3::create($data);
 
-        return redirect()->route('wedding-design3')->with('success', 'Berhasil menambahkan data');
+        return redirect()->route('wedding-design3.index')->with('success', 'Berhasil menambahkan data');
 
 
     }
@@ -193,7 +210,7 @@ class WeddingDesign3Controller extends Controller
 
         $weddingDesign3->update($data);
 
-        return redirect()->route('wedding-design3')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('wedding-design3.index')->with('success', 'Data berhasil diperbarui.');
 
 
     }
@@ -204,7 +221,7 @@ class WeddingDesign3Controller extends Controller
     public function destroy(string $id)
     {
         $data = WeddingDesign3::find($id)->delete();
-        return redirect()->route('wedding-design3')->with('success', 'Data berhasil Dihapus');
+        return redirect()->route('wedding-design3.index')->with('success', 'Data berhasil Dihapus');
 
     }
 }

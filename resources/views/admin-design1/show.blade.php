@@ -151,7 +151,8 @@
             </form>
 
             <table class="table table-bordered">
-                <h6>Daftar Tamu Undangan <a href="{{ route('nama-undangan-list1', ['id' => $data]) }}" target="_blank"
+                <h6>Daftar Tamu Undangan <a class="badge btn-primary"
+                        href="{{ route('nama-undangan-list1', ['id' => $data]) }}" target="_blank"
                         rel="noopener noreferrer" class="underline-primary"><u>Sharelink</u></a></h6>
                 <thead>
                     <tr class="text-nowrap text-center">
@@ -176,7 +177,7 @@
             </table>
 
             <div class="d-flex flex-row-reverse mt-5 mb-3">
-                <a href="{{ route('wedding-design1') }}" class="btn btn-secondary ">Kembali</a>
+                <a href="{{ route('wedding-design1.index') }}" class="btn btn-secondary ">Kembali</a>
             </div>
         </div>
 

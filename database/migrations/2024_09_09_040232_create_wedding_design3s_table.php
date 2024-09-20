@@ -12,17 +12,18 @@ return new class extends Migration {
     {
         Schema::create('wedding_design3', function (Blueprint $table) {
             $table->id();
-            $table->string('banner_img', 75);
-            $table->string('foto_prewedding', 75);
-            $table->string('foto_mempelai_laki', 75);
+            $table->string('id_weddingdesign3', 100);
+            $table->string('banner_img');
+            $table->string('foto_prewedding');
+            $table->string('foto_mempelai_laki');
             $table->string('nama_mempelai_laki', 100);
             $table->string('putra_dari_bpk', 100);
             $table->string('putra_dari_ibu', 100);
-            $table->string('nama_instagram1', 75);
-            $table->string('link_instagram1', 75);
-            $table->string('nama_instagram2', 75);
-            $table->string('link_instagram2', 75);
-            $table->string('foto_mempelai_perempuan', 75);
+            $table->string('nama_instagram1');
+            $table->string('link_instagram1');
+            $table->string('nama_instagram2');
+            $table->string('link_instagram2');
+            $table->string('foto_mempelai_perempuan');
             $table->string('nama_mempelai_perempuan', 100);
             $table->string('putri_dari_bpk', 100);
             $table->string('putri_dari_ibu', 100);
@@ -33,11 +34,11 @@ return new class extends Migration {
             $table->time('mulai_resepsi');
             $table->text('alamat_resepsi');
             $table->string('lokasi_gmaps', 150);
-            $table->string('galeri_img1', 75)->nullable();
-            $table->string('galeri_img2', 75)->nullable();
-            $table->string('galeri_img3', 75)->nullable();
-            $table->string('galeri_img4', 75)->nullable();
-            $table->string('galeri_img5', 75)->nullable();
+            $table->string('galeri_img1')->nullable();
+            $table->string('galeri_img2')->nullable();
+            $table->string('galeri_img3')->nullable();
+            $table->string('galeri_img4')->nullable();
+            $table->string('galeri_img5')->nullable();
             $table->text('perkenalan')->nullable();
             $table->text('jadian')->nullable();
             $table->text('tunangan')->nullable();
@@ -59,9 +60,9 @@ return new class extends Migration {
             $table->date('tgl_cerita3')->nullable();
             $table->date('tgl_cerita4')->nullable();
             $table->string('caption')->nullable();
-            $table->string('gambar1', 75);
-            $table->string('gambar2', 75);
-            $table->string('video', 75)->nullable();
+            $table->string('gambar1');
+            $table->string('gambar2');
+            $table->string('video')->nullable();
             $table->string('nama_pengarang', 100)->nullable();
             $table->timestamps();
         });

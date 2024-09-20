@@ -20,7 +20,11 @@
     color: #ff64a9 !important;
     border: 1px solid #ff64a9 !important;
 }
-/* Button End */
+
+.radio_group input:checked+.radio_label {
+    background: #fd267d !important;
+    color: white;
+}
 
 
 /* Sidebar */
