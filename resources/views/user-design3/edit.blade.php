@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Modernize Bootstrap Admin')
+@section('title', 'JejakKebahagiaan')
 
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('build/libs/prismjs/themes/prism-okaidia.min.css') }}">
@@ -34,7 +34,7 @@
                         <div class="d-flex flex-row-reverse mt-5">
                             <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
                             <a href="{{ route('nama-undangan-list3', ['id' => $weddingDesign3Id]) }}"
-                                class="btn btn-danger">Batal</a>
+                                class="btn btn-secondary">Batal</a>
                         </div>
 
                     </div>
