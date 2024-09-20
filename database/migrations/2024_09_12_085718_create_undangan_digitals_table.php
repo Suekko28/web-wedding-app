@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('undangan_digital', function (Blueprint $table) {
             $table->id();
+            $table->string('id_undangandigital', 50);
             $table->string('image', 75);
             $table->string('judul');
             $table->bigInteger('harga');

@@ -12,6 +12,7 @@ class CetakFoto extends Model
     protected $table  = 'cetak_foto';
 
     protected $fillable = [
+        'id_cetakfoto',
         'image',
         'judul',
         'harga',

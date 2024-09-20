@@ -26,6 +26,7 @@
                         <tr class="text-nowrap text-center">
                             {{-- <th><input type="checkbox" id="selectAll"></th> --}}
                             <th>No</th>
+                            <th>ID Undangan Digital</th>
                             {{-- <th>Nama Undangan</th> --}}
                             <th>Foto</th>
                             <th>Judul</th>
@@ -43,6 +44,7 @@
                                 {{-- <td><input type="checkbox" class="delete-checkbox" name="selected[]"
                                         value="{{ $item->id }}"></td> --}}
                                 <td scope="row">{{ $i }}</td>
+                                <td scope="row">{{ $item->id_undangandigital }}</td>
                                 {{-- <td>{{ $item->nama_undangan }}</td> --}}
                                 {{-- <td>
                                     <img src="{{ Storage::url('' . $item->banner_img) }}" width="120"

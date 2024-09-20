@@ -38,10 +38,25 @@ class BlogController extends Controller
         $image = $request->file('image');
         $nama_image = rand() . $image->getClientOriginalName();
         $image->storeAs('public/blog', $nama_image);
+        // Buat ID Seserahan
+        $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
+        $latestBlog = Blog::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
+
+        // Menentukan urutan ID Seserahan
+        if ($latestBlog) {
+            $lastId = intval(substr($latestBlog->id_blog, -4)); // Mengambil 4 digit terakhir dari id_blog
+            $newIdNumber = $lastId + 1; // Menambah 1 dari id terakhir
+        } else {
+            $newIdNumber = 1; // Jika belum ada data, mulai dari 1
+        }
+
+        $idBlog = 'PDT-BLG-' . $currentDate . '-' . sprintf('%04d', $newIdNumber); // Format PDT-SSH-Ymd0001
+
 
 
         $data['user_id'] = $userId;
         $data['image'] = $nama_image;
+        $data['id_blog'] = $idBlog;
 
         Blog::create($data);
 

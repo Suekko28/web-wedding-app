@@ -36,9 +36,24 @@ class UndanganDigitalController extends Controller
         $image = $request->file('image');
         $nama_image = rand() . $image->getClientOriginalName();
         $image->storeAs('public/undangandigital', $nama_image);
+        $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
+        $latestUndanganDigital = UndanganDigital::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
+
+        // Menentukan urutan ID Seserahan
+        if ($latestUndanganDigital) {
+            $lastId = intval(substr($latestUndanganDigital->id_undangandigital, -4)); // Mengambil 4 digit terakhir dari id_undangandigital
+            $newIdNumber = $lastId + 1; // Menambah 1 dari id terakhir
+        } else {
+            $newIdNumber = 1; // Jika belum ada data, mulai dari 1
+        }
+
+        $idUndanganDigital = 'PDT-UNDGL-' . $currentDate . '-' . sprintf('%04d', $newIdNumber); // Format PDT-SSH-Ymd0001
+
 
         $data['user_id'] = $userId;
         $data['image'] = $nama_image;
+        $data['id_undangandigital'] = $idUndanganDigital;
+
 
         UndanganDigital::create($data);
 
