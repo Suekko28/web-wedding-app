@@ -59,12 +59,12 @@
                                             <div class="card-produk-detail">IDR
                                                 {{ number_format($item->harga, 0, ',', '.') }}
                                             </div>
-                                            <div class="d-flex gap-3">
-                                                <div class="btn btn-text-preview">
+                                            <div class="d-flex gap-3 btn-action">
+                                                <div class="btn btn-secondary">
                                                     <a class="text-preview" href="{{ $item->link_preview }}"
                                                         target="__blank">Preview</a>
                                                 </div>
-                                                <div class="btn btn-custom-4">
+                                                <div class="btn btn-primary">
                                                     <a class="text-white" href="{{ $item->link_pesan }}"
                                                         target="__blank">Pesan</a>
                                                 </div>
@@ -95,12 +95,12 @@
                                             <div class="card-produk-detail">IDR
                                                 {{ number_format($item->harga, 0, ',', '.') }}
                                             </div>
-                                            <div class="d-flex gap-3">
-                                                <div class="btn btn-text-preview">
+                                            <div class="d-flex gap-3 btn-action">
+                                                <div class="btn btn-secondary">
                                                     <a class="text-preview" href="{{ $item->link_preview }}"
                                                         target="__blank">Preview</a>
                                                 </div>
-                                                <div class="btn btn-custom-4">
+                                                <div class="btn btn-primary">
                                                     <a class="text-white" href="{{ $item->link_pesan }}"
                                                         target="__blank">Pesan</a>
                                                 </div>
@@ -131,12 +131,12 @@
                                             <div class="card-produk-detail">IDR
                                                 {{ number_format($item->harga, 0, ',', '.') }}
                                             </div>
-                                            <div class="d-flex gap-3">
-                                                <div class="btn btn-text-preview">
+                                            <div class="d-flex gap-3 btn-action">
+                                                <div class="btn btn-secondary">
                                                     <a class="text-preview" href="{{ $item->link_preview }}"
                                                         target="__blank">Preview</a>
                                                 </div>
-                                                <div class="btn btn-custom-4">
+                                                <div class="btn btn-primary">
                                                     <a class="text-white" href="{{ $item->link_pesan }}"
                                                         target="__blank">Pesan</a>
                                                 </div>
@@ -166,12 +166,12 @@
                                             <div class="card-produk-detail">IDR
                                                 {{ number_format($item->harga, 0, ',', '.') }}
                                             </div>
-                                            <div class="d-flex gap-3">
-                                                <div class="btn btn-text-preview">
+                                            <div class="d-flex gap-3 btn-action">
+                                                <div class="btn btn-secondary">
                                                     <a class="text-preview" href="{{ $item->link_preview }}"
                                                         target="__blank">Preview</a>
                                                 </div>
-                                                <div class="btn btn-custom-4">
+                                                <div class="btn btn-primary">
                                                     <a class="text-white" href="{{ $item->link_pesan }}"
                                                         target="__blank">Pesan</a>
                                                 </div>
@@ -238,7 +238,7 @@
         <div class="container-custom">
             <div class="title">
                 <h4>Kami siap membantu kebutuhan anda</h4>
-                <a href="https://wa.me/62895321816795" target="_blank" class="btn btn-primary">Hubungi Kami</a>
+                <a href="https://wa.me/6281934060621" target="_blank" class="btn btn-primary">Hubungi Kami</a>
             </div>
             <img class="img" src="{{ asset('img/Jejakkebahagiaan_Hubungi.jpg') }}" alt="Seserahan">
         </div>

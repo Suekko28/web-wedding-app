@@ -18,26 +18,25 @@
                 <h4 class="text-center mb-5">Produk yang Tersedia</h4>
                 <div class="row">
                     @foreach ($data as $item)
-                    <div class="col-sm-12 col-md-3">
-                        <div class="card card-produk-custom">
-                            <img class="card-produk-img object-fit-cover"
-                                src="{{ asset('storage/cetakfoto/' . $item->image) }}" alt="Foto Cetak Foto"
-                                width="100%" height="100%">
-                            <div class="card-produk-detail">
-                                <div class="card-produk-container-title">
-                                    <div class="card-produk-title">{{ $item->judul }}
+                        <div class="col-sm-12 col-md-3">
+                            <div class="card card-produk-custom">
+                                <img class="card-produk-img object-fit-cover"
+                                    src="{{ asset('storage/cetakfoto/' . $item->image) }}" alt="Foto Cetak Foto"
+                                    width="100%" height="100%">
+                                <div class="card-produk-detail">
+                                    <div class="card-produk-container-title">
+                                        <div class="card-produk-title">{{ $item->judul }}
+                                        </div>
+                                    </div>
+                                    <div class="card-produk-detail">IDR
+                                        {{ number_format($item->harga, 0, ',', '.') }}
+                                    </div>
+                                    <div class="btn btn-primary">
+                                        <a class="text-white" href="{{ $item->link }}" target="__blank">Pesan</a>
                                     </div>
                                 </div>
-                                <div class="card-produk-detail">IDR
-                                    {{ number_format($item->harga, 0, ',', '.') }}
-                                </div>
-                                    <div class="btn btn-custom-4">
-                                        <a class="text-white" href="{{ $item->link }}"
-                                            target="__blank">Pesan</a>
-                                    </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                     <div class="p-2">{{ $data->links() }}</div>
                 </div>
@@ -50,7 +49,7 @@
         <div class="container-custom">
             <div class="title">
                 <h4>Kami siap membantu kebutuhan anda</h4>
-                <a href="https://wa.me/62895321816795" target="_blank" class="btn btn-primary">Hubungi Kami</a>
+                <a href="https://wa.me/6281934060621" target="_blank" class="btn btn-primary">Hubungi Kami</a>
             </div>
             <img class="img" src="{{ asset('img/Jejakkebahagiaan_Hubungi.jpg') }}" alt="Seserahan">
         </div>

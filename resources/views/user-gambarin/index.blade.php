@@ -31,7 +31,7 @@
                                     <div class="card-produk-detail">IDR
                                         {{ number_format($item->harga, 0, ',', '.') }}
                                     </div>
-                                    <div class="btn btn-custom-4">
+                                    <div class="btn btn-primary">
                                         <a class="text-white" href="{{ $item->link }}" target="__blank">Pesan</a>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
         <div class="container-custom">
             <div class="title">
                 <h4>Kami siap membantu kebutuhan anda</h4>
-                <a href="https://wa.me/62895321816795" target="_blank" class="btn btn-primary">Hubungi Kami</a>
+                <a href="https://wa.me/6281934060621" target="_blank" class="btn btn-primary">Hubungi Kami</a>
             </div>
             <img class="img" src="{{ asset('img/Jejakkebahagiaan_Hubungi.jpg') }}" alt="Seserahan">
         </div>

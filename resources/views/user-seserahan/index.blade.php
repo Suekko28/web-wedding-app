@@ -45,8 +45,8 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-5">
-                <a class="btn btn-custom-3" href="https://www.instagram.com/instagram" target="_blank">Lihat
+            <div class="text-center d-flex justify-content-center mt-5 btn-portofolio">
+                <a class="btn btn-secondary" href="https://www.instagram.com/instagram" target="_blank">Lihat
                     Selengkapnya</a>
             </div>
         </section>
@@ -58,7 +58,7 @@
         <div class="container-custom">
             <div class="title">
                 <h4>Kami siap membantu kebutuhan anda</h4>
-                <a href="https://wa.me/62895321816795" target="_blank" class="btn btn-primary">Hubungi Kami</a>
+                <a href="https://wa.me/6281934060621" target="_blank" class="btn btn-primary">Hubungi Kami</a>
             </div>
             <img class="img" src="{{ asset('img/Jejakkebahagiaan_Hubungi.jpg') }}" alt="Seserahan">
         </div>

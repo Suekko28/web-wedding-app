@@ -16,10 +16,10 @@ a {
 }
 
 .btn-primary {
-    min-width: 240px !important;
+    width: 240px !important;
     font-size: 14px !important;
     height: 40px !important;
-    display: flex;
+    display: flex !important;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -41,10 +41,10 @@ a {
     color: #fd267d !important;
     border: 1px solid #fd267d !important;
     font-size: 14px !important;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 .btn-secondary:hover {
     cursor: pointer;
@@ -313,6 +313,28 @@ a {
     color: #fd267d !important;
     background-color: #fd267d1a;
 }
+
+.card-produk-detail .btn-primary {
+    width: 100% !important;
+}
+
+.blog-view h4 {
+    color: #292929 !important;
+}
+
+.btn-portofolio .btn-secondary {
+    width: 33%;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.btn-action .btn-primary {
+    width: 100% !important;
+    min-width: none;
+}
+
 /* PRODUK END */
 
 /* BLOG */
@@ -443,11 +465,9 @@ a {
 
 .content-blog .title-blog {
     color: #292929 !important;
-
 }
 .content-blog p {
     color: #292929 !important;
-
 }
 
 /* BLOG END */
@@ -576,6 +596,10 @@ a {
     .tanya-kami .img {
         width: 80%;
         aspect-ratio: 3 / 2;
+    }
+
+    .btn-portofolio .btn-secondary {
+        width: 70%;
     }
 }
 
