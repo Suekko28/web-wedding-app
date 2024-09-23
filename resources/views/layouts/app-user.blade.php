@@ -33,23 +33,46 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
+                    <!-- resources/views/layouts/navbar.blade.php -->
+
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link trigger" aria-current="page" href="{{ url('/') }}">Beranda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link trigger" href="#promo">Promo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link trigger" href="#produk">Produk Kami</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link trigger" href="#blog">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link trigger" href="#tanya-kami">Tanya Kami</a>
-                        </li>
+                        @if (Request::is('/'))
+                            <!-- Navbar untuk Landing Page -->
+                            <li class="nav-item">
+                                <a class="nav-link trigger" aria-current="page" href="{{ url('/') }}">Beranda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link trigger" href="#promo">Promo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link trigger" href="#produk">Produk Kami</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link trigger" href="#blog">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link trigger" href="#tanya-kami">Tanya Kami</a>
+                            </li>
+                        @else
+                            <!-- Navbar untuk Blog View dan lainnya -->
+                            <li class="nav-item">
+                                <a class="nav-link trigger" href="{{ url('/') }}">Beranda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link trigger" href="{{ url('/') }}">Promo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link trigger" href="{{ url('/') }}">Produk Kami</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link trigger" href="{{ url('/') }}">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link trigger" href="{{ url('/') }}">Tanya Kami</a>
+                            </li>
+                        @endif
                     </ul>
+
                 </div>
             </div>
         </div>
