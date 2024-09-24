@@ -1,4 +1,4 @@
-<div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
+<div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4 p-2">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
@@ -13,12 +13,12 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-3">
+            {{-- <div class="col-3">
                 <div class="text-center mb-n5">
                     <img src="{{ URL::asset('build/images/breadcrumb/ChatBc.png') }}" alt="modernize-img"
                         class="img-fluid mb-n4" />
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

@@ -6,7 +6,7 @@
 
     @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Seserahan'])
     <div class="card w-100 position-relative overflow-hidden">
-        <div class="card-body p-4">
+        <div class="card-body">
             <section class="content">
                 <div class="container-fluid">
                     @include('layouts.message')
@@ -16,7 +16,7 @@
                         <div class="card-body container bg-white mt-5">
                             <div class="mempelai text-center fw-bold fs-5">Seserahan</div>
                             <div class="fs-3">
-                                <div class="form-group mb-3">
+                                <div class="form-group col-sm-4 mb-3">
                                     <label for="image">Gambar <span class="mandatory">*</span></label>
                                     <input type="file" class="form-control" id="image" name="image"
                                         placeholder="" value="{{old('image')}}">

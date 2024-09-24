@@ -9,7 +9,7 @@
         {{-- <div class="px-4 py-3 border-bottom">
             <h4 class="card-title mb-0">Basic Table</h4>
         </div> --}}
-        <div class="card-body p-4">
+        <div class="card-body">
             <a class="btn btn-primary mb-3" href="{{ url('cetakfoto/create') }}">+ Buat Cetak Foto</a>
             @include('layouts.message')
             <div class="search">

@@ -16,7 +16,7 @@
 
     @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Blog'])
     <div class="card w-100 position-relative overflow-hidden">
-        <div class="card-body p-4">
+        <div class="card-body">
             <section class="content">
                 <div class="container-fluid">
                     @include('layouts.message')
@@ -25,21 +25,23 @@
                         @method('PUT')
                         @csrf
                         <div class="card-body container bg-white mt-5">
-                            <div class="mempelai text-center fw-bold fs-5">Blog</div>
-                            <div class="fs-3">
-                                <div class="form-group mb-3">
-                                    <label for="image">Gambar <span class="mandatory">*</span></label>
-                                    <input type="file" class="form-control" id="image" name="image" placeholder=""
-                                        value="{{ $data->image }}}">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="judul">Judul <span class="mandatory">*</span></label>
-                                    <input type="text" class="form-control" id="judul" name="judul"
-                                        placeholder="Masukkan judul" value="{{ $data->judul }}">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="deskripsi">Deskripsi <span class="mandatory">*</span></label>
-                                    <textarea class="form-control" rows="5" id="deskripsi" name="deskripsi" placeholder="Masukkan isi deskripsi">{{ $data->deskripsi }}</textarea>
+                            <div class="mempelai text-center fw-bold fs-5 mb-4">Blog</div>
+                            <div class="form-group fs-3">
+                                <div class="row">
+                                    <div class="col-sm-6 mb-3">
+                                        <label for="image">Gambar <span class="mandatory">*</span></label>
+                                        <input type="file" class="form-control" id="image" name="image"
+                                            placeholder="" value="{{ old('image') }}">
+                                    </div>
+                                    <div class="col-sm-6 mb-3">
+                                        <label for="judul">Judul <span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="judul" name="judul"
+                                            placeholder="Masukkan judul" value="{{$data->judul}}">
+                                    </div>
+                                    <div class="col-sm-12 mb-3">
+                                        <label for="deskripsi">Deskripsi <span class="mandatory">*</span></label>
+                                        <textarea class="form-control" rows="10" id="deskripsi" name="deskripsi" placeholder="Masukkan isi deskripsi">{{$data->deskripsi}}</textarea>
+                                    </div>
                                 </div>
                             </div>
 
