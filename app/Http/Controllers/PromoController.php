@@ -69,7 +69,7 @@ class PromoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PromoFormRequest $request, string $id)
     {
         $user = Promo::find($id);
         $userId = auth()->user()->id;
