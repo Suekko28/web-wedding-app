@@ -109,7 +109,7 @@
             <div class="row">
                 @foreach ($dataBlog as $item)
                     <div class="col-sm-12 col-md-3">
-                        <a href="{{ route('blog-view.show' , $item->id) }}" class="card card-blog-custom">
+                        <a href="{{ route('blog-view.show', $item->id) }}" class="card card-blog-custom">
                             <div class="card card-blog-custom">
                                 <div class="card-blog-img">
                                     <img class="rounded-4 img-fluid object-fit-cover"
@@ -130,7 +130,7 @@
 
             </div>
             <div class="action-button">
-                <a href="{{route('blog-view.index')}}" class="btn btn-secondary">Lihat Selengkapnya</a>
+                <a href="{{ route('blog-view.index') }}" class="btn btn-secondary">Lihat Selengkapnya</a>
             </div>
         </div>
         </div>
@@ -142,7 +142,7 @@
         <div class="container-custom">
             <div class="title">
                 <h4>Kami siap membantu kebutuhan anda</h4>
-                <a href="https://wa.me/6281934060621" target="_blank" class="btn btn-primary">Hubungi Kami</a>
+                <a href="https://wa.me/62895321816795" target="_blank" class="btn btn-primary">Hubungi Kami</a>
             </div>
             <img class="img" src="{{ asset('img/Jejakkebahagiaan_Hubungi.jpg') }}" alt="Seserahan">
         </div>
@@ -158,7 +158,7 @@
                     <img src="{{ asset('img/tokopedia.png') }}" alt="tokopedia">
                     <span>tokopedia</span>
                 </a>
-                <a href="#" class="btn-market-place">
+                <a href="https://id.shp.ee/45Rpy1g" target="_blank" class="btn-market-place">
                     <img src="{{ asset('img/shopee.png') }}" alt="shopee">
                     <span>Shopee</span>
                 </a>

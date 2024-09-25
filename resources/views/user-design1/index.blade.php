@@ -46,6 +46,7 @@
             @include('layouts.message')
             <!-- Responsive Table -->
             <div class="card">
+                <div class="card-body">
                 <h5 class="card-header">List Nama Undangan</h5>
                 <div class="p-3">
                     <div class="mb-3">
@@ -185,6 +186,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 @endforeach
 
 

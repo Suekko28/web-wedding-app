@@ -39,19 +39,24 @@
                         @if (Request::is('/'))
                             <!-- Navbar untuk Landing Page -->
                             <li class="nav-item">
-                                <a class="nav-link trigger" aria-current="page" href="{{ url('/') }}">Beranda</a>
+                                <a class="nav-link trigger {{ Request::is('/') ? 'active' : '' }}"
+                                    href="#hero">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link trigger" href="#promo">Promo</a>
+                                <a class="nav-link trigger {{ Request::is('#promo') ? 'active' : '' }}"
+                                    href="#promo">Promo</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link trigger" href="#produk">Produk Kami</a>
+                                <a class="nav-link trigger {{ Request::is('#produk') ? 'active' : '' }}"
+                                    href="#produk">Produk Kami</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link trigger" href="#blog">Blog</a>
+                                <a class="nav-link trigger {{ Request::is('#blog') ? 'active' : '' }}"
+                                    href="#blog">Blog</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link trigger" href="#tanya-kami">Tanya Kami</a>
+                                <a class="nav-link trigger {{ Request::is('#tanya-kami') ? 'active' : '' }}"
+                                    href="#tanya-kami">Tanya Kami</a>
                             </li>
                         @else
                             <!-- Navbar untuk Blog View dan lainnya -->

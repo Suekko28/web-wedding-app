@@ -51,6 +51,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Auth::routes([
     'reset' => false,
     'verify' => false,
+    'register' => false,
 ]);
 
 Route::middleware(['auth'])->group(function () {

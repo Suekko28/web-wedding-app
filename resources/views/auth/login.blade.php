@@ -56,14 +56,14 @@
                                     <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">
                                         {{ __('Login') }}
                                     </button>
-                                    <div class="d-flex align-items-center justify-content-center">
+                                    {{-- <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-medium">Does't have account?</p>
                                         @if (Route::has('register'))
                                             <a class="text-primary fw-medium ms-2" href="{{ route('register') }}">
                                                 {{ __('Register') }}
                                             </a>
                                         @endif
-                                    </div>
+                                    </div> --}}
                                 </form>
                             </div>
                         </div>

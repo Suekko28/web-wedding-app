@@ -8,44 +8,40 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Dashboard', 'subtitle' => 'Home'])
-    <!-- Row -->
+    {{-- @include('layouts.breadcrumb', ['title' => 'Dashboard', 'subtitle' => 'Home'])
+    <!-- Row --> --}}
     <main>
 
         <section class="content">
             <div class="container-fluid">
                 @include('layouts.message')
-                <!-- Small boxes (Stat box) -->
-                <form action="{{ route('nama-undangan-store3', ['id' => $weddingDesign3Id]) }}" method="post"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="wedding_design3_id" value="{{ $weddingDesign3->id }}">
-                    <div class="card-body container bg-white mt-5">
-                        <div class="mempelai text-center fw-bold fs-5">Nama Undangan</div>
-                        <div class="fs-3">
-                            <div class="form-group mb-3">
-                                <label for="nama_undangan">Nama Undangan <span class="mandatory">*</span></label>
-                                <textarea class="form-control" rows="5" id="nama_undangan" name="nama_undangan"
-                                    placeholder="Masukan nama-nama undangan"></textarea>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{ route('nama-undangan-store3', ['id' => $weddingDesign3Id]) }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="wedding_design3_id" value="{{ $weddingDesign3->id }}">
+                            <div class="card-body container bg-white mt-5">
+                                <div class="mempelai text-center fw-bold fs-5">Nama Undangan</div>
+                                <div class="fs-3">
+                                    <div class="form-group mb-3">
+                                        <label for="nama_undangan">Nama Undangan <span class="mandatory">*</span></label>
+                                        <textarea class="form-control" rows="5" id="nama_undangan" name="nama_undangan"
+                                            placeholder="Masukan nama-nama undangan"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-row-reverse mt-5">
+                                    <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
+                                    <a href="{{ route('nama-undangan-list3', ['id' => $weddingDesign3Id]) }}"
+                                        class="btn btn-secondary">Batal</a>
+                                </div>
+
                             </div>
-                        </div>
-
-                        <div class="d-flex flex-row-reverse mt-5">
-                            <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                            <a href="{{ route('nama-undangan-list3', ['id' => $weddingDesign3Id]) }}"
-                                class="btn btn-secondary">Batal</a>
-                        </div>
-
                     </div>
-
-
-
-
-                    <!-- /.card-body -->
-
+                </div>
                 </form>
-                <!-- /.row (main row) -->
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
     </main>
 @endsection
