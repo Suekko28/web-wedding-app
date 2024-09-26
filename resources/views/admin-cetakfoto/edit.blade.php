@@ -20,9 +20,18 @@
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="image">Gambar <span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="image" name="image"
-                                            placeholder="" value="{{ $data->image }}">
+                                        <input type="file" class="form-control" id="image" name="image">
+    
+                                        <!-- Tampilkan gambar lama jika ada -->
+                                        @if ($data->image)
+                                        <div class="d-flex flex-column">
+                                        <span>Gambar saat ini:</span>
+                                            <img src="{{ asset('storage/cetakfoto/' . $data->image) }}" alt="Foto Cetak Foto"
+                                                class="img-thumbnail mt-2" width="150">
+                                            </div>
+                                        @endif
                                     </div>
+
                                     <div class="col-sm-4 mb-3">
                                         <label for="judul">Judul <span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul" name="judul"

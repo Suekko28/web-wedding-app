@@ -17,11 +17,20 @@
                         <div class="card-body container bg-white mt-5">
                             <div class="mempelai text-center fw-bold fs-5">Seserahan</div>
                             <div class="fs-3">
-                                <div class="form-group col-sm-4 mb-3">
+                                <div class="col-sm-4 mb-3">
                                     <label for="image">Gambar <span class="mandatory">*</span></label>
-                                    <input type="file" class="form-control" id="image" name="image"
-                                        placeholder="" value="{{($data->image)}}">
+                                    <input type="file" class="form-control" id="image" name="image">
+
+                                    <!-- Tampilkan gambar lama jika ada -->
+                                    @if ($data->image)
+                                    <div class="d-flex flex-column">
+                                    <span>Gambar saat ini:</span>
+                                        <img src="{{ asset('storage/seserahan/' . $data->image) }}" alt="Foto Seserahan"
+                                            class="img-thumbnail mt-2" width="150">
+                                        </div>
+                                    @endif
                                 </div>
+                                
                             </div>
     
                             <div class="d-flex flex-row-reverse mt-5">

@@ -18,36 +18,46 @@
                             <div class="mempelai text-center fw-bold fs-5 mb-4">Gambarin</div>
                             <div class="form-group fs-3">
                                 <div class="row">
-                                <div class="col-sm-4 mb-3">
-                                    <label for="image">Gambar <span class="mandatory">*</span></label>
-                                    <input type="file" class="form-control" id="image" name="image"
-                                        placeholder="" value="{{$data->image}}">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="image">Gambar <span class="mandatory">*</span></label>
+                                        <input type="file" class="form-control" id="image" name="image">
+
+                                        <!-- Tampilkan gambar lama jika ada -->
+                                        @if ($data->image)
+                                        <div class="d-flex flex-column">
+                                        <span>Gambar saat ini:</span>
+                                            <img src="{{ asset('storage/gambarin/' . $data->image) }}" alt="Foto Gambarin"
+                                                class="img-thumbnail mt-2" width="150">
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="judul">Judul <span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="judul" name="judul"
+                                            placeholder="Masukkan judul" value="{{ $data->judul }}}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="harga">Harga <span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="harga" name="harga"
+                                            placeholder="Masukkan harga" value="{{ $data->harga }}"
+                                            onkeyup="formatRupiah(this)">
+                                    </div>
+
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="link">Link <span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="link" name="link"
+                                            placeholder="Masukkan link" value="{{ $data->link }}">
+                                    </div>
                                 </div>
-                                <div class="col-sm-4 mb-3">
-                                    <label for="judul">Judul <span class="mandatory">*</span></label>
-                                    <input type="text" class="form-control" id="judul" name="judul"
-                                        placeholder="Masukkan judul" value="{{$data->judul}}}">
+
+
+                                <div class="d-flex flex-row-reverse mt-5">
+                                    <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
+                                    <a href="{{ route('gambarin.index') }}" class="btn btn-secondary">Batal</a>
                                 </div>
-                                <div class="col-sm-4 mb-3">
-                                    <label for="harga">Harga <span class="mandatory">*</span></label>
-                                    <input type="text" class="form-control" id="harga" name="harga"
-                                        placeholder="Masukkan harga" value="{{$data->harga}}" onkeyup="formatRupiah(this)">
-                                </div>
-                                
-                                <div class="col-sm-4 mb-3">
-                                    <label for="link">Link <span class="mandatory">*</span></label>
-                                    <input type="text" class="form-control" id="link" name="link"
-                                        placeholder="Masukkan link" value="{{$data->link}}">
-                                </div>
+
                             </div>
-                
-    
-                            <div class="d-flex flex-row-reverse mt-5">
-                                <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                <a href="{{ route('gambarin.index') }}" class="btn btn-secondary">Batal</a>
-                            </div>
-    
-                        </div>
 
                     </form>
                 </div>

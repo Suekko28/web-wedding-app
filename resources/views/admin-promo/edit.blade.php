@@ -18,26 +18,33 @@
                             <div class="mempelai text-center fw-bold fs-5 mb-4">Promo</div>
                             <div class="form-group fs-3">
                                 <div class="row">
-                                <div class="col-sm-4 mb-3">
-                                    <label for="image">Gambar <span class="mandatory">*</span></label>
-                                    <input type="file" class="form-control" id="image" name="image"
-                                        placeholder="" value="{{$data->image}}">
-                                </div>
-                                <div class="col-sm-4 mb-3">
-                                    <label for="link">Link <span class="mandatory">*</span></label>
-                                    <input type="text" class="form-control" id="link" name="link"
-                                        placeholder="Masukkan link" value="{{ $data->link }}">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="image">Gambar <span class="mandatory">*</span></label>
+                                        <input type="file" class="form-control" id="image" name="image">
+
+                                        <!-- Tampilkan gambar lama jika ada -->
+                                        @if ($data->image)
+                                            <img src="{{ asset('storage/promo/' . $data->image) }}" alt="Gambar Promo Lama"
+                                                class="img-thumbnail mt-2" width="150">
+                                            <p>Gambar saat ini: {{ $data->image }}</p>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="link">Link <span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="link" name="link"
+                                            placeholder="Masukkan link" value="{{ $data->link }}">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-    
+
                             <div class="d-flex flex-row-reverse mt-5">
                                 <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
                                 <a href="{{ route('promo.index') }}" class="btn btn-secondary">Batal</a>
                             </div>
-    
+
                         </div>
-    
+
                     </form>
                 </div>
             </section>
