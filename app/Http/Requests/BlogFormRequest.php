@@ -21,11 +21,22 @@ class BlogFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+        $method = $this->method(); // Ambil metode HTTP dari request (POST untuk create, PUT/PATCH untuk update)
+
+        $rules = [
             'judul' => ['required'],
             'deskripsi' => ['required'],
         ];
+
+        // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib di-upload
+        if ($method === 'POST') {
+            $rules['image'] = ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'];
+        } else {
+            // Jika ini adalah request untuk update, gambar bersifat opsional (nullable)
+            $rules['image'] = ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'];
+        }
+
+        return $rules;
     }
 
     public function messages(): array

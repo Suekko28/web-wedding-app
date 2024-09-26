@@ -21,21 +21,31 @@ class PromoFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-            'link' => ['required']
+        $method = $this->method(); // Ambil metode HTTP dari request (POST untuk create, PUT/PATCH untuk update)
+
+        $rules = [
+            'link' => ['required'], // Link tetap wajib diisi baik saat store maupun update
         ];
+
+        // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib di-upload
+        if ($method === 'POST') {
+            $rules['image'] = ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'];
+        } else {
+            // Jika ini adalah request untuk update, gambar bersifat opsional (nullable)
+            $rules['image'] = ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'];
+        }
+
+        return $rules;
     }
 
     public function messages(): array
     {
         return [
-            'image.required' => 'Gambar wajib diunggah.',
+            'image.required' => 'Gambar wajib diunggah saat membuat promo.',
             'image.image' => 'File yang diunggah harus berupa gambar.',
             'image.mimes' => 'Hanya gambar dengan format jpeg, png, atau jpg yang diperbolehkan.',
             'image.max' => 'Gambar tidak boleh lebih dari 2MB.',
-            'link.required' => 'Link harus diisi'
+            'link.required' => 'Link harus diisi',
         ];
-
     }
 }
