@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeDesign3Controller;
 use App\Http\Controllers\IndexDesign1Controller;
 use App\Http\Controllers\IndexDesign2Controller;
 use App\Http\Controllers\IndexDesign3Controller;
+use App\Http\Controllers\InformasiDesign4Controller;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NamaUndanganDesign1Controller;
 use App\Http\Controllers\NamaUndanganDesign2Controller;
@@ -25,6 +26,7 @@ use App\Http\Controllers\UserUndanganDigitalController;
 use App\Http\Controllers\WeddingDesign1Controller;
 use App\Http\Controllers\WeddingDesign2Controller;
 use App\Http\Controllers\WeddingDesign3Controller;
+use App\Http\Controllers\WeddingDesign4Controller;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -65,6 +67,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/wedding-design2', WeddingDesign2Controller::class);
 
     Route::resource('/wedding-design3', WeddingDesign3Controller::class);
+
+    Route::resource('/wedding-design4', InformasiDesign4Controller::class);
+    // Route::post('/wedding-design4/{id}/update', [InformasiDesign4Controller::class, 'update'])->name('wedding-design4.update');
+
 
     Route::resource('/blog', BlogController::class);
 
@@ -194,7 +200,7 @@ Route::get('/wedding-3/index', function () {
     return view('wedding-design3.index-preview');
 });
 
-Route::get('/storage-link' , function(){
+Route::get('/storage-link', function () {
     Artisan::call('storage:link');
     return 'Storage Linkdes Succesfully';
 });

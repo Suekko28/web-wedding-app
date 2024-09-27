@@ -4,13 +4,13 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Wedding Design 3', 'subtitle' => 'Dashboard'])
+    @include('layouts.breadcrumb', ['title' => 'Wedding Design 4', 'subtitle' => 'Dashboard'])
     <div class="card w-100 position-relative overflow-hidden">
-        {{-- <div class="px-4 py-3 border-bottom">
-            <h4 class="card-title mb-0">Basic Table</h4>
-        </div> --}}
         <div class="card-body">
-            <a class="btn btn-primary mb-3" href="{{ url('wedding-design3/create') }}">+ Buat Undangan</a>
+            <button type="button" class="btn btn-primary mb-3" id="btnBuatUndangan" data-bs-toggle="modal"
+                data-bs-target="#modalBuatUndangan">
+                + Buat Undangan
+            </button>
             @include('layouts.message')
             <div class="search">
                 <div class="mb-3">
@@ -26,8 +26,10 @@
                         <tr class="text-nowrap text-center">
                             <th>No</th>
                             <th>ID Wedding</th>
-                            <th>Mempelai</th>
+                            <th>Nama Pasangan</th>
                             <th>Tanggal Pernikahan</th>
+                            <th>Konten Undangan</th>
+                            <th>Tamu Undangan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -36,35 +38,37 @@
                         @foreach ($data as $item)
                             <tr class="text-center">
                                 <td scope="row">{{ $i }}</td>
-                                <td>{{ $item->id_weddingdesign3 }}</td>
+                                <td>{{ $item->id_weddingdesign4 }}</td>
                                 <td>
-                                    <p>{{ $item->nama_mempelai_laki }} &
-                                        {{ $item->nama_mempelai_perempuan }}</p>
+                                    <p>{{ $item->nama_pasangan }}</p>
                                 </td>
                                 <td>
-                                    {{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->tgl_akad)->format('d-m-Y') }}
+                                    {{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->tgl_pernikahan)->format('d-m-Y') }}
                                 </td>
+                                <td> <a class="btn btn-primary mb-3" href="">Buat Konten</a></td>
+                                <td> <a class="btn btn-primary mb-3" href="">Buat Tamu</a></td>
                                 <td>
                                     <div class="btn-group-vertical">
-                                        <a href="{{ url('wedding-design3/' . $item->id) . '/edit' }}"
-                                            class="btn btn-warning mb-2 rounded">
+                                        <a href="javascript:void(0)" class="btn btn-warning mb-2 rounded edit-btn"
+                                            data-id="{{ $item->id }}" data-nama-pasangan="{{ $item->nama_pasangan }}"
+                                            data-tgl-pernikahan="{{ $item->tgl_pernikahan }}">
                                             <i class="fa fa-pen-to-square" style="color:white;"></i>
                                         </a>
                                         <button class="btn btn-danger delete-btn rounded mb-2"
                                             data-id="{{ $item->id }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                        <a href="{{ route('wedding-design3.show', ['wedding_design3' => $item->id]) }}"
+                                        <a href="{{ route('wedding-design4.show', ['wedding_design4' => $item->id]) }}"
                                             class="btn btn-info rounded mb-2">
                                             <i class="fa fa-circle-info" style="color:white;"></i>
                                         </a>
-                                        <a href="{{ route('wedding-design3-home-preview', [
-                                            'nama_mempelai_laki' => $item->nama_mempelai_laki,
+                                        {{-- <a href="{{ route('wedding-design4-home-preview', [
+                                            'nama_pasangan' => $item->nama_pasangan,
                                             'nama_mempelai_perempuan' => $item->nama_mempelai_perempuan,
                                         ]) }}"
                                             target="_blank" class="btn btn-primary rounded mb-2">
                                             <i class="fa fa-eye" style="color:white;"></i>
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </td>
                             </tr>
@@ -78,11 +82,82 @@
         </div>
     </div>
 
+    <!-- Modal Buat dan Edit Undangan -->
+    <div class="modal fade" id="modalBuatUndangan" tabindex="-1" aria-labelledby="modalBuatUndanganLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalBuatUndanganLabel">Buat/Edit Undangan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formBuatUndangan" action="{{ route('wedding-design4.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" id="undanganId">
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="nama_pasangan">Nama Pasangan</label>
+                            <input type="text" name="nama_pasangan" id="nama_pasangan" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tgl_pernikahan">Tanggal Pernikahan</label>
+                            <input type="date" name="tgl_pernikahan" id="tgl_pernikahan" class="form-control" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" form="formBuatUndangan">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- Hidden form for delete -->
     <form id="deleteForm" method="POST" style="display:none;">
         @csrf
         @method('DELETE')
     </form>
+
+    <script>
+        // Event listener untuk tombol "Buat Undangan"
+        document.getElementById('btnBuatUndangan').addEventListener('click', function() {
+            // Reset form action ke route store dan kosongkan field input
+            document.getElementById('formBuatUndangan').reset();
+            document.getElementById('formBuatUndangan').action = "{{ route('wedding-design4.store') }}";
+
+            // Ubah title modal jadi "Buat Undangan Baru"
+            document.getElementById('modalBuatUndanganLabel').textContent = 'Buat Undangan';
+        });
+
+        // Event listener untuk tombol edit
+        document.querySelectorAll('.edit-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                var id = this.getAttribute('data-id');
+                var nama_pasangan = this.getAttribute('data-nama-pasangan');
+                var tgl_pernikahan = this.getAttribute('data-tgl-pernikahan');
+
+                // Set form action untuk update
+                document.getElementById('formBuatUndangan').action = '/wedding-design4/' + id;
+
+                // Isi form dengan data dari tombol edit
+                document.getElementById('undanganId').value = id;
+                document.getElementById('nama_pasangan').value = nama_pasangan;
+                document.getElementById('tgl_pernikahan').value = tgl_pernikahan;
+
+                // Ubah title modal jadi "Edit Undangan"
+                document.getElementById('modalBuatUndanganLabel').textContent = 'Edit Undangan';
+
+                // Buka modal
+                var modal = new bootstrap.Modal(document.getElementById('modalBuatUndangan'));
+                modal.show();
+            });
+        });
+    </script>
+
 
     <script>
         document.querySelectorAll('.delete-btn').forEach(function(button) {
@@ -101,7 +176,7 @@
                     if (result.isConfirmed) {
                         // Set the action URL for the delete form
                         document.getElementById('deleteForm').action =
-                            "{{ url('wedding-design3') }}/" + itemId;
+                            "{{ url('wedding-design4') }}/" + itemId;
                         // Submit the form
                         document.getElementById('deleteForm').submit();
                         Swal.fire(
