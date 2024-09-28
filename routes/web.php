@@ -69,7 +69,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/wedding-design3', WeddingDesign3Controller::class);
 
     Route::resource('/wedding-design4', InformasiDesign4Controller::class);
-    // Route::post('/wedding-design4/{id}/update', [InformasiDesign4Controller::class, 'update'])->name('wedding-design4.update');
+    Route::post('/wedding-design4/{id}/update', [InformasiDesign4Controller::class, 'update'])->name('wedding-design4.update');
+    Route::get('/wedding-design4/{id}/create', [WeddingDesign4Controller::class, 'create'])->name('wedding-design4.create');
+
 
 
     Route::resource('/blog', BlogController::class);

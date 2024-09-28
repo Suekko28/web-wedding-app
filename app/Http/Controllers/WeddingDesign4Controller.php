@@ -12,18 +12,19 @@ class WeddingDesign4Controller extends Controller
      */
     public function index()
     {
-        //
+        // Menampilkan list undangan yang ada di tabel InformasiDesign4
+        $data = InformasiDesign4::paginate(10); // Misal paginasi 10 data per halaman
+        return view('admin-design4.index', compact('data'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create($informasiDesign4)
+    public function create($id)
     {
-        $kontenDesign4 = InformasiDesign4::findOrFail($informasiDesign4);
-        return view ('');
+        $informasiDesign4 = InformasiDesign4::findOrFail($id);  // Temukan data berdasarkan ID
+        return view('admin-design4.create', compact('informasiDesign4'));  // Kirim data ke view
     }
-
     /**
      * Store a newly created resource in storage.
      */

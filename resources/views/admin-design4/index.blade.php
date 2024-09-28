@@ -45,7 +45,7 @@
                                 <td>
                                     {{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->tgl_pernikahan)->format('d-m-Y') }}
                                 </td>
-                                <td> <a class="btn btn-primary mb-3" href="">Buat Konten</a></td>
+                                <td> <a class="btn btn-primary mb-3" href="{{ route('wedding-design4.create', ['id' => $item->id])}}">Buat Konten</a></td>
                                 <td> <a class="btn btn-primary mb-3" href="">Buat Tamu</a></td>
                                 <td>
                                     <div class="btn-group-vertical">
@@ -95,7 +95,6 @@
                     <form id="formBuatUndangan" action="{{ route('wedding-design4.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" id="undanganId">
-                        @method('PUT')
                         <div class="form-group">
                             <label for="nama_pasangan">Nama Pasangan</label>
                             <input type="text" name="nama_pasangan" id="nama_pasangan" class="form-control" required>
@@ -116,12 +115,12 @@
 
 
 
+
     <!-- Hidden form for delete -->
     <form id="deleteForm" method="POST" style="display:none;">
         @csrf
         @method('DELETE')
     </form>
-
     <script>
         // Event listener untuk tombol "Buat Undangan"
         document.getElementById('btnBuatUndangan').addEventListener('click', function() {
@@ -130,7 +129,7 @@
             document.getElementById('formBuatUndangan').action = "{{ route('wedding-design4.store') }}";
 
             // Ubah title modal jadi "Buat Undangan Baru"
-            document.getElementById('modalBuatUndanganLabel').textContent = 'Buat Undangan';
+            document.getElementById('modalBuatUndanganLabel').textContent = 'Buat Undangan Baru';
         });
 
         // Event listener untuk tombol edit
@@ -141,7 +140,7 @@
                 var tgl_pernikahan = this.getAttribute('data-tgl-pernikahan');
 
                 // Set form action untuk update
-                document.getElementById('formBuatUndangan').action = '/wedding-design4/' + id;
+                document.getElementById('formBuatUndangan').action = '/wedding-design4/' + id + '/update';
 
                 // Isi form dengan data dari tombol edit
                 document.getElementById('undanganId').value = id;
@@ -157,6 +156,7 @@
             });
         });
     </script>
+
 
 
     <script>
