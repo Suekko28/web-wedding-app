@@ -11,8 +11,11 @@
                 <div class="container-fluid">
                     @include('layouts.message')
                     <!-- Small boxes (Stat box) -->
-                    <form action="{{ route('wedding-design4.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('form-design4.store', ['id' => $informasiDesign4Id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="informasi_design4_id" value="{{ $informasiDesign4->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Cover Undangan</div>
                             <div class="form-group form-group fs-3">
@@ -25,7 +28,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
-                                            placeholder="" disabled>
+                                            placeholder="" disabled value="{{ $informasiDesign4->nama_pasangan }}">
                                     </div>
                                 </div>
                             </div>
@@ -44,18 +47,18 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
-                                            placeholder="" disabled>
+                                            placeholder="" disabled value="{{ $informasiDesign4->nama_pasangan }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_pernikahan">Tanggal Pernikahan<span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="tgl_pernikahan" name="tgl_pernikahan"
-                                            placeholder="" disabled>
+                                            placeholder="" disabled value="{{ \Carbon\Carbon::parse($informasiDesign4->tgl_pernikahan)->format('d-m-Y') }}">
                                     </div>
-                                    <div class="col-sm-4 mb-3">
-                                        <label for="music">Upload Lagu<span class="mandatory">*</span></label>
+                                    <div class="col-sm-4">
+                                        <label for="music">Music <span class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="music" name="music"
-                                            placeholder="Rhoma Irama" value="{{ old('music') }}">
+                                            accept=".mp3" value="{{ old('music') }}">
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +88,8 @@
                                             placeholder="Putri dari bapak" value="{{ old('putri_dari_bpk') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="putri_dari_ibu">Putri dari Ibu <span class="mandatory">*</span></label>
+                                        <label for="putri_dari_ibu">Putri dari Ibu <span
+                                                class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="putri_dari_ibu"
                                             name="putri_dari_ibu" placeholder="Putri dari ibu"
                                             value="{{ old('putri_dari_ibu') }}">
@@ -157,11 +161,10 @@
                             </div>
                         </div>
                         <hr>
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Perjalanan Cinta</div>
                             <div class="d-flex">
-                                <a class="btn btn-primary mb-3 ms-auto" href="">Tambah Cerita</a>
+                                <a class="btn btn-primary mb-3 ms-auto" href="">Tambah Data</a>
                             </div>
                             <div class="table-responsive mb-4 border rounded-1">
                                 <table class="table text-nowrap mb-0 align-middle">
@@ -181,8 +184,6 @@
                                 </table>
                             </div>
                         </div>
-
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Moment</div>
                             <div class="form-group fs-3">
@@ -193,14 +194,13 @@
                                             placeholder="Masukkan Quote">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="quoute_img">Upload Image <span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="quoute_img" name="quoute_img"
-                                            placeholder="" value="{{ old('quoute_img') }}">
+                                        <label for="quote_img">Upload Image <span class="mandatory">*</span></label>
+                                        <input type="file" class="form-control" id="quote_img" name="quote_img"
+                                            placeholder="" value="{{ old('quote_img') }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Akad & Resepsi</div>
                             <div class="form-group fs-3">
@@ -213,7 +213,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Akad</div>
                             <div class="form-group fs-3">
@@ -234,24 +233,19 @@
                                             value="{{ old('selesai_akad') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="lokasi_akad">Lokasi<span
-                                                class="mandatory">*</span></label>
-                                        <input type="text" class="form-control" id="lokasi_akad"
-                                            name="lokasi_akad" placeholder="Masukkan lokasi"
-                                            value="{{ old('lokasi_akad') }}">
+                                        <label for="lokasi_akad">Lokasi<span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="lokasi_akad" name="lokasi_akad"
+                                            placeholder="Masukkan lokasi" value="{{ old('lokasi_akad') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="deskripsi_akad">Detail<span
-                                                class="mandatory">*</span></label>
+                                        <label for="deskripsi_akad">Detail<span class="mandatory">*</span></label>
                                         <textarea class="form-control" rows="5" id="deskripsi_akad" name="deskripsi_akad"
                                             placeholder="Masukan alamat">{{ old('deskripsi_akad') }}</textarea>
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_akad">Lokasi Gmaps<span
-                                                class="mandatory">*</span></label>
-                                        <input type="text" class="form-control" id="link_akad"
-                                            name="link_akad" placeholder="Masukkan link akad"
-                                            value="{{ old('link_akad') }}">
+                                        <label for="link_akad">Lokasi Gmaps<span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="link_akad" name="link_akad"
+                                            placeholder="Masukkan link gmaps" value="{{ old('link_akad') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="simpan_tgl_akad">Simpan Tanggal<span
@@ -263,8 +257,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Resepsi</div>
                             <div class="form-group fs-3">
@@ -276,33 +268,30 @@
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="mulai_resepsi">Mulai Resepsi <span class="mandatory">*</span></label>
-                                        <input type="time" class="form-control" id="mulai_resepsi" name="mulai_resepsi"
-                                            value="{{ old('mulai_resepsi') }}">
+                                        <input type="time" class="form-control" id="mulai_resepsi"
+                                            name="mulai_resepsi" value="{{ old('mulai_resepsi') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="selesai_resepsi">Selesai Resepsi <span class="mandatory">*</span></label>
-                                        <input type="time" class="form-control" id="selesai_resepsi" name="selesai_resepsi"
-                                            value="{{ old('selesai_resepsi') }}">
-                                    </div>
-                                    <div class="col-sm-4 mb-3">
-                                        <label for="lokasi_resepsi">Lokasi<span
+                                        <label for="selesai_resepsi">Selesai Resepsi <span
                                                 class="mandatory">*</span></label>
+                                        <input type="time" class="form-control" id="selesai_resepsi"
+                                            name="selesai_resepsi" value="{{ old('selesai_resepsi') }}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="lokasi_resepsi">Lokasi<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="lokasi_resepsi"
                                             name="lokasi_resepsi" placeholder="Masukkan lokasi"
                                             value="{{ old('lokasi_resepsi') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="deskripsi_resepsi">Detail<span
-                                                class="mandatory">*</span></label>
+                                        <label for="deskripsi_resepsi">Detail<span class="mandatory">*</span></label>
                                         <textarea class="form-control" rows="5" id="deskripsi_resepsi" name="deskripsi_resepsi"
                                             placeholder="Masukan alamat">{{ old('deskripsi_resepsi') }}</textarea>
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_resepsi">Lokasi Gmaps<span
-                                                class="mandatory">*</span></label>
-                                        <input type="text" class="form-control" id="link_resepsi"
-                                            name="link_resepsi" placeholder="Masukkan link resepsi"
-                                            value="{{ old('link_resepsi') }}">
+                                        <label for="link_resepsi">Lokasi Gmaps<span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="link_resepsi" name="link_resepsi"
+                                            placeholder="Masukkan link gmaps" value="{{ old('link_resepsi') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="simpan_tgl_resepsi">Simpan Tanggal<span
@@ -314,19 +303,67 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Live Streaming</div>
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="link_streaming">Link Streaming<span class="mandatory">*</span></label>
-                                        <input type="text" class="form-control" id="link_streaming" name="link_streaming"
-                                            placeholder="Masukkan link" value="{{ old('link_streaming') }}">
+                                        <input type="text" class="form-control" id="link_streaming"
+                                            name="link_streaming" placeholder="Masukkan link"
+                                            value="{{ old('link_streaming') }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="card-body container bg-white">
+                            <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
+                            <div class="d-flex">
+                                <a class="btn btn-primary mb-3 ms-auto" href="">Tambah Data</a>
+                            </div>
+                            <div class="table-responsive mb-4 border rounded-1">
+                                <table class="table text-nowrap mb-0 align-middle">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th>No</th>
+                                            <th>Bank</th>
+                                            <th>No.Rekening</th>
+                                            <th>Pemilik Rekening</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-body container bg-white">
+                            <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
+                            <div class="d-flex">
+                                <a class="btn btn-primary mb-3 ms-auto" href="">Tambah Data</a>
+                            </div>
+                            <div class="table-responsive mb-4 border rounded-1">
+                                <table class="table text-nowrap mb-0 align-middle">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th>No</th>
+                                            <th>Bank</th>
+                                            <th>No.Rekening</th>
+                                            <th>Pemilik Rekening</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row-reverse">
+                            <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
+                            <a href="{{ route('wedding-design4.index') }}" class="btn btn-secondary">Batal</a>
+                        </div>
+
                     </form>
                 </div>
             </section>

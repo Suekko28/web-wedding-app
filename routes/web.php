@@ -69,8 +69,15 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/wedding-design3', WeddingDesign3Controller::class);
 
     Route::resource('/wedding-design4', InformasiDesign4Controller::class);
-    Route::post('/wedding-design4/{id}/update', [InformasiDesign4Controller::class, 'update'])->name('wedding-design4.update');
-    Route::get('/wedding-design4/{id}/create', [WeddingDesign4Controller::class, 'create'])->name('wedding-design4.create');
+    Route::post('/wedding-design4/{id}/update', [InformasiDesign4Controller::class, 'update']);
+
+    // Routes for WeddingDesign4
+    Route::get('/wedding-design4/{id}/create', [WeddingDesign4Controller::class, 'create'])->name('form-design4.create');
+    Route::post('/wedding-design4/{id}/store', [WeddingDesign4Controller::class, 'store'])->name('form-design4.store');
+    // Routes for WeddingDesign4
+    Route::get('/wedding-design4/{informasiDesign4Id}/edit/{id}', [WeddingDesign4Controller::class, 'edit'])->name('form-design4.edit');
+    Route::put('/wedding-design4/{informasiDesign4Id}/update/{id}', [WeddingDesign4Controller::class, 'update'])->name('form-design4.update');
+    Route::delete('/wedding-design4/{id}', [WeddingDesign4Controller::class, 'destroy'])->name('form-design4.destroy');
 
 
 
