@@ -59,6 +59,21 @@ class WeddingDesign4Controller extends Controller
             $data['music'] = $request->file('music')->storeAs('public/wedding-design4-music', $request->file('music')->getClientOriginalName());
         }
 
+        if ($request->hasFile('quote_img')) {
+            $quoteImages = $request->file('quote_img');
+            $quoteImagePaths = [];
+
+            foreach ($quoteImages as $quoteImage) {
+                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design4', $quoteImage->getClientOriginalName());
+            }
+
+            $data['quote_img'] = json_encode($quoteImagePaths); // Store paths as a JSON array or adjust according to your needs
+        }
+
+        if ($request->hasFile('akad_img')) {
+            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design4', $request->file(key: 'akad_img')->getClientOriginalName());
+        }
+
         $data['informasi_design4_id'] = $informasiDesign4->id;
 
         WeddingDesign4::create($data);
@@ -134,6 +149,32 @@ class WeddingDesign4Controller extends Controller
                 Storage::delete($weddingDesign4->music);
             }
             $data['music'] = $request->file('music')->storeAs('public/wedding-design4-music', $request->file('music')->getClientOriginalName());
+        }
+
+        if ($request->hasFile('quote_img')) {
+            // Delete existing quote images if necessary
+            if ($weddingDesign4->quote_img) {
+                $existingQuoteImages = json_decode($weddingDesign4->quote_img, true);
+                foreach ($existingQuoteImages as $existingImage) {
+                    Storage::delete($existingImage);
+                }
+            }
+
+            $quoteImages = $request->file('quote_img');
+            $quoteImagePaths = [];
+
+            foreach ($quoteImages as $quoteImage) {
+                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design4', $quoteImage->getClientOriginalName());
+            }
+
+            $data['quote_img'] = json_encode($quoteImagePaths); // Store paths as a JSON array
+        }
+
+        if ($request->hasFile('akad_img')) {
+            if ($weddingDesign4->akad_img) {
+                Storage::delete($weddingDesign4->akad_img);
+            }
+            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design4', $request->file('akad_img')->getClientOriginalName());
         }
 
         $weddingDesign4->update($data);

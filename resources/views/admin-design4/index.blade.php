@@ -105,15 +105,16 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        @include('layouts.message')
                         <form id="formBuatUndangan" action="{{ route('wedding-design4.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="id" id="undanganId">
                             <div class="form-group">
-                                <label for="nama_pasangan">Nama Pasangan</label>
+                                <label for="nama_pasangan">Nama Pasangan<span class="mandatory">*</span></label>
                                 <input type="text" name="nama_pasangan" id="nama_pasangan" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="tgl_pernikahan">Tanggal Pernikahan</label>
+                                <label for="tgl_pernikahan">Tanggal Pernikahan<span class="mandatory">*</span></label>
                                 <input type="date" name="tgl_pernikahan" id="tgl_pernikahan" class="form-control"
                                     required>
                             </div>

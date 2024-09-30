@@ -18,6 +18,11 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('judul_cerita');
             $table->text('deskripsi');
+            $table->unsignedBigInteger('wedding_design4_id');
+            $table->foreign('wedding_design4_id')
+                ->references('id')
+                ->on('wedding_design4')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

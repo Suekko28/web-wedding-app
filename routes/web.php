@@ -15,6 +15,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NamaUndanganDesign1Controller;
 use App\Http\Controllers\NamaUndanganDesign2Controller;
 use App\Http\Controllers\NamaUndanganDesign3Controller;
+use App\Http\Controllers\PerjalananCintaDesign4Controller;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\SeserahanController;
 use App\Http\Controllers\UndanganDigitalController;
@@ -74,11 +75,12 @@ Route::middleware(['auth'])->group(function () {
     // Routes for WeddingDesign4
     Route::get('/wedding-design4/{id}/create', [WeddingDesign4Controller::class, 'create'])->name('form-design4.create');
     Route::post('/wedding-design4/{id}/store', [WeddingDesign4Controller::class, 'store'])->name('form-design4.store');
-    // Routes for WeddingDesign4
     Route::get('/wedding-design4/{informasiDesign4Id}/edit/{id}', [WeddingDesign4Controller::class, 'edit'])->name('form-design4.edit');
     Route::put('/wedding-design4/{informasiDesign4Id}/update/{id}', [WeddingDesign4Controller::class, 'update'])->name('form-design4.update');
     Route::delete('/wedding-design4/{id}', [WeddingDesign4Controller::class, 'destroy'])->name('form-design4.destroy');
 
+    // Routes for Perjalanan Cinta
+    Route::post('/wedding-design4/{id}/store/perjalanan-cinta', [PerjalananCintaDesign4Controller::class, 'store'])->name('perjalanancinta-design4.store');
 
 
     Route::resource('/blog', BlogController::class);

@@ -21,59 +21,71 @@ class WeddingDesign4FormRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'banner_img' => ['required', 'image', 'mimes:jpeg,png,jpg',],
-            'foto_prewedding' => ['required', 'image', 'mimes:jpeg,png,jpg',],
-            'music' => ['required'],
-            'foto_mempelai_perempuan' => ['required', 'image', 'mimes:jpeg,png,jpg',],
+        $method = $this->method(); // Ambil metode HTTP dari request
+
+        $rules = [
             'nama_mempelai_perempuan' => ['required', 'string', 'max:255'],
             'putri_dari_bpk' => ['required', 'string', 'max:255'],
             'putri_dari_ibu' => ['required', 'string', 'max:255'],
             'nama_instagram1' => ['string', 'max:255'],
             'link_instagram1' => ['url', 'max:255'],
-            'foto_mempelai_laki' => ['required', 'image', 'mimes:jpeg,png,jpg',],
             'nama_mempelai_laki' => ['required', 'string', 'max:255'],
             'putra_dari_bpk' => ['required', 'string', 'max:255'],
             'putra_dari_ibu' => ['required', 'string', 'max:255'],
             'nama_instagram2' => ['string', 'max:255'],
             'link_instagram2' => ['url', 'max:255'],
             'quote' => ['string'],
-            'quote_img' => ['required', 'image', 'mimes:jpeg,png,jpg',],
-            'akad_img' => ['required', 'image', 'mimes:jpeg,png,jpg',],
-            'tgl_akad' => ['required', 'date'],
-            'mulai_akad' => ['required', 'date_format:H:i'],
-            'selesai_akad' => ['required', 'date_format:H:i', 'after:mulai_akad'],
             'lokasi_akad' => ['required', 'string', 'max:255'],
             'deskripsi_akad' => ['string'],
             'simpan_tgl_akad' => ['required', 'string', 'max:255'],
-            'tgl_resepsi' => ['required', 'date'],
-            'mulai_resepsi' => ['required', 'date_format:H:i'],
-            'selesai_resepsi' => ['required', 'date_format:H:i', 'after:mulai_resepsi'],
             'lokasi_resepsi' => ['required', 'string', 'max:255'],
             'deskripsi_resepsi' => ['string'],
             'simpan_tgl_resepsi' => ['required', 'string', 'max:255'],
             'link_streaming' => ['required', 'max:255'],
             'informasi_design4_id' => ['required', 'exists:informasi_design4,id'],
+            'tgl_akad' => ['required', 'date'],
+            'mulai_akad' => ['required', 'date_format:H:i'],
+            'selesai_akad' => ['required', 'date_format:H:i'],
+            'tgl_resepsi' => ['required', 'date'],
+            'mulai_resepsi' => ['required', 'date_format:H:i'],
+            'selesai_resepsi' => ['required', 'date_format:H:i'],
         ];
+
+        // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib di-upload
+        if ($method === 'POST') {
+            $rules['music'] = ['required'];
+            $rules['banner_img'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['foto_prewedding'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['foto_mempelai_perempuan'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['foto_mempelai_laki'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['quote_img'] = ['required', 'array']; // Change to array
+            $rules['quote_img.*'] = ['image', 'mimes:jpeg,png,jpg']; // Validate each image
+            $rules['akad_img'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
+        } else {
+            // Jika ini adalah request untuk update, gambar bersifat opsional (nullable)
+            $rules['music'] = ['nullable'];
+            $rules['banner_img'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['foto_prewedding'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['foto_mempelai_perempuan'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['foto_mempelai_laki'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['quote_img'] = ['nullable', 'array'];
+            $rules['quote_img.*'] = ['image', 'mimes:jpeg,png,jpg'];
+            $rules['akad_img'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
+        }
+
+        return $rules;
     }
 
-    /**
-     * Get the validation messages for the defined rules.
-     *
-     * @return array<string, string>
-     */
     public function messages(): array
     {
         return [
             'banner_img.required' => 'Banner harus diunggah.',
             'banner_img.image' => 'Banner harus berupa file gambar.',
             'banner_img.mimes' => 'Banner hanya boleh berupa file dengan format jpeg, png, jpg.',
-            'banner_img.max' => 'Ukuran gambar banner tidak boleh lebih dari 2MB.',
 
             'foto_prewedding.required' => 'Foto prewedding harus diunggah.',
             'foto_prewedding.image' => 'Foto prewedding harus berupa file gambar.',
             'foto_prewedding.mimes' => 'Foto prewedding hanya boleh berupa file dengan format jpeg, png, jpg.',
-            'foto_prewedding.max' => 'Ukuran foto prewedding tidak boleh lebih dari 2MB.',
 
             'music.required' => 'Musik harus diisi.',
 
@@ -84,7 +96,6 @@ class WeddingDesign4FormRequest extends FormRequest
 
             'nama_mempelai_perempuan.required' => 'Nama mempelai perempuan harus diisi.',
             'nama_mempelai_perempuan.string' => 'Nama mempelai perempuan harus berupa teks.',
-            'nama_mempelai_perempuan.max' => 'Nama mempelai perempuan tidak boleh lebih dari 255 karakter.',
 
             'putri_dari_bpk.required' => 'Nama ayah dari mempelai perempuan harus diisi.',
             'putri_dari_ibu.required' => 'Nama ibu dari mempelai perempuan harus diisi.',
@@ -95,11 +106,9 @@ class WeddingDesign4FormRequest extends FormRequest
             'foto_mempelai_laki.required' => 'Foto mempelai laki-laki harus diunggah.',
             'foto_mempelai_laki.image' => 'Foto mempelai laki-laki harus berupa file gambar.',
             'foto_mempelai_laki.mimes' => 'Foto mempelai laki-laki hanya boleh berupa file dengan format jpeg, png, jpg.',
-            'foto_mempelai_laki.max' => 'Ukuran foto mempelai laki-laki tidak boleh lebih dari 2MB.',
 
             'nama_mempelai_laki.required' => 'Nama mempelai laki-laki harus diisi.',
             'nama_mempelai_laki.string' => 'Nama mempelai laki-laki harus berupa teks.',
-            'nama_mempelai_laki.max' => 'Nama mempelai laki-laki tidak boleh lebih dari 255 karakter.',
 
             'putra_dari_bpk.required' => 'Nama ayah dari mempelai laki-laki harus diisi.',
             'putra_dari_ibu.required' => 'Nama ibu dari mempelai laki-laki harus diisi.',
@@ -109,21 +118,18 @@ class WeddingDesign4FormRequest extends FormRequest
             'quote_img.required' => 'Gambar quote harus diunggah.',
             'quote_img.image' => 'Gambar quote harus berupa file gambar.',
             'quote_img.mimes' => 'Gambar quote hanya boleh berupa file dengan format jpeg, png, jpg.',
-            'quote_img.max' => 'Ukuran gambar quote tidak boleh lebih dari 2MB.',
 
             'akad_img.required' => 'Gambar akad harus diunggah.',
             'akad_img.image' => 'Gambar akad harus berupa file gambar.',
             'akad_img.mimes' => 'Gambar akad hanya boleh berupa file dengan format jpeg, png, jpg.',
-            'akad_img.max' => 'Ukuran gambar akad tidak boleh lebih dari 2MB.',
 
             'tgl_akad.required' => 'Tanggal akad harus diisi.',
             'tgl_akad.date' => 'Tanggal akad harus berupa format tanggal yang valid.',
 
             'mulai_akad.required' => 'Waktu mulai akad harus diisi.',
-            'mulai_akad.date_format' => 'Waktu mulai akad harus dalam format jam-menit (HH:MM).',
+            'mulai_akad.date_format' => 'Waktu mulai akad harus dalam format jam-menit.',
             'selesai_akad.required' => 'Waktu selesai akad harus diisi.',
-            'selesai_akad.date_format' => 'Waktu selesai akad harus dalam format jam-menit (HH:MM).',
-            'selesai_akad.after' => 'Waktu selesai akad harus setelah waktu mulai akad.',
+            'selesai_akad.date_format' => 'Waktu selesai akad harus dalam format jam-menit.',
 
             'lokasi_akad.required' => 'Lokasi akad harus diisi.',
             'lokasi_akad.string' => 'Lokasi akad harus berupa teks.',
@@ -139,10 +145,9 @@ class WeddingDesign4FormRequest extends FormRequest
             'tgl_resepsi.date' => 'Tanggal resepsi harus berupa format tanggal yang valid.',
 
             'mulai_resepsi.required' => 'Waktu mulai resepsi harus diisi.',
-            'mulai_resepsi.date_format' => 'Waktu mulai resepsi harus dalam format jam-menit (HH:MM).',
+            'mulai_resepsi.date_format' => 'Waktu mulai resepsi harus dalam format jam-menit.',
             'selesai_resepsi.required' => 'Waktu selesai resepsi harus diisi.',
-            'selesai_resepsi.date_format' => 'Waktu selesai resepsi harus dalam format jam-menit (HH:MM).',
-            'selesai_resepsi.after' => 'Waktu selesai resepsi harus setelah waktu mulai resepsi.',
+            'selesai_resepsi.date_format' => 'Waktu selesai resepsi harus dalam format jam-menit.',
 
             'lokasi_resepsi.required' => 'Lokasi resepsi harus diisi.',
             'lokasi_resepsi.string' => 'Lokasi resepsi harus berupa teks.',

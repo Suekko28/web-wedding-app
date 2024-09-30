@@ -11,11 +11,13 @@
                 <div class="container-fluid">
                     @include('layouts.message')
                     <!-- Small boxes (Stat box) -->
-                    <form action="{{ route('form-design4.store', ['id' => $informasiDesign4Id]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('form-design4.store', ['id' => $informasiDesign4Id]) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="informasi_design4_id" value="{{ $informasiDesign4->id }}">
                         <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
                         <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
+                        <input type="hidden" name="id" id="perjalananCintaId">
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Cover Undangan</div>
                             <div class="form-group form-group fs-3">
@@ -53,7 +55,8 @@
                                         <label for="tgl_pernikahan">Tanggal Pernikahan<span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="tgl_pernikahan" name="tgl_pernikahan"
-                                            placeholder="" disabled value="{{ \Carbon\Carbon::parse($informasiDesign4->tgl_pernikahan)->format('d-m-Y') }}">
+                                            placeholder="" disabled
+                                            value="{{ \Carbon\Carbon::parse($informasiDesign4->tgl_pernikahan)->format('d-m-Y') }}">
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="music">Music <span class="mandatory">*</span></label>
@@ -84,8 +87,9 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="putri_dari_bpk">Putri dari Bapak <span
                                                 class="mandatory">*</span></label>
-                                        <input type="text" class="form-control" id="putri_dari_bpk" name="putri_dari_bpk"
-                                            placeholder="Putri dari bapak" value="{{ old('putri_dari_bpk') }}">
+                                        <input type="text" class="form-control" id="putri_dari_bpk"
+                                            name="putri_dari_bpk" placeholder="Putri dari bapak"
+                                            value="{{ old('putri_dari_bpk') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="putri_dari_ibu">Putri dari Ibu <span
@@ -164,7 +168,9 @@
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Perjalanan Cinta</div>
                             <div class="d-flex">
-                                <a class="btn btn-primary mb-3 ms-auto" href="">Tambah Data</a>
+                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnTambahCerita"
+                                    data-bs-toggle="modal" data-bs-target="#modalTambahCerita">
+                                    Tambah Cerita
                             </div>
                             <div class="table-responsive mb-4 border rounded-1">
                                 <table class="table text-nowrap mb-0 align-middle">
@@ -194,9 +200,9 @@
                                             placeholder="Masukkan Quote">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="quote_img">Upload Image <span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="quote_img" name="quote_img"
-                                            placeholder="" value="{{ old('quote_img') }}">
+                                        <label for="quote_img">Upload Images <span class="mandatory">*</span></label>
+                                        <input type="file" class="form-control" id="quote_img" name="quote_img[]"
+                                            multiple>
                                     </div>
                                 </div>
                             </div>
@@ -369,6 +375,104 @@
             </section>
         </div>
     </div>
+
+    <!-- Modal Buat dan Edit Perjalanan Cinta -->
+    <div class="modal fade" id="modalTambahCerita" tabindex="-1" aria-labelledby="modalTambahCeritaLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTambahCeritaLabel">Buat/Edit Perjalanan Cinta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @include('layouts.message')
+                    <form id="formTambahCerita"
+                        action="{{ route('perjalanancinta-design4.store', ['id' => $informasiDesign4->id]) }}"
+                        method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="id" id="perjalananCintaId">
+                        <input type="hidden" name="informasi_design4_id" value="{{ $informasiDesign4->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
+
+                        <!-- Image1 -->
+                        <div class="form-group mb-2">
+                            <label for="image1">Image<span class="mandatory">*</span></label>
+                            <input type="file" name="image1" id="image1" class="form-control" required>
+                        </div>
+
+                        <!-- Image2 -->
+                        <div class="form-group mb-2">
+                            <label for="image2">Foto<span class="mandatory">*</span></label>
+                            <input type="file" name="image2" id="image2" class="form-control" required>
+                        </div>
+
+                        <!-- Tanggal -->
+                        <div class="form-group mb-2">
+                            <label for="tanggal">Tanggal<span class="mandatory">*</span></label>
+                            <input type="date" name="tanggal" id="tanggal" class="form-control" required
+                                value="{{ old('tanggal') }}">
+                        </div>
+
+                        <!-- Judul Cerita -->
+                        <div class="form-group mb-2">
+                            <label for="judul_cerita">Judul Cerita<span class="mandatory">*</span></label>
+                            <input type="text" name="judul_cerita" id="judul_cerita" class="form-control" required
+                                value="{{ old('judul_cerita') }}">
+                        </div>
+
+                        <!-- Deskripsi -->
+                        <div class="form-group mb-2">
+                            <label for="deskripsi">Detail<span class="mandatory">*</span></label>
+                            <textarea class="form-control" rows="5" id="deskripsi" name="deskripsi" placeholder="Masukan Cerita Detail">{{ old('deskripsi') }}</textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" form="formTambahCerita">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Event listener for "Tambah Cerita" button
+        document.getElementById('btnTambahCerita').addEventListener('click', function() {
+            // Reset the form
+            document.getElementById('formTambahCerita').reset();
+            document.getElementById('formTambahCerita').action = "{{ route('perjalanancinta-design4.store', ['id' => $informasiDesign4->id]) }}";
+            document.getElementById('modalTambahCeritaLabel').textContent = 'Tambah Cerita';
+        });
+    
+        // Event listener for edit buttons
+        document.querySelectorAll('.edit-btn').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var id = this.getAttribute('data-id');
+                var tanggal = this.getAttribute('data-tanggal');
+                var judul = this.getAttribute('data-judul');
+                var deskripsi = this.getAttribute('data-deskripsi');
+    
+                // Populate form with the data
+                document.getElementById('perjalananCintaId').value = id;
+                document.getElementById('tanggal').value = tanggal;
+                document.getElementById('judul_cerita').value = judul;
+                document.getElementById('deskripsi').value = deskripsi;
+    
+                // Change action to update and show modal
+                document.getElementById('formTambahCerita').action = "/wedding-design4/" + id + "/update";
+                document.getElementById('modalTambahCeritaLabel').textContent = 'Edit Cerita';
+                var modal = new bootstrap.Modal(document.getElementById('modalTambahCerita'));
+                modal.show();
+            });
+        });
+    </script>
+    
+
+
 @endsection
 
 @section('scripts')
