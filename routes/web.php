@@ -79,8 +79,9 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/wedding-design4/{informasiDesign4Id}/update/{id}', [WeddingDesign4Controller::class, 'update'])->name('form-design4.update');
     Route::delete('/wedding-design4/{id}', [WeddingDesign4Controller::class, 'destroy'])->name('form-design4.destroy');
 
-    // Routes for Perjalanan Cinta
-    Route::post('/wedding-design4/{id}/store/perjalanan-cinta', [PerjalananCintaDesign4Controller::class, 'store'])->name('perjalanancinta-design4.store');
+    // Route::resource('perjalanancinta-design4', PerjalananCintaDesign4Controller::class);
+    Route::post('/wedding-design4/{weddingDesign4Id}/store', [PerjalananCintaDesign4Controller::class, 'store'])->name('perjalanancinta-design4.store');
+
 
 
     Route::resource('/blog', BlogController::class);

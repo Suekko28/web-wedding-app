@@ -13,12 +13,12 @@ class PerjalananCintaDesign4 extends Model
     protected $table = 'perjalanan_cinta_design4';
 
     protected $fillable = [
-        
         'image1',
         'image2',
         'tanggal',
         'judul_cerita',
         'deskripsi',
+        'wedding_design4_id'
     ];
 
     public function KontenDesign4 () : BelongsTo

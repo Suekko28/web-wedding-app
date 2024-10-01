@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PerjalananCintaDesign4FormRequest;
 use App\Models\PerjalananCintaDesign4;
-use App\Models\WeddingDesign4;
 use Illuminate\Http\Request;
 
 class PerjalananCintaDesign4Controller extends Controller
@@ -30,31 +29,27 @@ class PerjalananCintaDesign4Controller extends Controller
      */
     public function store(PerjalananCintaDesign4FormRequest $request, $weddingDesign4Id)
     {
-        // Find the associated WeddingDesign4
-        $weddingDesign4 = WeddingDesign4::findOrFail($weddingDesign4Id);
-
-        // Gather all the input data
         $data = $request->all();
-
-        // Handle the image uploads
+    
+        // Set the wedding_design4_id from the URL parameter
+        $data['wedding_design4_id'] = $weddingDesign4Id;
+    
+        // Handle file uploads
         if ($request->hasFile('image1')) {
-            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image1')->getClientOriginalName());
+            $data['image1'] = $request->file('image1')->store('images/design4', 'public');
         }
-
         if ($request->hasFile('image2')) {
-            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image2')->getClientOriginalName());
+            $data['image2'] = $request->file('image2')->store('images/design4', 'public');
         }
-
-        // Set the foreign key for the wedding_design4_id
-        $data['wedding_design4_id'] = $weddingDesign4->id;
-
-        // Create a new PerjalananCinta entry
+    
+        // Create the PerjalananCintaDesign4 record
         PerjalananCintaDesign4::create($data);
-
-        // Redirect back with success message
-        return redirect()->route('form-design4.create', $weddingDesign4Id)
-            ->with('success', 'Berhasil menambahkan Perjalanan Cinta');
+    
+        return redirect()->route('wedding-design4.create', $weddingDesign4Id)->with('success', 'Perjalanan Cinta created successfully.');
     }
+    
+
+
 
     /**
      * Display the specified resource.

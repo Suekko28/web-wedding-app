@@ -137,9 +137,9 @@ class WeddingDesign4FormRequest extends FormRequest
 
             'deskripsi_akad.string' => 'Deskripsi akad harus berupa teks.',
 
-            'simpan_tgl_akad.required' => 'Simpan tanggal akad harus diisi.',
-            'simpan_tgl_akad.string' => 'Simpan tanggal akad harus berupa teks.',
-            'simpan_tgl_akad.max' => 'Simpan tanggal akad tidak boleh lebih dari 255 karakter.',
+            'simpan_tgl_akad.required' => 'Tanggal akad harus diisi.',
+            'simpan_tgl_akad.string' => 'Tanggal akad harus berupa teks.',
+            'simpan_tgl_akad.max' => 'Tanggal akad tidak boleh lebih dari 255 karakter.',
 
             'tgl_resepsi.required' => 'Tanggal resepsi harus diisi.',
             'tgl_resepsi.date' => 'Tanggal resepsi harus berupa format tanggal yang valid.',
@@ -155,9 +155,9 @@ class WeddingDesign4FormRequest extends FormRequest
 
             'deskripsi_resepsi.string' => 'Deskripsi resepsi harus berupa teks.',
 
-            'simpan_tgl_resepsi.required' => 'Simpan tanggal resepsi harus diisi.',
-            'simpan_tgl_resepsi.string' => 'Simpan tanggal resepsi harus berupa teks.',
-            'simpan_tgl_resepsi.max' => 'Simpan tanggal resepsi tidak boleh lebih dari 255 karakter.',
+            'simpan_tgl_resepsi.required' => 'Tanggal resepsi harus diisi.',
+            'simpan_tgl_resepsi.string' => 'Tanggal resepsi harus berupa teks.',
+            'simpan_tgl_resepsi.max' => 'Tanggal resepsi tidak boleh lebih dari 255 karakter.',
 
             'link_streaming.required' => 'Link streaming harus diisi.',
 

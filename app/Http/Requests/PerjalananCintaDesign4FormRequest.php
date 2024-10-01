@@ -27,6 +27,8 @@ class PerjalananCintaDesign4FormRequest extends FormRequest
             'tanggal' => ['required', 'date'],
             'judul_cerita' => ['required'],
             'deskripsi' => ['required'],
+            'wedding_design4_id' => ['required', 'exists:wedding_design4s,id'],
+
         ];
 
         // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib di-upload
@@ -49,7 +51,7 @@ class PerjalananCintaDesign4FormRequest extends FormRequest
             'image' => ':attribute harus berupa file gambar.',
             'mimes' => ':attribute harus dalam format jpeg, png, atau jpg.',
             'date' => ':attribute harus dalam format tanggal yang valid.',
-  
+
         ];
     }
 }
