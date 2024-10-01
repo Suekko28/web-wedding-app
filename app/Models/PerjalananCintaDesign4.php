@@ -18,11 +18,16 @@ class PerjalananCintaDesign4 extends Model
         'tanggal',
         'judul_cerita',
         'deskripsi',
-        'wedding_design4_id'
+        'informasi_design4_id'
     ];
 
-    public function KontenDesign4 () : BelongsTo
+    public function InformasiDesign4() : BelongsTo
     {
-        return $this->belongsTo(WeddingDesign4::class, 'wedding_design4_id', 'id');
+        return $this->belongsTo(InformasiDesign4::class, 'informasi_design4_id', 'id');
     }
+
+    // public function KontenDesign4 () : BelongsTo
+    // {
+    //     return $this->belongsTo(WeddingDesign4::class, 'wedding_design4_id', 'id');
+    // }
 }

@@ -27,11 +27,11 @@ class PerjalananCintaDesign4FormRequest extends FormRequest
             'tanggal' => ['required', 'date'],
             'judul_cerita' => ['required'],
             'deskripsi' => ['required'],
-            'wedding_design4_id' => ['required', 'exists:wedding_design4s,id'],
+            // 'wedding_design4_id' => ['required', 'exists:wedding_design4s,id'],
 
         ];
 
-        // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib di-upload
+        // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib diupload
         if ($method === 'POST') {
             $rules['image1'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
             $rules['image2'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
@@ -47,11 +47,21 @@ class PerjalananCintaDesign4FormRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'required' => ':attribute Wajib diisi',
-            'image' => ':attribute harus berupa file gambar.',
-            'mimes' => ':attribute harus dalam format jpeg, png, atau jpg.',
-            'date' => ':attribute harus dalam format tanggal yang valid.',
+            'tanggal.required' => 'Tanggal wajib diisi.',
+            'tanggal.date' => 'Tanggal harus berupa format tanggal yang valid.',
 
+            'judul_cerita.required' => 'Judul cerita wajib diisi.',
+
+            'deskripsi.required' => 'Deskripsi cerita wajib diisi.',
+
+            'image1.required' => 'Gambar 1 wajib diupload',
+            'image1.image' => 'Gambar 1 harus berupa file gambar.',
+            'image1.mimes' => 'Gambar 1 harus dalam format jpeg, png, atau jpg.',
+
+            'image2.required' => 'Gambar 2 wajib diupload',
+            'image2.image' => 'Gambar 2 harus berupa file gambar.',
+            'image2.mimes' => 'Gambar 2 harus dalam format jpeg, png, atau jpg.',
         ];
     }
+
 }

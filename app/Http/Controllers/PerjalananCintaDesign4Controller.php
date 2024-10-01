@@ -30,10 +30,10 @@ class PerjalananCintaDesign4Controller extends Controller
     public function store(PerjalananCintaDesign4FormRequest $request, $weddingDesign4Id)
     {
         $data = $request->all();
-    
+
         // Set the wedding_design4_id from the URL parameter
         $data['wedding_design4_id'] = $weddingDesign4Id;
-    
+
         // Handle file uploads
         if ($request->hasFile('image1')) {
             $data['image1'] = $request->file('image1')->store('images/design4', 'public');
@@ -41,13 +41,13 @@ class PerjalananCintaDesign4Controller extends Controller
         if ($request->hasFile('image2')) {
             $data['image2'] = $request->file('image2')->store('images/design4', 'public');
         }
-    
+
         // Create the PerjalananCintaDesign4 record
         PerjalananCintaDesign4::create($data);
-    
-        return redirect()->route('wedding-design4.create', $weddingDesign4Id)->with('success', 'Perjalanan Cinta created successfully.');
+
+        return back()->with('success', 'Perjalanan Cinta created successfully.');
     }
-    
+
 
 
 

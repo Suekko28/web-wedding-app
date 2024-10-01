@@ -173,7 +173,7 @@
                                     Tambah Cerita
                             </div>
                             <div class="table-responsive mb-4 border rounded-1">
-                                <table class="table text-nowrap mb-0 align-middle">
+                                <table class="table text-nowrap mb-0 align-middle text-center">
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
@@ -186,7 +186,38 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $i = $data->firstItem(); ?>
+                                        @foreach ($data as $item)
+                                            <tr>
+                                                <td>{{ $i }}</td>
+                                                <td><img src="{{ Storage::url($item->image1) }}" alt="Image 1"
+                                                        width="50"></td>
+                                                <td><img src="{{ Storage::url($item->image2) }}" alt="Image 2"
+                                                        width="50"></td>
+                                                <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
+                                                <td>{{ $item->judul_cerita }}</td>
+                                                <td>{{ $item->deskripsi }}</td>
+                                                <td>
+                                                    <a href="javascript:void(0)"
+                                                        class="btn btn-warning mb-2 rounded edit-btn"
+                                                        data-id="{{ $item->id }}"
+                                                        data-tanggal="{{ $item->tanggal }}"
+                                                        data-judul="{{ $item->judul_cerita }}"
+                                                        data-deskripsi="{{ $item->deskripsi }}">
+                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
+                                                    </a>
+                                                    <button class="btn btn-danger delete-btn rounded mb-2"
+                                                        data-id="{{ $item->id }}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+
+                                                    <!-- Add delete button if needed -->
+                                                </td>
+                                            </tr>
+                                            <?php $i++; ?>
+                                        @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -376,67 +407,72 @@
         </div>
     </div>
 
-    <!-- Modal Buat dan Edit Perjalanan Cinta -->
-    <div class="modal fade" id="modalTambahCerita" tabindex="-1" aria-labelledby="modalTambahCeritaLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTambahCeritaLabel">Buat/Edit Perjalanan Cinta</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @include('layouts.message')
-                    <form id="formTambahCerita"
-                        action="{{ route('perjalanancinta-design4.store', ['weddingDesign4Id' => $informasiDesign4->id]) }}"
-                        method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="wedding_design4_id" value="{{ $informasiDesign4->id }}">
-                        {{-- <input type="hidden" name="informasi_design4_id" value="{{ $informasiDesign4->id }}"> --}}
-                        {{-- <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}"> --}}
+        <!-- Modal Buat dan Edit Perjalanan Cinta -->
+        <div class="modal fade" id="modalTambahCerita" tabindex="-1" aria-labelledby="modalTambahCeritaLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTambahCeritaLabel">Buat/Edit Perjalanan Cinta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @include('layouts.message')
+                        <form id="formTambahCerita"
+                            action="{{ route('perjalanancinta-design4.store', ['id' => $informasiDesign4->id]) }}"
+                            method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="wedding_design4_id" value="{{ $informasiDesign4->id }}">
+                            {{-- <input type="hidden" name="informasi_design4_id" value="{{ $informasiDesign4->id }}"> --}}
+                            <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
+                            <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
 
-                        <!-- Image1 -->
-                        <div class="form-group mb-2">
-                            <label for="image1">Image<span class="mandatory">*</span></label>
-                            <input type="file" name="image1" id="image1" class="form-control" >
-                        </div>
+                            <!-- Image1 -->
+                            <div class="form-group mb-2">
+                                <label for="image1">Image<span class="mandatory">*</span></label>
+                                <input type="file" name="image1" id="image1" class="form-control">
+                            </div>
 
-                        <!-- Image2 -->
-                        <div class="form-group mb-2">
-                            <label for="image2">Foto<span class="mandatory">*</span></label>
-                            <input type="file" name="image2" id="image2" class="form-control" >
-                        </div>
+                            <!-- Image2 -->
+                            <div class="form-group mb-2">
+                                <label for="image2">Foto<span class="mandatory">*</span></label>
+                                <input type="file" name="image2" id="image2" class="form-control">
+                            </div>
 
-                        <!-- Tanggal -->
-                        <div class="form-group mb-2">
-                            <label for="tanggal">Tanggal<span class="mandatory">*</span></label>
-                            <input type="date" name="tanggal" id="tanggal" class="form-control" 
-                                value="{{ old('tanggal') }}">
-                        </div>
+                            <!-- Tanggal -->
+                            <div class="form-group mb-2">
+                                <label for="tanggal">Tanggal<span class="mandatory">*</span></label>
+                                <input type="date" name="tanggal" id="tanggal" class="form-control"
+                                    value="{{ old('tanggal') }}">
+                            </div>
 
-                        <!-- Judul Cerita -->
-                        <div class="form-group mb-2">
-                            <label for="judul_cerita">Judul Cerita<span class="mandatory">*</span></label>
-                            <input type="text" name="judul_cerita" id="judul_cerita" class="form-control" 
-                                value="{{ old('judul_cerita') }}">
-                        </div>
+                            <!-- Judul Cerita -->
+                            <div class="form-group mb-2">
+                                <label for="judul_cerita">Judul Cerita<span class="mandatory">*</span></label>
+                                <input type="text" name="judul_cerita" id="judul_cerita" class="form-control"
+                                    value="{{ old('judul_cerita') }}">
+                            </div>
 
-                        <!-- Deskripsi -->
-                        <div class="form-group mb-2">
-                            <label for="deskripsi">Detail<span class="mandatory">*</span></label>
-                            <textarea class="form-control" rows="5" id="deskripsi" name="deskripsi" placeholder="Masukan Cerita Detail">{{ old('deskripsi') }}</textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary" form="formTambahCerita">Simpan</button>
+                            <!-- Deskripsi -->
+                            <div class="form-group mb-2">
+                                <label for="deskripsi">Detail<span class="mandatory">*</span></label>
+                                <textarea class="form-control" rows="5" id="deskripsi" name="deskripsi" placeholder="Masukan Cerita Detail">{{ old('deskripsi') }}</textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" form="formTambahCerita">Simpan</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    <!-- Hidden form for delete -->
+    <form id="deleteForm" method="POST" style="display:none;">
+        @csrf
+        @method('DELETE')
+    </form>
 
 
     <script>
@@ -447,7 +483,7 @@
 
             // Set the action to the store route
             document.getElementById('formTambahCerita').action =
-                "{{ route('perjalanancinta-design4.store', ['weddingDesign4Id' => $informasiDesign4->id]) }}";
+                "{{ route('perjalanancinta-design4.store', ['id' => $informasiDesign4->id]) }}";
             document.getElementById('modalTambahCeritaLabel').textContent = 'Tambah Cerita';
         });
 
@@ -462,6 +498,8 @@
                 // Populate form with existing data
                 document.getElementById('perjalananCintaId').value = id;
                 document.getElementById('tanggal').value = tanggal;
+                document.getElementById('nama_pasangan').value = nama_pasangan;
+                document.getElementById('tgl_pernikahan').value = tgl_pernikahan;
                 document.getElementById('judul_cerita').value = judul;
                 document.getElementById('deskripsi').value = deskripsi;
 
@@ -472,6 +510,40 @@
                 // Show the modal
                 var modal = new bootstrap.Modal(document.getElementById('modalTambahCerita'));
                 modal.show();
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.delete-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                var itemId = this.getAttribute('data-id');
+
+                Swal.fire({
+                    title: "Anda yakin?",
+                    text: "Data ini akan dihapus secara permanen!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Set the action URL for the delete form
+                        var deleteForm = document.getElementById('deleteForm');
+                        deleteForm.action = "/wedding-design4/" + itemId + "/delete";
+
+                        // Submit the form
+                        deleteForm.submit();
+
+                        Swal.fire(
+                            'Terhapus!',
+                            'Data berhasil dihapus.',
+                            'success'
+                        );
+                    }
+                });
             });
         });
     </script>

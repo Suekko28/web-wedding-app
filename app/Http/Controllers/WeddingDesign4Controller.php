@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PerjalananCintaDesign4FormRequest;
 use App\Http\Requests\WeddingDesign4FormRequest;
 use App\Models\InformasiDesign4;
+use App\Models\PerjalananCintaDesign4;
 use App\Models\WeddingDesign4;
 use Illuminate\Http\Request;
 use Storage;
@@ -15,9 +17,7 @@ class WeddingDesign4Controller extends Controller
      */
     public function index()
     {
-        // // Menampilkan list undangan yang ada di tabel InformasiDesign4
-        // $data = InformasiDesign4::paginate(10); // Misal paginasi 10 data per halaman
-        // return view('admin-design4.index', compact('data'));
+
     }
 
     /**
@@ -26,8 +26,10 @@ class WeddingDesign4Controller extends Controller
     public function create($informasiDesign4Id)
     {
         $informasiDesign4 = InformasiDesign4::findOrFail($informasiDesign4Id);
+        // Menampilkan list undangan yang ada di tabel InformasiDesign4
+        $data = PerjalananCintaDesign4::orderBy('id', 'desc')->paginate(10); // Misal paginasi 10 data per halaman
         // Temukan data berdasarkan ID
-        return view('admin-design4.create', compact('informasiDesign4Id', 'informasiDesign4'));  // Kirim data ke view
+        return view('admin-design4.create', compact('informasiDesign4Id', 'informasiDesign4', 'data'));  // Kirim data ke view
     }
     /**
      * Store a newly created resource in storage.
@@ -78,9 +80,35 @@ class WeddingDesign4Controller extends Controller
 
         WeddingDesign4::create($data);
 
+
+
         return redirect()->route('wedding-design4.index', $informasiDesign4Id)->with('success', 'Berhasil menambahkan data');
 
     }
+
+    public function storePerjalananCinta(PerjalananCintaDesign4FormRequest $request, $informasiDesign4Id)
+    {
+        $informasiDesign4 = InformasiDesign4::findOrFail($informasiDesign4Id);
+        $data = $request->all();
+
+
+        // Handle file uploads
+        if ($request->hasFile('image1')) {
+            $data['image1'] = $request->file('image1')->store('public/wedding-design4/perjalanancinta', 'public');
+        }
+        if ($request->hasFile('image2')) {
+            $data['image2'] = $request->file('image2')->store('public/wedding-design4/perjalanancinta', 'public');
+        }
+
+        $data['informasi_design4_id'] = $informasiDesign4->id;
+
+
+        // Create the PerjalananCintaDesign4 record
+        PerjalananCintaDesign4::create($data);
+
+        return back()->with('success', 'Perjalanan Cinta created successfully.');
+    }
+
 
     /**
      * Display the specified resource.
@@ -182,11 +210,46 @@ class WeddingDesign4Controller extends Controller
         return redirect()->route('wedding-design4.index', $informasiDesign4Id)->with('success', 'Data berhasil diperbarui.');
     }
 
+
+    public function updatePerjalananCinta(PerjalananCintaDesign4FormRequest $request, $informasiDesign4Id, $id)
+    {
+        $weddingDesign4 = WeddingDesign4::findOrFail($id);
+        $data = $request->all();
+
+
+        // Check and handle uploaded files
+        if ($request->hasFile('image1')) {
+            if ($weddingDesign4->image1) {
+                Storage::delete($weddingDesign4->image1);
+            }
+            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design4/perjalanancinta', $request->file('image1')->getClientOriginalName());
+        }
+        // Check and handle uploaded files
+        if ($request->hasFile('image2')) {
+            if ($weddingDesign4->image1) {
+                Storage::delete($weddingDesign4->image1);
+            }
+            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design4/perjalanancinta', $request->file('image2')->getClientOriginalName());
+        }
+
+        $weddingDesign4->update($data);
+
+        return back()->with('success', 'Perjalanan Cinta created successfully.');
+
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         //
+    }
+
+    public function destroyPerjalananCinta(string $id)
+    {
+        $data = PerjalananCintaDesign4::find($id)->delete();
+        return redirect()->back()->with('success', 'Data berhasil Dihapus');
+
     }
 }

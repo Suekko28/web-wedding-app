@@ -136,6 +136,7 @@
             @csrf
             @method('DELETE')
         </form>
+        
         <script>
             // Event listener untuk tombol "Buat Undangan"
             document.getElementById('btnBuatUndangan').addEventListener('click', function() {
@@ -226,6 +227,7 @@
                 noDataMessage.style.display = found ? 'none' : 'block';
             });
         </script>
+        
     @endsection
 
     @section('scripts')

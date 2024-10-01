@@ -51,11 +51,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 //     return view('wedding-design1.create');
 // });
 
-Auth::routes([
-    'reset' => false,
-    'verify' => false,
-    'register' => false,
-]);
+Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -79,8 +75,13 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/wedding-design4/{informasiDesign4Id}/update/{id}', [WeddingDesign4Controller::class, 'update'])->name('form-design4.update');
     Route::delete('/wedding-design4/{id}', [WeddingDesign4Controller::class, 'destroy'])->name('form-design4.destroy');
 
-    // Route::resource('perjalanancinta-design4', PerjalananCintaDesign4Controller::class);
-    Route::post('/wedding-design4/{weddingDesign4Id}/store', [PerjalananCintaDesign4Controller::class, 'store'])->name('perjalanancinta-design4.store');
+    // Routes for Perjalanan Cinta
+    Route::post('/wedding-design4/{id}/store-perjalanan-cinta', [WeddingDesign4Controller::class, 'storePerjalananCinta'])->name('perjalanancinta-design4.store');
+    Route::delete('/wedding-design4/{id}/delete', [WeddingDesign4Controller::class, 'destroyPerjalananCinta'])->name('perjalanancinta-design4.destroy');
+    Route::post('/wedding-design4/{informasiDesign4Id}/update-perjalanan-cinta{id}', [WeddingDesign4Controller::class, 'updatePerjalananCinta'])->name('perjalanancinta-design4.update');
+
+    // // Route::resource('perjalanancinta-design4', PerjalananCintaDesign4Controller::class);
+    // Route::post('/wedding-design4/{weddingDesign4Id}/store', [PerjalananCintaDesign4Controller::class, 'store'])->name('perjalanancinta-design4.store');
 
 
 
@@ -100,18 +101,7 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/home', function () {
-        return redirect()->route('dashboard');
-    });
-    Route::resource('/wedding-design1', WeddingDesign1Controller::class);
 
-    Route::resource('/wedding-design2', WeddingDesign2Controller::class);
-
-
-
-});
 
 // Route undangan design 1
 Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=')->group(function () {

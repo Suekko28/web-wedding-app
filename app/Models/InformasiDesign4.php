@@ -23,5 +23,9 @@ class InformasiDesign4 extends Model
     {
         return $this->hasMany(WeddingDesign4::class, 'informasi_design4_id', 'id');
     }
+    public function PerjalananCintaDesign4() : HasMany 
+    {
+        return $this->hasMany(PerjalananCintaDesign4::class, 'informasi_design4_id', 'id');
+    }
 
 }
