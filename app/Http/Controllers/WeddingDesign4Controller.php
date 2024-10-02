@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DirectTransferDesign4FormRequest;
+use App\Http\Requests\KirimHadiahDesign4FormRequest;
 use App\Http\Requests\PerjalananCintaDesign4FormRequest;
 use App\Http\Requests\WeddingDesign4FormRequest;
+use App\Models\DirectTransferDesign4;
 use App\Models\InformasiDesign4;
+use App\Models\KirimHadiahDesign4;
 use App\Models\PerjalananCintaDesign4;
 use App\Models\WeddingDesign4;
 use Illuminate\Http\Request;
@@ -26,11 +30,23 @@ class WeddingDesign4Controller extends Controller
     public function create($informasiDesign4Id)
     {
         $informasiDesign4 = InformasiDesign4::findOrFail($informasiDesign4Id);
-        // Menampilkan list undangan yang ada di tabel InformasiDesign4
-        $data = PerjalananCintaDesign4::orderBy('id', 'desc')->paginate(10); // Misal paginasi 10 data per halaman
-        // Temukan data berdasarkan ID
-        return view('admin-design4.create', compact('informasiDesign4Id', 'informasiDesign4', 'data'));  // Kirim data ke view
+
+        $dataPerjalananCinta = PerjalananCintaDesign4::where('informasi_design4_id', $informasiDesign4Id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        $dataDirectTransfer = DirectTransferDesign4::where('informasi_design4_id', $informasiDesign4Id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        $dataKirimHadiah = KirimHadiahDesign4::where('informasi_design4_id', $informasiDesign4Id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        // Kirimkan data yang sesuai ke view
+        return view('admin-design4.create', compact('informasiDesign4Id', 'informasiDesign4', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah'));
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -92,13 +108,14 @@ class WeddingDesign4Controller extends Controller
         $data = $request->all();
 
 
-        // Handle file uploads
         if ($request->hasFile('image1')) {
-            $data['image1'] = $request->file('image1')->store('public/wedding-design4/perjalanancinta', 'public');
+            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image1')->getClientOriginalName());
         }
+
         if ($request->hasFile('image2')) {
-            $data['image2'] = $request->file('image2')->store('public/wedding-design4/perjalanancinta', 'public');
+            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image2')->getClientOriginalName());
         }
+
 
         $data['informasi_design4_id'] = $informasiDesign4->id;
 
@@ -106,8 +123,38 @@ class WeddingDesign4Controller extends Controller
         // Create the PerjalananCintaDesign4 record
         PerjalananCintaDesign4::create($data);
 
-        return back()->with('success', 'Perjalanan Cinta created successfully.');
+        return back()->with('success', 'Perjalanan Cinta berhasil ditambahkan.');
     }
+
+    public function storeDirectTransfer(DirectTransferDesign4FormRequest $request, $informasiDesign4Id)
+    {
+        $informasiDesign4 = InformasiDesign4::findOrFail($informasiDesign4Id);
+        $data = $request->all();
+
+        $data['informasi_design4_id'] = $informasiDesign4->id;
+
+
+        // Create the PerjalananCintaDesign4 record
+        DirectTransferDesign4::create($data);
+
+        return back()->with('success', 'Kirim Hadiah berhasil ditambahkan.');
+    }
+
+    public function storeKirimHadiah(KirimHadiahDesign4FormRequest $request, $informasiDesign4Id)
+    {
+        $informasiDesign4 = InformasiDesign4::findOrFail($informasiDesign4Id);
+        $data = $request->all();
+
+        $data['informasi_design4_id'] = $informasiDesign4->id;
+
+
+        // Create the PerjalananCintaDesign4 record
+        KirimHadiahDesign4::create($data);
+
+        return back()->with('success', 'Kirim Hadiah berhasil ditambahkan.');
+    }
+
+
 
 
     /**
@@ -131,8 +178,19 @@ class WeddingDesign4Controller extends Controller
     {
         $data = WeddingDesign4::findOrFail($id);
         $informasiDesign4 = InformasiDesign4::findOrFail($informasiDesign4Id);
+        $dataPerjalananCinta = PerjalananCintaDesign4::where('informasi_design4_id', $informasiDesign4Id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
 
-        return view('admin-design4.edit', compact('data', 'informasiDesign4'));
+        $dataDirectTransfer = DirectTransferDesign4::where('informasi_design4_id', $informasiDesign4Id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        $dataKirimHadiah = KirimHadiahDesign4::where('informasi_design4_id', $informasiDesign4Id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        return view('admin-design4.edit', compact('data', 'informasiDesign4', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah'));
     }
 
     /**
@@ -211,45 +269,100 @@ class WeddingDesign4Controller extends Controller
     }
 
 
-    public function updatePerjalananCinta(PerjalananCintaDesign4FormRequest $request, $informasiDesign4Id, $id)
+    public function updatePerjalananCinta(PerjalananCintaDesign4FormRequest $request, $id)
     {
-        $weddingDesign4 = WeddingDesign4::findOrFail($id);
+        $perjalananCinta = PerjalananCintaDesign4::findOrFail($id);
         $data = $request->all();
 
-
-        // Check and handle uploaded files
+        // Check and handle uploaded image1
         if ($request->hasFile('image1')) {
-            if ($weddingDesign4->image1) {
-                Storage::delete($weddingDesign4->image1);
+            if ($perjalananCinta->image1) {
+                Storage::delete($perjalananCinta->image1);
             }
             $data['image1'] = $request->file('image1')->storeAs('public/wedding-design4/perjalanancinta', $request->file('image1')->getClientOriginalName());
         }
-        // Check and handle uploaded files
+
+        // Check and handle uploaded image2
         if ($request->hasFile('image2')) {
-            if ($weddingDesign4->image1) {
-                Storage::delete($weddingDesign4->image1);
+            if ($perjalananCinta->image2) {
+                Storage::delete($perjalananCinta->image2);
             }
             $data['image2'] = $request->file('image2')->storeAs('public/wedding-design4/perjalanancinta', $request->file('image2')->getClientOriginalName());
         }
 
-        $weddingDesign4->update($data);
+        $perjalananCinta->update($data); // Update model PerjalananCintaDesign4
 
-        return back()->with('success', 'Perjalanan Cinta created successfully.');
-
+        return back()->with('success', 'Perjalanan Cinta berhasil diubah.');
     }
+
+    public function updateDirectTransfer(DirectTransferDesign4FormRequest $request, $id)
+    {
+        $directTransfer = DirectTransferDesign4::findOrFail($id);
+        $data = $request->all();
+
+        $directTransfer->update($data); // Update model PerjalananCintaDesign4
+
+        return back()->with('success', 'Direct Transfer berhasil diubah.');
+    }
+
+    public function updateKirimHadiah(KirimHadiahDesign4FormRequest $request, $id)
+    {
+        $directTransfer = KirimHadiahDesign4::findOrFail($id);
+        $data = $request->all();
+
+        $directTransfer->update($data); // Update model PerjalananCintaDesign4
+
+        return back()->with('success', 'Direct Transfer berhasil diubah.');
+    }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, string $type)
     {
-        //
+        switch ($type) {
+            case 'perjalanan-cinta':
+                $model = PerjalananCintaDesign4::find($id);
+                break;
+            case 'direct-transfer':
+                $model = DirectTransferDesign4::find($id);
+                break;
+            case 'kirim-hadiah':
+                $model = KirimHadiahDesign4::find($id);
+                break;
+            default:
+                return redirect()->back()->with('error', 'Data tidak ditemukan.');
+        }
+
+        if ($model) {
+            $model->delete();
+            return redirect()->back()->with('success', 'Data berhasil dihapus.');
+        } else {
+            return redirect()->back()->with('error', 'Data tidak ditemukan.');
+        }
     }
 
-    public function destroyPerjalananCinta(string $id)
-    {
-        $data = PerjalananCintaDesign4::find($id)->delete();
-        return redirect()->back()->with('success', 'Data berhasil Dihapus');
 
-    }
+    // public function destroyPerjalananCinta(string $id)
+    // {
+    //     $data = PerjalananCintaDesign4::find($id)->delete();
+    //     return redirect()->back()->with('success', 'Data berhasil Dihapus');
+
+    // }
+
+    // public function destroyDirectTransfer(string $id)
+    // {
+    //     $data = DirectTransferDesign4::find($id)->delete();
+    //     return redirect()->back()->with('success', 'Data berhasil Dihapus');
+
+    // }
+
+    // public function destroyKirimHadiah(string $id)
+    // {
+    //     $data = KirimHadiahDesign4::find($id)->delete();
+    //     return redirect()->back()->with('success', 'Data berhasil Dihapus');
+
+    // }
 }

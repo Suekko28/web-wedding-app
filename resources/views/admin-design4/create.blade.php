@@ -168,8 +168,8 @@
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Perjalanan Cinta</div>
                             <div class="d-flex">
-                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnTambahCerita"
-                                    data-bs-toggle="modal" data-bs-target="#modalTambahCerita">
+                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnPerjalananCinta"
+                                    data-bs-toggle="modal" data-bs-target="#modalPerjalananCinta">
                                     Tambah Cerita
                             </div>
                             <div class="table-responsive mb-4 border rounded-1">
@@ -186,8 +186,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $i = $data->firstItem(); ?>
-                                        @foreach ($data as $item)
+                                        <?php $i = $dataPerjalananCinta->firstItem(); ?>
+                                        @foreach ($dataPerjalananCinta as $item)
                                             <tr>
                                                 <td>{{ $i }}</td>
                                                 <td><img src="{{ Storage::url($item->image1) }}" alt="Image 1"
@@ -199,14 +199,14 @@
                                                 <td>{{ $item->deskripsi }}</td>
                                                 <td>
                                                     <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded edit-btn"
+                                                        class="btn btn-warning mb-2 rounded edit-btn-perjalanan-cinta"
                                                         data-id="{{ $item->id }}"
                                                         data-tanggal="{{ $item->tanggal }}"
                                                         data-judul="{{ $item->judul_cerita }}"
                                                         data-deskripsi="{{ $item->deskripsi }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
-                                                    <button class="btn btn-danger delete-btn rounded mb-2"
+                                                    <button class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
                                                         data-id="{{ $item->id }}">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
@@ -217,7 +217,6 @@
                                             <?php $i++; ?>
                                         @endforeach
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
@@ -356,10 +355,13 @@
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
                             <div class="d-flex">
-                                <a class="btn btn-primary mb-3 ms-auto" href="">Tambah Data</a>
+                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnDirectTransfer"
+                                    data-bs-toggle="modal" data-bs-target="#modalDirectTransfer">
+                                    Tambah Data
+                                </button>
                             </div>
                             <div class="table-responsive mb-4 border rounded-1">
-                                <table class="table text-nowrap mb-0 align-middle">
+                                <table class="table text-nowrap mb-0 align-middle text-center">
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
@@ -370,6 +372,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $i = $dataDirectTransfer->firstItem(); ?>
+                                        @foreach ($dataDirectTransfer as $item)
+                                            <tr>
+                                                <td>{{ $i }}</td>
+                                                <td>{{ $item->bank }}</td>
+                                                <td>{{ $item->no_rek }}</td>
+                                                <td>{{ $item->nama_rek }}</td>
+                                                <td>
+                                                    <a href="javascript:void(0)"
+                                                        class="btn btn-warning mb-2 rounded edit-btn-direct-transfer"
+                                                        data-id="{{ $item->id }}" data-bank="{{ $item->bank }}"
+                                                        data-no_rek="{{ $item->no_rek }}"
+                                                        data-nama_rek="{{ $item->nama_rek }}">
+                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
+                                                    </a>
+                                                    <button class="btn btn-danger delete-btn-direct-transfer rounded mb-2"
+                                                        data-id="{{ $item->id }}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <?php $i++; ?>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -377,10 +402,13 @@
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
                             <div class="d-flex">
-                                <a class="btn btn-primary mb-3 ms-auto" href="">Tambah Data</a>
+                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnKirimHadiah"
+                                    data-bs-toggle="modal" data-bs-target="#modalKirimHadiah">
+                                    Tambah Data
+                                </button>
                             </div>
                             <div class="table-responsive mb-4 border rounded-1">
-                                <table class="table text-nowrap mb-0 align-middle">
+                                <table class="table text-nowrap mb-0 align-middle text-center">
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
@@ -391,6 +419,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $i = $dataKirimHadiah->firstItem(); ?>
+                                        @foreach ($dataKirimHadiah as $item)
+                                            <tr>
+                                                <td>{{ $i }}</td>
+                                                <td>{{ $item->bank }}</td>
+                                                <td>{{ $item->no_rek }}</td>
+                                                <td>{{ $item->nama_rek }}</td>
+                                                <td>
+                                                    <a href="javascript:void(0)"
+                                                        class="btn btn-warning mb-2 rounded edit-btn-direct-transfer"
+                                                        data-id="{{ $item->id }}" data-bank="{{ $item->bank }}"
+                                                        data-no_rek="{{ $item->no_rek }}"
+                                                        data-nama_rek="{{ $item->nama_rek }}">
+                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
+                                                    </a>
+                                                    <button class="btn btn-danger delete-btn-kirim-hadiah rounded mb-2"
+                                                        data-id="{{ $item->id }}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <?php $i++; ?>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -407,147 +458,331 @@
         </div>
     </div>
 
-        <!-- Modal Buat dan Edit Perjalanan Cinta -->
-        <div class="modal fade" id="modalTambahCerita" tabindex="-1" aria-labelledby="modalTambahCeritaLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalTambahCeritaLabel">Buat/Edit Perjalanan Cinta</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        @include('layouts.message')
-                        <form id="formTambahCerita"
-                            action="{{ route('perjalanancinta-design4.store', ['id' => $informasiDesign4->id]) }}"
-                            method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="wedding_design4_id" value="{{ $informasiDesign4->id }}">
-                            {{-- <input type="hidden" name="informasi_design4_id" value="{{ $informasiDesign4->id }}"> --}}
-                            <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
-                            <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
+    <!-- Modal Buat dan Edit Perjalanan Cinta -->
+    <div class="modal fade" id="modalPerjalananCinta" tabindex="-1" aria-labelledby="modalPerjalananCintaLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat/Edit Direct Transfer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formPerjalananCinta"
+                        action="{{ route('perjalanancinta-design4.store', ['id' => $informasiDesign4->id]) }}"
+                        method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="_method" id="formMethod" value="POST">
+                        <input type="hidden" name="perjalananCintaId" id="perjalananCintaId">
+                        <input type="hidden" name="wedding_design4_id" value="{{ $informasiDesign4->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
 
-                            <!-- Image1 -->
-                            <div class="form-group mb-2">
-                                <label for="image1">Image<span class="mandatory">*</span></label>
-                                <input type="file" name="image1" id="image1" class="form-control">
-                            </div>
+                        <div class="form-group mb-2">
+                            <label for="image1">Image<span class="mandatory">*</span></label>
+                            <input type="file" name="image1" id="image1" class="form-control">
+                        </div>
 
-                            <!-- Image2 -->
-                            <div class="form-group mb-2">
-                                <label for="image2">Foto<span class="mandatory">*</span></label>
-                                <input type="file" name="image2" id="image2" class="form-control">
-                            </div>
+                        <div class="form-group mb-2">
+                            <label for="image2">Foto<span class="mandatory">*</span></label>
+                            <input type="file" name="image2" id="image2" class="form-control">
+                        </div>
 
-                            <!-- Tanggal -->
-                            <div class="form-group mb-2">
-                                <label for="tanggal">Tanggal<span class="mandatory">*</span></label>
-                                <input type="date" name="tanggal" id="tanggal" class="form-control"
-                                    value="{{ old('tanggal') }}">
-                            </div>
+                        <div class="form-group mb-2">
+                            <label for="tanggal">Tanggal<span class="mandatory">*</span></label>
+                            <input type="date" name="tanggal" id="tanggal" class="form-control"
+                                value="{{ old('tanggal') }}">
+                        </div>
 
-                            <!-- Judul Cerita -->
-                            <div class="form-group mb-2">
-                                <label for="judul_cerita">Judul Cerita<span class="mandatory">*</span></label>
-                                <input type="text" name="judul_cerita" id="judul_cerita" class="form-control"
-                                    value="{{ old('judul_cerita') }}">
-                            </div>
+                        <div class="form-group mb-2">
+                            <label for="judul_cerita">Judul Cerita<span class="mandatory">*</span></label>
+                            <input type="text" name="judul_cerita" id="judul_cerita" class="form-control"
+                                value="{{ old('judul_cerita') }}">
+                        </div>
 
-                            <!-- Deskripsi -->
-                            <div class="form-group mb-2">
-                                <label for="deskripsi">Detail<span class="mandatory">*</span></label>
-                                <textarea class="form-control" rows="5" id="deskripsi" name="deskripsi" placeholder="Masukan Cerita Detail">{{ old('deskripsi') }}</textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" form="formTambahCerita">Simpan</button>
-                    </div>
+                        <div class="form-group mb-2">
+                            <label for="deskripsi">Detail<span class="mandatory">*</span></label>
+                            <textarea class="form-control" rows="10" id="deskripsi" name="deskripsi" placeholder="Masukkan isi deskripsi">{{ old('deskripsi') }}</textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" form="formPerjalananCinta">Simpan</button>
+                    <!-- Updated here -->
                 </div>
             </div>
         </div>
+    </div>
+
+
+    <!-- Modal Buat dan Edit DirectTransfer -->
+    <div class="modal fade" id="modalDirectTransfer" tabindex="-1" aria-labelledby="modalDirectTransferLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDirectTransferLabel">Buat/Edit Direct Transfer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formDirectTransfer"
+                        action="{{ route('directtransfer-design4.store', ['id' => $informasiDesign4->id]) }}"
+                        method="POST" enctype="multipart/form-data">
+                        @csrf
+                        {{-- This will be updated dynamically in JS --}}
+                        <input type="hidden" name="_method" id="formMethod" value="POST">
+                        <input type="hidden" name="directTransferId" id="directTransferId">
+                        <input type="hidden" name="wedding_design4_id" value="{{ $informasiDesign4->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
+
+                        <div class="form-group mb-2">
+                            <label for="bank">Bank<span class="mandatory">*</span></label>
+                            <input type="text" name="bank" id="bank" class="form-control"
+                                value="{{ old('bank') }}">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="no_rek">No.Rekening<span class="mandatory">*</span></label>
+                            <input type="number" name="no_rek" id="no_rek" class="form-control"
+                                value="{{ old('no_rek') }}">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="nama_rek">Pemilik Rekening<span class="mandatory">*</span></label>
+                            <input type="text" name="nama_rek" id="nama_rek" class="form-control"
+                                value="{{ old('nama_rek') }}">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" form="formDirectTransfer">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Buat dan Edit Kirim Hadiah -->
+    <div class="modal fade" id="modalKirimHadiah" tabindex="-1" aria-labelledby="modalKirimHadiahLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Edit Direct Transfer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formKirimHadiah"
+                        action="{{ route('kirimhadiah-design4.store', ['id' => $informasiDesign4->id]) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        {{-- This will be updated dynamically in JS --}}
+                        <input type="hidden" name="_method" id="formMethod" value="POST">
+                        <input type="hidden" name="kirimHadiahId" id="kirimHadiahId">
+                        <input type="hidden" name="wedding_design4_id" value="{{ $informasiDesign4->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
+
+                        <div class="form-group mb-2">
+                            <label for="bank">Bank<span class="mandatory">*</span></label>
+                            <input type="text" name="bank" id="bank" class="form-control"
+                                value="{{ old('bank') }}">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="no_rek">No.Rekening<span class="mandatory">*</span></label>
+                            <input type="number" name="no_rek" id="no_rek" class="form-control"
+                                value="{{ old('no_rek') }}">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="nama_rek">Pemilik Rekening<span class="mandatory">*</span></label>
+                            <input type="text" name="nama_rek" id="nama_rek" class="form-control"
+                                value="{{ old('nama_rek') }}">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" form="formKirimHadiah">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Hidden form for delete -->
-    <form id="deleteForm" method="POST" style="display:none;">
+    <form id="deleteForm" action="" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
     </form>
 
-
+    <!-- Modal JS Perjalanan Cinta -->
     <script>
-        document.getElementById('btnTambahCerita').addEventListener('click', function() {
+        document.getElementById('btnPerjalananCinta').addEventListener('click', function() {
             // Reset the form for new entries
-            document.getElementById('formTambahCerita').reset();
+            document.getElementById('formPerjalananCinta').reset();
             document.getElementById('perjalananCintaId').value = ''; // Reset hidden field for ID
+            document.getElementById('formMethod').value = 'POST'; // Set method for creating
 
             // Set the action to the store route
-            document.getElementById('formTambahCerita').action =
+            document.getElementById('formPerjalananCinta').action =
                 "{{ route('perjalanancinta-design4.store', ['id' => $informasiDesign4->id]) }}";
-            document.getElementById('modalTambahCeritaLabel').textContent = 'Tambah Cerita';
+            document.getElementById('modalPerjalananCintaLabel').textContent = 'Tambah Cerita';
         });
 
-
-        document.querySelectorAll('.edit-btn').forEach(function(button) {
+        document.querySelectorAll('.edit-btn-perjalanan-cinta').forEach(function(button) {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
                 var tanggal = this.getAttribute('data-tanggal');
-                var judul = this.getAttribute('data-judul');
+                var judul_cerita = this.getAttribute('data-judul_cerita');
                 var deskripsi = this.getAttribute('data-deskripsi');
 
                 // Populate form with existing data
-                document.getElementById('perjalananCintaId').value = id;
+                document.getElementById('perjalananCintaId').value = id; // Set ID
                 document.getElementById('tanggal').value = tanggal;
-                document.getElementById('nama_pasangan').value = nama_pasangan;
-                document.getElementById('tgl_pernikahan').value = tgl_pernikahan;
-                document.getElementById('judul_cerita').value = judul;
+                document.getElementById('judul_cerita').value = judul_cerita;
                 document.getElementById('deskripsi').value = deskripsi;
 
                 // Set the form action to the update route
-                document.getElementById('formTambahCerita').action = "/wedding-design4/" + id + "/update";
-                document.getElementById('modalTambahCeritaLabel').textContent = 'Edit Cerita';
+                document.getElementById('formPerjalananCinta').action =
+                    `/wedding-design4/${id}/update-perjalanan-cinta`;
+                document.getElementById('formMethod').value = 'PUT'; // Set method for updating
+                document.getElementById('modalPerjalananCintaLabel').textContent = 'Edit Cerita';
 
                 // Show the modal
-                var modal = new bootstrap.Modal(document.getElementById('modalTambahCerita'));
+                var modal = new bootstrap.Modal(document.getElementById('modalPerjalananCinta'));
                 modal.show();
             });
         });
     </script>
 
+    <!-- Modal JS Direct Transfer -->
     <script>
-        document.querySelectorAll('.delete-btn').forEach(function(button) {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                var itemId = this.getAttribute('data-id');
+        document.getElementById('btnDirectTransfer').addEventListener('click', function() {
+            // Reset the form for new entries
+            document.getElementById('formDirectTransfer').reset();
+            document.getElementById('directTransferId').value = ''; // Reset hidden field for ID
+            document.getElementById('formMethod').value = 'POST'; // Set method for creating
 
-                Swal.fire({
-                    title: "Anda yakin?",
-                    text: "Data ini akan dihapus secara permanen!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Set the action URL for the delete form
-                        var deleteForm = document.getElementById('deleteForm');
-                        deleteForm.action = "/wedding-design4/" + itemId + "/delete";
+            // Set the action to the store route
+            document.getElementById('formDirectTransfer').action =
+                "{{ route('directtransfer-design4.store', ['id' => $informasiDesign4->id]) }}";
+            document.getElementById('modalDirectTransferLabel').textContent = 'Tambah Direct Transfer';
+        });
 
-                        // Submit the form
-                        deleteForm.submit();
+        document.querySelectorAll('.edit-btn-direct-transfer').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var id = this.getAttribute('data-id');
+                var bank = this.getAttribute('data-bank');
+                var no_rek = this.getAttribute('data-no_rek');
+                var nama_rek = this.getAttribute('data-nama_rek');
 
-                        Swal.fire(
-                            'Terhapus!',
-                            'Data berhasil dihapus.',
-                            'success'
-                        );
-                    }
-                });
+                // Populate form with existing data
+                document.getElementById('directTransferId').value = id; // Set ID
+                document.getElementById('bank').value = bank;
+                document.getElementById('no_rek').value = no_rek;
+                document.getElementById('nama_rek').value = nama_rek;
+
+                // Set the form action to the update route
+                document.getElementById('formDirectTransfer').action =
+                    `/wedding-design4/${id}/update-direct-transfer`;
+                document.getElementById('formMethod').value = 'PUT'; // Set method for updating
+                document.getElementById('modalDirectTransferLabel').textContent = 'Edit Direct Transfer';
+
+                // Show the modal
+                var modal = new bootstrap.Modal(document.getElementById('modalDirectTransfer'));
+                modal.show();
             });
         });
     </script>
 
+    <!-- Modal JS Kirim Hadiah -->
+    <script>
+        document.getElementById('btnKirimHadiah').addEventListener('click', function() {
+            // Reset the form for new entries
+            document.getElementById('formKirimHadiah').reset();
+            document.getElementById('kirimHadiahId').value = ''; // Reset hidden field for ID
+            document.getElementById('formMethod').value = 'POST'; // Set method for creating
+
+            // Set the action to the store route
+            document.getElementById('formKirimHadiah').action =
+                "{{ route('kirimhadiah-design4.store', ['id' => $informasiDesign4->id]) }}";
+            document.getElementById('modalKirimHadiahLabel').textContent = 'Tambah Kirim Hadiah';
+        });
+
+        document.querySelectorAll('.edit-btn-kirim-hadiah').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var id = this.getAttribute('data-id');
+                var bank = this.getAttribute('data-bank');
+                var no_rek = this.getAttribute('data-no_rek');
+                var nama_rek = this.getAttribute('data-nama_rek');
+
+                // Populate form with existing data
+                document.getElementById('kirimHadiahId').value = id; // Set ID
+                document.getElementById('bank').value = bank;
+                document.getElementById('no_rek').value = no_rek;
+                document.getElementById('nama_rek').value = nama_rek;
+
+                // Set the form action to the update route
+                document.getElementById('formKirimHadiah').action =
+                    `/wedding-design4/${id}/update-kirim-hadiah`;
+                document.getElementById('formMethod').value = 'PUT'; // Set method for updating
+                document.getElementById('modalKirimHadiahLabel').textContent = 'Edit Direct Transfer';
+
+                // Show the modal
+                var modal = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));
+                modal.show();
+            });
+        });
+    </script>
+
+
+    <script>
+        document.querySelectorAll('.delete-btn-perjalanan-cinta, .delete-btn-kirim-hadiah, .delete-btn-direct-transfer')
+            .forEach(function(button) {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var itemId = this.getAttribute('data-id');
+                    var type;
+
+                    // Determine the type based on the button class
+                    if (this.classList.contains('delete-btn-perjalanan-cinta')) {
+                        type = "perjalanan-cinta";
+                    } else if (this.classList.contains('delete-btn-kirim-hadiah')) {
+                        type = "kirim-hadiah";
+                    } else if (this.classList.contains('delete-btn-direct-transfer')) {
+                        type = "direct-transfer";
+                    }
+
+                    Swal.fire({
+                        title: "Anda yakin?",
+                        text: "Data ini akan dihapus secara permanen!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Ya, hapus!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Set the form action to the delete URL
+                            var deleteForm = document.getElementById('deleteForm');
+                            deleteForm.action = "/wedding-design4/" + itemId + "/" + type + "/delete";
+
+                            // Submit the form
+                            deleteForm.submit();
+                        }
+                    });
+                });
+            });
+    </script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 
 @endsection

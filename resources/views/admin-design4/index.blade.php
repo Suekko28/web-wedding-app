@@ -58,7 +58,9 @@
                                         @endif
                                     </td>
 
-                                    <td> <a class="btn btn-primary mb-3" href="">Buat Tamu</a></td>
+                                    <td> <a class="btn btn-primary mb-3"
+                                            href="{{ route('nama-undangan-list4', ['id' => $data]) }}" target="_blank">Buat
+                                            Tamu</a></td>
                                     <td>
                                         <div class="btn-group-vertical">
                                             <a href="javascript:void(0)" class="btn btn-warning mb-2 rounded edit-btn"
@@ -105,7 +107,6 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        @include('layouts.message')
                         <form id="formBuatUndangan" action="{{ route('wedding-design4.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="id" id="undanganId">
@@ -136,7 +137,7 @@
             @csrf
             @method('DELETE')
         </form>
-        
+
         <script>
             // Event listener untuk tombol "Buat Undangan"
             document.getElementById('btnBuatUndangan').addEventListener('click', function() {
@@ -227,7 +228,7 @@
                 noDataMessage.style.display = found ? 'none' : 'block';
             });
         </script>
-        
+
     @endsection
 
     @section('scripts')

@@ -10,11 +10,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('kirim_hadiah_transfer_design4', function (Blueprint $table) {
+        Schema::create('kirim_hadiah_design4', function (Blueprint $table) {
             $table->id();
             $table->string('bank');
             $table->integer('no_rek');
             $table->string('nama_rek');
+            $table->unsignedBigInteger('informasi_design4_id');
+            $table->foreign('informasi_design4_id')
+                ->references('id')
+                ->on('informasi_design4')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -24,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('kirim_hadiah_transfer_design4');
+        Schema::dropIfExists('kirim_hadiah_design4');
     }
 };

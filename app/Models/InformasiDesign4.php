@@ -27,5 +27,14 @@ class InformasiDesign4 extends Model
     {
         return $this->hasMany(PerjalananCintaDesign4::class, 'informasi_design4_id', 'id');
     }
+    public function DirectTransferesign4() : HasMany 
+    {
+        return $this->hasMany(DirectTransferDesign4::class, 'informasi_design4_id', 'id');
+    }
+
+    public function KirimHadiahDesign4() : HasMany 
+    {
+        return $this->hasMany(KirimHadiahDesign4::class, 'informasi_design4_id', 'id');
+    }
 
 }

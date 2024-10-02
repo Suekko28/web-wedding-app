@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,6 +15,11 @@ return new class extends Migration
             $table->string('bank');
             $table->integer('no_rek');
             $table->string('nama_rek');
+            $table->unsignedBigInteger('informasi_design4_id');
+            $table->foreign('informasi_design4_id')
+                ->references('id')
+                ->on('informasi_design4')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
