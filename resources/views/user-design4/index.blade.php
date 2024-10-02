@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="table-responsive text-nowrap p-3">
-                        <form id="deleteForm" action="{{ route('nama-undangan.destroy3', ['id' => $weddingDesign4->id]) }}"
+                        <form id="deleteForm" action="{{ route('nama-undangan.destroy4', ['id' => $weddingDesign4->id]) }}"
                             method="POST">
                             @csrf
                             @method('DELETE')
@@ -83,7 +83,7 @@
                                             <td scope="row">{{ $item->nama_undangan }}</td>
                                             <td>
                                                 <div class="btn-group-vertical">
-                                                    <a href="{{ url('nama-undangan/design3/' . $item->id) . '/edit' }}"
+                                                    <a href="{{ url('nama-undangan/design4/' . $item->id) . '/edit' }}"
                                                         class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
                                                             style="color:white;"></i></a>
                                                     <button class="btn btn-danger delete-btn rounded mb-2"

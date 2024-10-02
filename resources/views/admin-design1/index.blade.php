@@ -28,6 +28,7 @@
                             <th>ID Wedding</th>
                             <th>Mempelai</th>
                             <th>Tanggal Pernikahan</th>
+                            <th>Created Date</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -36,13 +37,17 @@
                         @foreach ($data as $item)
                             <tr class="text-center">
                                 <td scope="row">{{ $i }}</td>
-                                <td>{{$item->id_weddingdesign1}}</td>
+                                <td>{{ $item->id_weddingdesign1 }}</td>
                                 <td>
                                     <p>{{ $item->nama_mempelai_laki }} &
                                         {{ $item->nama_mempelai_perempuan }}</p>
                                 </td>
                                 <td>
                                     {{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->tgl_akad)->format('d-m-Y') }}
+                                </td>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
+
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical">

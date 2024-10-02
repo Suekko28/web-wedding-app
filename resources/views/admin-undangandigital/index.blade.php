@@ -34,6 +34,7 @@
                             <th>Link Preview</th>
                             <th>Link Pesan</th>
                             <th>Kategori</th>
+                            <th>Created Date</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -73,6 +74,10 @@
                                     @else
                                         Tidak Ada Kategori
                                     @endif
+                                </td>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
+
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical">

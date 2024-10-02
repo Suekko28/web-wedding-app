@@ -7,9 +7,11 @@ use App\Http\Controllers\GambarinController;
 use App\Http\Controllers\HomeDesign1Controller;
 use App\Http\Controllers\HomeDesign2Controller;
 use App\Http\Controllers\HomeDesign3Controller;
+use App\Http\Controllers\HomeDesign4Controller;
 use App\Http\Controllers\IndexDesign1Controller;
 use App\Http\Controllers\IndexDesign2Controller;
 use App\Http\Controllers\IndexDesign3Controller;
+use App\Http\Controllers\IndexDesign4Controller;
 use App\Http\Controllers\InformasiDesign4Controller;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NamaUndanganDesign1Controller;
@@ -66,6 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/wedding-design3', WeddingDesign3Controller::class);
 
     Route::resource('/wedding-design4', InformasiDesign4Controller::class);
+    Route::get('/wedding-design4/{wedding_design4}', [WeddingDesign4Controller::class, 'show'])->name('wedding-design4.show');
     Route::post('/wedding-design4/{id}/update', [InformasiDesign4Controller::class, 'update']);
 
     // Routes for WeddingDesign4
@@ -171,6 +174,15 @@ Route::delete('/nama-undangan/design3/{id}', [NamaUndanganDesign3Controller::cla
 
 
 
+// Route undangan design 4
+Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=for')->group(function () {
+    Route::get('/preview', [HomeDesign4Controller::class, 'show'])->name('wedding-design4-home-preview');
+    Route::get('/preview/index', [IndexDesign4Controller::class, 'show'])->name('wedding-design4-preview');
+});
+
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}', [HomeDesign4Controller::class, 'showDetail'])->name('wedding-design4-home');
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign4Controller::class, 'showDetail'])->name('wedding-design4-index');
+Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign4Controller::class, 'store'])->name('wedding-design4-post');
 
 Route::resource('/nama-undangan', NamaUndanganDesign3Controller::class);
 Route::get('/nama-undangan/design4/{id}/list', [NamaUndanganDesign4Controller::class, 'index'])->name('nama-undangan-list4');
@@ -219,6 +231,7 @@ Route::get('/wedding-3', function () {
 Route::get('/wedding-3/index', function () {
     return view('wedding-design3.index-preview');
 });
+
 
 Route::get('/storage-link', function () {
     Artisan::call('storage:link');

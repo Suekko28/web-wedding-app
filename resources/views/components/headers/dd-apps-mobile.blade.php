@@ -54,6 +54,15 @@
                                 <span class="hide-menu">Design 3</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('wedding-design4.index') }}"
+                                class="sidebar-link {{ request()->is('wedding-design4') ? 'active' : '' }}">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Design 4</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @if (auth()->user()->role == 1)

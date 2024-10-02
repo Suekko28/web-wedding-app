@@ -31,7 +31,7 @@
         <div class="first-item"></div>
         <div class="frame-parent119">
             <span class="paragraph">THE WEDDING OF</span>
-            <span class="title">Rudi & Arum</span>
+            <span class="title">{{$data->nama_mempelai_laki}} & {{$data->nama_mempelai_perempuan}}</span>
             <div class="small-devider"></div>
             <span class="paragraph">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('D MMMM YYYY') }} </span>
             <a class="primary-button" id="buttonContainer"

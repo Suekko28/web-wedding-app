@@ -28,6 +28,7 @@
                             <th>ID Wedding</th>
                             <th>Mempelai</th>
                             <th>Tanggal Pernikahan</th>
+                            <th>Created Date</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -43,6 +44,10 @@
                                 </td>
                                 <td>
                                     {{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->tgl_akad)->format('d-m-Y') }}
+                                </td>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
+
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical">

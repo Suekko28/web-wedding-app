@@ -29,6 +29,7 @@
                             <th>Seserahan ID</th>
                             {{-- <th>Nama Undangan</th> --}}
                             <th>Foto</th>
+                            <th>Created Date</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -46,9 +47,13 @@
                                         height="120" alt="Foto Prewedding">
                                 </td> --}}
                                 <td>
-                                    <img class="img-fluid" src="{{ asset('storage/seserahan/' . $item->image) }}" alt=""
-                                        width="120" height="120" alt="Foto Blog">
-                                </td> 
+                                    <img class="img-fluid" src="{{ asset('storage/seserahan/' . $item->image) }}"
+                                        alt="" width="120" height="120" alt="Foto Blog">
+                                </td>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
+
+                                </td>
                                 <td>
                                     <div class="btn-group-vertical">
                                         <a href="{{ url('seserahan/' . $item->id) . '/edit' }}"

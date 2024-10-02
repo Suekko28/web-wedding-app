@@ -31,6 +31,7 @@
                             <th>Foto</th>
                             <th>Judul</th>
                             <th>Deskripsi</th>
+                            <th>Created Date</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -48,11 +49,15 @@
                                         height="120" alt="Foto Prewedding">
                                 </td> --}}
                                 <td>
-                                    <img class="img-fluid" src="{{ asset('storage/blog/' . $item->image) }}" alt="" width="120"
-                                        height="120" alt="Foto Blog">
+                                    <img class="img-fluid" src="{{ asset('storage/blog/' . $item->image) }}" alt=""
+                                        width="120" height="120" alt="Foto Blog">
                                 </td>
                                 <td>{{ $item->judul }} </td>
                                 <td>{!! Str::limit($item->deskripsi, 300) !!} </td>
+                                </td>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
+
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical">

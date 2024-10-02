@@ -154,26 +154,37 @@ class WeddingDesign4Controller extends Controller
         return back()->with('success', 'Kirim Hadiah berhasil ditambahkan.');
     }
 
-
-
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $data = WeddingDesign4::findOrFail($id);
+
+        $informasiDesign4 = InformasiDesign4::findOrFail($data->informasi_design4_id);
+
+        $dataPerjalananCinta = PerjalananCintaDesign4::where('informasi_design4_id', $informasiDesign4->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        $dataDirectTransfer = DirectTransferDesign4::where('informasi_design4_id', $informasiDesign4->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        $dataKirimHadiah = KirimHadiahDesign4::where('informasi_design4_id', $informasiDesign4->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        // Pass all the necessary data to the view
+        return view('admin-design4.show', [
+            'data' => $data,
+            'nama_undangan' => $data->namaUndangan,
+            'informasiDesign4' => $informasiDesign4,
+            'dataPerjalananCinta' => $dataPerjalananCinta,
+            'dataDirectTransfer' => $dataDirectTransfer,
+            'dataKirimHadiah' => $dataKirimHadiah
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    /**
-     * Show the form for editing the specified resource.
-     */
-    /**
-     * Show the form for editing the specified resource.
-     */
+
+
     public function edit($informasiDesign4Id, $id)
     {
         $data = WeddingDesign4::findOrFail($id);
@@ -345,24 +356,4 @@ class WeddingDesign4Controller extends Controller
     }
 
 
-    // public function destroyPerjalananCinta(string $id)
-    // {
-    //     $data = PerjalananCintaDesign4::find($id)->delete();
-    //     return redirect()->back()->with('success', 'Data berhasil Dihapus');
-
-    // }
-
-    // public function destroyDirectTransfer(string $id)
-    // {
-    //     $data = DirectTransferDesign4::find($id)->delete();
-    //     return redirect()->back()->with('success', 'Data berhasil Dihapus');
-
-    // }
-
-    // public function destroyKirimHadiah(string $id)
-    // {
-    //     $data = KirimHadiahDesign4::find($id)->delete();
-    //     return redirect()->back()->with('success', 'Data berhasil Dihapus');
-
-    // }
 }

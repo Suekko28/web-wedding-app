@@ -30,6 +30,7 @@
                                 <th>Tanggal Pernikahan</th>
                                 <th>Konten Undangan</th>
                                 <th>Tamu Undangan</th>
+                                <th>Created Date</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -58,9 +59,15 @@
                                         @endif
                                     </td>
 
-                                    <td> <a class="btn btn-primary mb-3"
-                                            href="{{ route('nama-undangan-list4', ['id' => $data]) }}" target="_blank">Buat
-                                            Tamu</a></td>
+                                    <td>
+                                        <a class="btn btn-primary mb-3 {{ $item->KontenDesign4->isEmpty() ? 'disabled' : '' }}"
+                                            href="{{ route('nama-undangan-list4', ['id' => $item]) }}" target="_blank">
+                                            Buat Tamu
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
+                                    </td>
                                     <td>
                                         <div class="btn-group-vertical">
                                             <a href="javascript:void(0)" class="btn btn-warning mb-2 rounded edit-btn"
@@ -77,13 +84,13 @@
                                                 class="btn btn-info rounded mb-2">
                                                 <i class="fa fa-circle-info" style="color:white;"></i>
                                             </a>
-                                            {{-- <a href="{{ route('wedding-design4-home-preview', [
-                                                'nama_pasangan' => $item->nama_pasangan,
+                                            <a href="{{ route('wedding-design4-home-preview', [
+                                                'nama_mempelai_pria' => $item->nama_pasangan,
                                                 'nama_mempelai_perempuan' => $item->nama_mempelai_perempuan,
                                             ]) }}"
                                                 target="_blank" class="btn btn-primary rounded mb-2">
                                                 <i class="fa fa-eye" style="color:white;"></i>
-                                            </a> --}}
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>

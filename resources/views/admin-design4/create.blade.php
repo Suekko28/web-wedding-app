@@ -190,10 +190,10 @@
                                         @foreach ($dataPerjalananCinta as $item)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                <td><img src="{{ Storage::url($item->image1) }}" alt="Image 1"
-                                                        width="50"></td>
-                                                <td><img src="{{ Storage::url($item->image2) }}" alt="Image 2"
-                                                        width="50"></td>
+                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image1) }}"
+                                                        alt="Image 1" width="120"></td>
+                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image2) }}"
+                                                        alt="Image 2" width="120"></td>
                                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                                 <td>{{ $item->judul_cerita }}</td>
                                                 <td>{{ $item->deskripsi }}</td>
@@ -203,7 +203,10 @@
                                                         data-id="{{ $item->id }}"
                                                         data-tanggal="{{ $item->tanggal }}"
                                                         data-judul="{{ $item->judul_cerita }}"
-                                                        data-deskripsi="{{ $item->deskripsi }}">
+                                                        data-deskripsi="{{ $item->deskripsi }}"
+                                                        data-image1="{{ $item->image1 }}"
+                                                        data-image2="{{ $item->image2 }}">
+
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
                                                     <button class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
@@ -481,11 +484,19 @@
                         <div class="form-group mb-2">
                             <label for="image1">Image<span class="mandatory">*</span></label>
                             <input type="file" name="image1" id="image1" class="form-control">
+                            <div id="currentImage1Container" class="mt-2">
+                                <img id="currentImage1" class="img-thumbnail" src="" alt="Current Image 1"
+                                    width="120" style="display:none;">
+                            </div>
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="image2">Foto<span class="mandatory">*</span></label>
                             <input type="file" name="image2" id="image2" class="form-control">
+                            <div id="currentImage2Container" class="mt-2">
+                                <img id="currentImage2" class="img-thumbnail" src="" alt="Current Image 2"
+                                    width="120" style="display:none;">
+                            </div>
                         </div>
 
                         <div class="form-group mb-2">
@@ -636,14 +647,33 @@
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
                 var tanggal = this.getAttribute('data-tanggal');
-                var judul_cerita = this.getAttribute('data-judul_cerita');
+                var judul_cerita = this.getAttribute('data-judul');
                 var deskripsi = this.getAttribute('data-deskripsi');
 
+                // Data gambar
+                var image1 = this.getAttribute('data-image1');
+                var image2 = this.getAttribute('data-image2');
+
                 // Populate form with existing data
-                document.getElementById('perjalananCintaId').value = id; // Set ID
+                document.getElementById('perjalananCintaId').value = id;
                 document.getElementById('tanggal').value = tanggal;
                 document.getElementById('judul_cerita').value = judul_cerita;
                 document.getElementById('deskripsi').value = deskripsi;
+
+                // Show the current images if available
+                if (image1) {
+                    document.getElementById('currentImage1').src = `/storage/${image1}`;
+                    document.getElementById('currentImage1').style.display = 'block';
+                } else {
+                    document.getElementById('currentImage1').style.display = 'none';
+                }
+
+                if (image2) {
+                    document.getElementById('currentImage2').src = `/storage/${image2}`;
+                    document.getElementById('currentImage2').style.display = 'block';
+                } else {
+                    document.getElementById('currentImage2').style.display = 'none';
+                }
 
                 // Set the form action to the update route
                 document.getElementById('formPerjalananCinta').action =
@@ -757,13 +787,13 @@
                     }
 
                     Swal.fire({
-                        title: "Anda yakin?",
-                        text: "Data ini akan dihapus secara permanen!",
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
                         icon: "warning",
                         showCancelButton: true,
                         confirmButtonColor: "#3085d6",
                         cancelButtonColor: "#d33",
-                        confirmButtonText: "Ya, hapus!"
+                        confirmButtonText: "Yes, delete it!"
                     }).then((result) => {
                         if (result.isConfirmed) {
                             // Set the form action to the delete URL

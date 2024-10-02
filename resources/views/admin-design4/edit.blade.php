@@ -231,10 +231,10 @@
                                         @foreach ($dataPerjalananCinta as $item)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                <td><img src="{{ Storage::url($item->image1) }}" alt="Image 1"
-                                                        width="50"></td>
-                                                <td><img src="{{ Storage::url($item->image2) }}" alt="Image 2"
-                                                        width="50"></td>
+                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image1) }}"
+                                                        alt="Image 1" width="120"></td>
+                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image2) }}"
+                                                        alt="Image 2" width="120"></td>
                                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                                 <td>{{ $item->judul_cerita }}</td>
                                                 <td>{{ $item->deskripsi }}</td>
@@ -244,9 +244,12 @@
                                                         data-id="{{ $item->id }}"
                                                         data-tanggal="{{ $item->tanggal }}"
                                                         data-judul="{{ $item->judul_cerita }}"
-                                                        data-deskripsi="{{ $item->deskripsi }}">
+                                                        data-deskripsi="{{ $item->deskripsi }}"
+                                                        data-image1="{{ Storage::url($item->image1) }}"
+                                                        data-image2="{{ Storage::url($item->image2) }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
+
                                                     <button class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
                                                         data-id="{{ $item->id }}">
                                                         <i class="fa fa-trash"></i>
@@ -544,11 +547,17 @@
                         <div class="form-group mb-2">
                             <label for="image1">Image<span class="mandatory">*</span></label>
                             <input type="file" name="image1" id="image1" class="form-control">
+                            <!-- Current Image Preview -->
+                            <img id="currentImage1" class="img-thumbnail mt-2" src="" alt="Current Image 1"
+                                width="120" style="display: none;">
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="image2">Foto<span class="mandatory">*</span></label>
                             <input type="file" name="image2" id="image2" class="form-control">
+                            <!-- Current Image Preview -->
+                            <img id="currentImage2" class="img-thumbnail mt-2" src="" alt="Current Image 2"
+                                width="120" style="display: none;">
                         </div>
 
                         <div class="form-group mb-2">
@@ -572,11 +581,11 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary" form="formPerjalananCinta">Simpan</button>
-                    <!-- Updated here -->
                 </div>
             </div>
         </div>
     </div>
+
 
 
     <!-- Modal Buat dan Edit DirectTransfer -->
@@ -699,14 +708,25 @@
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
                 var tanggal = this.getAttribute('data-tanggal');
-                var judul_cerita = this.getAttribute('data-judul_cerita');
+                var judul_cerita = this.getAttribute('data-judul');
                 var deskripsi = this.getAttribute('data-deskripsi');
+                var image1 = this.getAttribute('data-image1'); // Add this line
+                var image2 = this.getAttribute('data-image2'); // Add this line
 
                 // Populate form with existing data
                 document.getElementById('perjalananCintaId').value = id; // Set ID
                 document.getElementById('tanggal').value = tanggal;
                 document.getElementById('judul_cerita').value = judul_cerita;
                 document.getElementById('deskripsi').value = deskripsi;
+
+                // Set the image previews
+                var currentImage1 = document.getElementById('currentImage1');
+                var currentImage2 = document.getElementById('currentImage2');
+
+                currentImage1.src = image1; // Set current image src
+                currentImage1.style.display = image1 ? 'block' : 'none'; // Show if image exists
+                currentImage2.src = image2; // Set current image src
+                currentImage2.style.display = image2 ? 'block' : 'none'; // Show if image exists
 
                 // Set the form action to the update route
                 document.getElementById('formPerjalananCinta').action =
@@ -821,13 +841,13 @@
                     }
 
                     Swal.fire({
-                        title: "Anda yakin?",
-                        text: "Data ini akan dihapus secara permanen!",
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
                         icon: "warning",
                         showCancelButton: true,
                         confirmButtonColor: "#3085d6",
                         cancelButtonColor: "#d33",
-                        confirmButtonText: "Ya, hapus!"
+                        confirmButtonText: "Yes, delete it!"
                     }).then((result) => {
                         if (result.isConfirmed) {
                             // Set the form action to the delete URL

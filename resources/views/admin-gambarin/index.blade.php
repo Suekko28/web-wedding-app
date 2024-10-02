@@ -32,6 +32,7 @@
                             <th>Judul</th>
                             <th>Harga</th>
                             <th>Link</th>
+                            <th>Created Date</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -55,6 +56,10 @@
                                 <td>{{ $item->judul }} </td>
                                 <td>Rp {{ number_format($item->harga, 0, ',', '.') }} </td>
                                 <td> <a href="{{ $item->link }}" target="_blank">{{ Str::limit($item->link, 20) }}</a>
+                                </td>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
+
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical">

@@ -29,6 +29,7 @@
                             {{-- <th>Nama Undangan</th> --}}
                             <th>Foto</th>
                             <th>Link</th>
+                            <th>Created Date</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -45,13 +46,17 @@
                                         height="120" alt="Foto Prewedding">
                                 </td> --}}
                                 <td>
-                                    <img class="img-fluid" src="{{ asset('storage/promo/' . $item->image) }}" alt="" width="120"
-                                        height="120" alt="Foto Blog">
+                                    <img class="img-fluid" src="{{ asset('storage/promo/' . $item->image) }}" alt=""
+                                        width="120" height="120" alt="Foto Blog">
                                 </td>
                                 <td>
                                     <a href="{{ $item->link }}" target="_blank">{{ Str::limit($item->link, 20) }}</a>
                                 </td>
-                                                                <td>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
+
+                                </td>
+                                <td>
                                     <div class="btn-group-vertical">
                                         <a href="{{ url('promo/' . $item->id) . '/edit' }}"
                                             class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
