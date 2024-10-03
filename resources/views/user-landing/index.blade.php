@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <img class="card-produk-img" src="{{ asset('img/Jejakkebahagiaan_UndanganDigital.jpg') }}"
+                            <img class="card-produk-img" src="{{ asset('img/Banner_Undangan-Digital.png') }}"
                                 alt="Seserahan">
                             <div class="card-produk-detail">
                                 <div class="card-produk-container-title">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <img class="card-produk-img" src="{{ asset('img/Jejakkebahagiaan_CetakFoto.jpg') }}"
+                            <img class="card-produk-img" src="{{ asset('img/Banner_Cetak-Foto.png') }}"
                                 alt="Seserahan">
                             <div class="card-produk-detail">
                                 <div class="card-produk-container-title">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <img class="card-produk-img" src="{{ asset('img/Jejakkebahagiaan_Gambarin.jpg') }}"
+                            <img class="card-produk-img" src="{{ asset('img/Banner_Gambarin-Cetak.png') }}"
                                 alt="Seserahan">
                             <div class="card-produk-detail">
                                 <div class="card-produk-container-title">
@@ -83,7 +83,7 @@
                     </div>
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <img class="card-produk-img" src="{{ asset('img/Jejakkebahagiaan_Seserahan.jpg') }}"
+                            <img class="card-produk-img" src="{{ asset('img/Banner_Seserahan.jpeg') }}"
                                 alt="Seserahan">
                             <div class="card-produk-detail">
                                 <div class="card-produk-container-title">
@@ -144,7 +144,7 @@
                 <h4>Kami siap membantu kebutuhan anda</h4>
                 <a href="https://wa.me/62895321816795" target="_blank" class="btn btn-primary">Hubungi Kami</a>
             </div>
-            <img class="img" src="{{ asset('img/Jejakkebahagiaan_Hubungi.jpg') }}" alt="Seserahan">
+            <img class="img" src="{{ asset('img/Contact-Us_JejakKebahagiaan.png') }}" alt="Seserahan">
         </div>
     </section>
     <!-- TANYA KAMI END -->

@@ -51,7 +51,7 @@
                 <h4>Kami siap membantu kebutuhan anda</h4>
                 <a href="https://wa.me/62895321816795" target="_blank" class="btn btn-primary">Hubungi Kami</a>
             </div>
-            <img class="img" src="{{ asset('img/Jejakkebahagiaan_Hubungi.jpg') }}" alt="Seserahan">
+            <img class="img" src="{{ asset('img/Contact-Us_JejakKebahagiaan.png') }}" alt="Seserahan">
         </div>
     </section>
     <!-- TANYA KAMI END -->

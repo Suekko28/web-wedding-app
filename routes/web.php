@@ -102,11 +102,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/undangandigital', UndanganDigitalController::class);
 
-
-
 });
-
-
 
 // Route undangan design 1
 Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=')->group(function () {
@@ -176,7 +172,6 @@ Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/for=')->group(fun
 
 Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/for={nama_undangan}', [HomeDesign4Controller::class, 'showDetail'])->name('wedding-design4-home');
 Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/for={nama_undangan}', [HomeDesign4Controller::class, 'store'])->name('wedding-design4-post');
-
 
 Route::resource('/nama-undangan', NamaUndanganDesign4Controller::class);
 Route::get('/nama-undangan/design4/{id}/list', [NamaUndanganDesign4Controller::class, 'index'])->name('nama-undangan-list4');
