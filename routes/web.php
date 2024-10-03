@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CetakFotoController;
 use App\Http\Controllers\DashboardController;
@@ -44,9 +45,12 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Auth::routes([
-    'register' => false,
-]);
+Route::get('/login', [LoginController::class, 'index'])->name('login.form');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+Route::get('/register', [LoginController::class, 'register'])->name('register.form');
+Route::post('/create', [LoginController::class, 'create'])->name('register.submit');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+;
 
 
 Route::middleware(['auth'])->group(function () {

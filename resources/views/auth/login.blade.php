@@ -15,7 +15,7 @@
                                     <img src="{{ asset('img/logo.png') }}" alt="logo">
                                 </a>
                                 @include('layouts.message')
-                                <form method="POST" action="{{ route('login') }}">
+                                <form method="POST" action="{{ route('login.submit') }}">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">{{ __('Email Address') }}</label>
