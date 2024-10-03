@@ -300,6 +300,7 @@ label {
    .animation .anm_mod.active {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+    object-fit: cover;
    }
    
    .org_to_top {

@@ -21,11 +21,10 @@
     border: 1px solid #ff64a9 !important;
 }
 
-.radio_group input:checked+.radio_label {
+.radio_group input:checked + .radio_label {
     background: #fd267d !important;
     color: white;
 }
-
 
 /* Sidebar */
 .sidebar-nav ul .sidebar-item.selected > .sidebar-link.active,
@@ -54,5 +53,15 @@
 
 /* Card End */
 
+/* Pagination  */
+.page-link.active,
+.active > .page-link {
+    z-index: 3;
+    color: white !important;
+    background-color: #fd267d !important;
+    border-color: #fd267d !important;
+}
+
+/* Pagination End */
 
 /* Header Info End */

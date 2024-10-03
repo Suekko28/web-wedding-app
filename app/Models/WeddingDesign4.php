@@ -51,7 +51,7 @@ class WeddingDesign4 extends Model
 
     ];
 
-    public function InformasiDesign4() : BelongsTo
+    public function InformasiDesign4(): BelongsTo
     {
         return $this->belongsTo(InformasiDesign4::class, 'informasi_design4_id', 'id');
     }
@@ -60,6 +60,27 @@ class WeddingDesign4 extends Model
     {
         return $this->hasMany(NamaUndanganDesign4::class, 'wedding_design4_id', 'id');
     }
+
+    public function PerjalananCintaDesign4(): HasMany
+    {
+        return $this->hasMany(PerjalananCintaDesign4::class, 'informasi_design4_id', 'informasi_design4_id');
+    }
+
+    public function DirectTransferDesign4(): HasMany
+    {
+        return $this->hasMany(DirectTransferDesign4::class, 'informasi_design4_id', 'informasi_design4_id');
+    }
+    public function KirimHadiahDesign4(): HasMany
+    {
+        return $this->hasMany(KirimHadiahDesign4::class, 'informasi_design4_id', 'informasi_design4_id');
+    }
+
+    public function alt4Models(): HasMany
+    {
+        return $this->hasMany(UcapanDesign4::class, 'wedding_design4_id', 'id');
+    }
+    
+
 
     // public function PerjalananCintaDesign4 () : HasMany 
     // {

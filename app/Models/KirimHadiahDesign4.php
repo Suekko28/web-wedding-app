@@ -14,9 +14,8 @@ class KirimHadiahDesign4 extends Model
 
     protected $fillable = [
 
-        'bank',
-        'no_rek',
-        'nama_rek',
+        'alamat',
+        'deskripsi_alamat',
         'informasi_design4_id'
     ];
 

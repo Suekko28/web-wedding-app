@@ -44,16 +44,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+Auth::routes([
+    'register' => false,
+]);
 
-// Route::get('/wedding-design1', function () {
-//     return view('wedding-design1.index');
-// });
-
-// Route::get('/wedding-design1/create', function () {
-//     return view('wedding-design1.create');
-// });
-
-Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -141,9 +135,9 @@ Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=untuk')->group(f
     Route::get('/preview/index', [IndexDesign2Controller::class, 'show'])->name('wedding-design2-preview');
 });
 
-Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}', [HomeDesign2Controller::class, 'showDetail'])->name('wedding-design2-home');
-Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign2Controller::class, 'showDetail'])->name('wedding-design2-index');
-Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign2Controller::class, 'store'])->name('wedding-design2-post');
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/untuk={nama_undangan}', [HomeDesign2Controller::class, 'showDetail'])->name('wedding-design2-home');
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/untuk={nama_undangan}/index', [IndexDesign2Controller::class, 'showDetail'])->name('wedding-design2-index');
+Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/untuk={nama_undangan}/index', [IndexDesign2Controller::class, 'store'])->name('wedding-design2-post');
 
 Route::resource('/nama-undangan', NamaUndanganDesign2Controller::class);
 Route::get('/nama-undangan/design2/{id}/list', [NamaUndanganDesign2Controller::class, 'index'])->name('nama-undangan-list2');
@@ -160,9 +154,9 @@ Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=to')->group(func
     Route::get('/preview/index', [IndexDesign3Controller::class, 'show'])->name('wedding-design3-preview');
 });
 
-Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}', [HomeDesign3Controller::class, 'showDetail'])->name('wedding-design3-home');
-Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign3Controller::class, 'showDetail'])->name('wedding-design3-index');
-Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign3Controller::class, 'store'])->name('wedding-design3-post');
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/to={nama_undangan}', [HomeDesign3Controller::class, 'showDetail'])->name('wedding-design3-home');
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/to={nama_undangan}/index', [IndexDesign3Controller::class, 'showDetail'])->name('wedding-design3-index');
+Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/to={nama_undangan}/index', [IndexDesign3Controller::class, 'store'])->name('wedding-design3-post');
 
 Route::resource('/nama-undangan', NamaUndanganDesign3Controller::class);
 Route::get('/nama-undangan/design3/{id}/list', [NamaUndanganDesign3Controller::class, 'index'])->name('nama-undangan-list3');
@@ -175,16 +169,16 @@ Route::delete('/nama-undangan/design3/{id}', [NamaUndanganDesign3Controller::cla
 
 
 // Route undangan design 4
-Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/=for')->group(function () {
+Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/for=')->group(function () {
     Route::get('/preview', [HomeDesign4Controller::class, 'show'])->name('wedding-design4-home-preview');
-    Route::get('/preview/index', [IndexDesign4Controller::class, 'show'])->name('wedding-design4-preview');
 });
 
-Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}', [HomeDesign4Controller::class, 'showDetail'])->name('wedding-design4-home');
-Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign4Controller::class, 'showDetail'])->name('wedding-design4-index');
-Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/={nama_undangan}/index', [IndexDesign4Controller::class, 'store'])->name('wedding-design4-post');
 
-Route::resource('/nama-undangan', NamaUndanganDesign3Controller::class);
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/for={nama_undangan}', [HomeDesign4Controller::class, 'showDetail'])->name('wedding-design4-home');
+Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/for={nama_undangan}', [HomeDesign4Controller::class, 'store'])->name('wedding-design4-post');
+
+
+Route::resource('/nama-undangan', NamaUndanganDesign4Controller::class);
 Route::get('/nama-undangan/design4/{id}/list', [NamaUndanganDesign4Controller::class, 'index'])->name('nama-undangan-list4');
 Route::get('/nama-undangan/design4/{id}/create', [NamaUndanganDesign4Controller::class, 'create'])->name('nama-undangan-create4');
 Route::get('/nama-undangan/design4/{id}/edit', [NamaUndanganDesign4Controller::class, 'edit'])->name('nama-undangan-edit4');
@@ -237,6 +231,3 @@ Route::get('/storage-link', function () {
     Artisan::call('storage:link');
     return 'Storage Linkdes Succesfully';
 });
-
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

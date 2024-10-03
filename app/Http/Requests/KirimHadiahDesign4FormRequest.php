@@ -22,20 +22,15 @@ class KirimHadiahDesign4FormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'bank' => [
+            'alamat' => [
                 'required',
-                'string',
                 'max:255',
             ],
-            'no_rek' => [
+            'deskripsi_alamat' => [
                 'required',
-                'integer',
+
             ],
-            'nama_rek' => [
-                'required',
-                'string',
-                'max:255',
-            ],
+
         ];
     }
 
@@ -47,16 +42,10 @@ class KirimHadiahDesign4FormRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'bank.required' => 'Nama bank harus diisi.',
-            'bank.string' => 'Nama bank harus berupa teks.',
-            'bank.max' => 'Nama bank tidak boleh lebih dari 255 karakter.',
+            'alamat.required' => 'Alamat harus diisi.',
+            'alamat.max' => 'Alamat tidak boleh lebih dari 255 karakter.',
 
-            'no_rek.required' => 'Nomor rekening harus diisi.',
-            'no_rek.integer' => 'Nomor rekening harus berupa angka.',
-
-            'nama_rek.required' => 'Nama rekening harus diisi.',
-            'nama_rek.string' => 'Nama rekening harus berupa teks.',
-            'nama_rek.max' => 'Nama rekening tidak boleh lebih dari 255 karakter.',
+            'deskripsi_alamat.required' => 'Alamat Detail harus diisi.',
 
         ];
     }

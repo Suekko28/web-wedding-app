@@ -401,6 +401,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="p-2">{{ $dataDirectTransfer->links() }}</div>
                         </div>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
@@ -415,9 +416,8 @@
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
-                                            <th>Bank</th>
-                                            <th>No.Rekening</th>
-                                            <th>Pemilik Rekening</th>
+                                            <th>Alamat</th>
+                                            <th>Detail Alamat</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -426,15 +426,13 @@
                                         @foreach ($dataKirimHadiah as $item)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                <td>{{ $item->bank }}</td>
-                                                <td>{{ $item->no_rek }}</td>
-                                                <td>{{ $item->nama_rek }}</td>
+                                                <td>{{ $item->alamat }}</td>
+                                                <td>{{ $item->deskripsi_alamat }}</td>
                                                 <td>
                                                     <a href="javascript:void(0)"
                                                         class="btn btn-warning mb-2 rounded edit-btn-direct-transfer"
-                                                        data-id="{{ $item->id }}" data-bank="{{ $item->bank }}"
-                                                        data-no_rek="{{ $item->no_rek }}"
-                                                        data-nama_rek="{{ $item->nama_rek }}">
+                                                        data-id="{{ $item->id }}" data-alamat="{{ $item->alamat }}"
+                                                        data-deskripsi_alamat="{{ $item->deskripsi_alamat }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
                                                     <button class="btn btn-danger delete-btn-kirim-hadiah rounded mb-2"
@@ -448,6 +446,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="p-2">{{ $dataKirimHadiah->links() }}</div>
                         </div>
 
                         <div class="d-flex flex-row-reverse">
@@ -508,7 +507,7 @@
                         <div class="form-group mb-2">
                             <label for="judul_cerita">Judul Cerita<span class="mandatory">*</span></label>
                             <input type="text" name="judul_cerita" id="judul_cerita" class="form-control"
-                                value="{{ old('judul_cerita') }}">
+                                value="{{ old('judul_cerita') }}" placeholder="Masukkan judul cerita"> 
                         </div>
 
                         <div class="form-group mb-2">
@@ -551,19 +550,19 @@
                         <div class="form-group mb-2">
                             <label for="bank">Bank<span class="mandatory">*</span></label>
                             <input type="text" name="bank" id="bank" class="form-control"
-                                value="{{ old('bank') }}">
+                                value="{{ old('bank') }}"  placeholder="Masukkan nama bank">
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="no_rek">No.Rekening<span class="mandatory">*</span></label>
                             <input type="number" name="no_rek" id="no_rek" class="form-control"
-                                value="{{ old('no_rek') }}">
+                                value="{{ old('no_rek') }}"  placeholder="161293912">
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="nama_rek">Pemilik Rekening<span class="mandatory">*</span></label>
                             <input type="text" name="nama_rek" id="nama_rek" class="form-control"
-                                value="{{ old('nama_rek') }}">
+                                value="{{ old('nama_rek') }}" placeholder="Masukkan nama pemilik rekening">
                         </div>
                     </form>
                 </div>
@@ -597,22 +596,16 @@
                         <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
 
                         <div class="form-group mb-2">
-                            <label for="bank">Bank<span class="mandatory">*</span></label>
-                            <input type="text" name="bank" id="bank" class="form-control"
-                                value="{{ old('bank') }}">
+                            <label for="alamat">Alamat<span class="mandatory">*</span></label>
+                            <input type="text" name="alamat" id="alamat" class="form-control"
+                                value="{{ old('alamat') }}" placeholder="Masukkan alamat">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="deskripsi_alamat">Alamat Detail<span class="mandatory">*</span></label>
+                            <textarea class="form-control" rows="10" id="deskripsi_alamat" name="deskripsi_alamat"
+                                placeholder="Masukkan alamat detail">{{ old('deskripsi_alamat') }}</textarea>
                         </div>
 
-                        <div class="form-group mb-2">
-                            <label for="no_rek">No.Rekening<span class="mandatory">*</span></label>
-                            <input type="number" name="no_rek" id="no_rek" class="form-control"
-                                value="{{ old('no_rek') }}">
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label for="nama_rek">Pemilik Rekening<span class="mandatory">*</span></label>
-                            <input type="text" name="nama_rek" id="nama_rek" class="form-control"
-                                value="{{ old('nama_rek') }}">
-                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -745,15 +738,13 @@
         document.querySelectorAll('.edit-btn-kirim-hadiah').forEach(function(button) {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                var bank = this.getAttribute('data-bank');
-                var no_rek = this.getAttribute('data-no_rek');
-                var nama_rek = this.getAttribute('data-nama_rek');
+                var alamat = this.getAttribute('data-alamat');
+                var deskripsi_alamat = this.getAttribute('data-deskripsi_alamat');
 
                 // Populate form with existing data
                 document.getElementById('kirimHadiahId').value = id; // Set ID
-                document.getElementById('bank').value = bank;
-                document.getElementById('no_rek').value = no_rek;
-                document.getElementById('nama_rek').value = nama_rek;
+                document.getElementById('alamat').value = alamat;
+                document.getElementById('deskripsi_alamat').value = deskripsi_alamat;
 
                 // Set the form action to the update route
                 document.getElementById('formKirimHadiah').action =

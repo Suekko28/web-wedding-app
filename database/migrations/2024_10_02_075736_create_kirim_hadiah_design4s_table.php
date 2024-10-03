@@ -12,9 +12,8 @@ return new class extends Migration {
     {
         Schema::create('kirim_hadiah_design4', function (Blueprint $table) {
             $table->id();
-            $table->string('bank');
-            $table->integer('no_rek');
-            $table->string('nama_rek');
+            $table->string('alamat');
+            $table->text('deskripsi_alamat');
             $table->unsignedBigInteger('informasi_design4_id');
             $table->foreign('informasi_design4_id')
                 ->references('id')

@@ -61,7 +61,7 @@ class InformasiDesign4Controller extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**

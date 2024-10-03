@@ -18,6 +18,13 @@
     <script src="fancybox.umd.js"></script>
     <link rel="stylesheet" href="fancybox.css" />
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <!-- CSS Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- JS Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <title>JejakKebahagiaan</title>
 
     <!-- BOOTSTRAP 5 CSS -->
@@ -44,20 +51,16 @@
                     <p>Kepada Yth</p>
                     <p>Bapak/Ibu/Saudara/i</p>
                 </div>
-                <h3>Nama Tamu</h3>
-                <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas"
-                    href="{{ route('wedding-design3-preview', [
-                        'nama_mempelai_laki' => $nama_mempelai_laki,
-                        'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
-                        // 'nama_undangan' => $nama_undangan // Pastikan $nama_undangan telah diberikan nilai sebelumnya
-                    ]) }}">Buka
+                <h3>!! Nama Undangan !!</h3>
+                <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas">Buka
                     Undangan</a>
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/Sample-BG.jpg') }}" alt="background">
+            <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
+                alt="background">
         </div>
     </div>
     <audio id="track">
-        <source src="{{ asset('img/sweet.mp3') }}" type="audio/mpeg" />
+        <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
     <button id="button" class="btn-float">
         <i class="bi bi-volume-up"></i>
@@ -72,24 +75,28 @@
                     <img src="{{ asset('img/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
                 <a href="#perjalanan-cinta">
-                    <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
+                    <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
                 </a>
                 <a href="#gallery">
+                    <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
+                </a>
+                <a href="#jadwal-pernikahan">
                     <img src="{{ asset('img/calendar-icon.svg') }}" alt="jadwal-pernikahan">
                 </a>
-                <a href="#kedua-mempelai">
-                    <img src="{{ asset('img/chat-icon.svg') }}" alt="kedua-mempelai">
+                <a href="#doa-ucapan">
+                    <img src="{{ asset('img/chat-icon.svg') }}" alt="doa-ucapan">
                 </a>
             </li>
         </ul>
     </nav>
-    <img class="background-template object-fit-cover" src="{{ asset('img/Sample-BG.jpg') }}" alt="background">
+    <img class="background-template object-fit-cover" src="{{ Storage::url('' . $data->foto_prewedding) }}"
+        alt="background">
     <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
         <div class="title">
             <p>Pernikahan</p>
-            <h2>Ndaru & Lili</h2>
+            <h2>{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h2>
         </div>
         <div class="wedding-timer">
             <div id="timer">
@@ -119,7 +126,8 @@
                 </div>
             </div>
             <div class="date">
-                <p>Kamis, 29 Oktober 2024</p>
+                <p>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
+                </p>
             </div>
         </div>
         <div class="background-overlay"></div>
@@ -130,17 +138,17 @@
     <section class="animation kedua-mempelai" id="kedua-mempelai">
         <div class="anm_mod bottom-bit fast mempelai-cover">
             <div class="mempelai-wanita">
-                <img class="anm_mod left fast mempelai-wanita-img" src="{{ asset('img/mempelai-wanita.jpg') }}"
-                    alt="Seserahan">
+                <img class="anm_mod left fast mempelai-wanita-img"
+                    src="{{ Storage::url('' . $data->foto_mempelai_perempuan) }}" alt="Seserahan">
                 <div class="anm_mod bottom fast detail-mempelai-wanita">
                     <div class="data-mempelai-wanita">
                         <span class="label">PENGANTIN WANITA</span>
-                        <h2>Lili</h2>
-                        <p>Anak dari Bapak Rudi dan Ibu Risma</p>
+                        <h2>{{ $data->nama_mempelai_perempuan }}</h2>
+                        <p>Anak dari bapak {{ $data->putri_dari_bpk }} dan ibu {{ $data->putri_dari_ibu }}</p>
                     </div>
-                    <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
+                    <a href="{{ $data->link_instagram1 }}" target="_blank" class="btn-link">
                         <img src="{{ asset('img/instagram-logo.svg') }}" alt="instagram">
-                        <span>lili</span>
+                        <span>{{ $data->nama_instagram1 }}</span>
                     </a>
                 </div>
             </div>
@@ -149,15 +157,15 @@
                 <div class="anm_mod bottom fast detail-mempelai-pria">
                     <div class="data-mempelai-pria">
                         <span class="label">PENGANTIN PRIA</span>
-                        <h2>Ndaru</h2>
-                        <p>Anak dari Bapak Budi dan Ibu Irma</p>
+                        <h2>{{ $data->nama_mempelai_laki }}</h2>
+                        <p>Anak dari bapak {{ $data->putra_dari_bpk }} dan ibu {{ $data->putra_dari_ibu }}</p>
                     </div>
-                    <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
+                    <a href="{{ $data->link_instagram2 }}" target="_blank" class="btn-link">
                         <img src="{{ asset('img/instagram-logo.svg') }}" alt="instagram">
-                        <span>Ndaru</span>
+                        <span>{{ $data->nama_instagram2 }}</span>
                     </a>
                 </div>
-                <img class="anm_mod right fast mempelai-wanita-img" src="{{ asset('img/mempelai-pria.jpg') }}"
+                <img class="anm_mod right fast mempelai-wanita-img"src="{{ Storage::url('' . $data->foto_mempelai_laki) }}"
                     alt="Seserahan">
             </div>
         </div>
@@ -179,46 +187,24 @@
                         aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('img/mempelai-pria.jpg') }}" class="d-block story-img object-fit-cover"
-                            alt="story">
-                        <div class="carousel-caption d-md-block">
-                            <div class="story-detail">
-                                <span class="vertical-line"></span>
-                                <span class="label">12 Januari 2024</span>
-                                <h3>Pertemuan Pertama</h3>
-                                <p>Pertemuan pertama yang singkat tapi sangat berkesan</p>
-                                <span class="vertical-line"></span>
+                    @foreach ($data->PerjalananCintaDesign4 as $key => $perjalanan)
+                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                            <img src="{{ Storage::url('' . $perjalanan->image1) }}"
+                                class="d-block story-img object-fit-cover" alt="story">
+                            <div class="carousel-caption d-md-block">
+                                <div class="story-detail">
+                                    <span class="vertical-line"></span>
+                                    <span
+                                        class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $perjalanan->tanggal)->format('d-m-Y') }}</span>
+                                    <h3>{{ $perjalanan->judul_cerita }}</h3>
+                                    <p>{{ $perjalanan->deskripsi }}</p>
+                                    <span class="vertical-line"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img/mempelai-wanita.jpg') }}" class="d-block story-img object-fit-cover"
-                            alt="story">
-                        <div class="carousel-caption d-md-block">
-                            <div class="story-detail">
-                                <span class="vertical-line"></span>
-                                <span class="label">12 Januari 2024</span>
-                                <h3>Pertemuan Pertama</h3>
-                                <p>Pertemuan pertama yang singkat tapi sangat berkesan</p>
-                                <span class="vertical-line"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img/mempelai-pria.jpg') }}" class="d-block story-img object-fit-cover"
-                            alt="story">
-                        <div class="carousel-caption d-md-block">
-                            <div class="story-detail">
-                                <span class="vertical-line"></span>
-                                <span class="label">12 Januari 2024</span>
-                                <h3>Pertemuan Pertama</h3>
-                                <p>Pertemuan pertama yang singkat tapi sangat berkesan</p>
-                                <span class="vertical-line"></span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -297,13 +283,15 @@
             </div>
         </div>
     </section>
+
+
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->
     <section class="animation jadwal-pernikahan" id="jadwal-pernikahan">
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
             <h3 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h3>
-            <img src="{{ asset('img/mempelai-wanita.jpg') }}"
+            <img src="{{ Storage::url('' . $data->akad_img) }}"
                 class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
@@ -312,28 +300,30 @@
                                 <div class="info">
                                     <img src="{{ asset('img/calendar-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">Sabtu, 4 Mei 2024</span>
+                                        <span
+                                            class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                                     </div>
                                 </div>
                                 <div class="info">
                                     <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">10.00 - 12.00 WIB</span>
+                                        <span class="label">
+                                            {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} WIB -
+                                            {{ \Carbon\Carbon::parse($data->selesai_akad)->format('H:i') }} WIB</span>
                                     </div>
                                 </div>
                                 <div class="info">
                                     <img src="{{ asset('img/location-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">Masjid Salman Al-Farisi</span>
-                                        <p>Jl. Komp. Bulog Jl. H. Ten Raya No.14 7 14, RT.14/RW.7, Kayu Putih,Kec. Pulo
-                                            Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta</p>
+                                        <span class="label">{{ $data->lokasi_akad }}</span>
+                                        <p>{{ $data->deskripsi_akad }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="button-button">
-                                <a type="button" target="_blank" href="https://www.w3schools.com"
+                                <a type="button" target="_blank" href="{{ $data->link_akad }}"
                                     class="btn-secondary">Lihat Lokasi</a>
-                                <a type="button" target="_blank" href="https://www.w3schools.com"
+                                <a type="button" target="_blank" href="{{ $data->simpan_tgl_akad }}"
                                     class="btn-primary">Simpan Tanggal</a>
                             </div>
                 </div>
@@ -344,41 +334,45 @@
                                 <div class="info">
                                     <img src="{{ asset('img/calendar-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">Sabtu, 4 Mei 2024</span>
+                                        <span
+                                            class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                                     </div>
                                 </div>
                                 <div class="info">
                                     <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">10.00 - 12.00 WIB</span>
+                                        <span class="label">
+                                            {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} WIB -
+                                            {{ \Carbon\Carbon::parse($data->selesai_resepsi)->format('H:i') }}
+                                            WIB</span>
                                     </div>
                                 </div>
                                 <div class="info">
                                     <img src="{{ asset('img/location-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">Masjid Salman Al-Farisi</span>
-                                        <p>Jl. Komp. Bulog Jl. H. Ten Raya No.14 7 14, RT.14/RW.7, Kayu Putih,Kec. Pulo
-                                            Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta</p>
+                                        <span class="label">{{ $data->lokasi_resepsi }}</span>
+                                        <p>{{ $data->deskripsi_resepsi }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="button-button">
-                                <a type="button" target="_blank" href="https://www.w3schools.com"
+                                <a type="button" target="_blank" href="{{ $data->link_resepsi }}"
                                     class="btn-secondary">Lihat Lokasi</a>
-                                <a type="button" target="_blank" href="https://www.w3schools.com"
+                                <a type="button" target="_blank" href="{{ $data->simpan_tgl_resepsi }}"
                                     class="btn-primary">Simpan Tanggal</a>
                             </div>
                 </div>
             </div>
-            <div class="anm_mod bottom-bit fast live-streaming">
-                <div class="detail-info">
-                    <h3>Live Streaming</h3>
-                    <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
-                        siaran langsung secara live virtual di platform berikut</p>
-                </div>
-                <a type="button" target="_blank" href="https://www.w3schools.com" class="btn-secondary">Buka
-                    Link</a>
+        </div>
+        <div class="anm_mod bottom-bit fast live-streaming">
+            <div class="detail-info">
+                <h3>Live Streaming</h3>
+                <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
+                    siaran langsung secara live virtual di platform berikut</p>
             </div>
+            <a type="button" target="_blank" href="https://www.w3schools.com" class="btn-secondary">Buka
+                Link</a>
+        </div>
         </div>
     </section>
     <!-- JADWAL PERNIKAHAN END -->
@@ -390,46 +384,46 @@
             <div class="container-inner anm_mod bottom-bit fast">
                 <div class="container-dashboard anm_mod bottom-bit fast">
                     <div class="card-dashboard-hadir">
-                        <h3>5</h3>
+                        <h3>0</h3> <!-- Menampilkan jumlah hadir -->
                         <p>Hadir</p>
                     </div>
                     <div class="card-dashboard-tidakhadir">
-                        <h3>5</h3>
+                        <h3>0</h3> <!-- Menampilkan jumlah tidak hadir -->
                         <p>Tidak Hadir</p>
                     </div>
                 </div>
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
-                        <form id="algin-form">
+                        <form id="algin-form" class="rsvp-mobile3">
                             <div class="form-group">
                                 <label for="name">Nama</label>
-                                <input placeholder="Masukkan nama lengkap" type="text" name="name"
-                                    id="fullname" class="form-control">
+                                <input placeholder="Masukkan nama lengkap" type="text" name="nama"
+                                    id="fullname" class="form-control" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="message">Ucapan</label>
-                                <textarea placeholder="Masukkan kalimat ucapan" name="msg" id=""msg cols="30" rows="5"
-                                    class="form-control"></textarea>
+                                <textarea placeholder="Masukkan kalimat ucapan" name="ucapan" id="msg" cols="30" rows="5"
+                                    class="form-control" disabled></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="name">Konfirmasi Kehadiran</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" name="kehadiran"
+                                        id="flexRadioDefault1" value="1" disabled>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Hadir
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault2" checked>
+                                    <input class="form-check-input" type="radio" name="kehadiran"
+                                        id="flexRadioDefault2" checked value="0" disabled>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Tidak Hadir
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="button" id="post" class="btn-primary">Kirim</button>
+                                <button type="submit" id="post" class="btn-primary">Kirim</button>
                             </div>
                         </form>
                     </div>
@@ -447,6 +441,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="kirim-hadiah anm_mod bottom-bit fast">
                 <div class="info">
@@ -468,54 +463,57 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">BCA</h4>
-                                <div class="info-norek">
-                                    <p id="first">0660580697</p>
-                                    <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
+                        @foreach ($data->DirectTransferDesign4 as $item)
+                            <div class="card">
+                                <div class="card-body">
+                                    @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
+                                        @if (!empty($item->bank))
+                                            <h4 class="card-title">{{ $item->bank }}</h4>
+                                        @endif
+                                        <div class="info-norek">
+                                            @if (!empty($item->no_rek))
+                                                <p id="first">{{ $item->no_rek }}</p>
+                                            @endif
+                                            <a id="first-button" onclick="copyText('first');" title="Copy Text"
+                                                class="btn-ghost">
+                                                Copy
+                                            </a>
+                                        </div>
+                                        @if (!empty($item->nama_rek))
+                                            <p class="card-text">A/N {{ $item->nama_rek }}</p>
+                                        @endif
                                 </div>
-                                <p class="card-text">A/N Eka Syafitry Dewi</p>
-                            </div>
-                        </div>
+                        @endif
+                    </div>
+                    @endforeach
+
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    @foreach ($data->KirimHadiahDesign4 as $item)
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">BCA</h4>
-                                <div class="info-norek">
-                                    <p id="second">09999</p>
-                                    <a id="second-button" onclick="copyText('second');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
-                                </div>
-                                <p class="card-text">A/N Eka Syafitry Dewi</p>
+                                @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
+                                    <h4 class="card-title">{{ $item->alamat }}</h4>
+                                    <p class="card-text">{{ $item->deskripsi_alamat }}</p>
+                                @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                        aria-labelledby="pills-profile-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Rumah</h4>
-                                <p class="card-text">Jl. Hos Cokroaminoto, Kuripan Lor Gg. 16 No.5, Kec. Pekalongan
-                                    Selatan, Kota Pekalongan, Jawa Tengah 51136</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
+
         </div>
     </section>
+
     <!-- DOA & UCAPAN -->
 
     <!-- ENDING -->
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">Lily & Ndaru</h4>
+            <h4 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_laki }} &
+                {{ $data->nama_mempelai_perempuan }}</h4>
         </div>
         <div class="overlay-bottom"></div>
     </section>
@@ -763,6 +761,43 @@
     </script>
     <script src="js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
+    <script>
+        function updateTimer(tgl_akad) {
+            future = Date.parse(tgl_akad);
+            now = new Date();
+            diff = future - now;
+
+            if (diff <= 0) {
+                // Waktu telah berlalu, atur semua nilai menjadi 0
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // Format nilai untuk menambahkan angka 0 di depan jika nilainya < 10
+            days = (days < 10) ? "0" + days : days;
+            hours = (hours < 10) ? "0" + hours : hours;
+            mins = (mins < 10) ? "0" + mins : mins;
+            secs = (secs < 10) ? "0" + secs : secs;
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = mins;
+            document.getElementById("seconds").innerText = secs;
+        }
+
+        // Memanggil updateTimer() saat halaman dimuat dengan tanggal akad dari PHP
+        updateTimer("{{ $data->tgl_akad }}");
+        setInterval(updateTimer.bind(null, "{{ $data->tgl_akad }}"), 1000);
+    </script>
+
 </body>
 
 </html>

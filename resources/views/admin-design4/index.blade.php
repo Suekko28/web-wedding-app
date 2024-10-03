@@ -85,12 +85,15 @@
                                                 <i class="fa fa-circle-info" style="color:white;"></i>
                                             </a>
                                             <a href="{{ route('wedding-design4-home-preview', [
-                                                'nama_mempelai_pria' => $item->nama_pasangan,
-                                                'nama_mempelai_perempuan' => $item->nama_mempelai_perempuan,
+                                                'nama_mempelai_laki' => $item->KontenDesign4->first()->nama_mempelai_laki ?? 'Unknown',
+                                                'nama_mempelai_perempuan' => $item->KontenDesign4->first()->nama_mempelai_perempuan ?? 'Unknown',
                                             ]) }}"
                                                 target="_blank" class="btn btn-primary rounded mb-2">
                                                 <i class="fa fa-eye" style="color:white;"></i>
                                             </a>
+
+
+
                                         </div>
                                     </td>
                                 </tr>

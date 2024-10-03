@@ -414,19 +414,7 @@
                                                 <td>{{ $item->bank }}</td>
                                                 <td>{{ $item->no_rek }}</td>
                                                 <td>{{ $item->nama_rek }}</td>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded edit-btn-direct-transfer"
-                                                        data-id="{{ $item->id }}" data-bank="{{ $item->bank }}"
-                                                        data-no_rek="{{ $item->no_rek }}"
-                                                        data-nama_rek="{{ $item->nama_rek }}">
-                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
-                                                    </a>
-                                                    <button class="btn btn-danger delete-btn-direct-transfer rounded mb-2"
-                                                        data-id="{{ $item->id }}">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </td>
+                                                
                                             </tr>
                                             <?php $i++; ?>
                                         @endforeach
@@ -442,9 +430,8 @@
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
-                                            <th>Bank</th>
-                                            <th>No.Rekening</th>
-                                            <th>Pemilik Rekening</th>
+                                            <th>Alamat</th>
+                                            <th>Alamat Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -452,22 +439,8 @@
                                         @foreach ($dataKirimHadiah as $item)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                <td>{{ $item->bank }}</td>
-                                                <td>{{ $item->no_rek }}</td>
-                                                <td>{{ $item->nama_rek }}</td>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded edit-btn-direct-transfer"
-                                                        data-id="{{ $item->id }}" data-bank="{{ $item->bank }}"
-                                                        data-no_rek="{{ $item->no_rek }}"
-                                                        data-nama_rek="{{ $item->nama_rek }}">
-                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
-                                                    </a>
-                                                    <button class="btn btn-danger delete-btn-kirim-hadiah rounded mb-2"
-                                                        data-id="{{ $item->id }}">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </td>
+                                                <td>{{ $item->alamat }}</td>
+                                                <td>{{ $item->deskripsi_alamat }}</td>
                                             </tr>
                                             <?php $i++; ?>
                                         @endforeach

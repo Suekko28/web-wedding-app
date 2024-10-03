@@ -24,7 +24,6 @@ class DirectTransferDesign4FormRequest extends FormRequest
         return [
             'bank' => [
                 'required',
-                'string',
                 'max:255',
             ],
             'no_rek' => [
@@ -33,7 +32,6 @@ class DirectTransferDesign4FormRequest extends FormRequest
             ],
             'nama_rek' => [
                 'required',
-                'string',
                 'max:255',
             ],
         ];
