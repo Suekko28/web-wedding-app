@@ -20,7 +20,7 @@
                         <form action="{{ route('nama-undangan-store4', ['id' => $weddingDesign4Id]) }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="wedding_design3_id" value="{{ $weddingDesign4->id }}">
+                            <input type="hidden" name="wedding_design4_id" value="{{ $weddingDesign4->id }}">
                             <div class="card-body container bg-white mt-5">
                                 <div class="mempelai text-center fw-bold fs-5">Nama Undangan</div>
                                 <div class="fs-3">

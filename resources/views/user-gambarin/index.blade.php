@@ -5,8 +5,8 @@
         <section class="blog-hero" id="blog-hero">
             <div class="d-flex flex-wrap">
                 <div class="col-12 col-lg-6 align-content-center">
-                    <h4 class="text-black">Bikin Doi Makin Happy Bersama Kami</h4>
-                    <span>Undangan Digital</span>
+                    <h4 class="text-black">Kreasikan Setiap Momentmu</h4>
+                    <span>Ciptakan setiap momen yang terabadikan dalam foto yang dikreasikan</span>
                 </div>
                 <div class="col-12 col-lg-6 blog-hero-img">
                 </div>
