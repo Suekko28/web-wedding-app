@@ -17,8 +17,6 @@
     </div> --}}
     <div id="main-wrapper">
 
-        @auth
-            @if (auth()->user()->role === 1 || 2)
                 <div id="main-wrapper">
                     @if (
                         !request()->routeIs(
@@ -98,8 +96,6 @@
         <div class="dark-transparent sidebartoggler"></div>
         @include('layouts.scripts')
         @yield('scripts')
-        @endif
-    @endauth
 </body>
 
 </html>
