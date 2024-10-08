@@ -204,11 +204,11 @@
                                                         data-tanggal="{{ $item->tanggal }}"
                                                         data-judul="{{ $item->judul_cerita }}"
                                                         data-deskripsi="{{ $item->deskripsi }}"
-                                                        data-image1="{{ $item->image1 }}"
-                                                        data-image2="{{ $item->image2 }}">
-
+                                                        data-image1="{{ Storage::url($item->image1) }}"
+                                                        data-image2="{{ Storage::url($item->image2) }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
+
                                                     <button class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
                                                         data-id="{{ $item->id }}">
                                                         <i class="fa fa-trash"></i>
@@ -483,19 +483,17 @@
                         <div class="form-group mb-2">
                             <label for="image1">Image<span class="mandatory">*</span></label>
                             <input type="file" name="image1" id="image1" class="form-control">
-                            <div id="currentImage1Container" class="mt-2">
-                                <img id="currentImage1" class="img-thumbnail" src="" alt="Current Image 1"
-                                    width="120" style="display:none;">
-                            </div>
+                            <!-- Current Image Preview -->
+                            <img id="currentImage1" class="img-thumbnail mt-2" src="" alt="Current Image 1"
+                                width="120" style="display: none;">
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="image2">Foto<span class="mandatory">*</span></label>
                             <input type="file" name="image2" id="image2" class="form-control">
-                            <div id="currentImage2Container" class="mt-2">
-                                <img id="currentImage2" class="img-thumbnail" src="" alt="Current Image 2"
-                                    width="120" style="display:none;">
-                            </div>
+                            <!-- Current Image Preview -->
+                            <img id="currentImage2" class="img-thumbnail mt-2" src="" alt="Current Image 2"
+                                width="120" style="display: none;">
                         </div>
 
                         <div class="form-group mb-2">
@@ -507,7 +505,7 @@
                         <div class="form-group mb-2">
                             <label for="judul_cerita">Judul Cerita<span class="mandatory">*</span></label>
                             <input type="text" name="judul_cerita" id="judul_cerita" class="form-control"
-                                value="{{ old('judul_cerita') }}" placeholder="Masukkan judul cerita"> 
+                                value="{{ old('judul_cerita') }}" placeholder="Masukkan judul cerita">
                         </div>
 
                         <div class="form-group mb-2">
@@ -519,7 +517,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary" form="formPerjalananCinta">Simpan</button>
-                    <!-- Updated here -->
                 </div>
             </div>
         </div>
@@ -550,13 +547,13 @@
                         <div class="form-group mb-2">
                             <label for="bank">Bank<span class="mandatory">*</span></label>
                             <input type="text" name="bank" id="bank" class="form-control"
-                                value="{{ old('bank') }}"  placeholder="Masukkan nama bank">
+                                value="{{ old('bank') }}" placeholder="Masukkan nama bank">
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="no_rek">No.Rekening<span class="mandatory">*</span></label>
                             <input type="number" name="no_rek" id="no_rek" class="form-control"
-                                value="{{ old('no_rek') }}"  placeholder="161293912">
+                                value="{{ old('no_rek') }}" placeholder="161293912">
                         </div>
 
                         <div class="form-group mb-2">
@@ -642,31 +639,23 @@
                 var tanggal = this.getAttribute('data-tanggal');
                 var judul_cerita = this.getAttribute('data-judul');
                 var deskripsi = this.getAttribute('data-deskripsi');
-
-                // Data gambar
-                var image1 = this.getAttribute('data-image1');
-                var image2 = this.getAttribute('data-image2');
+                var image1 = this.getAttribute('data-image1'); // Add this line
+                var image2 = this.getAttribute('data-image2'); // Add this line
 
                 // Populate form with existing data
-                document.getElementById('perjalananCintaId').value = id;
+                document.getElementById('perjalananCintaId').value = id; // Set ID
                 document.getElementById('tanggal').value = tanggal;
                 document.getElementById('judul_cerita').value = judul_cerita;
                 document.getElementById('deskripsi').value = deskripsi;
 
-                // Show the current images if available
-                if (image1) {
-                    document.getElementById('currentImage1').src = `/storage/${image1}`;
-                    document.getElementById('currentImage1').style.display = 'block';
-                } else {
-                    document.getElementById('currentImage1').style.display = 'none';
-                }
+                // Set the image previews
+                var currentImage1 = document.getElementById('currentImage1');
+                var currentImage2 = document.getElementById('currentImage2');
 
-                if (image2) {
-                    document.getElementById('currentImage2').src = `/storage/${image2}`;
-                    document.getElementById('currentImage2').style.display = 'block';
-                } else {
-                    document.getElementById('currentImage2').style.display = 'none';
-                }
+                currentImage1.src = image1; // Set current image src
+                currentImage1.style.display = image1 ? 'block' : 'none'; // Show if image exists
+                currentImage2.src = image2; // Set current image src
+                currentImage2.style.display = image2 ? 'block' : 'none'; // Show if image exists
 
                 // Set the form action to the update route
                 document.getElementById('formPerjalananCinta').action =

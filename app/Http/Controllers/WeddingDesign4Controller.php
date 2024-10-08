@@ -43,8 +43,11 @@ class WeddingDesign4Controller extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
+        // Mengambil data mempelai pria
+        $dataMempelaiPria = WeddingDesign4::where('informasi_design4_id', $informasiDesign4Id)->first();
+
         // Kirimkan data yang sesuai ke view
-        return view('admin-design4.create', compact('informasiDesign4Id', 'informasiDesign4', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah'));
+        return view('admin-design4.create', compact('informasiDesign4Id', 'dataMempelaiPria', 'informasiDesign4', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah'));
     }
 
     /**
@@ -160,6 +163,8 @@ class WeddingDesign4Controller extends Controller
 
         $informasiDesign4 = InformasiDesign4::findOrFail($data->informasi_design4_id);
 
+        $nama_undangan = $data->namaUndangan;
+
         $dataPerjalananCinta = PerjalananCintaDesign4::where('informasi_design4_id', $informasiDesign4->id)
             ->orderBy('id', 'desc')
             ->paginate(10);
@@ -175,11 +180,11 @@ class WeddingDesign4Controller extends Controller
         // Pass all the necessary data to the view
         return view('admin-design4.show', [
             'data' => $data,
-            'nama_undangan' => $data->namaUndangan,
             'informasiDesign4' => $informasiDesign4,
             'dataPerjalananCinta' => $dataPerjalananCinta,
             'dataDirectTransfer' => $dataDirectTransfer,
-            'dataKirimHadiah' => $dataKirimHadiah
+            'dataKirimHadiah' => $dataKirimHadiah,
+            'nama_undangan' => $nama_undangan
         ]);
     }
 
