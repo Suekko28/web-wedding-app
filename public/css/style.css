@@ -452,11 +452,6 @@ a {
     color: #292929 !important;
 }
 
-.blog-hero-img {
-    height: 480px;
-    background-color: #c0baba;
-}
-
 .blog-image {
     height: 554px;
     overflow: hidden;
@@ -631,13 +626,6 @@ a {
 @media (max-width: 1390px) {
     .blog .container-custom .over {
         overflow-x: scroll !important;
-    }
-}
-
-@media (max-width: 570px) {
-    .blog-hero {
-        padding: 32px;
-        padding-top: 120px;
     }
 }
 

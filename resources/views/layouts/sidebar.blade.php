@@ -1,9 +1,9 @@
 <!-- ---------------------------------- -->
 <!-- Start Vertical Layout Sidebar -->
 <!-- ---------------------------------- -->
-<div class="brand-logo d-flex align-items-center justify-content-between">
+<div class="brand-logo d-flex align-items-center justify-content-center">
     <a href="{{route('dashboard')}}" class="text-nowrap logo-img">
-        <img src="{{ asset('img/logo.png') }}" alt="logo">
+        <img src="{{ asset('img/Jejak-Kebahagiaan_Logo-Full.svg') }}" alt="logo">
     </a>
     <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
         <i class="ti ti-x"></i>

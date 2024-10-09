@@ -9,6 +9,7 @@
                     <span>Joko Pinurbo</span>
                 </div>
                 <div class="col-12 col-lg-6 blog-hero-img">
+                    <img class="img-fluid" src="{{ asset('img/Banner_Seserahan.png') }}" alt="Foto Seserahan">
                 </div>
             </div>
         </section>

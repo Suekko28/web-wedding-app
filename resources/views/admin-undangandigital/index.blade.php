@@ -10,7 +10,7 @@
             <h4 class="card-title mb-0">Basic Table</h4>
         </div> --}}
         <div class="card-body">
-            <a class="btn btn-primary mb-3" href="{{ url('undangandigital/create') }}">+ Buat Undangan Digital</a>
+            <a class="btn btn-primary mb-3" href="{{ url('undangandigital/create') }}">+ Produk</a>
             @include('layouts.message')
             <div class="search">
                 <div class="mb-3">
@@ -26,7 +26,7 @@
                         <tr class="text-nowrap text-center">
                             {{-- <th><input type="checkbox" id="selectAll"></th> --}}
                             <th>No</th>
-                            <th>ID Undangan Digital</th>
+                            <th>Id Produk</th>
                             {{-- <th>Nama Undangan</th> --}}
                             <th>Foto</th>
                             <th>Judul</th>
@@ -80,7 +80,7 @@
 
                                 </td>
                                 <td>
-                                    <div class="btn-group-vertical">
+                                    <div class="btn-group-horizontal">
                                         <a href="{{ url('undangandigital/' . $item->id) . '/edit' }}"
                                             class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
                                                 style="color:white;"></i></a>

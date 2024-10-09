@@ -25,7 +25,7 @@
                         <thead>
                             <tr class="text-nowrap text-center">
                                 <th>No</th>
-                                <th>ID Wedding</th>
+                                <th>Id Wedding</th>
                                 <th>Nama Pasangan</th>
                                 <th>Tanggal Pernikahan</th>
                                 <th>Konten Undangan</th>
@@ -41,18 +41,18 @@
                                     <td scope="row">{{ $i }}</td>
                                     <td>{{ $item->id_weddingdesign4 }}</td>
                                     <td>
-                                        <p>{{ $item->nama_pasangan }}</p>
+                                        {{ $item->nama_pasangan }}
                                     </td>
                                     <td>
                                         {{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->tgl_pernikahan)->format('d-m-Y') }}
                                     </td>
                                     <td>
                                         @if ($item->KontenDesign4->isEmpty())
-                                            <a class="btn btn-primary mb-3"
+                                            <a class="btn btn-primary"
                                                 href="{{ route('form-design4.create', ['id' => $item->id]) }}">Buat
                                                 Konten</a>
                                         @else
-                                            <a class="btn btn-secondary mb-3"
+                                            <a class="btn btn-secondary"
                                                 href="{{ route('form-design4.edit', ['informasiDesign4Id' => $item->KontenDesign4->first()->informasi_design4_id, 'id' => $item->KontenDesign4->first()->id]) }}">
                                                 Edit Konten
                                             </a>
@@ -60,7 +60,7 @@
                                     </td>
 
                                     <td>
-                                        <a class="btn btn-primary mb-3 {{ $item->KontenDesign4->isEmpty() ? 'disabled' : '' }}"
+                                        <a class="btn btn-primary {{ $item->KontenDesign4->isEmpty() ? 'disabled' : '' }}"
                                             href="{{ route('nama-undangan-list4', ['id' => $item]) }}" target="_blank">
                                             Buat Tamu
                                         </a>
@@ -69,7 +69,7 @@
                                         {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
                                     </td>
                                     <td>
-                                        <div class="btn-group-vertical">
+                                        <div class="btn-group-horizontal">
                                             <a href="javascript:void(0)" class="btn btn-warning mb-2 rounded edit-btn"
                                                 data-id="{{ $item->id }}"
                                                 data-nama-pasangan="{{ $item->nama_pasangan }}"

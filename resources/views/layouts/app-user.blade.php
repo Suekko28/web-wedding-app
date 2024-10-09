@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/scss/styles.scss'])
 
     <!-- Meta Title -->
     <title>Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!</title>
@@ -23,7 +24,7 @@
     <meta property="og:title" content="Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!">
     <meta property="og:description"
         content="Solusi terbaik dalam persiapan pernikahan dari Hias Seserahan & Undangan Digital.">
-    <meta property="og:image" content="{{ asset('img/small-logo.jpg') }}">
+    <meta property="og:image" content="{{ asset('img/Jejak-Kebahagiaan_Favicon_64px.svg') }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
 
@@ -32,7 +33,7 @@
     <meta name="twitter:title" content="Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!">
     <meta name="twitter:description"
         content="Solusi terbaik dalam persiapan pernikahan dari Hias Seserahan & Undangan Digital.">
-    <meta name="twitter:image" content="{{ asset('img/small-logo.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('img/Jejak-Kebahagiaan_Favicon_64px.svg') }}">
 
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -40,10 +41,11 @@
 
     <!-- CSS STYLE -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
-    <link rel="shortcut icon" type="image/png" href="{{ asset('img/small-logo.jpg') }}"
+    <link rel="shortcut icon" type="image/png" href="{{ asset('img/Jejak-Kebahagiaan_Favicon_64px.svg') }}"
         alt="Logo JejakKebahagiaan - Undangan Digital dan Hias Seserahan" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
+
 
 
 <body>
@@ -51,7 +53,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
             <a class="nav-link trigger" href="{{ url('/') }}">
-                <img src="{{ asset('img/logo.png') }}" alt="logo">
+                <img src="{{ asset('img/Jejak-Kebahagiaan_Logo-Full.svg') }}" alt="logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
@@ -133,7 +135,7 @@
       "@type": "WeddingEvent",
       "name": "Undangan Digital & Hias Seserahan",
       "description": "Konsultasi gratis untuk undangan digital pernikahan dan hias seserahan.",
-      "image": "{{ asset('img/small-logo.jpg') }}",
+      "image": "{{ asset('img/Jejak-Kebahagiaan_Favicon_64px.svg') }}",
       "url": "{{ url()->current() }}",
       "organizer": {
         "@type": "Organization",

@@ -28,7 +28,7 @@ return new class extends Migration {
             $table->string('nama_instagram2');
             $table->string('link_instagram2');
             $table->text('quote');
-            $table->string('quote_img');
+            $table->text('quote_img');
             $table->string('akad_img');
             $table->date('tgl_akad');
             $table->time('mulai_akad');

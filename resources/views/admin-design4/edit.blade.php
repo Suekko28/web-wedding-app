@@ -218,7 +218,6 @@
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
-                                            <th>Image</th>
                                             <th>Foto</th>
                                             <th>Tanggal</th>
                                             <th>Judul Cerita</th>
@@ -233,8 +232,6 @@
                                                 <td>{{ $i }}</td>
                                                 <td><img class="img-thumbnail" src="{{ Storage::url($item->image1) }}"
                                                         alt="Image 1" width="120"></td>
-                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image2) }}"
-                                                        alt="Image 2" width="120"></td>
                                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                                 <td>{{ $item->judul_cerita }}</td>
                                                 <td>{{ $item->deskripsi }}</td>
@@ -245,8 +242,7 @@
                                                         data-tanggal="{{ $item->tanggal }}"
                                                         data-judul="{{ $item->judul_cerita }}"
                                                         data-deskripsi="{{ $item->deskripsi }}"
-                                                        data-image1="{{ Storage::url($item->image1) }}"
-                                                        data-image2="{{ Storage::url($item->image2) }}">
+                                                        data-image1="{{ Storage::url($item->image1) }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
 
@@ -550,18 +546,10 @@
                         <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
 
                         <div class="form-group mb-2">
-                            <label for="image1">Image<span class="mandatory">*</span></label>
+                            <label for="image1">Foto<span class="mandatory">*</span></label>
                             <input type="file" name="image1" id="image1" class="form-control">
                             <!-- Current Image Preview -->
-                            <img id="currentImage1" class="img-thumbnail mt-2" src="" alt="Current Image 1"
-                                width="120" style="display: none;">
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label for="image2">Foto<span class="mandatory">*</span></label>
-                            <input type="file" name="image2" id="image2" class="form-control">
-                            <!-- Current Image Preview -->
-                            <img id="currentImage2" class="img-thumbnail mt-2" src="" alt="Current Image 2"
+                            <img id="currentImage1" class="img-thumbnail mt-2" src="" alt="Current Image 2"
                                 width="120" style="display: none;">
                         </div>
 
@@ -710,7 +698,6 @@
                 var judul_cerita = this.getAttribute('data-judul');
                 var deskripsi = this.getAttribute('data-deskripsi');
                 var image1 = this.getAttribute('data-image1'); // Add this line
-                var image2 = this.getAttribute('data-image2'); // Add this line
 
                 // Populate form with existing data
                 document.getElementById('perjalananCintaId').value = id; // Set ID
@@ -720,12 +707,9 @@
 
                 // Set the image previews
                 var currentImage1 = document.getElementById('currentImage1');
-                var currentImage2 = document.getElementById('currentImage2');
 
                 currentImage1.src = image1; // Set current image src
                 currentImage1.style.display = image1 ? 'block' : 'none'; // Show if image exists
-                currentImage2.src = image2; // Set current image src
-                currentImage2.style.display = image2 ? 'block' : 'none'; // Show if image exists
 
                 // Set the form action to the update route
                 document.getElementById('formPerjalananCinta').action =

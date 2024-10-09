@@ -30,7 +30,6 @@
                             {{-- <th>Nama Undangan</th> --}}
                             <th>Foto</th>
                             <th>Judul</th>
-                            <th>Deskripsi</th>
                             <th>Created Date</th>
                             <th>Aksi</th>
                         </tr>
@@ -53,14 +52,13 @@
                                         width="120" height="120" alt="Foto Blog">
                                 </td>
                                 <td>{{ $item->judul }} </td>
-                                <td>{!! Str::limit($item->deskripsi, 300) !!} </td>
                                 </td>
                                 <td>
                                     {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
 
                                 </td>
                                 <td>
-                                    <div class="btn-group-vertical">
+                                    <div class="btn-group-horizontal">
                                         <a href="{{ url('blog/' . $item->id) . '/edit' }}"
                                             class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
                                                 style="color:white;"></i></a>

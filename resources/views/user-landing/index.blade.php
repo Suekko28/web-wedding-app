@@ -37,8 +37,8 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <img class="card-produk-img" src="{{ asset('img/Banner_Undangan-Digital.png') }}"
-                                alt="Seserahan">
+                            <img class="card-produk-img"
+                                src="{{ asset('img/JejakKebahagiaan_Tumbnail_Undangan-Digital.jpg') }}" alt="Seserahan">
                             <div class="card-produk-detail">
                                 <div class="card-produk-container-title">
                                     <div class="card-produk-title">Undangan Digital</div>
@@ -53,13 +53,14 @@
                     </div>
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <img class="card-produk-img" src="{{ asset('img/Banner_Cetak-Foto.png') }}"
+                            <img class="card-produk-img" src="{{ asset('img/JejakKebahagiaan_Tumbnail_Cetak-Foto.jpg') }}"
                                 alt="Seserahan">
                             <div class="card-produk-detail">
                                 <div class="card-produk-container-title">
-                                    <div class="card-produk-title">Paket Cetak Foto & Figura</div>
+                                    <div class="card-produk-title">Paket Cetak Foto</div>
                                 </div>
-                                <div class="card-produk-detail">Cetak moment spesialmu dalam figura</div>
+                                <div class="card-produk-detail">Cetak dan simpan moment spesialmu di dalam bingkai foto
+                                </div>
                                 <div class="action-button">
                                     <a href="{{ route('cetakfoto-view.index') }}" class="btn btn-secondary">Lihat Detail</a>
                                 </div>
@@ -68,13 +69,14 @@
                     </div>
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <img class="card-produk-img" src="{{ asset('img/Banner_Gambarin-Cetak.png') }}"
+                            <img class="card-produk-img" src="{{ asset('img/JejakKebahagiaan_Tumbnail_Gambarin.jpg') }}"
                                 alt="Seserahan">
                             <div class="card-produk-detail">
                                 <div class="card-produk-container-title">
-                                    <div class="card-produk-title">Gambarin & Cetak</div>
+                                    <div class="card-produk-title">Paket Cetak Kreasi Foto</div>
                                 </div>
-                                <div class="card-produk-detail">Kreasikan moment spesialmu di dalam figura</div>
+                                <div class="card-produk-detail">Cetak dan simpan hasil kreasi momentmu di dalam bingkai foto
+                                </div>
                                 <div class="action-button">
                                     <a href="{{ route('gambarin-view.index') }}" class="btn btn-secondary">Lihat Detail</a>
                                 </div>
@@ -83,7 +85,7 @@
                     </div>
                     <div class="col-sm-12 col-md-3">
                         <div class="card card-produk-custom">
-                            <img class="card-produk-img" src="{{ asset('img/Banner_Seserahan.jpeg') }}"
+                            <img class="card-produk-img" src="{{ asset('img/JejakKebahagiaan_Tumbnail_Seserahan.jpeg') }}"
                                 alt="Seserahan">
                             <div class="card-produk-detail">
                                 <div class="card-produk-container-title">
@@ -112,13 +114,13 @@
                         <a href="{{ route('blog-view.show', $item->id) }}" class="card card-blog-custom">
                             <div class="card card-blog-custom">
                                 <div class="card-blog-img">
-                                    <img class="rounded-4 img-fluid object-fit-cover"
+                                    <img class="rounded-4 img-fluid object-fit-cover h-100"
                                         src="{{ asset('storage/blog/' . $item->image) }}" alt="Foto Blog" width="100%"
                                         height="100%">
                                 </div>
                                 <div class="card-blog-detail">
                                     <div class="card-blog-container-title">
-                                        <div class="card-blog-date">{{ $item->created_at->format('d F Y') }}</div>
+                                        <div class="card-blog-date">{{ $item->created_at->locale('id')->translatedFormat('d F Y') }}</div>
                                         <div class="card-blog-title">{{ $item->judul }}</div>
                                     </div>
                                     <div class="card-blog-paragraph">{!! $item->deskripsi !!}</div>
@@ -126,13 +128,11 @@
                             </div>
                         </a>
                     </div>
+                    <div class="action-button">
+                        <a href="{{ route('blog-view.index') }}" class="btn btn-secondary">Lihat Selengkapnya</a>
+                    </div>
                 @endforeach
-
             </div>
-            <div class="action-button">
-                <a href="{{ route('blog-view.index') }}" class="btn btn-secondary">Lihat Selengkapnya</a>
-            </div>
-        </div>
         </div>
     </section>
     <!-- BLOG END -->
@@ -155,11 +155,11 @@
             <h4>Market Place</h4>
             <div class="market-place-button-container mt-3">
                 <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-market-place">
-                    <img src="{{ asset('img/tokopedia.png') }}" alt="tokopedia">
+                    <img src="{{ asset('img/Jejak-Kebahagiaan_Tokopedia.svg') }}" alt="tokopedia">
                     <span>tokopedia</span>
                 </a>
                 <a href="https://id.shp.ee/45Rpy1g" target="_blank" class="btn-market-place">
-                    <img src="{{ asset('img/shopee.png') }}" alt="shopee">
+                    <img src="{{ asset('img/Jejak-Kebahagiaan_Shopee.svg') }}" alt="shopee">
                     <span>Shopee</span>
                 </a>
             </div>

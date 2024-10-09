@@ -9,6 +9,7 @@
                     <span>Solusi untuk undangan pernikahanmu jadi lebih mudah dengan fitur yang lengkap</span>
                 </div>
                 <div class="col-12 col-lg-6 blog-hero-img">
+                    <img class="img-fluid" src="{{ asset('img/Banner_Undangan-Digital.png') }}" alt="Foto Undangan Digital">
                 </div>
             </div>
         </section>

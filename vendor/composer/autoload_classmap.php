@@ -797,6 +797,8 @@ return array(
     'Aws\\MarketplaceEntitlementService\\MarketplaceEntitlementServiceClient' => $vendorDir . '/aws/aws-sdk-php/src/MarketplaceEntitlementService/MarketplaceEntitlementServiceClient.php',
     'Aws\\MarketplaceMetering\\Exception\\MarketplaceMeteringException' => $vendorDir . '/aws/aws-sdk-php/src/MarketplaceMetering/Exception/MarketplaceMeteringException.php',
     'Aws\\MarketplaceMetering\\MarketplaceMeteringClient' => $vendorDir . '/aws/aws-sdk-php/src/MarketplaceMetering/MarketplaceMeteringClient.php',
+    'Aws\\MarketplaceReporting\\Exception\\MarketplaceReportingException' => $vendorDir . '/aws/aws-sdk-php/src/MarketplaceReporting/Exception/MarketplaceReportingException.php',
+    'Aws\\MarketplaceReporting\\MarketplaceReportingClient' => $vendorDir . '/aws/aws-sdk-php/src/MarketplaceReporting/MarketplaceReportingClient.php',
     'Aws\\MediaConnect\\Exception\\MediaConnectException' => $vendorDir . '/aws/aws-sdk-php/src/MediaConnect/Exception/MediaConnectException.php',
     'Aws\\MediaConnect\\MediaConnectClient' => $vendorDir . '/aws/aws-sdk-php/src/MediaConnect/MediaConnectClient.php',
     'Aws\\MediaConvert\\Exception\\MediaConvertException' => $vendorDir . '/aws/aws-sdk-php/src/MediaConvert/Exception/MediaConvertException.php',

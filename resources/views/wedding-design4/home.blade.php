@@ -5,26 +5,16 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
     <!-- Fancybox and Jquery CDN
     This link get github repository -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
     <script src="js/jquery.min.js"></script>
-    <script src="fancybox/jquery.fancybox.js"></script>
-    <script>
-        $("[data-fancybox]").fancybox();
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+        type="text/css" media="screen" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
-    <script src="fancybox.umd.js"></script>
-    <link rel="stylesheet" href="fancybox.css" />
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-    <!-- CSS Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- JS Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <title>JejakKebahagiaan</title>
 
     <!-- BOOTSTRAP 5 CSS -->
@@ -33,6 +23,7 @@
 
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
 </head>
 
 <body>
@@ -60,14 +51,18 @@
                     ]) }}">Buka
                     Undangan</a>
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}" alt="background">
+            <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
+                alt="background">
         </div>
     </div>
-    <audio id="track">
+    <audio loop id="track">
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
-    <button id="button" class="btn-float">
-        <i class="bi bi-volume-up"></i>
+    <button class="btn-float">
+        <img id="play" onclick="toggleAudio()" src="{{ asset('img/sound-on.svg') }}" class="img-fluid"
+            alt="Responsive image">
+        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/sound-off.svg') }}" class="img-fluid"
+            alt="Responsive image">
     </button>
     <nav class="navigation">
         <ul>
@@ -93,7 +88,20 @@
             </li>
         </ul>
     </nav>
-    <img class="background-template object-fit-cover" src="{{ Storage::url('' . $data->foto_prewedding) }}" alt="background">
+    <img class="background-template object-fit-cover" src="{{ Storage::url('' . $data->foto_prewedding) }}"
+        alt="background">
+    <div class="w-100 h-100" id="animation container">
+        <script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('animation container'),
+                path: 'overlay-animation.json',
+                render: 'svg',
+                loop: true,
+                autoplay: true,
+                name: 'overlay animation'
+            })
+        </script>
+    </div>
     <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
@@ -179,46 +187,49 @@
     <section class="animation perjalanan-cinta" id="perjalanan-cinta">
         <div class="anm_mod bottom-bit fast perjalanan-cinta-cover">
             <h3 class="anm_mod bottom-bit fast">Perjalanan Cinta Kami</h3>
-            <div id="carouselExampleCaptions" class="carousel slide anm_mod bottom-bit delay"
-                data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    @foreach ($data->PerjalananCintaDesign4 as $key => $perjalanan)
-                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                            <img src="{{ Storage::url('' . $perjalanan->image1) }}"
-                                class="d-block story-img object-fit-cover" alt="story">
-                            <div class="carousel-caption d-md-block">
-                                <div class="story-detail">
-                                    <span class="vertical-line"></span>
-                                    <span
-                                        class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $perjalanan->tanggal)->format('d-m-Y') }}</span>
-                                    <h3>{{ $perjalanan->judul_cerita }}</h3>
-                                    <p>{{ $perjalanan->deskripsi }}</p>
-                                    <span class="vertical-line"></span>
+            @if ($data->PerjalananCintaDesign4->isNotEmpty())
+                <div id="carouselExampleCaptions" class="carousel slide anm_mod bottom-bit delay"
+                    data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        @foreach ($data->PerjalananCintaDesign4 as $key => $perjalanan)
+                            <button type="button" data-bs-target="#carouselExampleCaptions"
+                                data-bs-slide-to="{{ $key }}" class="{{ $loop->first ? 'active' : '' }}"
+                                aria-current="{{ $loop->first ? 'true' : '' }}"
+                                aria-label="Slide {{ $key + 1 }}"></button>
+                        @endforeach
+                    </div>
+                    <div class="carousel-inner">
+                        @foreach ($data->PerjalananCintaDesign4 as $key => $perjalanan)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                <img src="{{ Storage::url('' . $perjalanan->image1) }}"
+                                    class="d-block story-img object-fit-cover" alt="story">
+                                <div class="carousel-caption d-md-block">
+                                    <div class="story-detail">
+                                        <span class="vertical-line"></span>
+                                        <span
+                                            class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $perjalanan->tanggal)->format('d-m-Y') }}</span>
+                                        <h3>{{ $perjalanan->judul_cerita }}</h3>
+                                        <p>{{ $perjalanan->deskripsi }}</p>
+                                        <span class="vertical-line"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden"></span>
-                </button>
-            </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"></span>
+                    </button>
+                </div>
+            @endif
+
         </div>
     </section>
     <!-- PERJALANAN CINTA END -->
@@ -229,65 +240,42 @@
             <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
             <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
                 data-bs-ride="carousel">
-                <div class="anm_mod bottom-bit fast carousel-indicators indicators-gallery">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                        class="indicator-gallery active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        class="indicator-gallery" aria-label="Slide 2">
-                        <img src="https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg"
-                            class="d-block w-100 h-100 rounded object-fit-cover" alt="...">
-                    </button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        class="indicator-gallery" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-                        class="indicator-gallery" aria-label="Slide 4"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
-                        class="indicator-gallery" aria-label="Slide 5"></button>
-                </div>
-                <div class="anm_mod bottom-bit fast quotes">
-                    <p>"Creating memories is a priceless gift. Memories last a lifetime; things last only a short time."
-                    </p>
-                    <div class="dots">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                </div>
-                <!-- Image Sliders -->
-                <div class="carousel-inner gallery-inner">
-                    <!-- Image one-->
-                    <div class="carousel-item moment active">
-                        <img src="https://user-images.githubusercontent.com/78242022/273443252-b034e050-3d70-48ef-9f0f-2d77ef9b2604.jpg"
-                            class="d-block w-100 h-100 rounded object-fit-cover" alt="...">
-                    </div>
-                    <!-- image two -->
-                    <div class="carousel-item moment">
-                        <img src="https://user-images.githubusercontent.com/78242022/282697437-bb8d7140-128f-44e9-a11f-d0d5c8d29f87.png"
-                            class="d-block w-100 h-100 rounded object-fit-cover" alt="...">
-                    </div>
-                    <!-- Image Three -->
-                    <div class="carousel-item moment">
-                        <img src="https://user-images.githubusercontent.com/78242022/273443248-130249b5-87b7-423d-9281-48d810bcd30d.jpg"
-                            class="d-block w-100 h-100 rounded object-fit-cover" alt="...">
-                    </div>
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="anm_mod bottom-bit fast quotes">
+                        <div class="carousel-inner carousel-gallery">
+                            @php
+                                $quoteImages = json_decode($data->quote_img, true); // Decode the JSON to get an array
+                            @endphp
 
-                    <!-- Image Four -->
-                    <div class="carousel-item moment">
-                        <img src="https://user-images.githubusercontent.com/78242022/273443251-9c210d6f-35ba-4861-885e-9b2e684ab339.jpg"
-                            class="d-block w-100 h-100 rounded object-fit-cover" alt="...">
+                            @foreach ($quoteImages as $index => $image)
+                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                    <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
+                                        <img src="{{ Storage::url($image) }}"
+                                            class="d-block w-100 h-100 object-fit-cover img-fluid"
+                                            alt="Image Gallery">
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                        <p>"Creating memories is a priceless gift. Memories last a lifetime; things last only a short
+                            time."</p>
                     </div>
-
-                    <!-- Image Five -->
-                    <div class="carousel-item moment">
-                        <img src="https://user-images.githubusercontent.com/78242022/282697428-7690f46f-5446-475a-be69-dbf5d8ccfacd.png"
-                            class="d-block w-100 h-100 rounded object-fit-cover" alt="...">
+                    <div class="carousel-indicators indicators-gallery w-100">
+                        @foreach ($quoteImages as $index => $image)
+                            <button type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide-to="{{ $index }}"
+                                class="{{ $index === 0 ? 'active' : '' }} thumbnail rounded-2"
+                                aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                aria-label="Slide {{ $index + 1 }}">
+                                <img src="{{ Storage::url($image) }}"
+                                    class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
+                            </button>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->
@@ -437,24 +425,38 @@
                         </form>
                     </div>
                     <div class="comment-list">
+                        <!-- Menampilkan tamu yang hadir -->
                         <div class="card-comment">
-                            @foreach ($alt4models as $item)
+                            @foreach ($alt4models->where('kehadiran', 1) as $item)
                                 <div class="title">
                                     <div class="name">
                                         <h4>{{ $item->nama }}</h4>
                                         <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
                                     </div>
                                     <span class="label">-
-                                        {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM YYYY') }}
+                                        {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM YYYY') }}</span>
+                                </div>
+                                <p>{!! $item->ucapan !!}</p>
+                            @endforeach
+                        </div>
 
-                                    </span>
+                        <!-- Menampilkan tamu yang tidak hadir -->
+                        <div class="card-comment">
+                            @foreach ($alt4models->where('kehadiran', 0) as $item)
+                                <div class="title">
+                                    <div class="name">
+                                        <h4>{{ $item->nama }}</h4>
+                                        <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="tidak hadir">
+                                    </div>
+                                    <span class="label">-
+                                        {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM YYYY') }}</span>
                                 </div>
                                 <p>{!! $item->ucapan !!}</p>
                             @endforeach
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
             <div class="kirim-hadiah anm_mod bottom-bit fast">
                 <div class="info">
@@ -476,57 +478,54 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
-                        @foreach ($data->DirectTransferDesign4 as $item)
-                            <div class="card">
-                                <div class="card-body">
-                                    @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
-                                        @if (!empty($item->bank))
-                                            <h4 class="card-title">{{ $item->bank }}</h4>
-                                        @endif
-                                        <div class="info-norek">
-                                            @if (!empty($item->no_rek))
-                                                <p id="first">{{ $item->no_rek }}</p>
-                                            @endif
-                                            <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                                class="btn-ghost">
-                                                Copy
-                                            </a>
-                                        </div>
-                                        @if (!empty($item->nama_rek))
-                                            <p class="card-text">A/N {{ $item->nama_rek }}</p>
-                                        @endif
-                                </div>
-                        @endif
-                    </div>
-                    @endforeach
-
-                </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    @foreach ($data->KirimHadiahDesign4 as $item)
                         <div class="card">
                             <div class="card-body">
-                                @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
-                                    <h4 class="card-title">{{ $item->alamat }}</h4>
-                                    <p class="card-text">{{ $item->deskripsi_alamat }}</p>
-                                @endif
+                                <h4 class="card-title">BCA</h4>
+                                <div class="info-norek">
+                                    <p id="first">0660580697</p>
+                                    <a id="first-button" onclick="copyText('first');" title="Copy Text"
+                                        class="btn-ghost">
+                                        Copy
+                                    </a>
+                                </div>
+                                <p class="card-text">A/N Eka Syafitry Dewi</p>
                             </div>
                         </div>
-                    @endforeach
-
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">BCA</h4>
+                                <div class="info-norek">
+                                    <p id="second">09999</p>
+                                    <a id="second-button" onclick="copyText('second');" title="Copy Text"
+                                        class="btn-ghost">
+                                        Copy
+                                    </a>
+                                </div>
+                                <p class="card-text">A/N Eka Syafitry Dewi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                        aria-labelledby="pills-profile-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Rumah</h4>
+                                <p class="card-text">Jl. Hos Cokroaminoto, Kuripan Lor Gg. 16 No.5, Kec. Pekalongan
+                                    Selatan, Kota Pekalongan, Jawa Tengah 51136</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
-
     <!-- DOA & UCAPAN -->
 
     <!-- ENDING -->
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_laki }} &
-                {{ $data->nama_mempelai_perempuan }}</h4>
+            <h4 class="anm_mod bottom-bit fast">Lily & Ndaru</h4>
         </div>
         <div class="overlay-bottom"></div>
     </section>
@@ -600,6 +599,33 @@
         }
     </script>
     <script>
+        var x = document.getElementById("track");
+
+        function playAudio() {
+            x.play();
+        }
+
+        function pauseAudio() {
+            x.pause();
+        }
+    </script>
+    <script>
+        function toggleAudio() {
+            var audioElement = document.getElementById('track')
+            var soundOn = document.getElementById('play')
+            var soundOff = document.getElementById('pause')
+            if (audioElement.paused) {
+                audioElement.play();
+                $(soundOn).show();
+                $(soundOff).hide();
+            } else {
+                audioElement.pause();
+                $(soundOn).hide();
+                $(soundOff).show();
+            }
+        }
+    </script>
+    <script>
         var myOffcanvas = document.getElementById('myOffcanvas')
         myOffcanvas.addEventListener('show.bs.offcanvas', function() {
             // do something...
@@ -666,59 +692,6 @@
             });
         }
     </script>
-    <script>
-        const container = document.getElementById("myCarousel");
-        const options = {
-            Dots: false
-        };
-        new Carousel(container, options, {
-            Thumbs
-        });
-        Fancybox.bind("[data-fancybox]", {
-            // Your custom options
-        });
-    </script>
-    <script>
-        var track = document.getElementById('track');
-
-        var controlBtn = document.getElementById('play-pause');
-
-        function playPause() {
-            if (track.paused) {
-                track.play();
-                //controlBtn.textContent = "Pause";
-                controlBtn.className = "pause";
-            } else {
-                track.pause();
-                //controlBtn.textContent = "Play";
-                controlBtn.className = "play";
-            }
-        }
-
-        controlBtn.addEventListener("click", playPause);
-        track.addEventListener("ended", function() {
-            controlBtn.className = "play";
-        });
-    </script>
-    <script>
-        const button = document.querySelector("#button");
-        const icon = document.querySelector("#button > i");
-        const audio = document.querySelector("audio");
-
-        button.addEventListener("click", () => {
-            if (audio.paused) {
-                audio.volume = 1;
-                audio.play();
-                icon.classList.remove('bi bi-volume-up');
-                icon.classList.add('bi bi-volume-mute');
-
-            } else {
-                audio.pause();
-                icon.classList.remove('bi bi-volume-mute');
-                icon.classList.add('bi bi-volume-up');
-            }
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
@@ -772,45 +745,196 @@
             ],
         });
     </script>
-    <script src="js/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
     <script>
-        function updateTimer(tgl_akad) {
-            future = Date.parse(tgl_akad);
-            now = new Date();
-            diff = future - now;
+        $('.thumbnail-image').click(function() {
+            $('.modal-body').empty();
+            $($(this).parents('div').html()).appendTo('.modal-body');
+            $('#modal').modal({
+                show: true
+            });
+        });
 
-            if (diff <= 0) {
-                // Waktu telah berlalu, atur semua nilai menjadi 0
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
-                return;
+        $('#modal').on('show.bs.modal', function() {
+            $('.col-6,.row .thumbnail-image').addClass('blur');
+        })
+
+        $('#modal').on('hide.bs.modal', function() {
+            $('.col-6,.row .thumbnail-image').removeClass('blur');
+        })
+    </script>
+    <script>
+        var track = document.getElementById('track');
+
+        var controlBtn = document.getElementById('play-pause');
+
+        function playPause() {
+            if (track.paused) {
+                track.play();
+                //controlBtn.textContent = "Pause";
+                controlBtn.className = "pause";
+            } else {
+                track.pause();
+                //controlBtn.textContent = "Play";
+                controlBtn.className = "play";
             }
-
-            days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-            // Format nilai untuk menambahkan angka 0 di depan jika nilainya < 10
-            days = (days < 10) ? "0" + days : days;
-            hours = (hours < 10) ? "0" + hours : hours;
-            mins = (mins < 10) ? "0" + mins : mins;
-            secs = (secs < 10) ? "0" + secs : secs;
-
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = mins;
-            document.getElementById("seconds").innerText = secs;
         }
 
-        // Memanggil updateTimer() saat halaman dimuat dengan tanggal akad dari PHP
-        updateTimer("{{ $data->tgl_akad }}");
-        setInterval(updateTimer.bind(null, "{{ $data->tgl_akad }}"), 1000);
+        controlBtn.addEventListener("click", playPause);
+        track.addEventListener("ended", function() {
+            controlBtn.className = "play";
+        });
     </script>
+    <script>
+        const html = document.querySelector('html');
+        html.setAttribute('data-bs-theme', 'dark');
 
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Create LightBox
+            const galleryGrid = document.querySelector(".gallery-grid");
+            const links = galleryGrid.querySelectorAll("a");
+            const imgs = galleryGrid.querySelectorAll("img");
+            const lightboxModal = document.getElementById("lightbox-modal");
+            const bsModal = new bootstrap.Modal(lightboxModal);
+            const modalBody = lightboxModal.querySelector(".lightbox-content");
+
+            function createCaption(caption) {
+                return `<div class="carousel-caption d-none d-md-block">
+        <h4 class="m-0">${caption}</h4>
+      </div>`;
+            }
+
+            function createIndicators(img) {
+                let markup = "",
+                    i, len;
+
+                const countSlides = links.length;
+                const parentCol = img.closest('.col');
+                const curIndex = [...parentCol.parentElement.children].indexOf(parentCol);
+
+                for (i = 0, len = countSlides; i < len; i++) {
+                    markup += `
+        <button type="button" data-bs-target="#lightboxCarousel"
+          data-bs-slide-to="${i}"
+          ${i === curIndex ? 'class="active" aria-current="true"' : ''}
+          aria-label="Slide ${i + 1}">
+        </button>`;
+                }
+
+                return markup;
+            }
+
+            function createSlides(img) {
+                let markup = "";
+                const currentImgSrc = img.closest('.gallery-item').getAttribute("href");
+
+                for (const img of imgs) {
+                    const imgSrc = img.closest('.gallery-item').getAttribute("href");
+                    const imgAlt = img.getAttribute("alt");
+
+                    markup += `
+        <div class="carousel-item${currentImgSrc === imgSrc ? " active" : ""}">
+          <img class="d-block img-fluid w-100" src=${imgSrc} alt="${imgAlt}">
+          ${imgAlt ? createCaption(imgAlt) : ""}
+        </div>`;
+                }
+
+                return markup;
+            }
+
+            function createCarousel(img) {
+                const markup = `
+      <!-- Lightbox Carousel -->
+      <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="true">
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+          ${createIndicators(img)}
+        </div>
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner justify-content-center mx-auto">
+          ${createSlides(img)}
+        </div>
+        <!-- Controls/icons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      `;
+
+                modalBody.innerHTML = markup;
+            }
+
+            for (const link of links) {
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const currentImg = link.querySelector("img");
+                    const lightboxCarousel = document.getElementById("lightboxCarousel");
+
+                    if (lightboxCarousel) {
+                        const parentCol = link.closest('.col');
+                        const index = [...parentCol.parentElement.children].indexOf(parentCol);
+
+                        const bsCarousel = new bootstrap.Carousel(lightboxCarousel);
+                        bsCarousel.to(index);
+                    } else {
+                        createCarousel(currentImg);
+                    }
+
+                    bsModal.show();
+                });
+            }
+
+            // --- Support Fullscreen
+            const fsEnlarge = document.querySelector(".btn-fullscreen-enlarge");
+            const fsExit = document.querySelector(".btn-fullscreen-exit");
+
+            function enterFS() {
+                lightboxModal.requestFullscreen().then({}).catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+                fsEnlarge.classList.toggle("d-none");
+                fsExit.classList.toggle("d-none");
+            }
+
+            function exitFS() {
+                document.exitFullscreen();
+                fsExit.classList.toggle("d-none");
+                fsEnlarge.classList.toggle("d-none");
+            }
+
+            fsEnlarge.addEventListener("click", (e) => {
+                e.preventDefault();
+                enterFS();
+            });
+
+            fsExit.addEventListener("click", (e) => {
+                e.preventDefault();
+                exitFS();
+            });
+        })
+    </script>
+    <script>
+        // Fancybox Config
+        $('[data-fancybox="gallery"]').fancybox({
+            buttons: [
+                "slideShow",
+                "thumbs",
+                "zoom",
+                "fullScreen",
+                "share",
+                "close"
+            ],
+            loop: false,
+            protect: true
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="jquery.fancybox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
 </body>
 
 </html>

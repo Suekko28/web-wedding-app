@@ -5,10 +5,12 @@
         <section class="blog-hero" id="blog-hero">
             <div class="d-flex flex-wrap">
                 <div class="col-12 col-lg-6 align-content-center">
-                    <h4 class="text-black">Kreasikan Setiap Momentmu</h4>
-                    <span>Ciptakan setiap momen yang terabadikan dalam foto yang dikreasikan</span>
+                    <h4 class="text-black">Kreasikan Setiap Momentmu!</h4>
+                    <span>Ciptakan momentmu dengan hasil kreasi yang diabadikan dalam foto</span>
                 </div>
                 <div class="col-12 col-lg-6 blog-hero-img">
+                    <img class="img-fluid" src="{{ asset('img/Banner_Gambarin-Cetak.png') }}" alt="Foto Gambarin">
+
                 </div>
             </div>
         </section>
