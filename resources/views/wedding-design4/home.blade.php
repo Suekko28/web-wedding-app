@@ -238,44 +238,44 @@
     <section class="animation gallery" id="gallery">
         <div class="anm_mod bottom-bit fast container-gallery">
             <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
-            <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
-                data-bs-ride="carousel">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="anm_mod bottom-bit fast quotes">
-                        <div class="carousel-inner carousel-gallery">
-                            @php
-                                $quoteImages = json_decode($data->quote_img, true); // Decode the JSON to get an array
-                            @endphp
-
-                            @foreach ($quoteImages as $index => $image)
-                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                    <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
-                                        <img src="{{ Storage::url($image) }}"
-                                            class="d-block w-100 h-100 object-fit-cover img-fluid"
-                                            alt="Image Gallery">
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
-                        <p>"Creating memories is a priceless gift. Memories last a lifetime; things last only a short
-                            time."</p>
-                    </div>
-                    <div class="carousel-indicators indicators-gallery w-100">
+            @if (!empty($data) && !empty($data->quote_img)) 
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="anm_mod bottom-bit fast quotes">
+                    <div class="carousel-inner carousel-gallery">
+                        @php
+                            $quoteImages = json_decode($data->quote_img, true); // Decode the JSON to get an array
+                        @endphp
+    
                         @foreach ($quoteImages as $index => $image)
-                            <button type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide-to="{{ $index }}"
-                                class="{{ $index === 0 ? 'active' : '' }} thumbnail rounded-2"
-                                aria-current="{{ $index === 0 ? 'true' : 'false' }}"
-                                aria-label="Slide {{ $index + 1 }}">
-                                <img src="{{ Storage::url($image) }}"
-                                    class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
-                            </button>
+                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
+                                    <img src="{{ Storage::url($image) }}"
+                                        class="d-block w-100 h-100 object-fit-cover img-fluid"
+                                        alt="Image Gallery">
+                                </a>
+                            </div>
                         @endforeach
                     </div>
+                    <p>"Creating memories is a priceless gift. Memories last a lifetime; things last only a short
+                        time."</p>
+                </div>
+                <div class="carousel-indicators indicators-gallery w-100">
+                    @foreach ($quoteImages as $index => $image)
+                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide-to="{{ $index }}"
+                            class="{{ $index === 0 ? 'active' : '' }} thumbnail rounded-2"
+                            aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                            aria-label="Slide {{ $index + 1 }}">
+                            <img src="{{ Storage::url($image) }}"
+                                class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
+                        </button>
+                    @endforeach
                 </div>
             </div>
+            @endif
         </div>
     </section>
+    
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->
@@ -478,42 +478,44 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
+                        @foreach ($data->DirectTransferDesign4 as $item)
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">BCA</h4>
-                                <div class="info-norek">
-                                    <p id="first">0660580697</p>
-                                    <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
-                                </div>
-                                <p class="card-text">A/N Eka Syafitry Dewi</p>
+                                @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
+                                    @if (!empty($item->bank))
+                                        <h4 class="card-title">{{ $item->bank }}</h4>
+                                    @endif
+                                    <div class="info-norek">
+                                        @if (!empty($item->no_rek))
+                                            <p id="first">{{ $item->no_rek }}</p>
+                                        @endif
+                                        <a id="first-button" onclick="copyText('first');" title="Copy Text"
+                                            class="btn-ghost">
+                                            Copy
+                                        </a>
+                                    </div>
+                                    @if (!empty($item->nama_rek))
+                                        <p class="card-text">A/N {{ $item->nama_rek }}</p>
+                                    @endif
                             </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">BCA</h4>
-                                <div class="info-norek">
-                                    <p id="second">09999</p>
-                                    <a id="second-button" onclick="copyText('second');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
-                                </div>
-                                <p class="card-text">A/N Eka Syafitry Dewi</p>
-                            </div>
-                        </div>
+                    @endif
+                </div>
+                @endforeach
+
+                        
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                         aria-labelledby="pills-profile-tab">
+                        @foreach ($data->KirimHadiahDesign4 as $item)
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Rumah</h4>
-                                <p class="card-text">Jl. Hos Cokroaminoto, Kuripan Lor Gg. 16 No.5, Kec. Pekalongan
-                                    Selatan, Kota Pekalongan, Jawa Tengah 51136</p>
+                                @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
+                                    <h4 class="card-title">{{ $item->alamat }}</h4>
+                                    <p class="card-text">{{ $item->deskripsi_alamat }}</p>
+                                @endif
                             </div>
                         </div>
+                    @endforeach
                     </div>
                 </div>
             </div>
@@ -525,7 +527,7 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">Lily & Ndaru</h4>
+            <h4 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h4>
         </div>
         <div class="overlay-bottom"></div>
     </section>

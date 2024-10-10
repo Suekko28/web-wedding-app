@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/png" href="{{ asset('img/Jejak-Kebahagiaan_Favicon_64px.svg') }}" />
+<link rel="shortcut icon" href="{{ asset('img/Jejak-Kebahagiaan_Favicon_64px.svg') }}" />
 <link rel="stylesheet" href="{{ asset('css/style-admin.css') }}">
 <link rel="stylesheet" href="{{ asset('build/css/styles.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"

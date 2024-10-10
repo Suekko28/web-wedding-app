@@ -41,8 +41,7 @@
 
     <!-- CSS STYLE -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
-    <link rel="shortcut icon" type="image/png" href="{{ asset('img/Jejak-Kebahagiaan_Favicon_64px.svg') }}"
-        alt="Logo JejakKebahagiaan - Undangan Digital dan Hias Seserahan" />
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebahagiaan_Favicon_64px.svg') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 

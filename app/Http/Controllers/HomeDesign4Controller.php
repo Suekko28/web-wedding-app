@@ -30,7 +30,7 @@ class HomeDesign4Controller extends Controller
 
         // Redirect kembali ke halaman showDetail dengan parameter yang sesuai
         return redirect()->route('wedding-design4-home', compact('nama_mempelai_laki', 'nama_mempelai_perempuan', 'nama_undangan'))
-            ->with('success', 'Berhasil menambahkan data');
+            ->with('success', 'Berhasil menambahkan data' . '#doa-ucapan');
     }
 
     public function show($nama_mempelai_laki, $nama_mempelai_perempuan)
