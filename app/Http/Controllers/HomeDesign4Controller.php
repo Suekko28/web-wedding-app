@@ -28,9 +28,15 @@ class HomeDesign4Controller extends Controller
         // Simpan alt4Model ke dalam relasi undanganAlt4$undanganAlt4RSVP pada undanganAlt4$undanganAlt4 yang sesuai
         $undanganAlt4->alt4Models()->save($alt4Model);
 
-        // Redirect kembali ke halaman showDetail dengan parameter yang sesuai
-        return redirect()->route('wedding-design4-home', compact('nama_mempelai_laki', 'nama_mempelai_perempuan', 'nama_undangan'))
-            ->with('success', 'Berhasil menambahkan data' . '#doa-ucapan');
+        return redirect()->route('wedding-design4-home', [
+            'nama_mempelai_laki' => $nama_mempelai_laki,
+            'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
+            'nama_undangan' => $nama_undangan,
+            'active' => 'doa-ucapan', // Menambahkan parameter aktif
+        ])->with('success', 'Berhasil menambahkan doa ucapan')->with('hide_offcanvas', true);
+
+
+
     }
 
     public function show($nama_mempelai_laki, $nama_mempelai_perempuan)

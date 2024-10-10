@@ -24,37 +24,38 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+
 </head>
 
 <body>
-    <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-        <!-- <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-    <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
-  </div> -->
-        <div class="offcanvas-body">
-            <div class="opening-undangan">
-                <p>Undangan Pernikahan</p>
-                <h2>{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h2>
-            </div>
-            <div class="tujuan-undangan">
-                <div class="opening">
-                    <p>Kepada Yth</p>
-                    <p>Bapak/Ibu/Saudara/i</p>
+    @if (!session('hide_offcanvas'))
+        <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+            <div class="offcanvas-body">
+                <div class="opening-undangan">
+                    <p>Undangan Pernikahan</p>
+                    <h2>{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h2>
                 </div>
-                <h3>{{ $nama_undangan }}</h3>
-                <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas"
-                    href="{{ route('wedding-design3-preview', [
-                        'nama_mempelai_laki' => $nama_mempelai_laki,
-                        'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
-                        // 'nama_undangan' => $nama_undangan // Pastikan $nama_undangan telah diberikan nilai sebelumnya
-                    ]) }}">Buka
-                    Undangan</a>
+                <div class="tujuan-undangan">
+                    <div class="opening">
+                        <p>Kepada Yth</p>
+                        <p>Bapak/Ibu/Saudara/i</p>
+                    </div>
+                    <h3>{{ $nama_undangan }}</h3>
+                    <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas"
+                        href="{{ route('wedding-design3-preview', [
+                            'nama_mempelai_laki' => $nama_mempelai_laki,
+                            'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
+                            'nama_undangan' => $nama_undangan, // Pastikan $nama_undangan telah diberikan nilai sebelumnya
+                        ]) }}">Buka
+                        Undangan</a>
+                </div>
+                <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
+                    alt="background">
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
-                alt="background">
         </div>
-    </div>
+    @endif
+
     <audio loop id="track">
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
@@ -238,44 +239,44 @@
     <section class="animation gallery" id="gallery">
         <div class="anm_mod bottom-bit fast container-gallery">
             <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
-            @if (!empty($data) && !empty($data->quote_img)) 
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="anm_mod bottom-bit fast quotes">
-                    <div class="carousel-inner carousel-gallery">
-                        @php
-                            $quoteImages = json_decode($data->quote_img, true); // Decode the JSON to get an array
-                        @endphp
-    
+            @if (!empty($data) && !empty($data->quote_img))
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="anm_mod bottom-bit fast quotes">
+                        <div class="carousel-inner carousel-gallery">
+                            @php
+                                $quoteImages = json_decode($data->quote_img, true); // Decode the JSON to get an array
+                            @endphp
+
+                            @foreach ($quoteImages as $index => $image)
+                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                    <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
+                                        <img src="{{ Storage::url($image) }}"
+                                            class="d-block w-100 h-100 object-fit-cover img-fluid"
+                                            alt="Image Gallery">
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                        <p>"Creating memories is a priceless gift. Memories last a lifetime; things last only a short
+                            time."</p>
+                    </div>
+                    <div class="carousel-indicators indicators-gallery w-100">
                         @foreach ($quoteImages as $index => $image)
-                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
-                                    <img src="{{ Storage::url($image) }}"
-                                        class="d-block w-100 h-100 object-fit-cover img-fluid"
-                                        alt="Image Gallery">
-                                </a>
-                            </div>
+                            <button type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide-to="{{ $index }}"
+                                class="{{ $index === 0 ? 'active' : '' }} thumbnail rounded-2"
+                                aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                aria-label="Slide {{ $index + 1 }}">
+                                <img src="{{ Storage::url($image) }}"
+                                    class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
+                            </button>
                         @endforeach
                     </div>
-                    <p>"Creating memories is a priceless gift. Memories last a lifetime; things last only a short
-                        time."</p>
                 </div>
-                <div class="carousel-indicators indicators-gallery w-100">
-                    @foreach ($quoteImages as $index => $image)
-                        <button type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="{{ $index }}"
-                            class="{{ $index === 0 ? 'active' : '' }} thumbnail rounded-2"
-                            aria-current="{{ $index === 0 ? 'true' : 'false' }}"
-                            aria-label="Slide {{ $index + 1 }}">
-                            <img src="{{ Storage::url($image) }}"
-                                class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
-                        </button>
-                    @endforeach
-                </div>
-            </div>
             @endif
         </div>
     </section>
-    
+
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->
@@ -426,34 +427,33 @@
                     </div>
                     <div class="comment-list">
                         <!-- Menampilkan tamu yang hadir -->
-                        <div class="card-comment">
-                            @foreach ($alt4models->where('kehadiran', 1) as $item)
+                        @foreach ($alt4models->where('kehadiran', 1) as $item)
+                            <div class="card-comment">
                                 <div class="title">
                                     <div class="name">
                                         <h4>{{ $item->nama }}</h4>
                                         <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
                                     </div>
                                     <span class="label">-
-                                        {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM YYYY') }}</span>
+                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM YYYY') }}</span>
                                 </div>
                                 <p>{!! $item->ucapan !!}</p>
-                            @endforeach
-                        </div>
-
+                            </div>
+                        @endforeach
                         <!-- Menampilkan tamu yang tidak hadir -->
-                        <div class="card-comment">
-                            @foreach ($alt4models->where('kehadiran', 0) as $item)
+                        @foreach ($alt4models->where('kehadiran', 0) as $item)
+                            <div class="card-comment">
                                 <div class="title">
                                     <div class="name">
                                         <h4>{{ $item->nama }}</h4>
                                         <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="tidak hadir">
                                     </div>
                                     <span class="label">-
-                                        {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM YYYY') }}</span>
+                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM YYYY') }}</span>
                                 </div>
                                 <p>{!! $item->ucapan !!}</p>
-                            @endforeach
-                        </div>
+                            </div>
+                        @endforeach
                     </div>
 
                 </div>
@@ -479,34 +479,33 @@
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
                         @foreach ($data->DirectTransferDesign4 as $item)
-                        <div class="card">
-                            <div class="card-body">
-                                @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
-                                    @if (!empty($item->bank))
-                                        <h4 class="card-title">{{ $item->bank }}</h4>
-                                    @endif
-                                    <div class="info-norek">
-                                        @if (!empty($item->no_rek))
-                                            <p id="first">{{ $item->no_rek }}</p>
+                            <div class="card">
+                                <div class="card-body">
+                                    @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
+                                        @if (!empty($item->bank))
+                                            <h4 class="card-title">{{ $item->bank }}</h4>
                                         @endif
-                                        <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                            class="btn-ghost">
-                                            Copy
-                                        </a>
-                                    </div>
-                                    @if (!empty($item->nama_rek))
-                                        <p class="card-text">A/N {{ $item->nama_rek }}</p>
-                                    @endif
-                            </div>
-                    @endif
-                </div>
-                @endforeach
-
-                        
+                                        <div class="info-norek">
+                                            @if (!empty($item->no_rek))
+                                                <p id="first">{{ $item->no_rek }}</p>
+                                            @endif
+                                            <a id="first-button" onclick="copyText('first');" title="Copy Text"
+                                                class="btn-ghost">
+                                                Copy
+                                            </a>
+                                        </div>
+                                        @if (!empty($item->nama_rek))
+                                            <p class="card-text">A/N {{ $item->nama_rek }}</p>
+                                        @endif
+                                </div>
+                        @endif
                     </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                        aria-labelledby="pills-profile-tab">
-                        @foreach ($data->KirimHadiahDesign4 as $item)
+                    @endforeach
+
+
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    @foreach ($data->KirimHadiahDesign4 as $item)
                         <div class="card">
                             <div class="card-body">
                                 @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
@@ -516,9 +515,9 @@
                             </div>
                         </div>
                     @endforeach
-                    </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
     <!-- DOA & UCAPAN -->
@@ -527,7 +526,8 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h4>
+            <h4 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_laki }} &
+                {{ $data->nama_mempelai_perempuan }}</h4>
         </div>
         <div class="overlay-bottom"></div>
     </section>
@@ -937,6 +937,17 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="jquery.fancybox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
+    @if (session('hide_offcanvas'))
+        <script>
+            window.location.hash = '#doa-ucapan'; // Redirect with the hash
+            document.getElementById('doa-ucapan').scrollIntoView();
+            
+            // Scroll to the section
+        </script>
+    @endif
+
+
+
 </body>
 
 </html>
