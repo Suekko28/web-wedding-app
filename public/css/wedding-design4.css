@@ -1354,3 +1354,29 @@ label {
 
 @media (max-width: 1390px) {
 }
+
+.form-control {
+    background-color: #ffffff;
+    color: #292929;
+}
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    color: #292929; /* Untuk animasi transisi */
+}
+
+input:focus,
+textarea:focus {
+    background-color: #ffffff !important; /* Warna latar belakang saat fokus */
+    outline: none; /* Menghilangkan outline default */
+    color: #292929 !important; 
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #292929 !important; /* Warna teks placeholder */
+}

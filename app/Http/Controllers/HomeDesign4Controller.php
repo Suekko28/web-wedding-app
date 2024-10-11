@@ -32,8 +32,9 @@ class HomeDesign4Controller extends Controller
             'nama_mempelai_laki' => $nama_mempelai_laki,
             'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
             'nama_undangan' => $nama_undangan,
-            'active' => 'doa-ucapan', // Menambahkan parameter aktif
-        ])->with('success', 'Berhasil menambahkan doa ucapan')->with('hide_offcanvas', true);
+        ])->with('success', 'Berhasil menambahkan doa ucapan')
+            ->with('hide_offcanvas', true)
+            ->with('activeTab', 'pills-home'); // Menyimpan tab yang aktif (misalnya pills-home)
 
 
 

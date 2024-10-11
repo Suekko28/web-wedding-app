@@ -25,7 +25,8 @@
     <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
 </head>
 
 <body>
@@ -465,7 +466,7 @@
                 </div>
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                        <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                             aria-selected="true">Direct Transfer</button>
                     </li>
@@ -941,7 +942,7 @@
         <script>
             window.location.hash = '#doa-ucapan'; // Redirect with the hash
             document.getElementById('doa-ucapan').scrollIntoView();
-            
+
             // Scroll to the section
         </script>
     @endif
