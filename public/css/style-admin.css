@@ -65,3 +65,40 @@
 /* Pagination End */
 
 /* Header Info End */
+
+
+.radio_group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.radio_group label {
+    padding: 7px 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.6px solid #b0b0b0;
+    border-radius: 100px;
+}
+
+.radio_group input:checked+.radio_label {
+    background: var(--bs-blue);
+    color: white;
+}
+
+.radio_group input {
+    display: none;
+}
+
+label {
+    font-size: 16px;
+}
+
+@media (max-width: 400px) {
+    .radio_group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+}
