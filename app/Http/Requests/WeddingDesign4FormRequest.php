@@ -41,7 +41,7 @@ class WeddingDesign4FormRequest extends FormRequest
             'lokasi_resepsi' => ['required', 'string', 'max:255'],
             'deskripsi_resepsi' => ['string'],
             'simpan_tgl_resepsi' => ['required', 'string', 'max:255'],
-            'link_streaming' => ['required', 'max:255'],
+            'link_streaming' => ['nullable', 'max:255'],
             'informasi_design4_id' => ['required', 'exists:informasi_design4,id'],
             'tgl_akad' => ['required', 'date'],
             'mulai_akad' => ['required', 'date_format:H:i'],

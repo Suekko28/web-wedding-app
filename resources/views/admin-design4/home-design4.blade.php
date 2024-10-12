@@ -145,6 +145,7 @@
                 </p>
             </div>
         </div>
+
         <div class="background-overlay"></div>
     </section>
     <!-- HERO END -->
@@ -265,8 +266,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <p>"Creating memories is a priceless gift. Memories last a lifetime; things last only a short
-                            time."</p>
+                        <p>{{ $data->quote }}</p>
                     </div>
                     <div class="carousel-indicators indicators-gallery w-100">
                         @foreach ($quoteImages as $index => $image)
@@ -362,16 +362,17 @@
                             </div>
                 </div>
             </div>
-        </div>
-        <div class="anm_mod bottom-bit fast live-streaming">
-            <div class="detail-info">
-                <h3>Live Streaming</h3>
-                <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
-                    siaran langsung secara live virtual di platform berikut</p>
-            </div>
-            <a type="button" target="_blank" href="https://www.w3schools.com" class="btn-secondary">Buka
-                Link</a>
-        </div>
+            @if (!empty($data->link_streaming))
+                <div class="anm_mod bottom-bit fast live-streaming">
+                    <div class="detail-info">
+                        <h3>Live Streaming</h3>
+                        <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
+                            siaran langsung secara live virtual di platform berikut</p>
+                    </div>
+                    <a type="button" target="_blank" href="{{ $data->link_streaming }}" class="btn-secondary">Buka
+                        Link</a>
+                </div>
+            @endif
         </div>
     </section>
     <!-- JADWAL PERNIKAHAN END -->
@@ -1031,6 +1032,39 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="jquery.fancybox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
+
+    <script>
+        function updateTimer(tgl_akad) {
+            const future = Date.parse(tgl_akad);
+            const now = new Date();
+            const diff = future - now;
+
+            if (diff <= 0) {
+                // Waktu telah berlalu, atur semua nilai menjadi 0
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // Format nilai untuk menambahkan angka 0 di depan jika nilainya < 10
+            document.getElementById("days").innerText = (days < 10 ? "0" : "") + days;
+            document.getElementById("hours").innerText = (hours < 10 ? "0" : "") + hours;
+            document.getElementById("minutes").innerText = (mins < 10 ? "0" : "") + mins;
+            document.getElementById("seconds").innerText = (secs < 10 ? "0" : "") + secs;
+        }
+
+        // Memanggil updateTimer() saat halaman dimuat dengan tanggal akad dari PHP
+        updateTimer("{{ $data->tgl_akad }}");
+        setInterval(updateTimer.bind(null, "{{ $data->tgl_akad }}"), 1000); // Memperbarui setiap detik
+    </script>
+
 </body>
 
 </html>

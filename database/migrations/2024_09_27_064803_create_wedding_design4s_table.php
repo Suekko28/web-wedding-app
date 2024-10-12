@@ -44,7 +44,7 @@ return new class extends Migration {
             $table->text('deskripsi_resepsi');
             $table->string('link_resepsi');
             $table->string('simpan_tgl_resepsi');
-            $table->string('link_streaming');
+            $table->string('link_streaming')->nullable();
             $table->unsignedBigInteger('informasi_design4_id');
             $table->foreign('informasi_design4_id')
                 ->references('id')

@@ -19,7 +19,6 @@ body {
     width: 100%;
     margin: 0 !important;
     padding: 0 !important;
-    overflow-x: hidden;
 }
 .play {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+);
@@ -52,8 +51,7 @@ body {
 }
 #play,
 #pause {
-    width: 56px;
-    padding: 8px;
+    width: 100%;
 }
 #play:hover,
 #pause:hover {
@@ -76,6 +74,7 @@ body {
     border-radius: 120px;
     box-shadow: rgba(17, 12, 46, 0.1) 0px 10px 20px 0px;
     border: 1px solid #fff;
+    padding: 12px;
 }
 .navigation {
     z-index: 9998;
@@ -290,10 +289,10 @@ label {
             font-size: 3rem;
         }
         &.left {
-            transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-24px, 0, 0);
         }
         &.right {
-            transform: translate3d(100%, 0, 0);
+            transform: translate3d(24px,  0,  0);
         }
         &.bottom {
             transform: translate3d(0, 100%, 0);
@@ -341,7 +340,7 @@ label {
     justify-content: center;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.3);
-    bottom: -64px;
+    bottom: -24px;
     transform: translate(-50%, -50%);
     right: 50%;
     left: 50%;
@@ -904,7 +903,7 @@ label {
     gap: 24px;
 }
 .jadwal-img {
-    min-width: 480px;
+    min-width: 320px;
     aspect-ratio: 1/1;
     border-radius: 24px 24px 240px 240px;
 }
@@ -1072,7 +1071,7 @@ label {
 .comment-list {
     width: 70%;
     height: 100%;
-    max-height: 428px;
+    max-height: 404px;
     overflow: hidden;
     overflow-y: scroll;
 }
@@ -1278,7 +1277,7 @@ label {
         padding: 48px 24px;
     }
     .jadwal-img {
-        min-width: 100%;
+        width: 100%;
     }
     .akad-resepsi {
         flex-direction: column;
@@ -1373,7 +1372,7 @@ input:focus,
 textarea:focus {
     background-color: #ffffff !important; /* Warna latar belakang saat fokus */
     outline: none; /* Menghilangkan outline default */
-    color: #292929 !important; 
+    color: #292929 !important;
 }
 
 input::placeholder,

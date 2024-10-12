@@ -214,7 +214,6 @@
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
-                                            <th>Image</th>
                                             <th>Foto</th>
                                             <th>Tanggal</th>
                                             <th>Judul Cerita</th>
@@ -228,8 +227,6 @@
                                                 <td>{{ $i }}</td>
                                                 <td><img class="img-thumbnail" src="{{ Storage::url($item->image1) }}"
                                                         alt="Image 1" width="120"></td>
-                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image2) }}"
-                                                        alt="Image 2" width="120"></td>
                                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                                 <td>{{ $item->judul_cerita }}</td>
                                                 <td>{{ $item->deskripsi }}</td>
@@ -450,10 +447,6 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-row-reverse">
-                            <a href="{{ route('wedding-design4.index') }}" class="btn btn-secondary">Kembali</a>
-                        </div>
-
                     </form>
                     <table class="table table-bordered">
                         <h6>Daftar Tamu Undangan</h6>
@@ -480,6 +473,9 @@
                     </table>
                     <!-- Small boxes (Stat box) -->
                     <!-- /.row (main row) -->
+                    <div class="d-flex flex-row-reverse">
+                        <a href="{{ route('wedding-design4.index') }}" class="btn btn-secondary">Kembali</a>
+                    </div>
                 </div><!-- /.container-fluid -->
             </section>
         </div>

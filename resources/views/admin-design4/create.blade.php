@@ -226,7 +226,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="quote">Quoted <span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="quote" name="quote"
-                                            placeholder="Masukkan Quote">
+                                            placeholder="Masukkan Quote" value="{{old('quote')}}" >
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="quote_img">Upload Images <span class="mandatory">*</span></label>
@@ -343,7 +343,7 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_streaming">Link Streaming<span class="mandatory">*</span></label>
+                                        <label for="link_streaming">Link Streaming<span class="fst-italic"> (Opsional)</span></label>
                                         <input type="text" class="form-control" id="link_streaming"
                                             name="link_streaming" placeholder="Masukkan link"
                                             value="{{ old('link_streaming') }}">
@@ -426,7 +426,7 @@
                                                 <td>{{ $item->deskripsi_alamat }}</td>
                                                 <td>
                                                     <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded edit-btn-direct-transfer"
+                                                        class="btn btn-warning mb-2 rounded edit-btn-kirim-hadiah"
                                                         data-id="{{ $item->id }}" data-alamat="{{ $item->alamat }}"
                                                         data-deskripsi_alamat="{{ $item->deskripsi_alamat }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
@@ -462,7 +462,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat/Edit Direct Transfer</h5>
+                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat/Edit Perjalanan Cinta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -525,13 +525,13 @@
                         action="{{ route('directtransfer-design4.store', ['id' => $informasiDesign4->id]) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
-                        {{-- This will be updated dynamically in JS --}}
-                        <input type="hidden" name="_method" id="formMethod" value="POST">
+                        <input type="hidden" name="_method" id="formMethodDirectTransfer" value="POST">
                         <input type="hidden" name="directTransferId" id="directTransferId">
                         <input type="hidden" name="wedding_design4_id" value="{{ $informasiDesign4->id }}">
                         <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
                         <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
 
+                        <!-- Form Fields -->
                         <div class="form-group mb-2">
                             <label for="bank">Bank<span class="mandatory">*</span></label>
                             <input type="text" name="bank" id="bank" class="form-control"
@@ -550,6 +550,7 @@
                                 value="{{ old('nama_rek') }}" placeholder="Masukkan nama pemilik rekening">
                         </div>
                     </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -565,7 +566,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Edit Direct Transfer</h5>
+                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Edit Kirim Hadiah</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -574,7 +575,7 @@
                         enctype="multipart/form-data">
                         @csrf
                         {{-- This will be updated dynamically in JS --}}
-                        <input type="hidden" name="_method" id="formMethod" value="POST">
+                        <input type="hidden" name="_method" id="formMethodKirimHadiah" value="POST">
                         <input type="hidden" name="kirimHadiahId" id="kirimHadiahId">
                         <input type="hidden" name="wedding_design4_id" value="{{ $informasiDesign4->id }}">
                         <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
@@ -660,7 +661,7 @@
             // Reset the form for new entries
             document.getElementById('formDirectTransfer').reset();
             document.getElementById('directTransferId').value = ''; // Reset hidden field for ID
-            document.getElementById('formMethod').value = 'POST'; // Set method for creating
+            document.getElementById('formMethodDirectTransfer').value = 'POST'; // Set method for creating
 
             // Set the action to the store route
             document.getElementById('formDirectTransfer').action =
@@ -676,7 +677,7 @@
                 var nama_rek = this.getAttribute('data-nama_rek');
 
                 // Populate form with existing data
-                document.getElementById('directTransferId').value = id; // Set ID
+                document.getElementById('directTransferId').value = id;
                 document.getElementById('bank').value = bank;
                 document.getElementById('no_rek').value = no_rek;
                 document.getElementById('nama_rek').value = nama_rek;
@@ -684,7 +685,7 @@
                 // Set the form action to the update route
                 document.getElementById('formDirectTransfer').action =
                     `/wedding-design4/${id}/update-direct-transfer`;
-                document.getElementById('formMethod').value = 'PUT'; // Set method for updating
+                document.getElementById('formMethodDirectTransfer').value = 'PUT'; // Set method for updating
                 document.getElementById('modalDirectTransferLabel').textContent = 'Edit Direct Transfer';
 
                 // Show the modal
@@ -693,6 +694,7 @@
             });
         });
     </script>
+
 
     <!-- Modal JS Kirim Hadiah -->
     <script>
@@ -722,8 +724,8 @@
                 // Set the form action to the update route
                 document.getElementById('formKirimHadiah').action =
                     `/wedding-design4/${id}/update-kirim-hadiah`;
-                document.getElementById('formMethod').value = 'PUT'; // Set method for updating
-                document.getElementById('modalKirimHadiahLabel').textContent = 'Edit Direct Transfer';
+                document.getElementById('formMethodKirimHadiah').value = 'PUT'; // Set method for updating
+                document.getElementById('modalKirimHadiahLabel').textContent = 'Edit Kirim Hadiah';
 
                 // Show the modal
                 var modal = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));

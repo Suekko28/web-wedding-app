@@ -86,16 +86,19 @@
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                             <a href="{{ route('wedding-design4.show', ['wedding_design4' => $item->id]) }}"
-                                                class="btn btn-info rounded mb-2">
+                                                class="btn btn-info rounded mb-2 {{ !$item->KontenDesign4->first() || !$item->KontenDesign4->first()->nama_mempelai_laki || !$item->KontenDesign4->first()->nama_mempelai_perempuan ? 'disabled' : '' }}">
                                                 <i class="fa fa-circle-info" style="color:white;"></i>
                                             </a>
-                                            <a href="{{ route('wedding-design4-home-preview', [
-                                                'nama_mempelai_laki' => $item->KontenDesign4->first()->nama_mempelai_laki ?? 'Unknown',
-                                                'nama_mempelai_perempuan' => $item->KontenDesign4->first()->nama_mempelai_perempuan ?? 'Unknown',
-                                            ]) }}"
-                                                target="_blank" class="btn btn-primary rounded mb-2">
+
+                                            <a class="btn btn-primary mb-2 {{ !$item->KontenDesign4->first() || !$item->KontenDesign4->first()->nama_mempelai_laki || !$item->KontenDesign4->first()->nama_mempelai_perempuan ? 'disabled' : '' }}"
+                                                href="{{ route('wedding-design4-home-preview', [
+                                                    'nama_mempelai_laki' => $item->KontenDesign4->first()->nama_mempelai_laki ?? 'Unknown',
+                                                    'nama_mempelai_perempuan' => $item->KontenDesign4->first()->nama_mempelai_perempuan ?? 'Unknown',
+                                                ]) }}"
+                                                target="_blank">
                                                 <i class="fa fa-eye" style="color:white;"></i>
                                             </a>
+
 
 
 
