@@ -192,8 +192,6 @@
                                                 <td>{{ $i }}</td>
                                                 <td><img class="img-thumbnail" src="{{ Storage::url($item->image1) }}"
                                                         alt="Image 1" width="120"></td>
-                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image2) }}"
-                                                        alt="Image 2" width="120"></td>
                                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                                 <td>{{ $item->judul_cerita }}</td>
                                                 <td>{{ $item->deskripsi }}</td>
@@ -204,8 +202,7 @@
                                                         data-tanggal="{{ $item->tanggal }}"
                                                         data-judul="{{ $item->judul_cerita }}"
                                                         data-deskripsi="{{ $item->deskripsi }}"
-                                                        data-image1="{{ $item->image1 }}"
-                                                        data-image2="{{ $item->image2 }}">
+                                                        data-image1="{{ $item->image1 }}">
 
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
@@ -481,19 +478,10 @@
                         <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
 
                         <div class="form-group mb-2">
-                            <label for="image1">Image<span class="mandatory">*</span></label>
+                            <label for="image1">Foto<span class="mandatory">*</span></label>
                             <input type="file" name="image1" id="image1" class="form-control">
                             <div id="currentImage1Container" class="mt-2">
                                 <img id="currentImage1" class="img-thumbnail" src="" alt="Current Image 1"
-                                    width="120" style="display:none;">
-                            </div>
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label for="image2">Foto<span class="mandatory">*</span></label>
-                            <input type="file" name="image2" id="image2" class="form-control">
-                            <div id="currentImage2Container" class="mt-2">
-                                <img id="currentImage2" class="img-thumbnail" src="" alt="Current Image 2"
                                     width="120" style="display:none;">
                             </div>
                         </div>
@@ -507,7 +495,7 @@
                         <div class="form-group mb-2">
                             <label for="judul_cerita">Judul Cerita<span class="mandatory">*</span></label>
                             <input type="text" name="judul_cerita" id="judul_cerita" class="form-control"
-                                value="{{ old('judul_cerita') }}" placeholder="Masukkan judul cerita"> 
+                                value="{{ old('judul_cerita') }}" placeholder="Masukkan judul cerita">
                         </div>
 
                         <div class="form-group mb-2">
@@ -550,13 +538,13 @@
                         <div class="form-group mb-2">
                             <label for="bank">Bank<span class="mandatory">*</span></label>
                             <input type="text" name="bank" id="bank" class="form-control"
-                                value="{{ old('bank') }}"  placeholder="Masukkan nama bank">
+                                value="{{ old('bank') }}" placeholder="Masukkan nama bank">
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="no_rek">No.Rekening<span class="mandatory">*</span></label>
                             <input type="number" name="no_rek" id="no_rek" class="form-control"
-                                value="{{ old('no_rek') }}"  placeholder="161293912">
+                                value="{{ old('no_rek') }}" placeholder="161293912">
                         </div>
 
                         <div class="form-group mb-2">
@@ -661,12 +649,6 @@
                     document.getElementById('currentImage1').style.display = 'none';
                 }
 
-                if (image2) {
-                    document.getElementById('currentImage2').src = `/storage/${image2}`;
-                    document.getElementById('currentImage2').style.display = 'block';
-                } else {
-                    document.getElementById('currentImage2').style.display = 'none';
-                }
 
                 // Set the form action to the update route
                 document.getElementById('formPerjalananCinta').action =
