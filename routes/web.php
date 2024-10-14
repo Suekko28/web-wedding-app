@@ -221,6 +221,10 @@ Route::get('/wedding-3/index', function () {
     return view('wedding-design3.index-preview');
 });
 
+Route::get('/wedding-4', function () {
+    return view('wedding-design4.home-preview');
+});
+
 
 Route::get('/storage-link', function () {
     Artisan::call('storage:link');
