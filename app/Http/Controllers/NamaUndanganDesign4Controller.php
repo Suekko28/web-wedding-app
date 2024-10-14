@@ -14,16 +14,14 @@ class NamaUndanganDesign4Controller extends Controller
      */
     public function index($weddingDesign4Id)
     {
-        $weddingDesign4 = WeddingDesign4::with('InformasiDesign4')->findOrFail($weddingDesign4Id);
+        $weddingDesign4 = WeddingDesign4::findOrFail($weddingDesign4Id);
 
-        $idWeddingDesign4 = $weddingDesign4->id_weddingdesign4;
 
         $nama_undangan = $weddingDesign4->namaUndangan()->paginate(10);
 
         return view('user-design4.index', [
             'weddingDesign4' => $weddingDesign4,
             'nama_undangan' => $nama_undangan,
-            'id_weddingdesign4' => $idWeddingDesign4,
         ]);
     }
 
@@ -33,16 +31,12 @@ class NamaUndanganDesign4Controller extends Controller
      */
     public function create($weddingDesign4Id)
     {
-        // Fetch the wedding design based on the passed ID
-        $weddingDesign4 = WeddingDesign4::with('InformasiDesign4')->findOrFail($weddingDesign4Id);
+        $weddingDesign4 = WeddingDesign4::findOrFail($weddingDesign4Id);
 
-        // Get `id_weddingdesign4` from the model instance
-        $idWeddingDesign4 = $weddingDesign4->id_weddingdesign4;
-
+       
         // Pass both `$weddingDesign4Id` and `$idWeddingDesign4` to the view
         return view('user-design4.create', [
             'weddingDesign4' => $weddingDesign4,
-            'id_weddingdesign4' => $idWeddingDesign4,
         ]);
     }
   

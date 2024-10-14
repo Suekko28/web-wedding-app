@@ -16,7 +16,6 @@
             <a class="btn btn-primary mb-3"
                 href="{{ route('nama-undangan-create4', [
                     'id' => $weddingDesign4->id, // This is the weddingDesign4 ID (e.g., 2)
-                    'id_weddingdesign4' => $weddingDesign4, // This is the id_weddingdesign4 you need to pass
                 ]) }}">
                 + Nama Undangan
             </a>
@@ -61,7 +60,7 @@
                                             <td scope="row">{{ $item->nama_undangan }}</td>
                                             <td>
                                                 <div class="btn-group-horizontal">
-                                                    <a href="{{ url('nama-undangan/design4/' . $item->id) . '/edit' }}"
+                                                    <a href="{{ url('nama-undangan/premium-gold/' . $item->id) . '/edit' }}"
                                                         class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
                                                             style="color:white;"></i></a>
                                                     <button class="btn btn-danger delete-btn rounded mb-2"

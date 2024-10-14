@@ -63,7 +63,6 @@
                                         <a class="btn btn-primary {{ $item->KontenDesign4->isEmpty() ? 'disabled' : '' }}"
                                             href="{{ route('nama-undangan-list4', [
                                                 'id' => $item->id,
-                                                'id_weddingdesign4' => $item->id_weddingdesign4, // Ensure you're using the correct property
                                             ]) }}"
                                             target="_blank">
                                             Buat Tamu

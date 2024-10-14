@@ -479,7 +479,6 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
-<<<<<<< Updated upstream
                         @foreach ($data->DirectTransferDesign4 as $item)
                             <div class="card">
                                 <div class="card-body">
@@ -514,7 +513,6 @@
                                     <h4 class="card-title">{{ $item->alamat }}</h4>
                                     <p class="card-text">{{ $item->deskripsi_alamat }}</p>
                                 @endif
-=======
                         <div class="card">
                             @foreach ($data as $item)
                             <div class="card-body">
@@ -527,24 +525,11 @@
                                     </a>
                                 </div>
                                 <p class="card-text">{{$data->nama_rek}}</p>
->>>>>>> Stashed changes
                             </div>
                             @endforeach
                         </div>
-<<<<<<< Updated upstream
                     @endforeach
-=======
                     </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                        aria-labelledby="pills-profile-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">{{$data->KirimHadiahDesign4->alamat}}</h4>
-                                <p class="card-text">{{$data->deskripsi_alamat}}</p>
-                            </div>
-                        </div>
-                    </div>
->>>>>>> Stashed changes
                 </div>
             </div>
         </div>
