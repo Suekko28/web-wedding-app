@@ -61,10 +61,16 @@
 
                                     <td>
                                         <a class="btn btn-primary {{ $item->KontenDesign4->isEmpty() ? 'disabled' : '' }}"
-                                            href="{{ route('nama-undangan-list4', ['id' => $item]) }}" target="_blank">
+                                            href="{{ route('nama-undangan-list4', [
+                                                'id' => $item->id,
+                                                'id_weddingdesign4' => $item->id_weddingdesign4, // Ensure you're using the correct property
+                                            ]) }}"
+                                            target="_blank">
                                             Buat Tamu
                                         </a>
                                     </td>
+
+
                                     <td>
                                         {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
                                     </td>

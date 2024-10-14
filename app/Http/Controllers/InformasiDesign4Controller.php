@@ -35,11 +35,11 @@ class InformasiDesign4Controller extends Controller
         $data = $request->all();
 
         $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
-        $latestWeddingDesign1 = InformasiDesign4::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
+        $latestWeddingDesign4 = InformasiDesign4::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
 
         // Menentukan urutan ID Seserahan
-        if ($latestWeddingDesign1) {
-            $lastId = intval(substr($latestWeddingDesign1->id_weddingdesign4, -4)); // Mengambil 4 digit terakhir dari id_weddingdesign4
+        if ($latestWeddingDesign4) {
+            $lastId = intval(substr($latestWeddingDesign4->id_weddingdesign4, -4)); // Mengambil 4 digit terakhir dari id_weddingdesign4
             $newIdNumber = $lastId + 1; // Menambah 1 dari id terakhir
         } else {
             $newIdNumber = 1; // Jika belum ada data, mulai dari 1

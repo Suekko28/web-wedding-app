@@ -14,14 +14,19 @@ class NamaUndanganDesign4Controller extends Controller
      */
     public function index($weddingDesign4Id)
     {
-        $weddingDesign4 = WeddingDesign4::findOrFail($weddingDesign4Id);
+        $weddingDesign4 = WeddingDesign4::with('InformasiDesign4')->findOrFail($weddingDesign4Id);
+        
+        $idWeddingDesign4 = $weddingDesign4->id_weddingdesign4;
+    
         $nama_undangan = $weddingDesign4->namaUndangan()->paginate(10);
-
+    
         return view('user-design4.index', [
             'weddingDesign4' => $weddingDesign4,
             'nama_undangan' => $nama_undangan,
+            'id_weddingdesign4' => $idWeddingDesign4,
         ]);
     }
+    
 
     /**
      * Show the form for creating a new resource.

@@ -55,7 +55,7 @@ class WeddingDesign4 extends Model
     {
         return $this->belongsTo(InformasiDesign4::class, 'informasi_design4_id', 'id');
     }
-
+    
     public function namaUndangan(): HasMany
     {
         return $this->hasMany(NamaUndanganDesign4::class, 'wedding_design4_id', 'id');
