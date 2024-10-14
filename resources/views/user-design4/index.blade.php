@@ -10,12 +10,17 @@
 
     {{-- @include('layouts.breadcrumb', ['title' => 'Nama Undangan', 'subtitle' => 'Dashboard'])
     <!-- Row --> --}}
-   
+
     <main>
         <div class="container-xxl flex-grow-1 container-p-y">
-            <a class="btn btn-primary mb-3" href="{{ route('nama-undangan-create4', ['id' => $weddingDesign4->id]) }}">+
-                Nama
-                Undangan</a>
+            <a class="btn btn-primary mb-3"
+                href="{{ route('nama-undangan-create4', [
+                    'id' => $weddingDesign4->id, // This is the weddingDesign4 ID (e.g., 2)
+                    'id_weddingdesign4' => $weddingDesign4, // This is the id_weddingdesign4 you need to pass
+                ]) }}">
+                + Nama Undangan
+            </a>
+
             @include('layouts.message')
             <!-- Responsive Table -->
             <div class="card">

@@ -33,7 +33,10 @@
 
                                 <div class="d-flex flex-row-reverse mt-5">
                                     <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                    <a href="{{ route('nama-undangan-list4', ['id' => $weddingDesign4Id]) }}"
+                                    <a href="{{ route('nama-undangan-list4', [
+                                        'id' => $weddingDesign4Id,
+                                        'id_weddingdesign4' => $weddingDesign4,
+                                        ]) }}"
                                         class="btn btn-secondary">Batal</a>
                                 </div>
 
