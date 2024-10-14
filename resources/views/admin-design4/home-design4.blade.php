@@ -24,7 +24,10 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
+<<<<<<< Updated upstream
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+=======
+>>>>>>> Stashed changes
 </head>
 
 <body>
@@ -44,7 +47,12 @@
                     <p>Bapak/Ibu/Saudara/i</p>
                 </div>
                 <h3>!! Nama Undangan !!</h3>
+<<<<<<< Updated upstream
                 <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas" href="">Buka
+=======
+                <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas"
+                    href="">Buka
+>>>>>>> Stashed changes
                     Undangan</a>
             </div>
             <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
@@ -234,7 +242,12 @@
     <section class="animation gallery" id="gallery">
         <div class="anm_mod bottom-bit fast container-gallery">
             <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
+<<<<<<< Updated upstream
             @if (!empty($data) && !empty($data->quote_img))
+=======
+            <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
+                data-bs-ride="carousel">
+>>>>>>> Stashed changes
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="anm_mod bottom-bit fast quotes">
                         <div class="carousel-inner carousel-gallery">
@@ -380,7 +393,12 @@
                 </div>
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
+<<<<<<< Updated upstream
                         <form id="algin-form" class="rsvp-mobile3" method="POST" action="">
+=======
+                        <form id="algin-form" class="rsvp-mobile3" method="POST"
+                            action="">
+>>>>>>> Stashed changes
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
@@ -410,7 +428,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" id="post" class="btn-primary">Kirim</button>
+                                <button type="submit" id="post" class="btn-primary" disabled>Kirim</button>
                             </div>
                         </form>
                     </div>
@@ -422,6 +440,7 @@
                                     <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 October, 2018 | 20:00 WIB</span>
+<<<<<<< Updated upstream
                             </div>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
                                 aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
@@ -455,9 +474,40 @@
                                     <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
+=======
+>>>>>>> Stashed changes
                             </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                        </div>
+                        <div class="card-comment">
+                            <div class="title">
+                                <div class="name">
+                                    <h4>Paul</h4>
+                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                </div>
+                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
+                            </div>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                        </div>
+                        <div class="card-comment">
+                            <div class="title">
+                                <div class="name">
+                                    <h4>Paul</h4>
+                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                </div>
+                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
+                            </div>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                        </div>
+                        <div class="card-comment">
+                            <div class="title">
+                                <div class="name">
+                                    <h4>Paul</h4>
+                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                </div>
+                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
+                            </div>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
                         </div>
                     </div>
 
@@ -483,6 +533,7 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
+<<<<<<< Updated upstream
                         @foreach ($data->DirectTransferDesign4 as $item)
                             <div class="card">
                                 <div class="card-body">
@@ -511,18 +562,54 @@
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     @foreach ($data->KirimHadiahDesign4 as $item)
+=======
+>>>>>>> Stashed changes
                         <div class="card">
                             <div class="card-body">
-                                @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
-                                    <h4 class="card-title">{{ $item->alamat }}</h4>
-                                    <p class="card-text">{{ $item->deskripsi_alamat }}</p>
-                                @endif
+                                <h4 class="card-title">BCA</h4>
+                                <div class="info-norek">
+                                    <p id="first">0660580697</p>
+                                    <a id="first-button" onclick="copyText('first');" title="Copy Text"
+                                        class="btn-ghost">
+                                        Copy
+                                    </a>
+                                </div>
+                                <p class="card-text">A/N Eka Syafitry Dewi</p>
                             </div>
                         </div>
+<<<<<<< Updated upstream
                     @endforeach
                 </div>
             </div>
         </div>
+=======
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">BCA</h4>
+                                <div class="info-norek">
+                                    <p id="second">09999</p>
+                                    <a id="second-button" onclick="copyText('second');" title="Copy Text"
+                                        class="btn-ghost">
+                                        Copy
+                                    </a>
+                                </div>
+                                <p class="card-text">A/N Eka Syafitry Dewi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                        aria-labelledby="pills-profile-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Rumah</h4>
+                                <p class="card-text">Jl. Hos Cokroaminoto, Kuripan Lor Gg. 16 No.5, Kec. Pekalongan
+                                    Selatan, Kota Pekalongan, Jawa Tengah 51136</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+>>>>>>> Stashed changes
         </div>
     </section>
     <!-- DOA & UCAPAN -->
@@ -531,8 +618,7 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_laki }} &
-                {{ $data->nama_mempelai_perempuan }}</h4>
+            <h4 class="anm_mod bottom-bit fast">Lily & Ndaru</h4>
         </div>
         <div class="overlay-bottom"></div>
     </section>
@@ -872,7 +958,10 @@
       </div>
       `;
 
+<<<<<<< Updated upstream
                 modalBody.innerHTML = markup;
+=======
+>>>>>>> Stashed changes
             }
 
             for (const link of links) {

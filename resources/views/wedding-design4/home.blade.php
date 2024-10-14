@@ -479,6 +479,7 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
+<<<<<<< Updated upstream
                         @foreach ($data->DirectTransferDesign4 as $item)
                             <div class="card">
                                 <div class="card-body">
@@ -513,9 +514,37 @@
                                     <h4 class="card-title">{{ $item->alamat }}</h4>
                                     <p class="card-text">{{ $item->deskripsi_alamat }}</p>
                                 @endif
+=======
+                        <div class="card">
+                            @foreach ($data as $item)
+                            <div class="card-body">
+                                <h4 class="card-title">{{$data->nama_bank}}</h4>
+                                <div class="info-norek">
+                                    <p id="first">{{$data->no_rek}}</p>
+                                    <a id="first-button" onclick="copyText('first');" title="Copy Text"
+                                        class="btn-ghost">
+                                        Copy
+                                    </a>
+                                </div>
+                                <p class="card-text">{{$data->nama_rek}}</p>
+>>>>>>> Stashed changes
+                            </div>
+                            @endforeach
+                        </div>
+<<<<<<< Updated upstream
+                    @endforeach
+=======
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                        aria-labelledby="pills-profile-tab">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">{{$data->KirimHadiahDesign4->alamat}}</h4>
+                                <p class="card-text">{{$data->deskripsi_alamat}}</p>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
@@ -868,7 +897,6 @@
       </div>
       `;
 
-                modalBody.innerHTML = markup;
             }
 
             for (const link of links) {

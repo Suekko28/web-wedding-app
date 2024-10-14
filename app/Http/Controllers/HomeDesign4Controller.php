@@ -58,6 +58,7 @@ class HomeDesign4Controller extends Controller
             })
             ->with('PerjalananCintaDesign4') // Load the PerjalananCintaDesign4 relationship
             ->with('DirectTransferDesign4')
+            ->with('KirimHadiahDesign4')
             ->with('alt4Models') // Load the PerjalananCintaDesign4 relationship
             ->firstOrFail();
 

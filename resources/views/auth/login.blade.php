@@ -12,7 +12,7 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="/main/index" class="text-nowrap logo-img text-center d-block mb-5 w-100">
-                                    <img src="{{ asset('img/logo.png') }}" alt="logo">
+                                    <img src="{{ asset('img/Jejak-Kebahagiaan_Logo-Full.svg') }}" alt="logo">
                                 </a>
                                 @include('layouts.message')
                                 <form method="POST" action="{{ route('login') }}">
