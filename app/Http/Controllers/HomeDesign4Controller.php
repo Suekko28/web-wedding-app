@@ -59,11 +59,11 @@ class HomeDesign4Controller extends Controller
             ->with('PerjalananCintaDesign4') // Load the PerjalananCintaDesign4 relationship
             ->with('DirectTransferDesign4')
             ->with('KirimHadiahDesign4')
-            ->with('alt4Models') // Load the PerjalananCintaDesign4 relationship
+            ->with('alt4Models') // Load the alt4Models relationship
             ->firstOrFail();
 
-        // Retrieve alt4models related to the instance
-        $alt4models = $data->alt4Models;
+        // Retrieve alt4models related to the instance and order by created_at descending
+        $alt4models = $data->alt4Models()->orderBy('created_at', 'desc')->get();
 
         // Count hadir dan tidak hadir
         $hadirCount = $alt4models->where('kehadiran', 1)->count();
@@ -71,6 +71,7 @@ class HomeDesign4Controller extends Controller
 
         return view('wedding-design4.home', compact('data', 'alt4models', 'nama_mempelai_laki', 'nama_mempelai_perempuan', 'nama_undangan', 'hadirCount', 'tidakHadirCount'));
     }
+
 
 
 }

@@ -66,7 +66,6 @@
 
 /* Header Info End */
 
-
 .radio_group {
     display: flex;
     gap: 16px;
@@ -82,7 +81,7 @@
     border-radius: 100px;
 }
 
-.radio_group input:checked+.radio_label {
+.radio_group input:checked + .radio_label {
     background: var(--bs-blue);
     color: white;
 }
@@ -91,11 +90,22 @@
     display: none;
 }
 
+/* Tambahan gaya lain untuk modal example jika dibutuhkan */
+
+.shareModal .modal-backdrop.show {
+    display: none !important;
+}
+
+.no-backdrop .modal-backdrop {
+    display: none; /* Menyembunyikan backdrop hanya untuk modal ini */
+}
+
+
+/* Tambahan gaya lain untuk modal share jika dibutuhkan */
 
 @media (max-width: 400px) {
     .radio_group {
         display: flex;
         flex-direction: column;
     }
-    
 }

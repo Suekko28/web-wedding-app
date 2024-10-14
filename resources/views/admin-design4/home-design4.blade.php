@@ -24,41 +24,35 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
-<<<<<<< Updated upstream
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
-=======
->>>>>>> Stashed changes
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
 </head>
 
 <body>
-    <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-        <!-- <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-    <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
-  </div> -->
-        <div class="offcanvas-body">
-            <div class="opening-undangan">
-                <p>Undangan Pernikahan</p>
-                <h2>{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h2>
-            </div>
-            <div class="tujuan-undangan">
-                <div class="opening">
-                    <p>Kepada Yth</p>
-                    <p>Bapak/Ibu/Saudara/i</p>
+    @if (!session('hide_offcanvas'))
+        <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+            <div class="offcanvas-body">
+                <div class="opening-undangan">
+                    <p>Undangan Pernikahan</p>
+                    <h2>{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h2>
                 </div>
-                <h3>!! Nama Undangan !!</h3>
-<<<<<<< Updated upstream
-                <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas" href="">Buka
-=======
-                <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas"
-                    href="">Buka
->>>>>>> Stashed changes
-                    Undangan</a>
+                <div class="tujuan-undangan">
+                    <div class="opening">
+                        <p>Kepada Yth</p>
+                        <p>Bapak/Ibu/Saudara/i</p>
+                    </div>
+                    <h3>!! Nama Undangan !!</h3>
+                    <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas"
+                        href="">Buka
+                        Undangan</a>
+                </div>
+                <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
+                    alt="background">
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
-                alt="background">
         </div>
-    </div>
+    @endif
+
     <audio loop id="track">
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
@@ -243,12 +237,7 @@
     <section class="animation gallery" id="gallery">
         <div class="anm_mod bottom-bit fast container-gallery">
             <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
-<<<<<<< Updated upstream
             @if (!empty($data) && !empty($data->quote_img))
-=======
-            <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
-                data-bs-ride="carousel">
->>>>>>> Stashed changes
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="anm_mod bottom-bit fast quotes">
                         <div class="carousel-inner carousel-gallery">
@@ -284,6 +273,7 @@
             @endif
         </div>
     </section>
+
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->
@@ -394,22 +384,18 @@
                 </div>
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
-<<<<<<< Updated upstream
-                        <form id="algin-form" class="rsvp-mobile3" method="POST" action="">
-=======
                         <form id="algin-form" class="rsvp-mobile3" method="POST"
                             action="">
->>>>>>> Stashed changes
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
                                 <input placeholder="Masukkan nama lengkap" type="text" name="nama"
-                                    id="fullname" class="form-control">
+                                    id="fullname" class="form-control" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="message">Ucapan</label>
                                 <textarea placeholder="Masukkan kalimat ucapan" name="ucapan" id="msg" cols="30" rows="5"
-                                    class="form-control"></textarea>
+                                    class="form-control" disabled></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="name">Konfirmasi Kehadiran</label>
@@ -441,42 +427,6 @@
                                     <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 October, 2018 | 20:00 WIB</span>
-<<<<<<< Updated upstream
-                            </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
-                                </div>
-                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
-                                </div>
-                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
-                                </div>
-                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
-=======
->>>>>>> Stashed changes
                             </div>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
                         </div>
@@ -521,7 +471,7 @@
                 </div>
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                        <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                             aria-selected="true">Direct Transfer</button>
                     </li>
@@ -534,7 +484,6 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
-<<<<<<< Updated upstream
                         @foreach ($data->DirectTransferDesign4 as $item)
                             <div class="card">
                                 <div class="card-body">
@@ -563,54 +512,32 @@
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     @foreach ($data->KirimHadiahDesign4 as $item)
-=======
->>>>>>> Stashed changes
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">BCA</h4>
-                                <div class="info-norek">
-                                    <p id="first">0660580697</p>
-                                    <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
+                                @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
+                                    <h4 class="card-title">{{ $item->alamat }}</h4>
+                                    <p class="card-text">{{ $item->deskripsi_alamat }}</p>
+                                @endif
+                                <div class="card">
+                                    @foreach ($data as $item)
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{ $data->nama_bank }}</h4>
+                                            <div class="info-norek">
+                                                <p id="first">{{ $data->no_rek }}</p>
+                                                <a id="first-button" onclick="copyText('first');" title="Copy Text"
+                                                    class="btn-ghost">
+                                                    Copy
+                                                </a>
+                                            </div>
+                                            <p class="card-text">{{ $data->nama_rek }}</p>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <p class="card-text">A/N Eka Syafitry Dewi</p>
-                            </div>
-                        </div>
-<<<<<<< Updated upstream
                     @endforeach
                 </div>
             </div>
         </div>
-=======
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">BCA</h4>
-                                <div class="info-norek">
-                                    <p id="second">09999</p>
-                                    <a id="second-button" onclick="copyText('second');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
-                                </div>
-                                <p class="card-text">A/N Eka Syafitry Dewi</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                        aria-labelledby="pills-profile-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Rumah</h4>
-                                <p class="card-text">Jl. Hos Cokroaminoto, Kuripan Lor Gg. 16 No.5, Kec. Pekalongan
-                                    Selatan, Kota Pekalongan, Jawa Tengah 51136</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
->>>>>>> Stashed changes
+        </div>
         </div>
     </section>
     <!-- DOA & UCAPAN -->
@@ -619,7 +546,8 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">Lily & Ndaru</h4>
+            <h4 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_laki }} &
+                {{ $data->nama_mempelai_perempuan }}</h4>
         </div>
         <div class="overlay-bottom"></div>
     </section>
@@ -959,10 +887,6 @@
       </div>
       `;
 
-<<<<<<< Updated upstream
-                modalBody.innerHTML = markup;
-=======
->>>>>>> Stashed changes
             }
 
             for (const link of links) {
@@ -1032,6 +956,14 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="jquery.fancybox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
+    @if (session('hide_offcanvas'))
+        <script>
+            window.location.hash = '#doa-ucapan'; // Redirect with the hash
+            document.getElementById('doa-ucapan').scrollIntoView();
+
+            // Scroll to the section
+        </script>
+    @endif
 
     <script>
         function updateTimer(tgl_akad) {
@@ -1064,6 +996,9 @@
         updateTimer("{{ $data->tgl_akad }}");
         setInterval(updateTimer.bind(null, "{{ $data->tgl_akad }}"), 1000); // Memperbarui setiap detik
     </script>
+
+
+
 
 </body>
 

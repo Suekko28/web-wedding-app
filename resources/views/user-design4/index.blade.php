@@ -141,20 +141,12 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <!-- Isi modal -->
-                                        {{-- <p>Content of your modal goes here...</p> --}}
-                                        <div>
-                                            {{-- <button class="btn btn-primary"
-                                            onclick="copyLink('{{ $item->id }}', '{{ $weddingDesign4->nama_mempelai_laki }}', '{{ $weddingDesign4->nama_mempelai_perempuan }}', '{{ $item->nama_undangan }}')">
-                                            <i class="fas fa-copy"></i> Copy Link
-                                        </button> --}}
-                                            <a href="#" class="btn btn-primary" id="shareOptionWhatsApp"
-                                                data-nama-undangan="{{ $item->nama_undangan }}"
-                                                id="shareButton{{ $item->id }}" class="btn btn-primary"
-                                                onclick="shareOnWhatsApp('{{ $item->nama_undangan }}', '{{ $item->id }}')">
-                                                <i class="fab fa-whatsapp"></i> Share on WhatsApp
-                                            </a>
-                                        </div>
+                                        <a href="#" class="btn btn-primary" id="shareOptionWhatsApp"
+                                            data-nama-undangan="{{ $item->nama_undangan }}"
+                                            id="shareButton{{ $item->id }}" class="btn btn-primary"
+                                            onclick="shareOnWhatsApp('{{ $item->nama_undangan }}', '{{ $item->id }}')">
+                                            <i class="fab fa-whatsapp"></i> Share on WhatsApp
+                                        </a>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -243,16 +235,6 @@
             window.open(whatsappLink, '_blank');
         }
 
-        // function copyLink(itemId, namaMempelaiLaki, namaMempelaiPerempuan, namaUndangan) {
-        //     var link = "jejakkebahagiaan.com/" + namaMempelaiLaki + "&" + namaMempelaiPerempuan + "/" + namaUndangan;
-        //     navigator.clipboard.writeText(link)
-        //         .then(function() {
-        //             alert("Link berhasil disalin: " + link);
-        //         })
-        //         .catch(function(error) {
-        //             console.error("Gagal menyalin link: ", error);
-        //         });
-        // }
 
 
         // Fitur Delete by id menggunakan swal 
