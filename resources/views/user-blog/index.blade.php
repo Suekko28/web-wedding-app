@@ -22,13 +22,13 @@
                             <a href="{{ route('blog-view.show', $item->id) }}" class="card card-blog-custom">
                                 <div class="card card-blog-custom">
                                     <div class="card-blog-img">
-                                        <img class="rounded-4 img-fluid object-fit-cover h-100"
+                                        <img class="rounded-4 img-fluid object-fit-cover"
                                             src="{{ asset('storage/blog/' . $item->image) }}" alt="Foto Blog" width="100%"
                                             height="100%">
                                     </div>
                                     <div class="card-blog-detail">
                                         <div class="card-blog-container-title">
-                                            <div class="card-blog-date">{{ $item->created_at->locale('id')->translatedFormat('d F Y') }}</div>
+                                            <div class="card-blog-date">{{ $item->created_at->format('d F Y') }}</div>
                                             <div class="card-blog-title">{{ $item->judul }}</div>
                                         </div>
                                         <div class="card-blog-paragraph">{!! $item->deskripsi !!}</div>
