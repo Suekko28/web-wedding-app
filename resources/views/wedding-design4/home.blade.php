@@ -259,7 +259,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <p>{{ $data->quote }}</p>
+                        <p>"{{ $data->quote }}"</p>
                     </div>
                     <div class="carousel-indicators indicators-gallery w-100">
                         @foreach ($quoteImages as $index => $image)

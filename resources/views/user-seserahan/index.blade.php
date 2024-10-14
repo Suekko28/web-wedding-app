@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="text-center d-flex justify-content-center mt-5 btn-portofolio">
-                <a class="btn btn-secondary" href="https://www.instagram.com/instagram" target="_blank">Lihat
+                <a class="btn btn-secondary" href="https://www.instagram.com/kasihbyzr/" target="_blank">Lihat
                     Selengkapnya</a>
             </div>
         </section>

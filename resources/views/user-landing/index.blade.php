@@ -127,11 +127,11 @@
                                 </div>
                             </div>
                         </a>
+                        @endforeach
                     </div>
                     <div class="action-button">
                         <a href="{{ route('blog-view.index') }}" class="btn btn-secondary">Lihat Selengkapnya</a>
                     </div>
-                @endforeach
             </div>
         </div>
     </section>
