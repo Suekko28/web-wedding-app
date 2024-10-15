@@ -9,7 +9,7 @@
     <meta property="og:title"
         content="The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
     <meta property="og:description"
-        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}. Ayo hadir dan beri restu.">
+        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
     <meta property="og:image" content="{{ Storage::url('' . $data->banner_img) }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
     <meta name="twitter:title"
         content="The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
     <meta name="twitter:description"
-        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}. Ayo hadir dan beri restu.">
+        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
     <meta name="twitter:image" content="{{ Storage::url('' . $data->banner_img) }}">
 
     <!-- Favicon -->

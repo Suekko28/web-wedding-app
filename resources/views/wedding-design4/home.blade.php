@@ -9,7 +9,7 @@
     <meta property="og:title"
         content="The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
     <meta property="og:description"
-        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}. Ayo hadir dan beri restu.">
+        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
     <meta property="og:image" content="{{ Storage::url('' . $data->banner_img) }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
     <meta name="twitter:title"
         content="The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
     <meta name="twitter:description"
-        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}. Ayo hadir dan beri restu.">
+        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
     <meta name="twitter:image" content="{{ Storage::url('' . $data->banner_img) }}">
 
     <!-- Favicon -->
@@ -502,23 +502,24 @@
                                         @endif
                                         <div class="info-norek">
                                             @if (!empty($item->no_rek))
-                                                <p id="first">{{ $item->no_rek }}</p>
+                                                <p id="first-{{ $loop->index }}">{{ $item->no_rek }}</p>
                                             @endif
-                                            <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                                class="btn-ghost">
+                                            <a id="first-button-{{ $loop->index }}"
+                                                onclick="copyText('first-{{ $loop->index }}', 'first-button-{{ $loop->index }}');"
+                                                title="Copy Text" class="btn-ghost">
                                                 Copy
                                             </a>
                                         </div>
                                         @if (!empty($item->nama_rek))
                                             <p class="card-text">A/N {{ $item->nama_rek }}</p>
                                         @endif
+                                    @endif
                                 </div>
-                        @endif
+                            </div>
+                        @endforeach
                     </div>
-                    @endforeach
-
-
                 </div>
+
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     @foreach ($data->KirimHadiahDesign4 as $item)
                         <div class="card">
@@ -527,21 +528,6 @@
                                     <h4 class="card-title">{{ $item->alamat }}</h4>
                                     <p class="card-text">{{ $item->deskripsi_alamat }}</p>
                                 @endif
-                                <div class="card">
-                                    @foreach ($data as $item)
-                                        <div class="card-body">
-                                            <h4 class="card-title">{{ $data->nama_bank }}</h4>
-                                            <div class="info-norek">
-                                                <p id="first">{{ $data->no_rek }}</p>
-                                                <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                                    class="btn-ghost">
-                                                    Copy
-                                                </a>
-                                            </div>
-                                            <p class="card-text">{{ $data->nama_rek }}</p>
-                                        </div>
-                                    @endforeach
-                                </div>
                     @endforeach
                 </div>
             </div>
@@ -596,6 +582,8 @@
 
     <!-- JS STYLE -->
     <script src="{{ asset('js/style.js') }}"></script>
+
+
     <script>
         // Get all sections that have an ID defined
         const sections = document.querySelectorAll("section[id]");
@@ -1004,6 +992,26 @@
         // Memanggil updateTimer() saat halaman dimuat dengan tanggal akad dari PHP
         updateTimer("{{ $data->tgl_akad }}");
         setInterval(updateTimer.bind(null, "{{ $data->tgl_akad }}"), 1000); // Memperbarui setiap detik
+    </script>
+
+    <script>
+        function copyText(textElementId, buttonId) {
+            var text = document.getElementById(textElementId).textContent;
+            var button = document.getElementById(buttonId);
+
+            // Copy the text to clipboard
+            navigator.clipboard.writeText(text).then(function() {
+                // Change button text to "Copied"
+                button.textContent = 'Copied';
+
+                // Change it back to "Copy" after 2 seconds
+                setTimeout(function() {
+                    button.textContent = 'Copy';
+                }, 2000);
+            }).catch(function(error) {
+                console.error('Error copying text: ', error);
+            });
+        }
     </script>
 
 
