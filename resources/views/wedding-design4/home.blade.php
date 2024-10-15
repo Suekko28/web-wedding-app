@@ -3,19 +3,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
-    <!-- Fancybox and Jquery CDN
-    This link get github repository -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
-        type="text/css" media="screen" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
-    </script>
-    <title>JejakKebahagiaan</title>
+
+    <!-- Meta tags for Open Graph (OGP) -->
+    <meta property="og:title"
+        content="The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
+    <meta property="og:description"
+        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}. Ayo hadir dan beri restu.">
+    <meta property="og:image" content="{{ Storage::url('' . $data->banner_img) }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title"
+        content="The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
+    <meta name="twitter:description"
+        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}. Ayo hadir dan beri restu.">
+    <meta name="twitter:image" content="{{ Storage::url('' . $data->banner_img) }}">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -24,7 +32,10 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
-    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+
+    <title>The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</title>
+
+    <!-- BOOTSTRAP 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
 </head>
@@ -437,7 +448,8 @@
                                         <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
                                     </div>
                                     <span class="label">
-                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }} WIB</span>
+                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }}
+                                        WIB</span>
                                 </div>
                                 <p>{!! $item->ucapan !!}</p>
                             </div>
@@ -451,7 +463,8 @@
                                         <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="tidak hadir">
                                     </div>
                                     <span
-                                        class="label">{{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM,YYYY | H:mm') }} WIB</span>
+                                        class="label">{{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM,YYYY | H:mm') }}
+                                        WIB</span>
                                 </div>
                                 <p>{!! $item->ucapan !!}</p>
                             </div>
@@ -514,25 +527,25 @@
                                     <h4 class="card-title">{{ $item->alamat }}</h4>
                                     <p class="card-text">{{ $item->deskripsi_alamat }}</p>
                                 @endif
-                        <div class="card">
-                            @foreach ($data as $item)
-                            <div class="card-body">
-                                <h4 class="card-title">{{$data->nama_bank}}</h4>
-                                <div class="info-norek">
-                                    <p id="first">{{$data->no_rek}}</p>
-                                    <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
+                                <div class="card">
+                                    @foreach ($data as $item)
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{ $data->nama_bank }}</h4>
+                                            <div class="info-norek">
+                                                <p id="first">{{ $data->no_rek }}</p>
+                                                <a id="first-button" onclick="copyText('first');" title="Copy Text"
+                                                    class="btn-ghost">
+                                                    Copy
+                                                </a>
+                                            </div>
+                                            <p class="card-text">{{ $data->nama_rek }}</p>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <p class="card-text">{{$data->nama_rek}}</p>
-                            </div>
-                            @endforeach
-                        </div>
                     @endforeach
-                    </div>
                 </div>
             </div>
+        </div>
         </div>
         </div>
     </section>

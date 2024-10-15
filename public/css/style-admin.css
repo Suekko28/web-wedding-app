@@ -92,13 +92,17 @@
 
 /* Tambahan gaya lain untuk modal example jika dibutuhkan */
 
-.shareModal .modal-backdrop.show {
+ /* .modal-backdrop {
     display: none !important;
-}
+} */
 
-.no-backdrop .modal-backdrop {
-    display: none; /* Menyembunyikan backdrop hanya untuk modal ini */
-}
+/* .modal-backdrop.show {
+   display: none;
+} */
+
+/* .shareModal .modal-backdrop .modal-backdrop.show{
+    display: none !important; 
+} */
 
 
 /* Tambahan gaya lain untuk modal share jika dibutuhkan */

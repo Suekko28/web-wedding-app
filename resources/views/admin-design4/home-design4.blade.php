@@ -3,19 +3,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
-    <!-- Fancybox and Jquery CDN
-    This link get github repository -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
-        type="text/css" media="screen" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
-    </script>
-    <title>JejakKebahagiaan</title>
+
+    <!-- Meta tags for Open Graph (OGP) -->
+    <meta property="og:title"
+        content="The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
+    <meta property="og:description"
+        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}. Ayo hadir dan beri restu.">
+    <meta property="og:image" content="{{ Storage::url('' . $data->banner_img) }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title"
+        content="The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
+    <meta name="twitter:description"
+        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}. Ayo hadir dan beri restu.">
+    <meta name="twitter:image" content="{{ Storage::url('' . $data->banner_img) }}">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -24,10 +32,14 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
-    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+
+    <title>The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</title>
+
+    <!-- BOOTSTRAP 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
 </head>
+
 
 <body>
     @if (!session('hide_offcanvas'))
@@ -384,8 +396,7 @@
                 </div>
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
-                        <form id="algin-form" class="rsvp-mobile3" method="POST"
-                            action="">
+                        <form id="algin-form" class="rsvp-mobile3" method="POST" action="">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
@@ -428,7 +439,8 @@
                                 </div>
                                 <span class="label">20 October, 2018 | 20:00 WIB</span>
                             </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
+                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
                         </div>
                         <div class="card-comment">
                             <div class="title">
@@ -438,7 +450,8 @@
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
+                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
                         </div>
                         <div class="card-comment">
                             <div class="title">
@@ -448,7 +461,8 @@
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
+                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
                         </div>
                         <div class="card-comment">
                             <div class="title">
@@ -458,7 +472,8 @@
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
+                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
                         </div>
                     </div>
 

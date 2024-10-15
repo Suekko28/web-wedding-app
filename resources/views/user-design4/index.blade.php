@@ -131,7 +131,7 @@
                     </div>
 
                     @foreach ($nama_undangan as $item)
-                        <div class="modal fade" id="shareModal{{ $item->id }}" tabindex="-1"
+                        <div class="modal fade shareModal" id="shareModal{{ $item->id }}" tabindex="-1"
                             aria-labelledby="shareModalLabel{{ $item->id }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -143,7 +143,7 @@
                                     <div class="modal-body">
                                         <a href="#" class="btn btn-primary" id="shareOptionWhatsApp"
                                             data-nama-undangan="{{ $item->nama_undangan }}"
-                                            id="shareButton{{ $item->id }}" class="btn btn-primary"
+                                            id="shareButton{{ $item->id }}"
                                             onclick="shareOnWhatsApp('{{ $item->nama_undangan }}', '{{ $item->id }}')">
                                             <i class="fab fa-whatsapp"></i> Share on WhatsApp
                                         </a>
@@ -294,6 +294,39 @@
             } else {
                 noDataMessage.style.display = 'none';
             }
+        });
+
+        // // Ketika modal dibuka
+        // document.querySelectorAll('.modal').forEach(function(modal) {
+        //     modal.addEventListener('shown.bs.modal', function() {
+        //         document.querySelector('.modal-backdrop.show').style.opacity = '0.5';
+        //     });
+
+        //     // Ketika modal ditutup
+        //     modal.addEventListener('hidden.bs.modal', function() {
+        //         document.querySelector('.modal-backdrop.show').style.opacity = ''; // Kembalikan ke default
+        //     });
+        // });
+
+        // Ketika modal ditutup, hapus modal-backdrop yang ada
+        document.querySelectorAll('.modal').forEach(function(modal) {
+            modal.addEventListener('hidden.bs.modal', function() {
+                // Hapus modal-backdrop ketika modal ditutup
+                const modalBackdrop = document.querySelector('.modal-backdrop.show');
+                if (modalBackdrop) {
+                    modalBackdrop.remove(); // Menghapus backdrop
+                }
+            });
+
+            // Ketika modal dibuka, tambahkan modal-backdrop lagi
+            modal.addEventListener('shown.bs.modal', function() {
+                // Pastikan backdrop ditambahkan kembali
+                if (!document.querySelector('.modal-backdrop')) {
+                    const backdrop = document.createElement('div');
+                    backdrop.className = 'modal-backdrop fade show'; // Tambahkan class untuk backdrop
+                    document.body.appendChild(backdrop); // Tambahkan ke body
+                }
+            });
         });
     </script>
 @endsection
