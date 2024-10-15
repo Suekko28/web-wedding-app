@@ -295,7 +295,7 @@ class WeddingDesign4Controller extends Controller
             if ($perjalananCinta->image1) {
                 Storage::delete($perjalananCinta->image1);
             }
-            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design4/perjalanancinta', $request->file('image1')->getClientOriginalName());
+            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image1')->getClientOriginalName());
         }
 
         // Check and handle uploaded image2
@@ -303,7 +303,7 @@ class WeddingDesign4Controller extends Controller
             if ($perjalananCinta->image2) {
                 Storage::delete($perjalananCinta->image2);
             }
-            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design4/perjalanancinta', $request->file('image2')->getClientOriginalName());
+            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image2')->getClientOriginalName());
         }
 
         $perjalananCinta->update($data); // Update model PerjalananCintaDesign4
