@@ -40,7 +40,6 @@
     </script>
 </head>
 
-
 <body>
     @if (!session('hide_offcanvas'))
         <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
@@ -54,7 +53,7 @@
                         <p>Kepada Yth</p>
                         <p>Bapak/Ibu/Saudara/i</p>
                     </div>
-                    <h3>!! Nama Undangan !!</h3>
+                    <h3>Nama Tamu </h3>
                     <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas"
                         href="">Buka
                         Undangan</a>
@@ -484,7 +483,7 @@
                     <h3>Kirim Hadiah</h3>
                     <p>Berikan hadiah kepada kedua mempelai</p>
                 </div>
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
@@ -522,8 +521,6 @@
                         @endif
                     </div>
                     @endforeach
-
-
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     @foreach ($data->KirimHadiahDesign4 as $item)
@@ -533,27 +530,11 @@
                                     <h4 class="card-title">{{ $item->alamat }}</h4>
                                     <p class="card-text">{{ $item->deskripsi_alamat }}</p>
                                 @endif
-                                <div class="card">
-                                    @foreach ($data as $item)
-                                        <div class="card-body">
-                                            <h4 class="card-title">{{ $data->nama_bank }}</h4>
-                                            <div class="info-norek">
-                                                <p id="first">{{ $data->no_rek }}</p>
-                                                <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                                    class="btn-ghost">
-                                                    Copy
-                                                </a>
-                                            </div>
-                                            <p class="card-text">{{ $data->nama_rek }}</p>
-                                        </div>
-                                    @endforeach
-                                </div>
                     @endforeach
                 </div>
             </div>
         </div>
-        </div>
-        </div>
+
     </section>
     <!-- DOA & UCAPAN -->
 
@@ -602,6 +583,8 @@
 
     <!-- JS STYLE -->
     <script src="{{ asset('js/style.js') }}"></script>
+
+
     <script>
         // Get all sections that have an ID defined
         const sections = document.querySelectorAll("section[id]");
@@ -823,7 +806,7 @@
     </script>
     <script>
         const html = document.querySelector('html');
-        html.setAttribute('data-bs-theme', 'dark');
+        html.setAttribute('data-bs-theme', 'light');
 
         document.addEventListener('DOMContentLoaded', () => {
             // --- Create LightBox
@@ -975,8 +958,6 @@
         <script>
             window.location.hash = '#doa-ucapan'; // Redirect with the hash
             document.getElementById('doa-ucapan').scrollIntoView();
-
-            // Scroll to the section
         </script>
     @endif
 
@@ -1010,6 +991,26 @@
         // Memanggil updateTimer() saat halaman dimuat dengan tanggal akad dari PHP
         updateTimer("{{ $data->tgl_akad }}");
         setInterval(updateTimer.bind(null, "{{ $data->tgl_akad }}"), 1000); // Memperbarui setiap detik
+    </script>
+
+    <script>
+        function copyText(textElementId, buttonId) {
+            var text = document.getElementById(textElementId).textContent;
+            var button = document.getElementById(buttonId);
+
+            // Copy the text to clipboard
+            navigator.clipboard.writeText(text).then(function() {
+                // Change button text to "Copied"
+                button.textContent = 'Copied';
+
+                // Change it back to "Copy" after 2 seconds
+                setTimeout(function() {
+                    button.textContent = 'Copy';
+                }, 2000);
+            }).catch(function(error) {
+                console.error('Error copying text: ', error);
+            });
+        }
     </script>
 
 

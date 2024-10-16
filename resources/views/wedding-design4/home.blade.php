@@ -46,7 +46,7 @@
             <div class="offcanvas-body">
                 <div class="opening-undangan">
                     <p>Undangan Pernikahan</p>
-                    <h2>{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h2>
+                    <h2>{{ $data->InformasiDesign4->nama_pasangan }}</h2>
                 </div>
                 <div class="tujuan-undangan">
                     <div class="opening">
@@ -120,7 +120,7 @@
         </div>
         <div class="title">
             <p>Pernikahan</p>
-            <h2>{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h2>
+            <h2>{{ $data->InformasiDesign4->nama_pasangan }}</h2>
         </div>
         <div class="wedding-timer">
             <div id="timer">
@@ -439,31 +439,20 @@
                         </form>
                     </div>
                     <div class="comment-list">
-                        <!-- Menampilkan tamu yang hadir -->
-                        @foreach ($alt4models->where('kehadiran', 1) as $item)
+                        @foreach ($alt4models as $item)
                             <div class="card-comment">
                                 <div class="title">
                                     <div class="name">
                                         <h4>{{ $item->nama }}</h4>
-                                        <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
+                                        @if ($item->kehadiran == 1)
+                                            <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
+                                        @else
+                                            <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="tidak hadir">
+                                        @endif
+
                                     </div>
                                     <span class="label">
                                         {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }}
-                                        WIB</span>
-                                </div>
-                                <p>{!! $item->ucapan !!}</p>
-                            </div>
-                        @endforeach
-                        <!-- Menampilkan tamu yang tidak hadir -->
-                        @foreach ($alt4models->where('kehadiran', 0) as $item)
-                            <div class="card-comment">
-                                <div class="title">
-                                    <div class="name">
-                                        <h4>{{ $item->nama }}</h4>
-                                        <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="tidak hadir">
-                                    </div>
-                                    <span
-                                        class="label">{{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM,YYYY | H:mm') }}
                                         WIB</span>
                                 </div>
                                 <p>{!! $item->ucapan !!}</p>
@@ -478,7 +467,7 @@
                     <h3>Kirim Hadiah</h3>
                     <p>Berikan hadiah kepada kedua mempelai</p>
                 </div>
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
@@ -502,24 +491,21 @@
                                         @endif
                                         <div class="info-norek">
                                             @if (!empty($item->no_rek))
-                                                <p id="first-{{ $loop->index }}">{{ $item->no_rek }}</p>
+                                                <p id="first">{{ $item->no_rek }}</p>
                                             @endif
-                                            <a id="first-button-{{ $loop->index }}"
-                                                onclick="copyText('first-{{ $loop->index }}', 'first-button-{{ $loop->index }}');"
-                                                title="Copy Text" class="btn-ghost">
+                                            <a id="first-button" onclick="copyText('first');" title="Copy Text"
+                                                class="btn-ghost">
                                                 Copy
                                             </a>
                                         </div>
                                         @if (!empty($item->nama_rek))
                                             <p class="card-text">A/N {{ $item->nama_rek }}</p>
                                         @endif
-                                    @endif
                                 </div>
-                            </div>
-                        @endforeach
+                        @endif
                     </div>
+                    @endforeach
                 </div>
-
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     @foreach ($data->KirimHadiahDesign4 as $item)
                         <div class="card">
@@ -532,8 +518,7 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
+
     </section>
     <!-- DOA & UCAPAN -->
 
@@ -805,7 +790,7 @@
     </script>
     <script>
         const html = document.querySelector('html');
-        html.setAttribute('data-bs-theme', 'dark');
+        html.setAttribute('data-bs-theme', 'light');
 
         document.addEventListener('DOMContentLoaded', () => {
             // --- Create LightBox
@@ -957,8 +942,6 @@
         <script>
             window.location.hash = '#doa-ucapan'; // Redirect with the hash
             document.getElementById('doa-ucapan').scrollIntoView();
-
-            // Scroll to the section
         </script>
     @endif
 

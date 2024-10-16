@@ -56,16 +56,13 @@ class HomeDesign4Controller extends Controller
             ->whereHas('namaUndangan', function ($query) use ($nama_undangan) {
                 $query->where('nama_undangan', $nama_undangan);
             })
-            ->with('PerjalananCintaDesign4') // Load the PerjalananCintaDesign4 relationship
+            ->with('PerjalananCintaDesign4')
             ->with('DirectTransferDesign4')
             ->with('KirimHadiahDesign4')
-            ->with('alt4Models') // Load the alt4Models relationship
             ->firstOrFail();
 
-        // Retrieve alt4models related to the instance and order by created_at descending
         $alt4models = $data->alt4Models()->orderBy('created_at', 'desc')->get();
 
-        // Count hadir dan tidak hadir
         $hadirCount = $alt4models->where('kehadiran', 1)->count();
         $tidakHadirCount = $alt4models->where('kehadiran', 0)->count();
 
