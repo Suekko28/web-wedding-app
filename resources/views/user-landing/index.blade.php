@@ -120,18 +120,19 @@
                                 </div>
                                 <div class="card-blog-detail">
                                     <div class="card-blog-container-title">
-                                        <div class="card-blog-date">{{ $item->created_at->locale('id')->translatedFormat('d F Y') }}</div>
+                                        <div class="card-blog-date">
+                                            {{ $item->created_at->locale('id')->translatedFormat('d F Y') }}</div>
                                         <div class="card-blog-title">{{ $item->judul }}</div>
                                     </div>
                                     <div class="card-blog-paragraph">{!! $item->deskripsi !!}</div>
                                 </div>
                             </div>
                         </a>
-                        @endforeach
                     </div>
-                    <div class="action-button">
-                        <a href="{{ route('blog-view.index') }}" class="btn btn-secondary">Lihat Selengkapnya</a>
-                    </div>
+                @endforeach
+                <div class="action-button">
+                    <a href="{{ route('blog-view.index') }}" class="btn btn-secondary">Lihat Selengkapnya</a>
+                </div>
             </div>
         </div>
     </section>
@@ -165,6 +166,6 @@
             </div>
         </div>
     </section>
-    
+
     <!-- MARKET PLACE END -->
 @endsection
