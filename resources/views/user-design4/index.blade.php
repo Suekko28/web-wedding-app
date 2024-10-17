@@ -66,9 +66,9 @@
                                                     <button class="btn btn-danger delete-btn rounded mb-2"
                                                         nama_undangan-id="{{ $item->id }}"><i
                                                             class="fa fa-trash"></i></button>
-                                                    <a href="#exampleModal{{ $item->id }}"
+                                                    <a href="#exampleModalToggle{{ $item->id }}"
                                                         class="btn btn-primary rounded mb-2" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal{{ $item->id }}">
+                                                        data-bs-target="#exampleModalToggle{{ $item->id }}">
                                                         <i class="fa fa-link" style="color:white;"></i>
                                                     </a>
 
@@ -81,12 +81,13 @@
                             </table>
                         </form>
                         @foreach ($nama_undangan as $item)
-                            <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
-                                aria-labelledby="exampleModalLabel{{ $item->id }}" aria-hidden="true">
+                            <div class="modal fade" id="exampleModalToggle{{ $item->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalToggleLabel{{ $item->id }}" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel{{ $item->id }}">Template
+                                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel{{ $item->id }}">
+                                                Template
                                                 Message</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -118,7 +119,7 @@
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#shareModal{{ $item->id }}"
+                                                data-bs-target="#exampleModalToggleToggle2{{ $item->id }}"
                                                 data-nama-undangan="{{ $item->nama_undangan }}"
                                                 id="shareButton{{ $item->id }}" disabled>Share</button>
                                         </div>
@@ -131,12 +132,12 @@
                     </div>
 
                     @foreach ($nama_undangan as $item)
-                        <div class="modal fade shareModal" id="shareModal{{ $item->id }}" tabindex="-1"
-                            aria-labelledby="shareModalLabel{{ $item->id }}" aria-hidden="true">
+                        <div class="modal fade" id="exampleModalToggleToggle2{{ $item->id }}" tabindex="-1"
+                            aria-labelledby="exampleModalToggleToggle2Label{{ $item->id }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="shareModalLabel">Share Link</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalToggleToggle2Label">Share Link</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -156,8 +157,6 @@
                             </div>
                         </div>
                     @endforeach
-
-
                 </div>
             </div>
 
@@ -308,23 +307,39 @@
         //     });
         // });
 
-        // Ketika modal ditutup, hapus modal-backdrop yang ada
+        // Ketika modal ditutup, hapus backdrop yang tersisa
+        // Fungsi untuk mengelola tampilan modal
+        function openModal(modalId) {
+            const modal = new bootstrap.Modal(document.getElementById(modalId));
+            modal.show();
+        }
+
+        // Menangani klik tombol Share untuk membuka modal kedua
+        document.querySelectorAll('.btn-primary[data-bs-toggle="modal"]').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const targetModalId = this.getAttribute('data-bs-target').substring(
+                    1); // Menghilangkan tanda '#'
+
+                // Tutup modal yang mungkin terbuka
+                const openModals = document.querySelectorAll('.modal.show');
+                openModals.forEach(function(openModal) {
+                    const openModalId = openModal.getAttribute('id');
+                    if (openModalId !== targetModalId) {
+                        const modal = bootstrap.Modal.getInstance(openModal);
+                        modal.hide();
+                    }
+                });
+
+                // Buka modal target
+                openModal(targetModalId);
+            });
+        });
+
         document.querySelectorAll('.modal').forEach(function(modal) {
             modal.addEventListener('hidden.bs.modal', function() {
-                // Hapus modal-backdrop ketika modal ditutup
-                const modalBackdrop = document.querySelector('.modal-backdrop.show');
-                if (modalBackdrop) {
-                    modalBackdrop.remove(); // Menghapus backdrop
-                }
-            });
-
-            // Ketika modal dibuka, tambahkan modal-backdrop lagi
-            modal.addEventListener('shown.bs.modal', function() {
-                // Pastikan backdrop ditambahkan kembali
-                if (!document.querySelector('.modal-backdrop')) {
-                    const backdrop = document.createElement('div');
-                    backdrop.className = 'modal-backdrop fade show'; // Tambahkan class untuk backdrop
-                    document.body.appendChild(backdrop); // Tambahkan ke body
+                const backdrop = document.querySelector('.modal-backdrop');
+                if (backdrop) {
+                    backdrop.remove();
                 }
             });
         });
