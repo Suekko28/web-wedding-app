@@ -1,3 +1,10 @@
+/* html {
+    z-index: 1;
+}
+
+main {
+    z-index: 999;
+} */
 .mandatory {
     color: red; /* Atau warna lain yang sesuai */
 }
@@ -89,6 +96,14 @@
 .radio_group input {
     display: none;
 }
+
+/* .modal-backdrop.show {
+    z-index: -999;
+  }
+
+  .content {
+    z-index: 
+  } */
 
 /* Tambahan gaya lain untuk modal example jika dibutuhkan */
 

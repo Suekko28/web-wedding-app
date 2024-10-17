@@ -37,6 +37,7 @@ body {
     background-size: cover;
     width: 100%;
     position: fixed;
+    top: 0;
     z-index: 1;
     height: 100vh;
     background-color: rgba(245, 236, 227, 0.7);

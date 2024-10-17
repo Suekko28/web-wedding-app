@@ -24,7 +24,7 @@
     <meta property="og:title" content="Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!">
     <meta property="og:description"
         content="Solusi terbaik dalam persiapan pernikahan dari Hias Seserahan & Undangan Digital.">
-    <meta property="og:image" content="{{ asset('img/Jejak-Kebahagiaan_Favicon_64px.svg') }}">
+    <meta property="og:image" content="{{ asset('img/Tumbnail-Jejakkebahagiaan.jpg') }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
 
@@ -33,7 +33,7 @@
     <meta name="twitter:title" content="Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!">
     <meta name="twitter:description"
         content="Solusi terbaik dalam persiapan pernikahan dari Hias Seserahan & Undangan Digital.">
-    <meta name="twitter:image" content="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+    <meta name="twitter:image" content="{{ asset('img/Tumbnail-Jejakkebahagiaan.jpg') }}">
 
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"

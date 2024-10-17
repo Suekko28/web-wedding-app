@@ -6,25 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
 
     <!-- Meta tags for Open Graph (OGP) -->
-    <meta property="og:title"
-        content="The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
-    <meta property="og:description"
-        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
+    <meta property="og:title" content="The Wedding Of {{ $data->InformasiDesign4->nama_pasangan }}">
+    <meta property="og:description" content="Undangan Pernikahan {{ $data->InformasiDesign4->nama_pasangan }}">
     <meta property="og:image" content="{{ Storage::url('' . $data->banner_img) }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title"
-        content="The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
-    <meta name="twitter:description"
-        content="Undangan Pernikahan {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}">
+    <meta name="twitter:title" content="The Wedding Of {{ $data->InformasiDesign4->nama_pasangan }}">
+    <meta name="twitter:description" content="Undangan Pernikahan {{ $data->InformasiDesign4->nama_pasangan }}">
     <meta name="twitter:image" content="{{ Storage::url('' . $data->banner_img) }}">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
-
+    <!-- Fancybox and Jquery CDN
+    This link get github repository -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+        type="text/css" media="screen" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
+    </script>
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -33,7 +35,8 @@
     <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
 
-    <title>The Wedding Of {{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</title>
+
+    <title>The Wedding Of {{ $data->InformasiDesign4->nama_pasangan }}</title>
 
     <!-- BOOTSTRAP 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
@@ -43,20 +46,23 @@
 <body>
     @if (!session('hide_offcanvas'))
         <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+            <!-- <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+        <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
+      </div> -->
             <div class="offcanvas-body">
                 <div class="opening-undangan">
                     <p>Undangan Pernikahan</p>
-                    <h2>{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h2>
+                    <h2>{{ $data->InformasiDesign4->nama_pasangan }}</h2>
                 </div>
                 <div class="tujuan-undangan">
                     <div class="opening">
                         <p>Kepada Yth</p>
                         <p>Bapak/Ibu/Saudara/i</p>
                     </div>
-                    <h3>Nama Tamu </h3>
-                    <a type="button" id="play-pause" class="btn-primary" data-bs-dismiss="offcanvas"
-                        href="">Buka
-                        Undangan</a>
+                    <h3>Nama Tamu</h3>
+                    <button type="button" onclick="playAudio()" class="btn-primary" data-bs-dismiss="offcanvas">Buka
+                        Undangan</button>
                 </div>
                 <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
                     alt="background">
@@ -116,7 +122,7 @@
         </div>
         <div class="title">
             <p>Pernikahan</p>
-            <h2>{{ $data->nama_mempelai_laki }} & {{ $data->nama_mempelai_perempuan }}</h2>
+            <h2>{{ $data->InformasiDesign4->nama_pasangan }}</h2>
         </div>
         <div class="wedding-timer">
             <div id="timer">
@@ -150,7 +156,6 @@
                 </p>
             </div>
         </div>
-
         <div class="background-overlay"></div>
     </section>
     <!-- HERO END -->
@@ -226,7 +231,6 @@
                             </div>
                         @endforeach
                     </div>
-
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -239,7 +243,6 @@
                     </button>
                 </div>
             @endif
-
         </div>
     </section>
     <!-- PERJALANAN CINTA END -->
@@ -249,42 +252,43 @@
         <div class="anm_mod bottom-bit fast container-gallery">
             <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
             @if (!empty($data) && !empty($data->quote_img))
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="anm_mod bottom-bit fast quotes">
-                        <div class="carousel-inner carousel-gallery">
-                            @php
-                                $quoteImages = json_decode($data->quote_img, true); // Decode the JSON to get an array
-                            @endphp
-
+                <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
+                    data-bs-ride="carousel">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="anm_mod bottom-bit fast quotes">
+                            <div class="carousel-inner carousel-gallery">
+                                @php
+                                    $quoteImages = json_decode($data->quote_img, true); // Decode the JSON to get an array
+                                @endphp
+                                @foreach ($quoteImages as $index => $image)
+                                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                        <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
+                                            <img src="{{ Storage::url($image) }}"
+                                                class="d-block w-100 h-100 object-fit-cover img-fluid"
+                                                alt="Image Gallery">
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <p>"{{ $data->quote }}"</p>
+                        </div>
+                        <div class="carousel-indicators indicators-gallery w-100">
                             @foreach ($quoteImages as $index => $image)
-                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                    <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
-                                        <img src="{{ Storage::url($image) }}"
-                                            class="d-block w-100 h-100 object-fit-cover img-fluid"
-                                            alt="Image Gallery">
-                                    </a>
-                                </div>
+                                <button type="button" data-bs-target="#carouselExampleIndicators"
+                                    data-bs-slide-to="{{ $index }}"
+                                    class="{{ $index === 0 ? 'active' : '' }} thumbnail rounded-2"
+                                    aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                    aria-label="Slide {{ $index + 1 }}">
+                                    <img src="{{ Storage::url($image) }}"
+                                        class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
+                                </button>
                             @endforeach
                         </div>
-                        <p>"{{ $data->quote }}"</p>
-                    </div>
-                    <div class="carousel-indicators indicators-gallery w-100">
-                        @foreach ($quoteImages as $index => $image)
-                            <button type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide-to="{{ $index }}"
-                                class="{{ $index === 0 ? 'active' : '' }} thumbnail rounded-2"
-                                aria-current="{{ $index === 0 ? 'true' : 'false' }}"
-                                aria-label="Slide {{ $index + 1 }}">
-                                <img src="{{ Storage::url($image) }}"
-                                    class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
-                            </button>
-                        @endforeach
                     </div>
                 </div>
             @endif
         </div>
     </section>
-
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->
@@ -542,8 +546,7 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_laki }} &
-                {{ $data->nama_mempelai_perempuan }}</h4>
+            <h4 class="anm_mod bottom-bit fast">{{ $data->InformasiDesign4->nama_pasangan }}</h4>
         </div>
         <div class="overlay-bottom"></div>
     </section>
@@ -583,8 +586,6 @@
 
     <!-- JS STYLE -->
     <script src="{{ asset('js/style.js') }}"></script>
-
-
     <script>
         // Get all sections that have an ID defined
         const sections = document.querySelectorAll("section[id]");
@@ -819,8 +820,8 @@
 
             function createCaption(caption) {
                 return `<div class="carousel-caption d-none d-md-block">
-        <h4 class="m-0">${caption}</h4>
-      </div>`;
+            <h4 class="m-0">${caption}</h4>
+          </div>`;
             }
 
             function createIndicators(img) {
@@ -833,11 +834,11 @@
 
                 for (i = 0, len = countSlides; i < len; i++) {
                     markup += `
-        <button type="button" data-bs-target="#lightboxCarousel"
-          data-bs-slide-to="${i}"
-          ${i === curIndex ? 'class="active" aria-current="true"' : ''}
-          aria-label="Slide ${i + 1}">
-        </button>`;
+            <button type="button" data-bs-target="#lightboxCarousel"
+              data-bs-slide-to="${i}"
+              ${i === curIndex ? 'class="active" aria-current="true"' : ''}
+              aria-label="Slide ${i + 1}">
+            </button>`;
                 }
 
                 return markup;
@@ -852,10 +853,10 @@
                     const imgAlt = img.getAttribute("alt");
 
                     markup += `
-        <div class="carousel-item${currentImgSrc === imgSrc ? " active" : ""}">
-          <img class="d-block img-fluid w-100" src=${imgSrc} alt="${imgAlt}">
-          ${imgAlt ? createCaption(imgAlt) : ""}
-        </div>`;
+            <div class="carousel-item${currentImgSrc === imgSrc ? " active" : ""}">
+              <img class="d-block img-fluid w-100" src=${imgSrc} alt="${imgAlt}">
+              ${imgAlt ? createCaption(imgAlt) : ""}
+            </div>`;
                 }
 
                 return markup;
@@ -863,28 +864,29 @@
 
             function createCarousel(img) {
                 const markup = `
-      <!-- Lightbox Carousel -->
-      <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="true">
-        <!-- Indicators/dots -->
-        <div class="carousel-indicators">
-          ${createIndicators(img)}
-        </div>
-        <!-- Wrapper for Slides -->
-        <div class="carousel-inner justify-content-center mx-auto">
-          ${createSlides(img)}
-        </div>
-        <!-- Controls/icons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      `;
+          <!-- Lightbox Carousel -->
+          <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="true">
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+              ${createIndicators(img)}
+            </div>
+            <!-- Wrapper for Slides -->
+            <div class="carousel-inner justify-content-center mx-auto">
+              ${createSlides(img)}
+            </div>
+            <!-- Controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          `;
 
+                modalBody.innerHTML = markup;
             }
 
             for (const link of links) {
@@ -937,20 +939,22 @@
         })
     </script>
     <script>
-        // Fancybox Config
-        $('[data-fancybox="gallery"]').fancybox({
-            buttons: [
-                "slideShow",
-                "thumbs",
-                "zoom",
-                "fullScreen",
-                "share",
-                "close"
-            ],
-            loop: false,
-            protect: true
+        $(document).ready(function() {
+            $('[data-fancybox="gallery"]').fancybox({
+                buttons: [
+                    "slideShow",
+                    "thumbs",
+                    "zoom",
+                    "fullScreen",
+                    "share",
+                    "close"
+                ],
+                loop: true,
+                protect: true
+            });
         });
     </script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="jquery.fancybox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
@@ -1015,7 +1019,7 @@
 
 
 
-
 </body>
+
 
 </html>

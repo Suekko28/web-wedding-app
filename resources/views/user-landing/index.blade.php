@@ -165,5 +165,6 @@
             </div>
         </div>
     </section>
+    
     <!-- MARKET PLACE END -->
 @endsection
