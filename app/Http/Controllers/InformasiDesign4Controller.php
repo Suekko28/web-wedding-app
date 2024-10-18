@@ -13,11 +13,12 @@ class InformasiDesign4Controller extends Controller
      */
     public function index()
     {
-        $data = InformasiDesign4::orderBy('id', 'desc')->with('KontenDesign4')->paginate(10);
+        $data = InformasiDesign4::orderBy('id', 'desc')->with(['KontenDesign4', 'weddingDesign4'])->paginate(10);
         return view('admin-design4.index', [
             'data' => $data,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -61,7 +62,7 @@ class InformasiDesign4Controller extends Controller
      */
     public function show(string $id)
     {
-        
+
     }
 
     /**

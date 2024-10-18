@@ -8,16 +8,13 @@
 
 @section('pageContent')
 
-    {{-- @include('layouts.breadcrumb', ['title' => 'Dashboard', 'subtitle' => 'Home'])
-    <!-- Row --> --}}
     <main>
-
         <section class="content">
             <div class="container-fluid">
                 @include('layouts.message')
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('nama-undangan-store4', ['id' => $weddingDesign4]) }}" method="post"
+                        <form action="{{ route('nama-undangan-store4', ['id' => $weddingDesign4->id]) }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="wedding_design4_id" value="{{ $weddingDesign4->id }}">
@@ -33,16 +30,13 @@
 
                                 <div class="d-flex flex-row-reverse mt-5">
                                     <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                    <a href="{{ route('nama-undangan-list4', [
-                                        'id' => $weddingDesign4,
-                                        ]) }}"
+                                    <a href="{{ route('nama-undangan-list4', ['weddingDesign4Id' => $weddingDesign4->id]) }}"
                                         class="btn btn-secondary">Batal</a>
                                 </div>
-
                             </div>
+                        </form>
                     </div>
                 </div>
-                </form>
             </div>
         </section>
     </main>

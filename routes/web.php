@@ -174,7 +174,7 @@ Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/for={nama_undangan}'
 Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/for={nama_undangan}', [HomeDesign4Controller::class, 'store'])->name('wedding-design4-post');
 
 Route::resource('/nama-undangan', NamaUndanganDesign4Controller::class);
-Route::get('/nama-undangan/premium-gold/{id}/list', [NamaUndanganDesign4Controller::class, 'index'])->name('nama-undangan-list4');
+Route::get('nama-undangan/premium-gold/{weddingDesign4Id}/list', [NamaUndanganDesign4Controller::class, 'index'])->name('nama-undangan-list4');
 Route::get('/nama-undangan/premium-gold/{id}/create', [NamaUndanganDesign4Controller::class, 'create'])->name('nama-undangan-create4');
 Route::post('/nama-undangan/premium-gold/{id}/list', [NamaUndanganDesign4Controller::class, 'store'])->name('nama-undangan-store4');
 Route::get('/nama-undangan/premium-gold/{id}/edit', [NamaUndanganDesign4Controller::class, 'edit'])->name('nama-undangan-edit4');

@@ -22,20 +22,20 @@
                             method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" name="wedding_design4_id" value="{{ $weddingDesign4Id }}">
+                            <input type="hidden" name="wedding_design4_id" value="{{ $weddingDesign4->id }}">
                             <div class="card-body container bg-white mt-5">
                                 <div class="mempelai text-center fw-bold fs-5">Nama Undangan</div>
                                 <div class="fs-3">
                                     <div class="form-group mb-3">
                                         <label for="nama_undangan">Nama Undangan <span class="mandatory">*</span></label>
                                         <textarea class="form-control" rows="5" id="nama_undangan" name="nama_undangan"
-                                            placeholder="Masukan nama-nama undangan">{{ $data->nama_undangan }}</textarea>
+                                            placeholder="Masukan nama-nama undangan">{{$data->nama_undangan}}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="d-flex flex-row-reverse mt-5">
                                     <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                    <a href="{{ route('nama-undangan-list4', ['id' => $weddingDesign4Id]) }}"
+                                    <a href="{{ route('nama-undangan-list4', ['weddingDesign4Id' => $weddingDesign4->id]) }}"
                                         class="btn btn-secondary">Batal</a>
                                 </div>
                             </div>

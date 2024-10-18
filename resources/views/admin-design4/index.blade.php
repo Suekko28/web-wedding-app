@@ -58,17 +58,19 @@
                                             </a>
                                         @endif
                                     </td>
-
                                     <td>
-                                        <a class="btn btn-primary {{ $item->KontenDesign4->isEmpty() ? 'disabled' : '' }}"
-                                            href="{{ route('nama-undangan-list4', [
-                                                'id' => $item->id,
-                                            ]) }}"
-                                            target="_blank">
-                                            Buat Tamu
-                                        </a>
+                                        @if ($item->KontenDesign4->isNotEmpty())
+                                            <a class="btn btn-primary"
+                                                href="{{ route('nama-undangan-list4', ['weddingDesign4Id' => $item->KontenDesign4->first()->id]) }}"
+                                                target="_blank">
+                                                Buat Tamu
+                                            </a>
+                                        @else
+                                            <a class="btn btn-primary disabled">
+                                                Buat Tamu
+                                            </a>
+                                        @endif
                                     </td>
-
 
                                     <td>
                                         {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
@@ -85,10 +87,12 @@
                                                 data-id="{{ $item->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                            <a href="{{ route('wedding-design4.show', ['wedding_design4' => $item->id]) }}"
+                                            <a href="{{ route('wedding-design4.show', ['wedding_design4' => $item->KontenDesign4->first()->id ?? '']) }}"
                                                 class="btn btn-info rounded mb-2 {{ !$item->KontenDesign4->first() || !$item->KontenDesign4->first()->nama_mempelai_laki || !$item->KontenDesign4->first()->nama_mempelai_perempuan ? 'disabled' : '' }}">
                                                 <i class="fa fa-circle-info" style="color:white;"></i>
                                             </a>
+
+
 
                                             <a class="btn btn-primary mb-2 {{ !$item->KontenDesign4->first() || !$item->KontenDesign4->first()->nama_mempelai_laki || !$item->KontenDesign4->first()->nama_mempelai_perempuan ? 'disabled' : '' }}"
                                                 href="{{ route('wedding-design4-home-preview', [
