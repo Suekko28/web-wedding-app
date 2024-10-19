@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeDesign1Controller;
 use App\Http\Controllers\HomeDesign2Controller;
 use App\Http\Controllers\HomeDesign3Controller;
 use App\Http\Controllers\HomeDesign4Controller;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\IndexDesign1Controller;
 use App\Http\Controllers\IndexDesign2Controller;
 use App\Http\Controllers\IndexDesign3Controller;
@@ -91,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::resource('/blog', BlogController::class);
+    Route::post('/upload', [BlogController::class, 'upload'])->name('ckeditor.upload');
 
     Route::resource('/promo', PromoController::class);
 
@@ -185,11 +187,12 @@ Route::delete('/nama-undangan/premium-gold/{id}', [NamaUndanganDesign4Controller
 // User Route
 
 Route::resource('/', LandingPageController::class);
-Route::resource('/blog-view', UserBlogController::class);
-Route::resource('/gambarin-view', UserGambarinController::class);
-Route::resource('/seserahan-view', UserSeserahanController::class);
-Route::resource('/cetakfoto-view', UserCetakFotoController::class);
-Route::resource('/undangandigital-view', UserUndanganDigitalController::class);
+Route::resource('/blog-list', UserBlogController::class);
+// // Route::get('/blog-view/{judul}', [UserBlogController::class, 'show'])->name('blog-view.show');
+Route::resource('/gambarin-list', UserGambarinController::class);
+Route::resource('/seserahan-list', UserSeserahanController::class);
+Route::resource('/cetakfoto-list', UserCetakFotoController::class);
+Route::resource('/undangandigital-list', UserUndanganDigitalController::class);
 
 Route::get('/template', function () {
     return view('index');

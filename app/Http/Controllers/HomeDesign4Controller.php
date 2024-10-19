@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UcapanDesign4FormRequest;
+use Illuminate\Support\Str;
 use App\Models\InformasiDesign4;
 use App\Models\UcapanDesign4;
 use App\Models\WeddingDesign4;

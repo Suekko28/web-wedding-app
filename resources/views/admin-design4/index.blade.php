@@ -87,8 +87,11 @@
                                                 data-id="{{ $item->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                            <a href="{{ route('wedding-design4.show', ['wedding_design4' => $item->KontenDesign4->first()->id ?? '']) }}"
-                                                class="btn btn-info rounded mb-2 {{ !$item->KontenDesign4->first() || !$item->KontenDesign4->first()->nama_mempelai_laki || !$item->KontenDesign4->first()->nama_mempelai_perempuan ? 'disabled' : '' }}">
+                                            <a href="{{ $item->KontenDesign4->first() && $item->KontenDesign4->first()->id
+                                                ? route('wedding-design4.show', ['wedding_design4' => $item->KontenDesign4->first()->id])
+                                                : '#' }}"
+                                                class="btn btn-info rounded mb-2 
+                                              {{ !$item->KontenDesign4->first() || !$item->KontenDesign4->first()->nama_mempelai_laki || !$item->KontenDesign4->first()->nama_mempelai_perempuan ? 'disabled' : '' }}">
                                                 <i class="fa fa-circle-info" style="color:white;"></i>
                                             </a>
 

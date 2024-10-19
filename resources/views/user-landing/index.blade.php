@@ -1,5 +1,11 @@
 @extends('layouts.app-user')
 @section('navbar')
+    <style>
+        .card-blog-paragraph img {
+            display: none;
+            /* Menyembunyikan semua gambar di dalam elemen card-blog-paragraph */
+        }
+    </style>
     <!-- HERO -->
     <section class="hero" id="hero">
         <div class="title">Siap Membantu Kamu Dalam Membahagiakan Orang Tersayangmu</div>
@@ -45,7 +51,7 @@
                                 </div>
                                 <div class="card-produk-detail">Buat website undangan digital</div>
                                 <div class="action-button">
-                                    <a href="{{ route('undangandigital-view.index') }}" class="btn btn-secondary">Lihat
+                                    <a href="{{ route('undangandigital-list.index') }}" class="btn btn-secondary">Lihat
                                         Detail</a>
                                 </div>
                             </div>
@@ -62,7 +68,7 @@
                                 <div class="card-produk-detail">Cetak dan simpan moment spesialmu di dalam bingkai foto
                                 </div>
                                 <div class="action-button">
-                                    <a href="{{ route('cetakfoto-view.index') }}" class="btn btn-secondary">Lihat Detail</a>
+                                    <a href="{{ route('cetakfoto-list.index') }}" class="btn btn-secondary">Lihat Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +84,7 @@
                                 <div class="card-produk-detail">Cetak dan simpan hasil kreasi momentmu di dalam bingkai foto
                                 </div>
                                 <div class="action-button">
-                                    <a href="{{ route('gambarin-view.index') }}" class="btn btn-secondary">Lihat Detail</a>
+                                    <a href="{{ route('gambarin-list.index') }}" class="btn btn-secondary">Lihat Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +99,7 @@
                                 </div>
                                 <div class="card-produk-detail">Pilih dekorasi seserahan sesuai dengan kebutuhanmu</div>
                                 <div class="action-button">
-                                    <a href="{{ route('seserahan-view.index') }}" class="btn btn-secondary">Lihat Detail</a>
+                                    <a href="{{ route('seserahan-list.index') }}" class="btn btn-secondary">Lihat Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +117,7 @@
             <div class="row">
                 @foreach ($dataBlog as $item)
                     <div class="col-sm-12 col-md-3">
-                        <a href="{{ route('blog-view.show', $item->id) }}" class="card card-blog-custom">
+                        <a href="{{ route('blog-list.show', $item->judul) }}" class="card card-blog-custom">
                             <div class="card card-blog-custom">
                                 <div class="card-blog-img">
                                     <img class="rounded-4 img-fluid object-fit-cover h-100"
@@ -130,8 +136,10 @@
                         </a>
                     </div>
                 @endforeach
+
+
                 <div class="action-button">
-                    <a href="{{ route('blog-view.index') }}" class="btn btn-secondary">Lihat Selengkapnya</a>
+                    <a href="{{ route('blog-list.index') }}" class="btn btn-secondary">Lihat Selengkapnya</a>
                 </div>
             </div>
         </div>

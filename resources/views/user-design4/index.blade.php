@@ -2,9 +2,9 @@
 
 @section('title', 'JejakKebahagiaan')
 
-@section('css')
+{{-- @section('css')
     <link rel="stylesheet" href="{{ URL::asset('build/libs/prismjs/themes/prism-okaidia.min.css') }}">
-@endsection
+@endsection --}}
 
 @section('pageContent')
 
@@ -309,45 +309,46 @@
 
         // Ketika modal ditutup, hapus backdrop yang tersisa
         // Fungsi untuk mengelola tampilan modal
-        function openModal(modalId) {
-            const modal = new bootstrap.Modal(document.getElementById(modalId));
-            modal.show();
-        }
+        // function openModal(modalId) {
+        //     const modal = new bootstrap.Modal(document.getElementById(modalId));
+        //     modal.show();
+        // }
 
-        // Menangani klik tombol Share untuk membuka modal kedua
-        document.querySelectorAll('.btn-primary[data-bs-toggle="modal"]').forEach(function(button) {
-            button.addEventListener('click', function() {
-                const targetModalId = this.getAttribute('data-bs-target').substring(
-                    1); // Menghilangkan tanda '#'
+        // // Menangani klik tombol Share untuk membuka modal kedua
+        // document.querySelectorAll('.btn-primary[data-bs-toggle="modal"]').forEach(function(button) {
+        //     button.addEventListener('click', function() {
+        //         const targetModalId = this.getAttribute('data-bs-target').substring(
+        //             1); // Menghilangkan tanda '#'
 
-                // Tutup modal yang mungkin terbuka
-                const openModals = document.querySelectorAll('.modal.show');
-                openModals.forEach(function(openModal) {
-                    const openModalId = openModal.getAttribute('id');
-                    if (openModalId !== targetModalId) {
-                        const modal = bootstrap.Modal.getInstance(openModal);
-                        modal.hide();
-                    }
-                });
+        //         // Tutup modal yang mungkin terbuka
+        //         const openModals = document.querySelectorAll('.modal.show');
+        //         openModals.forEach(function(openModal) {
+        //             const openModalId = openModal.getAttribute('id');
+        //             if (openModalId !== targetModalId) {
+        //                 const modal = bootstrap.Modal.getInstance(openModal);
+        //                 modal.hide();
+        //             }
+        //         });
 
-                // Buka modal target
-                openModal(targetModalId);
-            });
-        });
+        //         // Buka modal target
+        //         openModal(targetModalId);
+        //     });
+        // });
 
-        document.querySelectorAll('.modal').forEach(function(modal) {
-            modal.addEventListener('hidden.bs.modal', function() {
-                const backdrop = document.querySelector('.modal-backdrop');
-                if (backdrop) {
-                    backdrop.remove();
-                }
-            });
-        });
+        // document.querySelectorAll('.modal').forEach(function(modal) {
+        //     modal.addEventListener('hidden.bs.modal', function() {
+        //         const backdrop = document.querySelector('.modal-backdrop');
+        //         if (backdrop) {
+        //             backdrop.remove();
+        //         }
+        //     });
+        // });
     </script>
+    
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/prismjs/prism.js') }}"></script>
     <script src="{{ URL::asset('build/js/widget/ui-card-init.js') }}"></script>
-@endsection
+@endsection --}}

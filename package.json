@@ -17,6 +17,7 @@
         "vite": "^5.3.3"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-ckfinder": "^43.2.0",
         "@claviska/jquery-minicolors": "2.3.6",
         "@rollup/plugin-terser": "^0.4.4",
         "aos": "2.3.4",

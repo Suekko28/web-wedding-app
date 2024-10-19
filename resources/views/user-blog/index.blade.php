@@ -19,7 +19,7 @@
                 <div class="row">
                     @foreach ($data as $item)
                         <div class="col-sm-12 col-md-3">
-                            <a href="{{ route('blog-view.show', $item->id) }}" class="card card-blog-custom">
+                            <a href="{{ route('blog-view.show', $item->id_blog) }}" class="card card-blog-custom">
                                 <div class="card card-blog-custom">
                                     <div class="card-blog-img">
                                         <img class="rounded-4 img-fluid object-fit-cover h-100"

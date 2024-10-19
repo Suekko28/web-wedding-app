@@ -63,6 +63,30 @@ class BlogController extends Controller
         return redirect()->route('blog.index')->with('success', 'Data berhasil ditambahkan');
     }
 
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            // Get the original file name and extension
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+
+            // Move the uploaded file to a public directory (e.g., 'media' folder)
+            $request->file('upload')->move(public_path('media'), $fileName);
+
+            // Generate the URL for the uploaded file
+            $url = asset('media/' . $fileName);
+
+            // Send the uploaded file URL as a response to CKEditor
+            return response()->json(['uploaded' => 1, 'fileName' => $fileName, 'url' => $url]);
+        }
+    }
+
+
+
+
+
     /**
      * Display the specified resource.
      */
