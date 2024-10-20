@@ -28,7 +28,7 @@
         "bootstrap-datepicker": "1.10.0",
         "bootstrap-icons": "1.11.2",
         "bootstrap-tree": "1.2.0",
-        "ckeditor5": "^43.1.0",
+        "ckeditor5": "^43.2.0",
         "ckeditor5-premium-features": "^43.1.0",
         "cssnano": "^7.0.4",
         "datatables.net": "1.13.6",

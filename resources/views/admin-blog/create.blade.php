@@ -12,7 +12,7 @@
             /* Adjust the width */
         }
     </style>
-    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css" />
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css" />
     @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Blog'])
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
@@ -59,8 +59,8 @@
 <script type="importmap">
     {
         "imports": {
-            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.js",
-            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.1.0/"
+            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.js",
+            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.2.0/"
         }
     }
 </script>
@@ -250,15 +250,6 @@
 
 
 
-
-{{-- <!-- A friendly reminder to run on a server, remove this during the integration. -->
-<script>
-    window.onload = function() {
-        if (window.location.protocol === 'file:') {
-            alert('This sample requires an HTTP server. Please serve this file with a web server.');
-        }
-    };
-</script> --}}
 
 @section('scripts')
 @endsection
