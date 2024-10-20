@@ -1,6 +1,13 @@
 @extends('layouts.app-user')
 
 @section('navbar')
+    <style>
+        .card-blog-paragraph img {
+            display: none;
+            /* Menyembunyikan semua gambar di dalam elemen card-blog-paragraph */
+        }
+
+    </style>
     <div class="container">
         <section class="blog-hero" id="blog-hero">
             <div class="d-flex flex-wrap">
@@ -19,7 +26,7 @@
                 <div class="row">
                     @foreach ($data as $item)
                         <div class="col-sm-12 col-md-3">
-                            <a href="{{ route('blog-view.show', $item->id_blog) }}" class="card card-blog-custom">
+                            <a href="{{ route('blog-list.show', $item->judul) }}" class="card card-blog-custom">
                                 <div class="card card-blog-custom">
                                     <div class="card-blog-img">
                                         <img class="rounded-4 img-fluid object-fit-cover h-100"

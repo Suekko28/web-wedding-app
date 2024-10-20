@@ -2,11 +2,48 @@
 
 @section('title', 'JejakKebahagiaan')
 
-{{-- @section('css')
+@section('css')
     <link rel="stylesheet" href="{{ URL::asset('build/libs/prismjs/themes/prism-okaidia.min.css') }}">
-@endsection --}}
+@endsection
 
 @section('pageContent')
+
+    <style>
+        .manual-backdrop {
+            display: none;
+            /* Secara default tidak ditampilkan */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 1);
+            /* Warna dan transparansi backdrop */
+            z-index: -1;
+            /* Pastikan backdrop berada di belakang modal */
+        }
+
+        .modal-body,
+        .modal-header {
+            color: #000;
+            /* Atur warna teks menjadi hitam atau warna yang lebih kontras */
+        }
+
+        .modal {
+            z-index: 1050;
+            /* Setel z-index agar modal berada di atas elemen lainnya */
+        }
+
+        .modal-backdrop {
+            z-index: 1040;
+            /* Pastikan backdrop berada tepat di belakang modal */
+        }
+
+        .modal-backdrop.show,
+        .modal-backdrop.fade {
+            display: none;
+        }
+    </style>
 
     {{-- @include('layouts.breadcrumb', ['title' => 'Nama Undangan', 'subtitle' => 'Dashboard'])
     <!-- Row --> --}}
@@ -81,8 +118,9 @@
                             </table>
                         </form>
                         @foreach ($nama_undangan as $item)
-                            <div class="modal fade" id="exampleModalToggle{{ $item->id }}" tabindex="-1"
-                                aria-labelledby="exampleModalToggleLabel{{ $item->id }}" aria-hidden="true">
+                            <div class="modal fade manual-backdrop" id="exampleModalToggle{{ $item->id }}"
+                                tabindex="-1" aria-labelledby="exampleModalToggleLabel{{ $item->id }}"
+                                aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -132,8 +170,9 @@
                     </div>
 
                     @foreach ($nama_undangan as $item)
-                        <div class="modal fade" id="exampleModalToggleToggle2{{ $item->id }}" tabindex="-1"
-                            aria-labelledby="exampleModalToggleToggle2Label{{ $item->id }}" aria-hidden="true">
+                        <div class="modal fade manual-backdrop" id="exampleModalToggleToggle2{{ $item->id }}"
+                            tabindex="-1" aria-labelledby="exampleModalToggleToggle2Label{{ $item->id }}"
+                            aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -294,57 +333,8 @@
                 noDataMessage.style.display = 'none';
             }
         });
-
-        // // Ketika modal dibuka
-        // document.querySelectorAll('.modal').forEach(function(modal) {
-        //     modal.addEventListener('shown.bs.modal', function() {
-        //         document.querySelector('.modal-backdrop.show').style.opacity = '0.5';
-        //     });
-
-        //     // Ketika modal ditutup
-        //     modal.addEventListener('hidden.bs.modal', function() {
-        //         document.querySelector('.modal-backdrop.show').style.opacity = ''; // Kembalikan ke default
-        //     });
-        // });
-
-        // Ketika modal ditutup, hapus backdrop yang tersisa
-        // Fungsi untuk mengelola tampilan modal
-        // function openModal(modalId) {
-        //     const modal = new bootstrap.Modal(document.getElementById(modalId));
-        //     modal.show();
-        // }
-
-        // // Menangani klik tombol Share untuk membuka modal kedua
-        // document.querySelectorAll('.btn-primary[data-bs-toggle="modal"]').forEach(function(button) {
-        //     button.addEventListener('click', function() {
-        //         const targetModalId = this.getAttribute('data-bs-target').substring(
-        //             1); // Menghilangkan tanda '#'
-
-        //         // Tutup modal yang mungkin terbuka
-        //         const openModals = document.querySelectorAll('.modal.show');
-        //         openModals.forEach(function(openModal) {
-        //             const openModalId = openModal.getAttribute('id');
-        //             if (openModalId !== targetModalId) {
-        //                 const modal = bootstrap.Modal.getInstance(openModal);
-        //                 modal.hide();
-        //             }
-        //         });
-
-        //         // Buka modal target
-        //         openModal(targetModalId);
-        //     });
-        // });
-
-        // document.querySelectorAll('.modal').forEach(function(modal) {
-        //     modal.addEventListener('hidden.bs.modal', function() {
-        //         const backdrop = document.querySelector('.modal-backdrop');
-        //         if (backdrop) {
-        //             backdrop.remove();
-        //         }
-        //     });
-        // });
     </script>
-    
+
 @endsection
 
 {{-- @section('scripts')

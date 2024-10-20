@@ -105,10 +105,6 @@
                                                 target="_blank">
                                                 <i class="fa fa-eye" style="color:white;"></i>
                                             </a>
-
-
-
-
                                         </div>
                                     </td>
                                 </tr>
@@ -153,9 +149,7 @@
                 </div>
             </div>
         </div>
-
-
-
+        
 
         <!-- Hidden form for delete -->
         <form id="deleteForm" method="POST" style="display:none;">
