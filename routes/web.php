@@ -47,6 +47,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Auth::routes([
     'register' => false,
+    'verify' => false,
+
 ]);
 
 

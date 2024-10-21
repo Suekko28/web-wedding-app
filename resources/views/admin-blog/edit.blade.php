@@ -88,60 +88,36 @@
         Image,
         ImageToolbar,
         ImageUpload,
-        ImageResize, // Add ImageResize for resizing images
+        ImageResize,
         Table,
         TableToolbar,
         MediaEmbed,
         Clipboard,
-        Strikethrough,
-        Underline,
-        Subscript,
-        Superscript,
-        CodeBlock,
-        Heading,
-        BlockQuote,
-        Highlight,
-        HorizontalLine,
-        SpecialCharacters,
-        Indent,
-        IndentBlock,
-        RemoveFormat,
-        Autoformat,
-        FindAndReplace,
+        SimpleUploadAdapter // Import SimpleUploadAdapter
     } from 'ckeditor5';
 
     ClassicEditor
         .create(document.querySelector('#deskripsi'), {
             plugins: [
-                Essentials, Paragraph, Bold, Italic, Font, Alignment,
-                Link, List, Image, ImageToolbar, ImageUpload, 
-                ImageResize, // Enable ImageResize
-                Table, TableToolbar, MediaEmbed, Clipboard,
-                Strikethrough, Underline, Subscript, Superscript,
-                CodeBlock, Heading, BlockQuote, Highlight,
-                HorizontalLine, SpecialCharacters, Indent, IndentBlock,
-                RemoveFormat, Autoformat, FindAndReplace
+                Essentials, Paragraph, Bold, Italic, Font, Alignment, Link, List,
+                Image, ImageToolbar, ImageUpload, ImageResize,
+                SimpleUploadAdapter, // Use SimpleUploadAdapter for uploading images
+                Table, TableToolbar, MediaEmbed, Clipboard
             ],
             toolbar: [
-                'undo', 'redo', '|', 'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript',
-                '|',
+                'undo', 'redo', '|', 'bold', 'italic', '|',
                 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
                 'alignment:left', 'alignment:center', 'alignment:right', '|',
                 'bulletedList', 'numberedList', '|',
                 'link', 'imageUpload', 'insertTable', 'mediaEmbed', '|',
-                'blockQuote', 'codeBlock', '|', 'highlight', 'heading', '|',
-                'horizontalLine', 'specialCharacters', 'indent', 'outdent', '|',
-                'removeFormat', 'findAndReplace'
+                'blockQuote'
             ],
             image: {
                 toolbar: [
-                    'imageTextAlternative', 'imageStyle:full', 'imageStyle:side', 'resizeImage'
+                    'imageTextAlternative', 'imageStyle:full', 'imageStyle:side',
+                    'resizeImage'
                 ],
-                styles: [
-                    'full', 'side'
-                ],
-                resizeOptions: [
-                    {
+                resizeOptions: [{
                         name: 'resizeImage:original',
                         label: 'Original',
                         value: null
@@ -162,90 +138,29 @@
                         value: '75'
                     },
                     {
-                        name: 'resizeImage:100',
-                        label: '100%',
-                        value: '100'
-                    },
-                    {
-                        name: 'resizeImage:custom',  // Custom resize option
+                        name: 'resizeImage:custom',
                         label: 'Custom',
-                        value: 'custom' // This will be handled manually
+                        value: 'custom'
                     },
                 ],
-                resizeUnit: 'px', // You can also use '%' for percentage-based resizing
+                resizeUnit: '%'
             },
-            mediaEmbed: {
-                previewsInData: true
+            simpleUpload: {
+                // The URL that the images are uploaded to.
+                uploadUrl: '{{ route('ckeditor.upload') }}',
+
+                // Headers sent along with the XMLHttpRequest during the upload
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include CSRF token for security
+                }
             }
         })
         .then(editor => {
-            // Set up custom file upload adapter
-            editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-                return new MyUploadAdapter(loader);
-            };
-
-            // Add custom resizing logic
-            editor.model.document.on('change:data', () => {
-                const images = editor.model.document.getRoot().getChildren().filter(el => el.is('element', 'image'));
-
-                for (let image of images) {
-                    // If custom size option is selected, prompt the user to enter a custom size
-                    if (image.getAttribute('resizeImage') === 'custom') {
-                        const customSize = prompt('Enter custom size (in px or %):', '100px'); // Example prompt
-                        
-                        if (customSize) {
-                            // Update the image width
-                            editor.model.change(writer => {
-                                writer.setAttribute('width', customSize, image);
-                            });
-                        }
-                    }
-                }
-            });
+            window.editor = editor;
         })
         .catch(error => {
             console.error(error);
         });
-
-    // Custom Adapter for CKEditor file upload
-    class MyUploadAdapter {
-        constructor(loader) {
-            this.loader = loader;
-        }
-
-        upload() {
-            return this.loader.file
-                .then(file => new Promise((resolve, reject) => {
-                    const data = new FormData();
-                    data.append('upload', file);
-
-                    fetch('{{ route('ckeditor.upload') }}', {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            body: data
-                        })
-                        .then(response => response.json())
-                        .then(result => {
-                            if (result && result.url) {
-                                resolve({
-                                    default: result.url
-                                });
-                            } else {
-                                reject(result.message || 'Upload failed');
-                            }
-                        })
-                        .catch(error => {
-                            reject('Upload failed');
-                        });
-                }));
-        }
-
-        abort() {
-            // Logic to abort the upload process if necessary
-        }
-    }
 </script>
 
 <!-- A friendly reminder to run on a server, remove this during the integration. -->

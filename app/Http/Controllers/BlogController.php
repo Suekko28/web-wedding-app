@@ -65,23 +65,20 @@ class BlogController extends Controller
 
     public function upload(Request $request)
     {
-        if ($request->hasFile('upload')) {
-            // Get the original file name and extension
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
+        // Validate the uploaded file
+        $request->validate([
+            'upload' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
 
-            // Move the uploaded file to a public directory (e.g., 'media' folder)
-            $request->file('upload')->move(public_path('media'), $fileName);
+        // Store the uploaded file
+        $path = $request->file('upload')->store('images', 'public');
+        $url = Storage::url($path);
 
-            // Generate the URL for the uploaded file
-            $url = asset('media/' . $fileName);
-
-            // Send the uploaded file URL as a response to CKEditor
-            return response()->json(['uploaded' => 1, 'fileName' => $fileName, 'url' => $url]);
-        }
+        // Return the response
+        return response()->json(['url' => $url]);
     }
+
+
 
 
 
