@@ -117,7 +117,7 @@
             <div class="row">
                 @foreach ($dataBlog as $item)
                     <div class="col-sm-12 col-md-3">
-                        <a href="{{ route('blog-list.show', $item->judul) }}" class="card card-blog-custom">
+                        <a href="{{ route('blog-list.show', $item->id) }}" class="card card-blog-custom">
                             <div class="card card-blog-custom">
                                 <div class="card-blog-img">
                                     <img class="rounded-4 img-fluid object-fit-cover h-100"

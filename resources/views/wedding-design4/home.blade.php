@@ -34,6 +34,8 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+
 
 
     <title>The Wedding Of {{ $data->InformasiDesign4->nama_pasangan }}</title>
@@ -44,6 +46,15 @@
 </head>
 
 <body>
+    <div class="overlay">
+        <div class="overlayDoor"></div>
+        <div class="overlayContent">
+            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+            <lottie-player class="animation-loading" src="{{ asset('img/loading.json') }}" background="transparent"
+                speed="1" style="width: 96px; height: 96px" direction="1" mode="normal" loop
+                autoplay></lottie-player>
+        </div>
+    </div>
     @if (!session('hide_offcanvas'))
         <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
             <!-- <div class="offcanvas-header">
@@ -995,6 +1006,31 @@
                 console.error('Error copying text: ', error);
             });
         }
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            // Users can skip the loading process if they want.
+            $('.skip').click(function() {
+                $('.overlay, body').addClass('loaded');
+            })
+
+            // Will wait for everything on the page to load.
+            $(window).bind('load', function() {
+                $('.overlay, body').addClass('loaded');
+                setTimeout(function() {
+                    $('.overlay').css({
+                        'display': 'none'
+                    })
+                }, 2500)
+            });
+
+            // Will remove overlay after 1min for users cannnot load properly.
+            setTimeout(function() {
+                $('.overlay, body').addClass('loaded');
+            }, 2000);
+        })
     </script>
 
 

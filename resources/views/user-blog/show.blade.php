@@ -5,6 +5,7 @@
         .image .image-resized {
             width: none !important;
         }
+
         .image_resized {
             display: flex;
             justify-content: center;
@@ -19,8 +20,6 @@
             border-radius: 24px
         }
     </style>
-
-
 
 
     <section class="blog-detail" id="blog-detail">

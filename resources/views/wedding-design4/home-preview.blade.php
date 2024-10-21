@@ -27,6 +27,15 @@
 </head>
 
 <body>
+    <div class="overlay">
+        <div class="overlayDoor"></div>
+        <div class="overlayContent">
+            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+            <lottie-player class="animation-loading" src="{{ asset('img/loading.json') }}" background="transparent"
+                speed="1" style="width: 96px; height: 96px" direction="1" mode="normal" loop
+                autoplay></lottie-player>
+        </div>
+    </div>
     <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
         <!-- <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
@@ -958,6 +967,29 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="jquery.fancybox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Users can skip the loading process if they want.
+            $('.skip').click(function() {
+                $('.overlay, body').addClass('loaded');
+            })
+
+            // Will wait for everything on the page to load.
+            $(window).bind('load', function() {
+                $('.overlay, body').addClass('loaded');
+                setTimeout(function() {
+                    $('.overlay').css({
+                        'display': 'none'
+                    })
+                }, 2500)
+            });
+
+            // Will remove overlay after 1min for users cannnot load properly.
+            setTimeout(function() {
+                $('.overlay, body').addClass('loaded');
+            }, 2000);
+        })
+    </script>
 </body>
 
 </html>

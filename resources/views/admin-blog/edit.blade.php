@@ -78,7 +78,8 @@
     import {
         ClassicEditor,
         Essentials,
-        Paragraph,
+        Paragraph,          // Added Paragraph plugin
+        Heading,            // Added Heading plugin
         Bold,
         Italic,
         Font,
@@ -99,7 +100,8 @@
     ClassicEditor
         .create(document.querySelector('#deskripsi'), {
             plugins: [
-                Essentials, Paragraph, Bold, Italic, Font, Alignment, Link, List,
+                Essentials, Paragraph, Heading, // Include Paragraph and Heading plugins
+                Bold, Italic, Font, Alignment, Link, List,
                 Image, ImageToolbar, ImageUpload, ImageResize,
                 SimpleUploadAdapter, // Use SimpleUploadAdapter for uploading images
                 Table, TableToolbar, MediaEmbed, Clipboard
@@ -110,7 +112,7 @@
                 'alignment:left', 'alignment:center', 'alignment:right', '|',
                 'bulletedList', 'numberedList', '|',
                 'link', 'imageUpload', 'insertTable', 'mediaEmbed', '|',
-                'blockQuote'
+                'blockQuote', 'paragraph', 'heading' // Include paragraph and heading in the toolbar
             ],
             image: {
                 toolbar: [
@@ -162,6 +164,7 @@
             console.error(error);
         });
 </script>
+
 
 <!-- A friendly reminder to run on a server, remove this during the integration. -->
 <script>

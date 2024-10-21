@@ -1380,3 +1380,118 @@ input::placeholder,
 textarea::placeholder {
     color: #292929 !important; /* Warna teks placeholder */
 }
+
+.animation-overlay {
+    position: fixed;
+    z-index: 9997;
+    width: 100%;
+    height: 100%;
+}
+.animation-loading {
+    z-index: 100000001;
+    width: 100%;
+    height: 100%;
+}
+.animation-overlay {
+    width: 100%;
+    height: 100%;
+}
+.animation {
+    .anm_mod {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+        transition: all 1s ease;
+        &.full {
+            width: 100%;
+            font-size: 3rem;
+        }
+        &.left {
+            transform: translate3d(-24px, 0, 0);
+        }
+        &.right {
+            transform: translate3d(24px, 0, 0);
+        }
+        &.bottom {
+            transform: translate3d(0, 100%, 0);
+        }
+        &.bottom-bit {
+            transform: translate3d(0, 20%, 0);
+        }
+        &.delay {
+            transition: all 2s ease;
+        }
+        &.fast {
+            transition: all 0.8 ease;
+        }
+    }
+}
+
+.animation .anm_mod.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.org_to_top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100000000;
+    .overlayDoor {
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            transition: 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+            transition-delay: 0.8s;
+        }
+        &:before {
+            left: 0;
+        }
+        &:after {
+            right: 0;
+        }
+    }
+    &.loaded {
+        display: none;
+        i .overlayDoor {
+            &:before {
+                left: -50%;
+            }
+            &:after {
+                right: -50%;
+            }
+        }
+        .overlayContent {
+            opacity: 0;
+            margin-top: -15px;
+        }
+    }
+    .overlayContent {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+.loader {
+    width: 128px;
+    height: 128px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
