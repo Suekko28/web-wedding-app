@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InformasiDesign4FormRequest;
 use App\Models\InformasiDesign4;
 use Illuminate\Http\Request;
+use Storage;
 
 class InformasiDesign4Controller extends Controller
 {
@@ -95,7 +96,58 @@ class InformasiDesign4Controller extends Controller
      */
     public function destroy(string $id)
     {
-        $data = InformasiDesign4::find($id)->delete();
+        $data = InformasiDesign4::with(['KontenDesign4', 'PerjalananCintaDesign4'])->find($id);
+
+
+        foreach ($data->KontenDesign4 as $weddingDesign) {
+            if ($weddingDesign->banner_img) {
+                Storage::delete($weddingDesign->banner_img);
+            }
+
+            if ($weddingDesign->foto_prewedding) {
+                Storage::delete($weddingDesign->foto_prewedding);
+            }
+
+            if ($weddingDesign->foto_mempelai_laki) {
+                Storage::delete($weddingDesign->foto_mempelai_laki);
+            }
+
+            if ($weddingDesign->foto_mempelai_perempuan) {
+                Storage::delete($weddingDesign->foto_mempelai_perempuan);
+            }
+
+            if ($weddingDesign->music) {
+                Storage::delete($weddingDesign->music);
+            }
+
+            if ($weddingDesign->quote_img) {
+                $existingQuoteImages = json_decode($weddingDesign->quote_img, true);
+                foreach ($existingQuoteImages as $existingImage) {
+                    Storage::delete($existingImage);
+                }
+            }
+
+            if ($weddingDesign->akad_img) {
+                Storage::delete($weddingDesign->akad_img);
+            }
+
+            $weddingDesign->delete();
+        }
+
+        foreach ($data->PerjalananCintaDesign4 as $PerjalananCinta) {
+            if ($PerjalananCinta->image1) {
+                Storage::delete($PerjalananCinta->image1);
+            }
+            if ($PerjalananCinta->image2) {
+                Storage::delete($PerjalananCinta->image2);
+            }
+
+            $PerjalananCinta->delete();
+        }
+
+        $data->delete();
+
         return redirect()->route('wedding-design4.index')->with('success', 'Data berhasil Dihapus');
     }
+
 }

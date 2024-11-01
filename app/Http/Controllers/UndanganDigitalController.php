@@ -114,7 +114,14 @@ class UndanganDigitalController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = UndanganDigital::find($id)->delete();
+        $data = UndanganDigital::findOrFail($id);
+
+        if ($data->image) {
+            Storage::delete('public/undangandigital/' . $data->image);
+        }
+ 
+        $data->delete();
+
         return redirect()->route('undangandigital.index')->with('success', 'Berhasil Menghapus Data');
 
     }

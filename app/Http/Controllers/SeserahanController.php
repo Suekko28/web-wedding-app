@@ -126,7 +126,11 @@ class SeserahanController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Seserahan::find($id)->delete();
+        $data = Seserahan::findOrFail($id);
+
+        if ($data->image) {
+            Storage::delete('public/seserahan/' . $data->image);
+        }
         return redirect()->route('seserahan.index')->with('success', 'Berhasil Menghapus Data');
     }
 }

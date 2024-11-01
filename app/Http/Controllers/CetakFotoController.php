@@ -117,7 +117,13 @@ class CetakFotoController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = CetakFoto::find($id)->delete();
+        $data = CetakFoto::findOrFail($id);
+
+        if ($data->image) {
+            Storage::delete('public/cetakfoto/' . $data->image);
+        }
+
+        $data->delete();
         return redirect()->route('cetakfoto.index')->with('success', 'Berhasil Menghapus Data');
 
     }

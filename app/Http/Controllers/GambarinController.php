@@ -114,7 +114,13 @@ class GambarinController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Gambarin::find($id)->delete();
+        $data = Gambarin::findOrFail($id);
+
+        if ($data->image) {
+            Storage::delete('public/gambarin/' . $data->image);
+        }
+
+        $data->delete();
         return redirect()->route('gambarin.index')->with('success', 'Berhasil Menghapus Data');
 
     }
