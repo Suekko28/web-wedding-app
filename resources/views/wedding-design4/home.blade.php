@@ -1026,10 +1026,6 @@
                 }, 2500)
             });
 
-            // Will remove overlay after 1min for users cannnot load properly.
-            setTimeout(function() {
-                $('.overlay, body').addClass('loaded');
-            }, 2000);
         })
     </script>
 
