@@ -493,7 +493,7 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
-                        @foreach ($data->DirectTransferDesign4 as $item)
+                        @foreach ($data->DirectTransferDesign4 as $index => $item)
                             <div class="card">
                                 <div class="card-body">
                                     @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
@@ -502,20 +502,24 @@
                                         @endif
                                         <div class="info-norek">
                                             @if (!empty($item->no_rek))
-                                                <p id="first">{{ $item->no_rek }}</p>
+                                                <!-- Tambahkan indeks ke ID -->
+                                                <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
                                             @endif
-                                            <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                                class="btn-ghost">
+                                            <!-- Tombol salin dengan ID unik -->
+                                            <a id="btn-copy-{{ $index }}"
+                                                onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
+                                                title="Copy Text" class="btn-ghost">
                                                 Copy
                                             </a>
                                         </div>
                                         @if (!empty($item->nama_rek))
                                             <p class="card-text">A/N {{ $item->nama_rek }}</p>
                                         @endif
+                                    @endif
                                 </div>
-                        @endif
+                            </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     @foreach ($data->KirimHadiahDesign4 as $item)
@@ -655,55 +659,63 @@
         })
     </script>
     <script>
-        // Set the date we're counting down to (1 month from now)
-        const countDownDate = new Date("Sep 20, 2024 22:18:00").getTime();
+        function copyText(textElementId, buttonId) {
+            var textElement = document.getElementById(textElementId);
+            var button = document.getElementById(buttonId);
 
-        // Update the countdown every 1 second
-        const x = setInterval(function() {
-            // Get today's date and time
-            const now = new Date().getTime();
-
-            // Find the distance between now and the countdown date
-            const distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result
-            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-
-            // If the countdown is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("days").innerHTML = "00";
-                document.getElementById("hours").innerHTML = "00";
-                document.getElementById("minutes").innerHTML = "00";
-                document.getElementById("seconds").innerHTML = "00";
+            if (!textElement) {
+                console.error("Element with ID " + textElementId + " not found.");
+                return;
             }
-        }, 1000);
-    </script>
-    <script>
-        function copyText(element) {
-            var $copyText = document.getElementById(element).innerText;
-            var button = document.getElementById(element + '-button');
-            navigator.clipboard.writeText($copyText).then(function() {
-                var originalText = button.innerText;
-                button.innerText = 'Copied!';
-                setTimeout(function() {
-                    button.innerText = originalText;
-                }, 750);
-            }, function() {
-                button.style.cssText = "background-color: var(--red);";
-                button.innerText = 'Error';
+
+            var text = textElement.textContent.trim();
+
+            navigator.clipboard.writeText(text).then(function() {
+                // Ubah teks tombol menjadi "Copied"
+                if (button) {
+                    button.textContent = 'Copied';
+                    // Kembalikan teks tombol ke "Copy" setelah 2 detik
+                    setTimeout(function() {
+                        button.textContent = 'Copy';
+                    }, 2000);
+                }
+            }).catch(function(error) {
+                console.error('Error copying text: ', error);
             });
         }
     </script>
+    <script>
+        function updateTimer(tgl_akad) {
+            const future = Date.parse(tgl_akad);
+            const now = new Date();
+            const diff = future - now;
+
+            if (diff <= 0) {
+                // Waktu telah berlalu, atur semua nilai menjadi 0
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // Format nilai untuk menambahkan angka 0 di depan jika nilainya < 10
+            document.getElementById("days").textContent = days < 10 ? "0" + days : days;
+            document.getElementById("hours").textContent = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").textContent = mins < 10 ? "0" + mins : mins;
+            document.getElementById("seconds").textContent = secs < 10 ? "0" + secs : secs;
+        }
+
+        // Inisialisasi timer
+        const tglAkad = "{{ $data->tgl_akad }}"; // Pastikan ini diisi dengan format tanggal yang valid
+        setInterval(() => updateTimer(tglAkad), 1000);
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
@@ -986,26 +998,6 @@
         // Memanggil updateTimer() saat halaman dimuat dengan tanggal akad dari PHP
         updateTimer("{{ $data->tgl_akad }}");
         setInterval(updateTimer.bind(null, "{{ $data->tgl_akad }}"), 1000); // Memperbarui setiap detik
-    </script>
-
-    <script>
-        function copyText(textElementId, buttonId) {
-            var text = document.getElementById(textElementId).textContent;
-            var button = document.getElementById(buttonId);
-
-            // Copy the text to clipboard
-            navigator.clipboard.writeText(text).then(function() {
-                // Change button text to "Copied"
-                button.textContent = 'Copied';
-
-                // Change it back to "Copy" after 2 seconds
-                setTimeout(function() {
-                    button.textContent = 'Copy';
-                }, 2000);
-            }).catch(function(error) {
-                console.error('Error copying text: ', error);
-            });
-        }
     </script>
 
 

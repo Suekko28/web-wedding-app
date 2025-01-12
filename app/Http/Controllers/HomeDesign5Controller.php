@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UcapanDesign5FormRequest;
+use App\Models\UcapanDesign5;
 use App\Models\WeddingDesign5;
 use Illuminate\Http\Request;
 

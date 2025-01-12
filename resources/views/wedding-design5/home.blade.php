@@ -3,19 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha385-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
-
     <!-- Meta tags for Open Graph (OGP) -->
-    <meta property="og:title" content="The Wedding Of {{ $data->InformasiDesign4->nama_pasangan }}">
-    <meta property="og:description" content="Undangan Pernikahan {{ $data->InformasiDesign4->nama_pasangan }}">
+    <meta property="og:title" content="The Wedding Of {{ $data->InformasiDesign5->nama_pasangan }}">
+    <meta property="og:description" content="Undangan Pernikahan {{ $data->InformasiDesign5->nama_pasangan }}">
     <meta property="og:image" content="{{ Storage::url('' . $data->banner_img) }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Wedding Of {{ $data->InformasiDesign4->nama_pasangan }}">
-    <meta name="twitter:description" content="Undangan Pernikahan {{ $data->InformasiDesign4->nama_pasangan }}">
+    <meta name="twitter:title" content="The Wedding Of {{ $data->InformasiDesign5->nama_pasangan }}">
+    <meta name="twitter:description" content="Undangan Pernikahan {{ $data->InformasiDesign5->nama_pasangan }}">
     <meta name="twitter:image" content="{{ Storage::url('' . $data->banner_img) }}">
 
     <!-- Fancybox and Jquery CDN
@@ -27,22 +28,17 @@
         type="text/css" media="screen" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
+    <title>The Wedding Of {{ $data->InformasiDesign5->nama_pasangan }}</title>
+
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        integrity="sha385-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- CSS STYLE -->
-    <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/wedding-design5.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
-
-
-    <title>The Wedding Of {{ $data->InformasiDesign4->nama_pasangan }}</title>
-
-    <!-- BOOTSTRAP 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-    </script>
 </head>
 
 <body>
@@ -57,21 +53,17 @@
     </div>
     @if (!session('hide_offcanvas'))
         <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-            <!-- <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-        <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
-      </div> -->
             <div class="offcanvas-body">
                 <div class="opening-undangan">
                     <p>Undangan Pernikahan</p>
-                    <h2>{{ $data->InformasiDesign4->nama_pasangan }}</h2>
+                    <h2>{{ $data->InformasiDesign5->nama_pasangan }}</h2>
                 </div>
                 <div class="tujuan-undangan">
                     <div class="opening">
                         <p>Kepada Yth</p>
                         <p>Bapak/Ibu/Saudara/i</p>
                     </div>
-                    <h3>Nama Tamu</h3>
+                    <h3>{{ $nama_undangan }}</h3>
                     <button type="button" onclick="playAudio()" class="btn-primary" data-bs-dismiss="offcanvas">Buka
                         Undangan</button>
                 </div>
@@ -80,7 +72,6 @@
             </div>
         </div>
     @endif
-
     <audio loop id="track">
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
@@ -133,7 +124,7 @@
         </div>
         <div class="title">
             <p>Pernikahan</p>
-            <h2>{{ $data->InformasiDesign4->nama_pasangan }}</h2>
+            <h2>{{ $data->InformasiDesign5->nama_pasangan }}</h2>
         </div>
         <div class="wedding-timer">
             <div id="timer">
@@ -184,7 +175,7 @@
                         <p>Anak dari bapak {{ $data->putri_dari_bpk }} dan ibu {{ $data->putri_dari_ibu }}</p>
                     </div>
                     <a href="{{ $data->link_instagram1 }}" target="_blank" class="btn-link">
-                        <img src="{{ asset('img/instagram-logo.svg') }}" alt="instagram">
+                        <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
                         <span>{{ $data->nama_instagram1 }}</span>
                     </a>
                 </div>
@@ -198,7 +189,7 @@
                         <p>Anak dari bapak {{ $data->putra_dari_bpk }} dan ibu {{ $data->putra_dari_ibu }}</p>
                     </div>
                     <a href="{{ $data->link_instagram2 }}" target="_blank" class="btn-link">
-                        <img src="{{ asset('img/instagram-logo.svg') }}" alt="instagram">
+                        <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
                         <span>{{ $data->nama_instagram2 }}</span>
                     </a>
                 </div>
@@ -213,11 +204,11 @@
     <section class="animation perjalanan-cinta" id="perjalanan-cinta">
         <div class="anm_mod bottom-bit fast perjalanan-cinta-cover">
             <h3 class="anm_mod bottom-bit fast">Perjalanan Cinta Kami</h3>
-            @if ($data->PerjalananCintaDesign4->isNotEmpty())
+            @if ($data->PerjalananCintaDesign5->isNotEmpty())
                 <div id="carouselExampleCaptions" class="carousel slide anm_mod bottom-bit delay"
                     data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        @foreach ($data->PerjalananCintaDesign4 as $key => $perjalanan)
+                        @foreach ($data->PerjalananCintaDesign5 as $key => $perjalanan)
                             <button type="button" data-bs-target="#carouselExampleCaptions"
                                 data-bs-slide-to="{{ $key }}" class="{{ $loop->first ? 'active' : '' }}"
                                 aria-current="{{ $loop->first ? 'true' : '' }}"
@@ -225,7 +216,7 @@
                         @endforeach
                     </div>
                     <div class="carousel-inner">
-                        @foreach ($data->PerjalananCintaDesign4 as $key => $perjalanan)
+                        @foreach ($data->PerjalananCintaDesign5 as $key => $perjalanan)
                             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                 <img src="{{ Storage::url('' . $perjalanan->image1) }}"
                                     class="d-block story-img object-fit-cover" alt="story">
@@ -400,27 +391,32 @@
             <div class="container-inner anm_mod bottom-bit fast">
                 <div class="container-dashboard anm_mod bottom-bit fast">
                     <div class="card-dashboard-hadir">
-                        <h3>5</h3> <!-- Menampilkan jumlah hadir -->
+                        <h3>{{ $hadirCount }}</h3> <!-- Menampilkan jumlah hadir -->
                         <p>Hadir</p>
                     </div>
                     <div class="card-dashboard-tidakhadir">
-                        <h3>5</h3> <!-- Menampilkan jumlah tidak hadir -->
+                        <h3>{{ $tidakHadirCount }}</h3> <!-- Menampilkan jumlah tidak hadir -->
                         <p>Tidak Hadir</p>
                     </div>
                 </div>
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
-                        <form id="algin-form" class="rsvp-mobile3" method="POST" action="">
+                        <form id="algin-form" class="rsvp-mobile3" method="POST"
+                            action="{{ route('wedding-design5-post', [
+                                'nama_mempelai_laki' => $nama_mempelai_laki,
+                                'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
+                                'nama_undangan' => $nama_undangan,
+                            ]) }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
                                 <input placeholder="Masukkan nama lengkap" type="text" name="nama"
-                                    id="fullname" class="form-control" disabled>
+                                    id="fullname" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="message">Ucapan</label>
                                 <textarea placeholder="Masukkan kalimat ucapan" name="ucapan" id="msg" cols="30" rows="5"
-                                    class="form-control" disabled></textarea>
+                                    class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="name">Konfirmasi Kehadiran</label>
@@ -440,55 +436,30 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" id="post" class="btn-primary" disabled>Kirim</button>
+                                <button type="submit" id="post" class="btn-primary">Kirim</button>
                             </div>
                         </form>
                     </div>
                     <div class="comment-list">
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Jhon Doe</h4>
-                                    <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
+                        @foreach ($alt5models as $item)
+                            <div class="card-comment">
+                                <div class="title">
+                                    <div class="name">
+                                        <h4>{{ $item->nama }}</h4>
+                                        @if ($item->kehadiran == 1)
+                                            <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
+                                        @else
+                                            <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="tidak hadir">
+                                        @endif
+
+                                    </div>
+                                    <span class="label">
+                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }}
+                                        WIB</span>
                                 </div>
-                                <span class="label">20 October, 2018 | 20:00 WIB</span>
+                                <p>{!! $item->ucapan !!}</p>
                             </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
-                                </div>
-                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
-                                </div>
-                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
-                                </div>
-                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
+                        @endforeach
                     </div>
 
                 </div>
@@ -513,7 +484,7 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
-                        @foreach ($data->DirectTransferDesign4 as $index => $item)
+                        @foreach ($data->DirectTransferDesign5 as $index => $item)
                             <div class="card">
                                 <div class="card-body">
                                     @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
@@ -542,7 +513,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    @foreach ($data->KirimHadiahDesign4 as $item)
+                    @foreach ($data->KirimHadiahDesign5 as $item)
                         <div class="card">
                             <div class="card-body">
                                 @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
@@ -561,7 +532,7 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">{{ $data->InformasiDesign4->nama_pasangan }}</h4>
+            <h4 class="anm_mod bottom-bit fast">{{ $data->InformasiDesign5->nama_pasangan }}</h4>
         </div>
         <div class="overlay-bottom"></div>
     </section>
@@ -578,13 +549,13 @@
         <div class="follow-us">
             <p>Follow Us</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:24px" src="{{ asset('img/icon-facebook.svg') }}" alt="Facebook">
+                <img style="height:25px" src="{{ asset('img/icon-facebook.svg') }}" alt="Facebook">
             </a>
             <a href="https://www.instagram.com/jejakkebahagiaan/" target="_blank">
-                <img style="height:24px" src="{{ asset('img/icon-instagram.svg') }}" alt="Instagram">
+                <img style="height:25px" src="{{ asset('img/icon-instagram.svg') }}" alt="Instagram">
             </a>
             <a href="https://www.tiktok.com/@jejakkebahagiaan?_t=8pjtPh8o2JL&_r=1" target="_blank">
-                <img style="height:24px" src="{{ asset('img/icon-tiktok.svg') }}" alt="Tiktok">
+                <img style="height:25px" src="{{ asset('img/icon-tiktok.svg') }}" alt="Tiktok">
             </a>
         </div>
     </section>
@@ -592,7 +563,7 @@
 
     <!-- BOOTSTRAP 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        integrity="sha385-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
     <!-- JQUERY -->
@@ -634,6 +605,12 @@
             });
         }
     </script>
+    @if (session('hide_offcanvas'))
+        <script>
+            window.location.hash = '#doa-ucapan'; // Redirect with the hash
+            document.getElementById('doa-ucapan').scrollIntoView();
+        </script>
+    @endif
     <script>
         var x = document.getElementById("track");
 
@@ -661,6 +638,7 @@
             }
         }
     </script>
+    
     <script>
         var myOffcanvas = document.getElementById('myOffcanvas')
         myOffcanvas.addEventListener('show.bs.offcanvas', function() {
@@ -709,20 +687,47 @@
         const tglAkad = "{{ $data->tgl_akad }}"; // Pastikan ini diisi dengan format tanggal yang valid
         setInterval(() => updateTimer(tglAkad), 1000);
     </script>
+    <script>
+        function copyText(textElementId, buttonId) {
+            var textElement = document.getElementById(textElementId);
+            var button = document.getElementById(buttonId);
+
+            if (!textElement) {
+                console.error("Element with ID " + textElementId + " not found.");
+                return;
+            }
+
+            var text = textElement.textContent.trim();
+
+            navigator.clipboard.writeText(text).then(function() {
+                // Ubah teks tombol menjadi "Copied"
+                if (button) {
+                    button.textContent = 'Copied';
+                    // Kembalikan teks tombol ke "Copy" setelah 2 detik
+                    setTimeout(function() {
+                        button.textContent = 'Copy';
+                    }, 2000);
+                }
+            }).catch(function(error) {
+                console.error('Error copying text: ', error);
+            });
+        }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+        integrity="sha385-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT5GN1R8p" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+        integrity="sha385-cVKIPhGWiC2Al5u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl5H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        integrity="sha385-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+        integrity="sha385-I7E8VVD/ismYTF5hNIPjVp/Zjvgyol6VFvRkX/vR+Vc5jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+        integrity="sha385-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
     <script>
         $(window).scroll(function() {
@@ -816,8 +821,8 @@
 
             function createCaption(caption) {
                 return `<div class="carousel-caption d-none d-md-block">
-            <h4 class="m-0">${caption}</h4>
-          </div>`;
+        <h5 class="m-0">${caption}</h5>
+      </div>`;
             }
 
             function createIndicators(img) {
@@ -830,11 +835,11 @@
 
                 for (i = 0, len = countSlides; i < len; i++) {
                     markup += `
-            <button type="button" data-bs-target="#lightboxCarousel"
-              data-bs-slide-to="${i}"
-              ${i === curIndex ? 'class="active" aria-current="true"' : ''}
-              aria-label="Slide ${i + 1}">
-            </button>`;
+        <button type="button" data-bs-target="#lightboxCarousel"
+          data-bs-slide-to="${i}"
+          ${i === curIndex ? 'class="active" aria-current="true"' : ''}
+          aria-label="Slide ${i + 1}">
+        </button>`;
                 }
 
                 return markup;
@@ -849,10 +854,10 @@
                     const imgAlt = img.getAttribute("alt");
 
                     markup += `
-            <div class="carousel-item${currentImgSrc === imgSrc ? " active" : ""}">
-              <img class="d-block img-fluid w-100" src=${imgSrc} alt="${imgAlt}">
-              ${imgAlt ? createCaption(imgAlt) : ""}
-            </div>`;
+        <div class="carousel-item${currentImgSrc === imgSrc ? " active" : ""}">
+          <img class="d-block img-fluid w-100" src=${imgSrc} alt="${imgAlt}">
+          ${imgAlt ? createCaption(imgAlt) : ""}
+        </div>`;
                 }
 
                 return markup;
@@ -860,27 +865,27 @@
 
             function createCarousel(img) {
                 const markup = `
-          <!-- Lightbox Carousel -->
-          <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="true">
-            <!-- Indicators/dots -->
-            <div class="carousel-indicators">
-              ${createIndicators(img)}
-            </div>
-            <!-- Wrapper for Slides -->
-            <div class="carousel-inner justify-content-center mx-auto">
-              ${createSlides(img)}
-            </div>
-            <!-- Controls/icons -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-          `;
+      <!-- Lightbox Carousel -->
+      <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="true">
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+          ${createIndicators(img)}
+        </div>
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner justify-content-center mx-auto">
+          ${createSlides(img)}
+        </div>
+        <!-- Controls/icons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      `;
 
                 modalBody.innerHTML = markup;
             }
@@ -935,93 +940,25 @@
         })
     </script>
     <script>
-        $(document).ready(function() {
-            $('[data-fancybox="gallery"]').fancybox({
-                buttons: [
-                    "slideShow",
-                    "thumbs",
-                    "zoom",
-                    "fullScreen",
-                    "share",
-                    "close"
-                ],
-                loop: true,
-                protect: true
-            });
+        // Fancybox Config
+        $('[data-fancybox="gallery"]').fancybox({
+            buttons: [
+                "slideShow",
+                "thumbs",
+                "zoom",
+                "fullScreen",
+                "share",
+                "close"
+            ],
+            loop: false,
+            protect: true
         });
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="jquery.fancybox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
-    @if (session('hide_offcanvas'))
-        <script>
-            window.location.hash = '#doa-ucapan'; // Redirect with the hash
-            document.getElementById('doa-ucapan').scrollIntoView();
-        </script>
-    @endif
-
     <script>
-        function updateTimer(tgl_akad) {
-            const future = Date.parse(tgl_akad);
-            const now = new Date();
-            const diff = future - now;
-
-            if (diff <= 0) {
-                // Waktu telah berlalu, atur semua nilai menjadi 0
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
-                return;
-            }
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-            // Format nilai untuk menambahkan angka 0 di depan jika nilainya < 10
-            document.getElementById("days").innerText = (days < 10 ? "0" : "") + days;
-            document.getElementById("hours").innerText = (hours < 10 ? "0" : "") + hours;
-            document.getElementById("minutes").innerText = (mins < 10 ? "0" : "") + mins;
-            document.getElementById("seconds").innerText = (secs < 10 ? "0" : "") + secs;
-        }
-
-        // Memanggil updateTimer() saat halaman dimuat dengan tanggal akad dari PHP
-        updateTimer("{{ $data->tgl_akad }}");
-        setInterval(updateTimer.bind(null, "{{ $data->tgl_akad }}"), 1000); // Memperbarui setiap detik
+        $(document).ready(function() {
+            $("button").show()
+        });
     </script>
-
-    <script>
-        function copyText(textElementId, buttonId) {
-            var textElement = document.getElementById(textElementId);
-            var button = document.getElementById(buttonId);
-
-            if (!textElement) {
-                console.error("Element with ID " + textElementId + " not found.");
-                return;
-            }
-
-            var text = textElement.textContent.trim();
-
-            navigator.clipboard.writeText(text).then(function() {
-                // Ubah teks tombol menjadi "Copied"
-                if (button) {
-                    button.textContent = 'Copied';
-                    // Kembalikan teks tombol ke "Copy" setelah 2 detik
-                    setTimeout(function() {
-                        button.textContent = 'Copy';
-                    }, 2000);
-                }
-            }).catch(function(error) {
-                console.error('Error copying text: ', error);
-            });
-        }
-    </script>
-
-
-
     <script>
         $(document).ready(function() {
             // Users can skip the loading process if they want.
@@ -1038,13 +975,16 @@
                     })
                 }, 2500)
             });
+
+            // Will remove overlay after 1min for users cannnot load properly.
+            setTimeout(function() {
+                $('.overlay, body').addClass('loaded');
+            }, 2000);
         })
     </script>
-
-
-
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="jquery.fancybox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
 </body>
-
 
 </html>

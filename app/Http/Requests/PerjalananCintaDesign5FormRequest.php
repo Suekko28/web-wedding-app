@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PerjalananCintaDesign4FormRequest extends FormRequest
+class PerjalananCintaDesign5FormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -57,5 +57,4 @@ class PerjalananCintaDesign4FormRequest extends FormRequest
             'image1.mimes' => 'Gambar harus dalam format jpeg, png, atau jpg.',
         ];
     }
-
 }

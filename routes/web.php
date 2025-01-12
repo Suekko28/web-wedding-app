@@ -21,6 +21,7 @@ use App\Http\Controllers\NamaUndanganDesign1Controller;
 use App\Http\Controllers\NamaUndanganDesign2Controller;
 use App\Http\Controllers\NamaUndanganDesign3Controller;
 use App\Http\Controllers\NamaUndanganDesign4Controller;
+use App\Http\Controllers\NamaUndanganDesign5Controller;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\SeserahanController;
 use App\Http\Controllers\UndanganDigitalController;
@@ -222,6 +223,18 @@ Route::delete('/nama-undangan/premium-gold/{id}', [NamaUndanganDesign4Controller
 Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/kepada=')->group(function () {
     Route::get('/preview', [HomeDesign5Controller::class, 'show'])->name('wedding-design5-home-preview');
 });
+
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/kepada={nama_undangan}', [HomeDesign5Controller::class, 'showDetail'])->name('wedding-design5-home');
+Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/kepada={nama_undangan}', [HomeDesign5Controller::class, 'store'])->name('wedding-design5-post');
+
+Route::resource('/nama-undangan', NamaUndanganDesign5Controller::class);
+Route::get('nama-undangan/premium-silver/{weddingDesign5Id}/list', [NamaUndanganDesign5Controller::class, 'index'])->name('nama-undangan-list5');
+Route::get('/nama-undangan/premium-silver/{id}/create', [NamaUndanganDesign5Controller::class, 'create'])->name('nama-undangan-create5');
+Route::post('/nama-undangan/premium-silver/{id}/list', [NamaUndanganDesign5Controller::class, 'store'])->name('nama-undangan-store5');
+Route::get('/nama-undangan/premium-silver/{id}/edit', [NamaUndanganDesign5Controller::class, 'edit'])->name('nama-undangan-edit5');
+Route::put('/nama-undangan/premium-silver/{weddingDesign5Id}/{id}', [NamaUndanganDesign5Controller::class, 'update'])->name('nama-undangan-update5');
+Route::delete('/nama-undangan/premium-silver/{id}', [NamaUndanganDesign5Controller::class, 'destroy'])->name('nama-undangan.destroy5');
+
 
 
 // User Route

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DirectTransferDesign5FormRequest;
+use App\Http\Requests\KirimHadiahDesign5FormRequest;
+use App\Http\Requests\PerjalananCintaDesign5FormRequest;
 use App\Http\Requests\WeddingDesign5FormRequest;
 use App\Models\DirectTransferDesign5;
 use App\Models\InformasiDesign5;
