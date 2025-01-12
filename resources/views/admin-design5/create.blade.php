@@ -4,7 +4,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 4'])
+    @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 5'])
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
             <section class="content">
