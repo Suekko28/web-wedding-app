@@ -72,8 +72,8 @@ Kirim pull request setelah perubahan selesai.
 📧 Kontak
 
 Jika Anda memiliki pertanyaan atau ingin berdiskusi lebih lanjut, silakan hubungi:
-📩 Email: your-email@example.com
-💼 LinkedIn: Profil Anda
+📩 Email: aldidharmawan700@gmail.com
+💼 LinkedIn:https://www.linkedin.com/in/aldi-dharmawan-4b76a9221/
 
 Terima kasih telah menggunakan Web Wedding App! 💕
 
