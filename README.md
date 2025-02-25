@@ -1,79 +1,87 @@
-🎉 Web Wedding App
+# 🎉 Web Wedding App
 
-Selamat datang di Web Wedding App! 💍✨
+Welcome to **Web Wedding App**! 💍✨
 
-Aplikasi ini dirancang untuk membantu pasangan dalam membuat undangan pernikahan digital yang elegan dan mudah digunakan. Dengan fitur yang lengkap dan desain yang modern, Web Wedding App memungkinkan pengguna untuk berbagi informasi pernikahan dengan keluarga dan teman secara praktis.
+This application is designed to help couples create elegant and user-friendly digital wedding invitations. With a complete set of features and a modern design, Web Wedding App allows users to share wedding information conveniently with family and friends.
 
-🚀 Fitur Utama
+---
 
-✅ Desain Responsif - Undangan pernikahan yang indah dan dapat diakses dari berbagai perangkat.
-✅ Kustomisasi Tema - Pilih tema sesuai keinginan untuk mencerminkan gaya pernikahan Anda.
-✅ Form Konfirmasi Kehadiran (RSVP) - Tamu dapat mengonfirmasi kehadiran mereka langsung dari undangan.
-✅ Hitung Mundur Pernikahan - Tambahkan penghitung waktu mundur menuju hari bahagia Anda.
-✅ Galeri Foto - Bagikan momen-momen indah bersama pasangan.
-✅ Musik Latar - Tambahkan musik untuk menciptakan suasana romantis.
-✅ Doa & Ucapan - Tamu dapat memberikan doa dan ucapan langsung di halaman undangan.
+## 🚀 Key Features
 
-🛠️ Teknologi yang Digunakan
+✅ **Responsive Design** - Beautiful wedding invitations accessible from any device.
+✅ **Theme Customization** - Choose a theme that reflects your wedding style.
+✅ **RSVP Confirmation Form** - Guests can confirm their attendance directly through the invitation.
+✅ **Wedding Countdown** - Add a countdown timer to your big day.
+✅ **Photo Gallery** - Share beautiful moments with your partner.
+✅ **Background Music** - Enhance the experience with romantic background music.
+✅ **Wishes & Messages** - Guests can leave their well wishes and messages on the invitation page.
 
-Laravel 11 (Framework Backend)
+---
 
-Bootstrap (Desain UI Responsif)
+## 🛠️ Technologies Used
 
-JavaScript & jQuery (Interaksi Dinamis)
+- **Laravel 11** (Backend Framework)
+- **Bootstrap** (Responsive UI Design)
+- **JavaScript & jQuery** (Dynamic Interactions)
+- **MySQL** (Database)
 
-MySQL (Database)
+---
 
-📌 Instalasi
+## 📌 Installation
 
-Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lokal:
+Follow these steps to run the project locally:
 
+```bash
 # Clone repository
 git clone https://github.com/Suekko28/web-wedding-app.git
 
-# Masuk ke direktori proyek
+# Navigate to the project directory
 cd web-wedding-app
 
-# Instal dependensi
+# Install dependencies
 composer install
 npm install
 
-# Buat file .env
+# Create .env file
 cp .env.example .env
 
-# Atur konfigurasi database di .env
+# Configure database settings in .env
 
 # Generate application key
 php artisan key:generate
 
-# Migrasi database
+# Run database migrations
 php artisan migrate --seed
 
-# Jalankan aplikasi
+# Start the application
 php artisan serve
+```
 
-Akses aplikasi melalui http://localhost:8000.
+Access the application via **http://localhost:8000**.
 
-🎨 Demo
+---
 
-Jika Anda ingin melihat contoh live demo aplikasi ini, silakan kunjungi:
-🔗 https://jejakkebahagiaan.com/
+## 🎨 Demo
 
-🤝 Kontribusi
+If you want to see a live demo of this application, visit:
+🔗 [Web Wedding App Demo](#)
 
-Kami selalu terbuka untuk kontribusi dari komunitas! Jika Anda ingin berkontribusi:
+---
 
-Fork repositori ini.
+## 🤝 Contributions
 
-Buat branch baru untuk fitur atau perbaikan Anda.
+We welcome contributions from the community! If you would like to contribute:
+1. **Fork** this repository.
+2. Create a **new branch** for your feature or fix.
+3. Submit a **pull request** once your changes are complete.
 
-Kirim pull request setelah perubahan selesai.
+---
 
-📧 Kontak
+## 📧 Contact
 
-Jika Anda memiliki pertanyaan atau ingin berdiskusi lebih lanjut, silakan hubungi:
-📩 Email: aldidharmawan700@gmail.com
-💼 LinkedIn:https://www.linkedin.com/in/aldi-dharmawan-4b76a9221/
+If you have any questions or would like to discuss further, feel free to contact:
+📩 Email: [aldidharmawan700@gmail.com](mailto:your-email@example.com)
+💼 LinkedIn: [https://www.linkedin.com/in/aldi-dharmawan-4b76a9221/](#)
 
-Terima kasih telah menggunakan Web Wedding App! 💕
+Thank you for using Web Wedding App! 💕
 
