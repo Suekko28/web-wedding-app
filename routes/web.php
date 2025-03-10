@@ -50,7 +50,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Auth::routes([
-    'register' => false,
+    // 'register' => false,
     'verify' => false,
 
 ]);
