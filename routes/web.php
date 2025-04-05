@@ -16,12 +16,14 @@ use App\Http\Controllers\IndexDesign3Controller;
 use App\Http\Controllers\IndexDesign4Controller;
 use App\Http\Controllers\InformasiDesign4Controller;
 use App\Http\Controllers\InformasiDesign5Controller;
+use App\Http\Controllers\InformasiDesign6Controller;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NamaUndanganDesign1Controller;
 use App\Http\Controllers\NamaUndanganDesign2Controller;
 use App\Http\Controllers\NamaUndanganDesign3Controller;
 use App\Http\Controllers\NamaUndanganDesign4Controller;
 use App\Http\Controllers\NamaUndanganDesign5Controller;
+use App\Http\Controllers\NamaUndanganDesign6Controller;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\SeserahanController;
 use App\Http\Controllers\UndanganDigitalController;
@@ -35,6 +37,7 @@ use App\Http\Controllers\WeddingDesign2Controller;
 use App\Http\Controllers\WeddingDesign3Controller;
 use App\Http\Controllers\WeddingDesign4Controller;
 use App\Http\Controllers\WeddingDesign5Controller;
+use App\Http\Controllers\WeddingDesign6Controller;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -119,24 +122,60 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/wedding-design5/{id}/update-direct-transfer', [WeddingDesign5Controller::class, 'updateDirectTransfer'])->name('directtransfer-design5.update');
     Route::delete('/wedding-design5/{id}/delete', [WeddingDesign5Controller::class, 'destroyDirectTransfer'])->name('directtransfer-design5.destroy');
 
-    // Routes for Kirim Hadiah5
+    // Routes for Kirim Hadiah5 
     Route::post('/wedding-design5/{id}/store-kirim-hadiah', [WeddingDesign5Controller::class, 'storeKirimHadiah'])->name('kirimhadiah-design5.store');
     Route::put('/wedding-design5/{id}/update-kirim-hadiah', [WeddingDesign5Controller::class, 'updateKirimHadiah'])->name('kirimhadiah-design5.update');
     Route::delete('/wedding-design5/{id}/delete', [WeddingDesign5Controller::class, 'destroyKirimHadiah'])->name('kirimhadiah-design5.destroy');
     Route::delete('/wedding-design5/{id}/{type}/delete', [WeddingDesign5Controller::class, 'destroy'])->name('design5.destroy');
 
+    // Routes for InformasiDesign6
+    Route::resource('/wedding-design6', InformasiDesign6Controller::class);
+    Route::get('/wedding-design6/{wedding_design6}', [WeddingDesign6Controller::class, 'show'])->name('wedding-design6.show');
+    Route::post('/wedding-design6/{id}/update', [InformasiDesign6Controller::class, 'update']);
 
+    // Routes for WeddingDesign6
+    Route::get('/wedding-design6/{id}/create', [WeddingDesign6Controller::class, 'create'])->name('form-design6.create');
+    Route::post('/wedding-design6/{id}/store', [WeddingDesign6Controller::class, 'store'])->name('form-design6.store');
+    Route::get('/wedding-design6/{informasiDesign6Id}/edit/{id}', [WeddingDesign6Controller::class, 'edit'])->name('form-design6.edit');
+    Route::put('/wedding-design6/{informasiDesign6Id}/update/{id}', [WeddingDesign6Controller::class, 'update'])->name('form-design6.update');
+    Route::delete('/wedding-design6/{id}', [WeddingDesign6Controller::class, 'destroy'])->name('form-design6.destroy');
+
+
+    // Routes for Perjalanan Cinta6
+    Route::post('/wedding-design6/{id}/store-perjalanan-cinta', [WeddingDesign6Controller::class, 'storePerjalananCinta'])->name('perjalanancinta-design6.store');
+    Route::put('/wedding-design6/{id}/update-perjalanan-cinta', [WeddingDesign6Controller::class, 'updatePerjalananCinta'])->name('perjalanancinta-design6.update');
+    Route::delete('/wedding-design6/{id}/delete', [WeddingDesign6Controller::class, 'destroyPerjalananCinta'])->name('perjalanancinta-design6.destroy');
+
+    // Routes for Direct Transfer6
+    Route::post('/wedding-design6/{id}/store-direct-transfer', [WeddingDesign6Controller::class, 'storeDirectTransfer'])->name('directtransfer-design6.store');
+    Route::put('/wedding-design6/{id}/update-direct-transfer', [WeddingDesign6Controller::class, 'updateDirectTransfer'])->name('directtransfer-design6.update');
+    Route::delete('/wedding-design6/{id}/delete', [WeddingDesign6Controller::class, 'destroyDirectTransfer'])->name('directtransfer-design6.destroy');
+
+    // Routes for Kirim Hadiah6
+    Route::post('/wedding-design6/{id}/store-kirim-hadiah', [WeddingDesign6Controller::class, 'storeKirimHadiah'])->name('kirimhadiah-design6.store');
+    Route::put('/wedding-design6/{id}/update-kirim-hadiah', [WeddingDesign6Controller::class, 'updateKirimHadiah'])->name('kirimhadiah-design6.update');
+    Route::delete('/wedding-design6/{id}/delete', [WeddingDesign6Controller::class, 'destroyKirimHadiah'])->name('kirimhadiah-design6.destroy');
+    Route::delete('/wedding-design6/{id}/{type}/delete', [WeddingDesign6Controller::class, 'destroy'])->name('design6.destroy');
+
+
+    // Routes for Blog
     Route::resource('/blog', BlogController::class);
     Route::post('/upload', [BlogController::class, 'upload'])->name('ckeditor.upload');
 
+
+    // Routes for Promo
     Route::resource('/promo', PromoController::class);
 
+    // Routes for Gambarin
     Route::resource('/gambarin', GambarinController::class);
 
+    // Routes for Seserahan
     Route::resource('/seserahan', SeserahanController::class);
 
+    // Routes for Cetak Foto
     Route::resource('/cetakfoto', CetakFotoController::class);
 
+    // Routes for Undangan Digital
     Route::resource('/undangandigital', UndanganDigitalController::class);
 
 });
@@ -235,6 +274,22 @@ Route::get('/nama-undangan/premium-silver/{id}/edit', [NamaUndanganDesign5Contro
 Route::put('/nama-undangan/premium-silver/{weddingDesign5Id}/{id}', [NamaUndanganDesign5Controller::class, 'update'])->name('nama-undangan-update5');
 Route::delete('/nama-undangan/premium-silver/{id}', [NamaUndanganDesign5Controller::class, 'destroy'])->name('nama-undangan.destroy5');
 
+
+// Route undangan design 6
+Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/teruntuk=')->group(function () {
+    Route::get('/preview', [HomeDesign5Controller::class, 'show'])->name('wedding-design6-home-preview');
+});
+
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/teruntuk={nama_undangan}', [HomeDesign6Controller::class, 'showDetail'])->name('wedding-design6-home');
+Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/teruntuk={nama_undangan}', [HomeDesign6Controller::class, 'store'])->name('wedding-design6-post');
+
+Route::resource('/nama-undangan', NamaUndanganDesign6Controller::class);
+Route::get('nama-undangan/platinum-silver/{weddingDesign6Id}/list', [NamaUndanganDesign6Controller::class, 'index'])->name('nama-undangan-list6');
+Route::get('/nama-undangan/platinum-silver/{id}/create', [NamaUndanganDesign6Controller::class, 'create'])->name('nama-undangan-create6');
+Route::post('/nama-undangan/platinum-silver/{id}/list', [NamaUndanganDesign6Controller::class, 'store'])->name('nama-undangan-store6');
+Route::get('/nama-undangan/platinum-silver/{id}/edit', [NamaUndanganDesign6Controller::class, 'edit'])->name('nama-undangan-edit6');
+Route::put('/nama-undangan/platinum-silver/{weddingDesign6Id}/{id}', [NamaUndanganDesign6Controller::class, 'update'])->name('nama-undangan-update6');
+Route::delete('/nama-undangan/platinum-silver/{id}', [NamaUndanganDesign5Controller::class, 'destroy'])->name('nama-undangan.destroy6');
 
 
 // User Route

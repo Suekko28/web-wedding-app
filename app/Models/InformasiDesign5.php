@@ -26,7 +26,7 @@ class InformasiDesign5 extends Model
     {
         return $this->hasMany(PerjalananCintaDesign5::class, 'informasi_design5_id', 'id');
     }
-    public function DirectTransferesign5(): HasMany
+    public function DirectTransferDesign5(): HasMany
     {
         return $this->hasMany(DirectTransferDesign5::class, 'informasi_design5_id', 'id');
     }

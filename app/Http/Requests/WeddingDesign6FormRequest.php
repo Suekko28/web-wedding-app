@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class WeddingDesign5FormRequest extends FormRequest
+class WeddingDesign6FormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -42,7 +42,7 @@ class WeddingDesign5FormRequest extends FormRequest
             'deskripsi_resepsi' => ['string'],
             'simpan_tgl_resepsi' => ['required', 'string', 'max:255'],
             'link_streaming' => ['nullable', 'max:255'],
-            'informasi_design5_id' => ['required', 'exists:informasi_design5,id'],
+            'informasi_design6_id' => ['required', 'exists:informasi_design6,id'],
             'tgl_akad' => ['required', 'date'],
             'mulai_akad' => ['required', 'date_format:H:i'],
             'selesai_akad' => ['required', 'date_format:H:i'],
@@ -164,8 +164,8 @@ class WeddingDesign5FormRequest extends FormRequest
 
             'link_streaming.required' => 'Link streaming harus diisi.',
 
-            'informasi_design5_id.required' => 'Informasi design harus diisi.',
-            'informasi_design5_id.exists' => 'Informasi design tidak valid.',
+            'informasi_design6_id.required' => 'Informasi design harus diisi.',
+            'informasi_design6_id.exists' => 'Informasi design tidak valid.',
         ];
     }
 }

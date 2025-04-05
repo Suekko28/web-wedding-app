@@ -10,14 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('kirim_hadiah_design5', function (Blueprint $table) {
+        Schema::create('kirim_hadiah_design6', function (Blueprint $table) {
             $table->id();
             $table->string('alamat', length: 100);
             $table->text('deskripsi_alamat');
-            $table->unsignedBigInteger('informasi_design5_id');
-            $table->foreign('informasi_design5_id')
+            $table->unsignedBigInteger('informasi_design6_id');
+            $table->foreign('informasi_design6_id')
                 ->references('id')
-                ->on('informasi_design5')
+                ->on('informasi_design6')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('kirim_hadiah_design5');
+        Schema::dropIfExists('kirim_hadiah_design6');
     }
 };

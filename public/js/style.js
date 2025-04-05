@@ -1,24 +1,50 @@
 $(document).ready(function () {
-    // Function to set active class based on the URL
-    function setActiveLink() {
-        var hash = window.location.hash; // Get the hash from the URL
+    // Function to set active class based on scroll position
+    function setActiveOnScroll() {
+        var scrollPos = $(document).scrollTop();
+        $('.nav-link[href^="#"]').each(function () {
+            var currLink = $(this);
+            var refElement = $(currLink.attr("href"));
+            if (refElement.length) {
+                var offsetTop = refElement.offset().top - 80; // Offset untuk menghindari tertutup navbar
+                if (scrollPos >= offsetTop && scrollPos < offsetTop + refElement.height()) {
+                    $('.nav-link').removeClass("active");
+                    currLink.addClass("active");
+                }
+            }
+        });
+    }
+
+    // On scroll
+    $(document).on("scroll", setActiveOnScroll);
+
+    // On page load with hash
+    function setActiveLinkOnLoad() {
+        var hash = window.location.hash;
         if (hash) {
-            $(".nav-link").removeClass("active"); // Remove active class from all links
-            $(".nav-link[href='" + hash + "']").addClass("active"); // Add active class to the link with the matching href
+            $(".nav-link").removeClass("active");
+            $(".nav-link[href='" + hash + "']").addClass("active");
         }
     }
 
-    // Set the active link on page load
-    setActiveLink();
+    // On click
+    $(".nav-link[href^='#']").on("click", function (e) {
+        e.preventDefault();
+        var target = this.hash;
+        var $target = $(target);
 
-    // Set the active link on click
-    $(".nav-link").click(function () {
+        if ($target.length) {
+            $("html, body").animate({
+                scrollTop: $target.offset().top - 70 // Smooth scroll with offset
+            }, 600, function () {
+                window.location.hash = target;
+            });
+        }
+
         $(".nav-link").removeClass("active");
         $(this).addClass("active");
     });
 
-    // Optional: Update the active link when the hash in the URL changes
-    $(window).on("hashchange", function () {
-        setActiveLink();
-    });
+    // Init on page load
+    setActiveLinkOnLoad();
 });

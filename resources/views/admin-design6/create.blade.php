@@ -4,40 +4,33 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Wedding Design 5'])
+    @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 5'])
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
             <section class="content">
                 <div class="container-fluid">
                     @include('layouts.message')
-                    <form
-                        action="{{ route('form-design5.update', ['informasiDesign5Id' => $data->informasi_design5_id, 'id' => $data->id]) }}"
-                        method="POST" enctype="multipart/form-data">
+                    <!-- Small boxes (Stat box) -->
+                    <form action="{{ route('form-design6.store', ['id' => $informasiDesign6Id]) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
-                        <input type="hidden" name="informasi_design5_id" value="{{ $informasiDesign5->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign5->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign5->tgl_pernikahan }}">
+                        <input type="hidden" name="informasi_design6_id" value="{{ $informasiDesign6->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign6->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign6->tgl_pernikahan }}">
+                        <input type="hidden" name="id" id="perjalananCintaId">
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Cover Undangan</div>
                             <div class="form-group form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="banner_img">Upload Foto<span class="mandatory">*</span></label>
+                                        <label for="banner_img">Upload Image<span class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="banner_img" name="banner_img"
                                             placeholder="Rhoma Irama" value="{{ old('banner_img') }}">
-                                        @if ($data->banner_img)
-                                            <div class="d-flex flex-column mt-2">
-                                                <span>Gambar saat ini:</span>
-                                                <img src="{{ Storage::url($data->banner_img) }}" alt="Foto Banner Image"
-                                                    class="img-thumbnail mt-2" width="150">
-                                            </div>
-                                        @endif
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
-                                            placeholder="" disabled value="{{ $informasiDesign5->nama_pasangan }}">
+                                            placeholder="" disabled value="{{ $informasiDesign6->nama_pasangan }}">
                                     </div>
                                 </div>
                             </div>
@@ -48,44 +41,27 @@
                             <div class="form-group form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="foto_prewedding">Upload Foto<span class="mandatory">*</span></label>
+                                        <label for="foto_prewedding">Upload Image<span class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="foto_prewedding"
                                             name="foto_prewedding" placeholder="Rhoma Irama"
                                             value="{{ old('foto_prewedding') }}">
-                                        @if ($data->foto_prewedding)
-                                            <div class="d-flex flex-column mt-2">
-                                                <span>Gambar saat ini:</span>
-                                                <img src="{{ Storage::url($data->foto_prewedding) }}" alt="Foto Prewedding"
-                                                    class="img-thumbnail mt-2" width="150">
-                                            </div>
-                                        @endif
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
-                                            placeholder="" disabled value="{{ $informasiDesign5->nama_pasangan }}">
+                                            placeholder="" disabled value="{{ $informasiDesign6->nama_pasangan }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_pernikahan">Tanggal Pernikahan<span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="tgl_pernikahan" name="tgl_pernikahan"
                                             placeholder="" disabled
-                                            value="{{ \Carbon\Carbon::parse($informasiDesign5->tgl_pernikahan)->format('d-m-Y') }}">
+                                            value="{{ \Carbon\Carbon::parse($informasiDesign6->tgl_pernikahan)->format('d-m-Y') }}">
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="music">Music <span class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="music" name="music"
                                             accept=".mp3" value="{{ old('music') }}">
-                                        @if ($data->music)
-                                            <div class="d-flex flex-column mt-2">
-                                                <span>Musik saat ini:</span>
-                                                <audio controls class="mt-2">
-                                                    <source src="{{ Storage::url($data->music) }}" type="audio/mpeg">
-                                                    Your browser does not support the audio tag.
-                                                </audio>
-                                            </div>
-                                        @endif
-
                                     </div>
                                 </div>
                             </div>
@@ -100,50 +76,41 @@
                                                 class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="foto_mempelai_perempuan"
                                             name="foto_mempelai_perempuan" placeholder="">
-                                        @if ($data->foto_mempelai_perempuan)
-                                            <div class="d-flex flex-column mt-2">
-                                                <span>Gambar saat ini:</span>
-                                                <img src="{{ Storage::url($data->foto_mempelai_perempuan) }}"
-                                                    alt="Foto Mempelai Perempuan" class="img-thumbnail mt-2"
-                                                    width="150">
-                                            </div>
-                                        @endif
-                                        <!-- Input file tidak memiliki value -->
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_mempelai_perempuan">Nama Mempelai Perempuan <span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_mempelai_perempuan"
                                             name="nama_mempelai_perempuan" placeholder="Masukan nama mempelai perempuan"
-                                            value="{{ $data->nama_mempelai_perempuan }}">
+                                            value="{{ old('nama_mempelai_perempuan') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="putri_dari_bpk">Putri dari Bapak <span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="putri_dari_bpk"
                                             name="putri_dari_bpk" placeholder="Putri dari bapak"
-                                            value="{{ $data->putri_dari_bpk }}">
+                                            value="{{ old('putri_dari_bpk') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="putri_dari_ibu">Putri dari Ibu <span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="putri_dari_ibu"
                                             name="putri_dari_ibu" placeholder="Putri dari ibu"
-                                            value="{{ $data->putri_dari_ibu }}">
+                                            value="{{ old('putri_dari_ibu') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="nama_instagram1">Nama Instagram <span
+                                        <label for="nama_instagram2">Nama Instagram <span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_instagram1"
                                             name="nama_instagram1" placeholder="Masukkan nama instagram"
-                                            value="{{ $data->nama_instagram1 }}">
+                                            value="{{ old('nama_instagram1') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="link_instagram1">Link Instagram <span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="link_instagram1"
                                             name="link_instagram1" placeholder="Masukkan link instagram"
-                                            value="{{ $data->link_instagram1 }}">
+                                            value="{{ old('link_instagram1') }}">
                                     </div>
                                 </div>
                             </div>
@@ -158,48 +125,41 @@
                                                 class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="foto_mempelai_laki"
                                             name="foto_mempelai_laki" placeholder="">
-                                        @if ($data->foto_mempelai_laki)
-                                            <div class="d-flex flex-column mt-2">
-                                                <span>Gambar saat ini:</span>
-                                                <img src="{{ Storage::url($data->foto_mempelai_laki) }}"
-                                                    alt="Foto Mempelai Laki" class="img-thumbnail mt-2" width="150">
-                                            </div>
-                                        @endif
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_mempelai_laki">Nama Mempelai Laki <span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_mempelai_laki"
                                             name="nama_mempelai_laki" placeholder="Masukan nama mempelai laki-laki"
-                                            value="{{ $data->nama_mempelai_laki }}">
+                                            value="{{ old('nama_mempelai_laki') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="putra_dari_bpk">Putra dari Bapak <span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="putra_dari_bpk"
                                             name="putra_dari_bpk" placeholder="Putra dari bapak"
-                                            value="{{ $data->putra_dari_bpk }}">
+                                            value="{{ old('putra_dari_bpk') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="putra_dari_ibu">Putra dari Ibu <span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="putra_dari_ibu"
                                             name="putra_dari_ibu" placeholder="Putra dari ibu"
-                                            value="{{ $data->putra_dari_ibu }}">
+                                            value="{{ old('putra_dari_ibu') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_instagram2">Nama Instagram <span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_instagram2"
                                             name="nama_instagram2" placeholder="Masukkan nama instagram"
-                                            value="{{ $data->nama_instagram2 }}">
+                                            value="{{ old('nama_instagram2') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="link_instagram2">Link Instagram <span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="link_instagram2"
                                             name="link_instagram2" placeholder="Masukkan link instagram"
-                                            value="{{ $data->link_instagram2 }}">
+                                            value="{{ old('link_instagram2') }}">
                                     </div>
                                 </div>
                             </div>
@@ -259,7 +219,6 @@
                                 </table>
                             </div>
                         </div>
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Moment</div>
                             <div class="form-group fs-3">
@@ -267,21 +226,12 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="quote">Quoted <span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="quote" name="quote"
-                                            placeholder="Masukkan Quote" value="{{ $data->quote }}">
+                                            placeholder="Masukkan Quote" value="{{old('quote')}}" >
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="quote_img">Upload Images <span class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="quote_img" name="quote_img[]"
                                             multiple>
-                                        @if ($data->quote_img)
-                                            <div class="d-flex flex-column">
-                                                <span>Gambar kutipan saat ini:</span>
-                                                @foreach (json_decode($data->quote_img) as $image)
-                                                    <img src="{{ Storage::url($image) }}" alt="Quote Image"
-                                                        class="img-thumbnail mt-2" width="150">
-                                                @endforeach
-                                            </div>
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -291,16 +241,9 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="akad_img">Upload Foto <span class="mandatory">*</span></label>
+                                        <label for="akad_img">Upload Image <span class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="akad_img" name="akad_img"
                                             placeholder="" value="{{ old('akad_img') }}">
-                                        @if ($data->akad_img)
-                                            <div class="d-flex flex-column mt-2">
-                                                <span>Gambar saat ini:</span>
-                                                <img src="{{ Storage::url($data->akad_img) }}" alt="Foto Akad"
-                                                    class="img-thumbnail mt-2" width="150">
-                                            </div>
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -312,44 +255,43 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_akad">Tanggal Akad <span class="mandatory">*</span></label>
                                         <input type="date" class="form-control" id="tgl_akad" name="tgl_akad"
-                                            value="{{ $data->tgl_akad }}">
+                                            value="{{ old('tgl_akad') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="mulai_akad">Mulai Akad <span class="mandatory">*</span></label>
                                         <input type="time" class="form-control" id="mulai_akad" name="mulai_akad"
-                                            value="{{ date('H:i', strtotime($data->mulai_akad)) }}">
+                                            value="{{ old('mulai_akad') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="selesai_akad">Selesai Akad <span class="mandatory">*</span></label>
                                         <input type="time" class="form-control" id="selesai_akad" name="selesai_akad"
-                                            value="{{ date('H:i', strtotime($data->selesai_akad)) }}">
+                                            value="{{ old('selesai_akad') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="lokasi_akad">Lokasi<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="lokasi_akad" name="lokasi_akad"
-                                            placeholder="Masukkan lokasi" value="{{ $data->lokasi_akad }}">
+                                            placeholder="Masukkan lokasi" value="{{ old('lokasi_akad') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="deskripsi_akad">Detail<span class="mandatory">*</span></label>
                                         <textarea class="form-control" rows="5" id="deskripsi_akad" name="deskripsi_akad"
-                                            placeholder="Masukan alamat">{{ $data->deskripsi_akad }}</textarea>
+                                            placeholder="Masukan alamat">{{ old('deskripsi_akad') }}</textarea>
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="link_akad">Lokasi Gmaps<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="link_akad" name="link_akad"
-                                            placeholder="Masukkan link gmaps" value="{{ $data->link_akad }}">
+                                            placeholder="Masukkan link gmaps" value="{{ old('link_akad') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="simpan_tgl_akad">Simpan Tanggal<span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="simpan_tgl_akad"
                                             name="simpan_tgl_akad" placeholder="Masukkan link"
-                                            value="{{ $data->simpan_tgl_akad }}">
+                                            value="{{ old('simpan_tgl_akad') }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Resepsi</div>
                             <div class="form-group fs-3">
@@ -357,49 +299,45 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_resepsi">Tanggal Resepsi<span class="mandatory">*</span></label>
                                         <input type="date" class="form-control" id="tgl_resepsi" name="tgl_resepsi"
-                                            value="{{ $data->tgl_resepsi }}">
+                                            value="{{ old('tgl_resepsi') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="mulai_resepsi">Mulai Resepsi <span class="mandatory">*</span></label>
                                         <input type="time" class="form-control" id="mulai_resepsi"
-                                            name="mulai_resepsi"
-                                            value="{{ date('H:i', strtotime($data->mulai_resepsi)) }}">
+                                            name="mulai_resepsi" value="{{ old('mulai_resepsi') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="selesai_resepsi">Selesai Resepsi <span
                                                 class="mandatory">*</span></label>
                                         <input type="time" class="form-control" id="selesai_resepsi"
-                                            name="selesai_resepsi"
-                                            value="{{ date('H:i', strtotime($data->selesai_resepsi)) }}">
+                                            name="selesai_resepsi" value="{{ old('selesai_resepsi') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="lokasi_resepsi">Lokasi<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="lokasi_resepsi"
                                             name="lokasi_resepsi" placeholder="Masukkan lokasi"
-                                            value="{{ $data->lokasi_resepsi }}">
+                                            value="{{ old('lokasi_resepsi') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="deskripsi_resepsi">Detail<span class="mandatory">*</span></label>
                                         <textarea class="form-control" rows="5" id="deskripsi_resepsi" name="deskripsi_resepsi"
-                                            placeholder="Masukan alamat">{{ $data->deskripsi_resepsi }}</textarea>
+                                            placeholder="Masukan alamat">{{ old('deskripsi_resepsi') }}</textarea>
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="link_resepsi">Lokasi Gmaps<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="link_resepsi" name="link_resepsi"
-                                            placeholder="Masukkan link gmaps" value="{{ $data->link_resepsi }}">
+                                            placeholder="Masukkan link gmaps" value="{{ old('link_resepsi') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="simpan_tgl_resepsi">Simpan Tanggal<span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="simpan_tgl_resepsi"
                                             name="simpan_tgl_resepsi" placeholder="Masukkan link"
-                                            value="{{ $data->simpan_tgl_resepsi }}">
+                                            value="{{ old('simpan_tgl_resepsi') }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Live Streaming</div>
                             <div class="form-group fs-3">
@@ -408,7 +346,7 @@
                                         <label for="link_streaming">Link Streaming<span class="fst-italic"> (Opsional)</span></label>
                                         <input type="text" class="form-control" id="link_streaming"
                                             name="link_streaming" placeholder="Masukkan link"
-                                            value="{{ $data->link_streaming }}">
+                                            value="{{ old('link_streaming') }}">
                                     </div>
                                 </div>
                             </div>
@@ -509,13 +447,11 @@
 
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                            <a href="{{ route('wedding-design5.index') }}" class="btn btn-secondary">Batal</a>
+                            <a href="{{ route('wedding-design6.index') }}" class="btn btn-secondary">Batal</a>
                         </div>
 
                     </form>
-                    <!-- Small boxes (Stat box) -->
-                    <!-- /.row (main row) -->
-                </div><!-- /.container-fluid -->
+                </div>
             </section>
         </div>
     </div>
@@ -531,14 +467,14 @@
                 </div>
                 <div class="modal-body">
                     <form id="formPerjalananCinta"
-                        action="{{ route('perjalanancinta-design5.store', ['id' => $informasiDesign5->id]) }}"
+                        action="{{ route('perjalanancinta-design6.store', ['id' => $informasiDesign6->id]) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="_method" id="formMethod" value="POST">
                         <input type="hidden" name="perjalananCintaId" id="perjalananCintaId">
-                        <input type="hidden" name="wedding_design5_id" value="{{ $informasiDesign5->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign5->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign5->tgl_pernikahan }}">
+                        <input type="hidden" name="wedding_design6_id" value="{{ $informasiDesign6->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign6->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign6->tgl_pernikahan }}">
 
                         <div class="form-group mb-2">
                             <label for="image1">Foto<span class="mandatory">*</span></label>
@@ -586,14 +522,14 @@
                 </div>
                 <div class="modal-body">
                     <form id="formDirectTransfer"
-                        action="{{ route('directtransfer-design5.store', ['id' => $informasiDesign5->id]) }}"
+                        action="{{ route('directtransfer-design6.store', ['id' => $informasiDesign6->id]) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="_method" id="formMethodDirectTransfer" value="POST">
                         <input type="hidden" name="directTransferId" id="directTransferId">
-                        <input type="hidden" name="wedding_design5_id" value="{{ $informasiDesign5->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign5->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign5->tgl_pernikahan }}">
+                        <input type="hidden" name="wedding_design6_id" value="{{ $informasiDesign6->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign6->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign6->tgl_pernikahan }}">
 
                         <!-- Form Fields -->
                         <div class="form-group mb-2">
@@ -635,15 +571,15 @@
                 </div>
                 <div class="modal-body">
                     <form id="formKirimHadiah"
-                        action="{{ route('kirimhadiah-design5.store', ['id' => $informasiDesign5->id]) }}" method="POST"
+                        action="{{ route('kirimhadiah-design6.store', ['id' => $informasiDesign6->id]) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         {{-- This will be updated dynamically in JS --}}
                         <input type="hidden" name="_method" id="formMethodKirimHadiah" value="POST">
                         <input type="hidden" name="kirimHadiahId" id="kirimHadiahId">
-                        <input type="hidden" name="wedding_design5_id" value="{{ $informasiDesign5->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign5->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign5->tgl_pernikahan }}">
+                        <input type="hidden" name="wedding_design6_id" value="{{ $informasiDesign6->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign6->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign6->tgl_pernikahan }}">
 
                         <div class="form-group mb-2">
                             <label for="alamat">Alamat<span class="mandatory">*</span></label>
@@ -665,8 +601,9 @@
             </div>
         </div>
     </div>
+
     <!-- Hidden form for delete -->
-    <form id="deleteForm" method="POST" style="display:none;">
+    <form id="deleteForm" action="" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
     </form>
@@ -681,7 +618,7 @@
 
             // Set the action to the store route
             document.getElementById('formPerjalananCinta').action =
-                "{{ route('perjalanancinta-design5.store', ['id' => $informasiDesign5->id]) }}";
+                "{{ route('perjalanancinta-design6.store', ['id' => $informasiDesign6->id]) }}";
             document.getElementById('modalPerjalananCintaLabel').textContent = 'Tambah Cerita';
         });
 
@@ -707,7 +644,7 @@
 
                 // Set the form action to the update route
                 document.getElementById('formPerjalananCinta').action =
-                    `/wedding-design5/${id}/update-perjalanan-cinta`;
+                    `/wedding-design6/${id}/update-perjalanan-cinta`;
                 document.getElementById('formMethod').value = 'PUT'; // Set method for updating
                 document.getElementById('modalPerjalananCintaLabel').textContent = 'Edit Cerita';
 
@@ -728,7 +665,7 @@
 
             // Set the action to the store route
             document.getElementById('formDirectTransfer').action =
-                "{{ route('directtransfer-design5.store', ['id' => $informasiDesign5->id]) }}";
+                "{{ route('directtransfer-design6.store', ['id' => $informasiDesign6->id]) }}";
             document.getElementById('modalDirectTransferLabel').textContent = 'Tambah Direct Transfer';
         });
 
@@ -747,9 +684,8 @@
 
                 // Set the form action to the update route
                 document.getElementById('formDirectTransfer').action =
-                    `/wedding-design5/${id}/update-direct-transfer`;
-                document.getElementById('formMethodDirectTransfer').value =
-                    'PUT'; // Set method for updating
+                    `/wedding-design6/${id}/update-direct-transfer`;
+                document.getElementById('formMethodDirectTransfer').value = 'PUT'; // Set method for updating
                 document.getElementById('modalDirectTransferLabel').textContent = 'Edit Direct Transfer';
 
                 // Show the modal
@@ -770,7 +706,7 @@
 
             // Set the action to the store route
             document.getElementById('formKirimHadiah').action =
-                "{{ route('kirimhadiah-design5.store', ['id' => $informasiDesign5->id]) }}";
+                "{{ route('kirimhadiah-design6.store', ['id' => $informasiDesign6->id]) }}";
             document.getElementById('modalKirimHadiahLabel').textContent = 'Tambah Kirim Hadiah';
         });
 
@@ -787,7 +723,7 @@
 
                 // Set the form action to the update route
                 document.getElementById('formKirimHadiah').action =
-                    `/wedding-design5/${id}/update-kirim-hadiah`;
+                    `/wedding-design6/${id}/update-kirim-hadiah`;
                 document.getElementById('formMethodKirimHadiah').value = 'PUT'; // Set method for updating
                 document.getElementById('modalKirimHadiahLabel').textContent = 'Edit Kirim Hadiah';
 
@@ -828,7 +764,7 @@
                         if (result.isConfirmed) {
                             // Set the form action to the delete URL
                             var deleteForm = document.getElementById('deleteForm');
-                            deleteForm.action = "/wedding-design5/" + itemId + "/" + type + "/delete";
+                            deleteForm.action = "/wedding-design6/" + itemId + "/" + type + "/delete";
 
                             // Submit the form
                             deleteForm.submit();
@@ -837,6 +773,15 @@
                 });
             });
     </script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
 @endsection
+
 @section('scripts')
 @endsection
