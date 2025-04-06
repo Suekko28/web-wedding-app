@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeDesign2Controller;
 use App\Http\Controllers\HomeDesign3Controller;
 use App\Http\Controllers\HomeDesign4Controller;
 use App\Http\Controllers\HomeDesign5Controller;
+use App\Http\Controllers\HomeDesign6Controller;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\IndexDesign1Controller;
 use App\Http\Controllers\IndexDesign2Controller;
@@ -277,7 +278,7 @@ Route::delete('/nama-undangan/premium-silver/{id}', [NamaUndanganDesign5Controll
 
 // Route undangan design 6
 Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/teruntuk=')->group(function () {
-    Route::get('/preview', [HomeDesign5Controller::class, 'show'])->name('wedding-design6-home-preview');
+    Route::get('/preview', [HomeDesign6Controller::class, 'show'])->name('wedding-design6-home-preview');
 });
 
 Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/teruntuk={nama_undangan}', [HomeDesign6Controller::class, 'showDetail'])->name('wedding-design6-home');
@@ -338,6 +339,9 @@ Route::get('/wedding-4', function () {
 
 Route::get('/wedding-5', function () {
     return view('wedding-design5.home-preview');
+});
+Route::get('/wedding-6', function () {
+    return view('wedding-design6.home-preview');
 });
 
 

@@ -95,14 +95,14 @@
                                             <i class="fa fa-circle-info" style="color:white;"></i>
                                         </a>
 
-                                        {{-- <a class="btn btn-primary mb-2 {{ !$item->KontenDesign6->first() || !$item->KontenDesign6->first()->nama_mempelai_laki || !$item->KontenDesign6->first()->nama_mempelai_perempuan ? 'disabled' : '' }}"
+                                        <a class="btn btn-primary mb-2 {{ !$item->KontenDesign6->first() || !$item->KontenDesign6->first()->nama_mempelai_laki || !$item->KontenDesign6->first()->nama_mempelai_perempuan ? 'disabled' : '' }}"
                                             href="{{ route('wedding-design6-home-preview', [
                                                 'nama_mempelai_laki' => $item->KontenDesign6->first()->nama_mempelai_laki ?? 'Unknown',
                                                 'nama_mempelai_perempuan' => $item->KontenDesign6->first()->nama_mempelai_perempuan ?? 'Unknown',
                                             ]) }}"
                                             target="_blank">
                                             <i class="fa fa-eye" style="color:white;"></i>
-                                        </a> --}}
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

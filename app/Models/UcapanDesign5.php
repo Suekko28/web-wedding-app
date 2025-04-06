@@ -19,7 +19,7 @@ class UcapanDesign5 extends Model
         'wedding_design5_id',
     ];
 
-    public function undanganAlt4RSVP(): BelongsTo
+    public function undanganAlt5RSVP(): BelongsTo
     {
         return $this->belongsTo(WeddingDesign5::class, 'wedding_design5_id', 'id');
     }
