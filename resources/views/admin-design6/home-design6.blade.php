@@ -499,7 +499,7 @@
             <p class="anm_mod bottom-bit fast">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
                 Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami
                 ucapkan terima kasih. Kami yang berbahagia</p>
-            <h3 class="anm_mod bottom-bit fast">Lily & Ndaru</h3>
+            <h3 class="anm_mod bottom-bit fast">{{$data->nama_mempelai_perempuan}} & {{$data->nama_mempelai_laki}}</h3>
         </div>
         <img class="ending-background object-fit-cover" src="{{ asset('img/element-4.svg') }}" alt="background">
     </section>

@@ -30,7 +30,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}"
+            <a class="sidebar-link has-arrow {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3', 'wedding-design4', 'wedding-design5', 'wedding-design6') ? 'in' : '' }}"
                 href="javascript:void(0)" aria-expanded="false">
                 <span class="d-flex">
                     <i class="ti ti-chart-donut-3"></i>
@@ -38,7 +38,7 @@
                 <span class="hide-menu">Wedding Design</span>
             </a>
             <ul aria-expanded="false"
-                class="collapse first-level {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}">
+                class="collapse first-level {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3', 'wedding-design4', 'wedding-design5', 'wedding-design6') ? 'in' : '' }}">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('wedding-design1') ? 'active' : '' }}"
                         href="{{ route('wedding-design1.index') }}" aria-expanded="false">
