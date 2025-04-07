@@ -14,6 +14,8 @@ class PerjalananCintaDesign6 extends Model
 
     protected $fillable = [
         'image',
+        'informasi_design6_id',
+
     ];
 
     public function InformasiDesign6(): BelongsTo

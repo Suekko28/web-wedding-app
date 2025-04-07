@@ -10,6 +10,10 @@
     border: none !important;
 }
 
+.btn-tertiary {
+    color: #fd267d !important; 
+}
+
 .btn-secondary {
     color: #fd267d !important;
     background-color: transparent !important;

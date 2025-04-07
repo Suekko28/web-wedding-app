@@ -143,6 +143,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     // Routes for Perjalanan Cinta6
+    Route::get('/perjalanancinta-design6/{id}/list', [WeddingDesign6Controller::class, 'ajaxList']);
     Route::post('/wedding-design6/{id}/store-perjalanan-cinta', [WeddingDesign6Controller::class, 'storePerjalananCinta'])->name('perjalanancinta-design6.store');
     Route::put('/wedding-design6/{id}/update-perjalanan-cinta', [WeddingDesign6Controller::class, 'updatePerjalananCinta'])->name('perjalanancinta-design6.update');
     Route::delete('/wedding-design6/{id}/delete', [WeddingDesign6Controller::class, 'destroyPerjalananCinta'])->name('perjalanancinta-design6.destroy');

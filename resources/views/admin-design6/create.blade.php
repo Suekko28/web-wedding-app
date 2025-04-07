@@ -178,9 +178,6 @@
                                         <tr class="text-nowrap">
                                             <th>No</th>
                                             <th>Foto</th>
-                                            <th>Tanggal</th>
-                                            <th>Judul Cerita</th>
-                                            <th>Detail</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -189,19 +186,13 @@
                                         @foreach ($dataPerjalananCinta as $item)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image1) }}"
+                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image) }}"
                                                         alt="Image 1" width="120"></td>
-                                                <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
-                                                <td>{{ $item->judul_cerita }}</td>
-                                                <td>{{ $item->deskripsi }}</td>
                                                 <td>
                                                     <a href="javascript:void(0)"
                                                         class="btn btn-warning mb-2 rounded edit-btn-perjalanan-cinta"
                                                         data-id="{{ $item->id }}"
-                                                        data-tanggal="{{ $item->tanggal }}"
-                                                        data-judul="{{ $item->judul_cerita }}"
-                                                        data-deskripsi="{{ $item->deskripsi }}"
-                                                        data-image1="{{ Storage::url($item->image1) }}">
+                                                        data-image="{{ Storage::url($item->image) }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
 
@@ -226,7 +217,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="quote">Quoted <span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="quote" name="quote"
-                                            placeholder="Masukkan Quote" value="{{old('quote')}}" >
+                                            placeholder="Masukkan Quote" value="{{ old('quote') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="quote_img">Upload Images <span class="mandatory">*</span></label>
@@ -343,7 +334,8 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_streaming">Link Streaming<span class="fst-italic"> (Opsional)</span></label>
+                                        <label for="link_streaming">Link Streaming<span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="text" class="form-control" id="link_streaming"
                                             name="link_streaming" placeholder="Masukkan link"
                                             value="{{ old('link_streaming') }}">
@@ -477,28 +469,14 @@
                         <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign6->tgl_pernikahan }}">
 
                         <div class="form-group mb-2">
-                            <label for="image1">Foto<span class="mandatory">*</span></label>
-                            <input type="file" name="image1" id="image1" class="form-control">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label for="image">Foto<span class="mandatory">*</span></label>
+                                <button type="button" class="btn btn-tertiary">+ Tambah Foto</button>
+                            </div>
+                            <input type="file" name="image" id="image" class="form-control">
                             <!-- Current Image Preview -->
-                            <img id="currentImage1" class="img-thumbnail mt-2" src="" alt="Current Image 1"
+                            <img id="currentimage" class="img-thumbnail mt-2" src="" alt="Current Image 1"
                                 width="120" style="display: none;">
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label for="tanggal">Tanggal<span class="mandatory">*</span></label>
-                            <input type="date" name="tanggal" id="tanggal" class="form-control"
-                                value="{{ old('tanggal') }}">
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label for="judul_cerita">Judul Cerita<span class="mandatory">*</span></label>
-                            <input type="text" name="judul_cerita" id="judul_cerita" class="form-control"
-                                value="{{ old('judul_cerita') }}" placeholder="Masukkan judul cerita">
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label for="deskripsi">Detail<span class="mandatory">*</span></label>
-                            <textarea class="form-control" rows="10" id="deskripsi" name="deskripsi" placeholder="Masukkan isi deskripsi">{{ old('deskripsi') }}</textarea>
                         </div>
                     </form>
                 </div>
@@ -610,48 +588,65 @@
 
     <!-- Modal JS Perjalanan Cinta -->
     <script>
-        document.getElementById('btnPerjalananCinta').addEventListener('click', function() {
-            // Reset the form for new entries
-            document.getElementById('formPerjalananCinta').reset();
-            document.getElementById('perjalananCintaId').value = ''; // Reset hidden field for ID
-            document.getElementById('formMethod').value = 'POST'; // Set method for creating
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('formPerjalananCinta');
+            const modalElement = document.getElementById('modalPerjalananCinta');
 
-            // Set the action to the store route
-            document.getElementById('formPerjalananCinta').action =
-                "{{ route('perjalanancinta-design6.store', ['id' => $informasiDesign6->id]) }}";
-            document.getElementById('modalPerjalananCintaLabel').textContent = 'Tambah Cerita';
-        });
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
 
-        document.querySelectorAll('.edit-btn-perjalanan-cinta').forEach(function(button) {
-            button.addEventListener('click', function() {
-                var id = this.getAttribute('data-id');
-                var tanggal = this.getAttribute('data-tanggal');
-                var judul_cerita = this.getAttribute('data-judul');
-                var deskripsi = this.getAttribute('data-deskripsi');
-                var image1 = this.getAttribute('data-image1'); // Add this line
+                const url = form.action;
+                const formData = new FormData(form);
 
-                // Populate form with existing data
-                document.getElementById('perjalananCintaId').value = id; // Set ID
-                document.getElementById('tanggal').value = tanggal;
-                document.getElementById('judul_cerita').value = judul_cerita;
-                document.getElementById('deskripsi').value = deskripsi;
+                fetch(url, {
+                        method: form.querySelector('#formMethod').value === 'PUT' ? 'POST' : 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                .getAttribute('content'),
+                        },
+                        body: formData,
+                        credentials: 'same-origin'
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error("Gagal mengirim data");
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Sukses:', data);
+                        Swal.fire('Berhasil!', data.message, 'success');
 
-                // Set the image previews
-                var currentImage1 = document.getElementById('currentImage1');
+                        // Reset form
+                        form.reset();
+                        document.getElementById('currentimage').style.display = 'none';
+                        form.querySelector('#formMethod').value = 'POST';
+                        form.querySelector('#perjalananCintaId').value = '';
 
-                currentImage1.src = image1; // Set current image src
-                currentImage1.style.display = image1 ? 'block' : 'none'; // Show if image exists
+                        // Tutup modal
+                        const modal = bootstrap.Modal.getInstance(modalElement);
+                        modal.hide();
 
-                // Set the form action to the update route
-                document.getElementById('formPerjalananCinta').action =
-                    `/wedding-design6/${id}/update-perjalanan-cinta`;
-                document.getElementById('formMethod').value = 'PUT'; // Set method for updating
-                document.getElementById('modalPerjalananCintaLabel').textContent = 'Edit Cerita';
-
-                // Show the modal
-                var modal = new bootstrap.Modal(document.getElementById('modalPerjalananCinta'));
-                modal.show();
+                        // Load ulang daftar perjalanan cinta
+                        loadPerjalananCintaList();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire('Gagal!', 'Terjadi kesalahan saat mengirim data.', 'error');
+                    });
             });
+
+            // Fungsi load ulang list tanpa reload halaman
+            function loadPerjalananCintaList() {
+                const container = document.getElementById('list-perjalanan-cinta');
+                const id = `{{ $informasiDesign6->id }}`;
+                fetch(`/wedding-design6/${id}/get-perjalanan-cinta`)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error('Gagal load ulang list:', error);
+                    });
+            }
         });
     </script>
 
@@ -685,7 +680,8 @@
                 // Set the form action to the update route
                 document.getElementById('formDirectTransfer').action =
                     `/wedding-design6/${id}/update-direct-transfer`;
-                document.getElementById('formMethodDirectTransfer').value = 'PUT'; // Set method for updating
+                document.getElementById('formMethodDirectTransfer').value =
+                    'PUT'; // Set method for updating
                 document.getElementById('modalDirectTransferLabel').textContent = 'Edit Direct Transfer';
 
                 // Show the modal

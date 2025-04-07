@@ -6,6 +6,8 @@
     <title>@yield('title', 'JejakKebahagiaan')</title>
     @yield('css')
     <link rel="website icon" type="png" href="{{ 'img/small-logo.jpg' }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 </head>

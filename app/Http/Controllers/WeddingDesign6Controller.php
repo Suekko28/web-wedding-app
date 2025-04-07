@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\KirimHadiahDesign6FormRequest;
+use App\Http\Requests\PerjalananCintaDesign6FormRequest;
 use App\Http\Requests\WeddingDesign6FormRequest;
 use App\Models\DirectTransferDesign6;
 use App\Models\InformasiDesign6;
@@ -43,8 +44,10 @@ class WeddingDesign6Controller extends Controller
         // Mengambil data mempelai pria
         $dataMempelaiPria = WeddingDesign6::where('informasi_design6_id', $informasiDesign6Id)->first();
 
+        $perjalananCinta = PerjalananCintaDesign6::where('informasi_design6_id', $informasiDesign6Id)->get();
+
         // Kirimkan data yang sesuai ke view
-        return view('admin-design6.create', compact('informasiDesign6Id', 'dataMempelaiPria', 'informasiDesign6', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah'));
+        return view('admin-design6.create', compact('informasiDesign6Id', 'dataMempelaiPria', 'informasiDesign6', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah' ,'perjalananCinta'));
     }
 
     /**
@@ -107,24 +110,19 @@ class WeddingDesign6Controller extends Controller
         $informasiDesign6 = InformasiDesign6::findOrFail($informasiDesign6Id);
         $data = $request->all();
 
-
-        if ($request->hasFile('image1')) {
-            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design6/perjalanan-cinta', $request->file('image1')->getClientOriginalName());
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->storeAs(
+                'public/wedding-design6/perjalanan-cinta',
+                $request->file('image')->getClientOriginalName()
+            );
         }
-
-        if ($request->hasFile('image2')) {
-            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design6/perjalanan-cinta', $request->file('image2')->getClientOriginalName());
-        }
-
 
         $data['informasi_design6_id'] = $informasiDesign6->id;
-
-
-        // Create the PerjalananCintaDesign6 record
         PerjalananCintaDesign6::create($data);
 
-        return back()->with('success', 'Perjalanan Cinta berhasil ditambahkan.');
+        return response()->json(['message' => 'Perjalanan Cinta berhasil ditambahkan.']);
     }
+
 
     public function storeDirectTransfer(DirectTransferDesign6FormRequest $request, $informasiDesign6Id)
     {
@@ -287,25 +285,14 @@ class WeddingDesign6Controller extends Controller
         $perjalananCinta = PerjalananCintaDesign6::findOrFail($id);
         $data = $request->all();
 
-        // Check and handle uploaded image1
-        if ($request->hasFile('image1')) {
-            if ($perjalananCinta->image1) {
-                Storage::delete($perjalananCinta->image1);
-            }
-            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design6/perjalanan-cinta', $request->file('image1')->getClientOriginalName());
+        if ($request->hasFile('image')) {
+            Storage::delete($perjalananCinta->image);
+            $data['image'] = $request->file('image')->storeAs('public/wedding-design6/perjalanan-cinta', $request->file('image')->getClientOriginalName());
         }
 
-        // Check and handle uploaded image2
-        if ($request->hasFile('image2')) {
-            if ($perjalananCinta->image2) {
-                Storage::delete($perjalananCinta->image2);
-            }
-            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design6/perjalanan-cinta', $request->file('image2')->getClientOriginalName());
-        }
+        $perjalananCinta->update($data);
 
-        $perjalananCinta->update($data); // Update model PerjalananCintaDesign6
-
-        return back()->with('success', 'Perjalanan Cinta berhasil diubah.');
+        return response()->json(['message' => 'Perjalanan Cinta berhasil diubah.']);
     }
 
     public function updateDirectTransfer(DirectTransferDesign6FormRequest $request, $id)
@@ -356,4 +343,14 @@ class WeddingDesign6Controller extends Controller
             return redirect()->back()->with('error', 'Data tidak ditemukan.');
         }
     }
+
+    public function ajaxList($id)
+    {
+        $perjalananCinta = PerjalananCintaDesign6::where('wedding_design6_id', $id)->get();
+
+        return view('admin-design6.perjalanan-cinta.table', compact('perjalananCinta'))->render();
+    }
+
+    
+
 }

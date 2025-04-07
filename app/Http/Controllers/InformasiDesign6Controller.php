@@ -115,6 +115,9 @@ class InformasiDesign6Controller extends Controller
         }
 
         foreach ($data->PerjalananCintaDesign6 as $PerjalananCinta) {
+            if ($PerjalananCinta->image) {
+                Storage::delete($PerjalananCinta->image);
+            }
             if ($PerjalananCinta->image1) {
                 Storage::delete($PerjalananCinta->image1);
             }

@@ -26,15 +26,15 @@ class InformasiDesign6 extends Model
 
     public function PerjalananCintaDesign6(): HasOne
     {
-        return $this->hasOne(InformasiDesign6::class, 'informasi_design6_id', 'id');
+        return $this->HasOne(PerjalananCintaDesign6::class, 'informasi_design6_id', 'id');
     }
-    public function DirectTransfterDesign6(): HasOne
+    public function DirectTransfterDesign6(): HasMany
     {
-        return $this->hasOne(InformasiDesign6::class, 'informasi_design6_id', 'id');
+        return $this->hasMany(DirectTransferDesign6::class, 'informasi_design6_id', 'id');
     }
-    public function KirimHadiahDesign6(): HasOne
+    public function KirimHadiahDesign6(): HasMany
     {
-        return $this->hasOne(InformasiDesign6::class, 'informasi_design6_id', 'id');
+        return $this->hasMany(KirimHadiahDesign6::class, 'informasi_design6_id', 'id');
     }
 
     public function weddingDesign6()

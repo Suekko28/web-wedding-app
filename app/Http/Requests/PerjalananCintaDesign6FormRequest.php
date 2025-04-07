@@ -38,9 +38,9 @@ class PerjalananCintaDesign6FormRequest extends FormRequest
     {
         return [
 
-            'image1.required' => 'Gambar wajib diupload',
-            'image1.image' => 'Gambar harus berupa file gambar.',
-            'image1.mimes' => 'Gambar harus dalam format jpeg, png, atau jpg.',
+            'image.required' => 'Gambar wajib diupload',
+            'image.image' => 'Gambar harus berupa file gambar.',
+            'image.mimes' => 'Gambar harus dalam format jpeg, png, atau jpg.',
         ];
     }
 }
