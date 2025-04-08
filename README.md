@@ -64,7 +64,8 @@ Access the application via **http://localhost:8000**.
 ## 🎨 Demo
 
 If you want to see a live demo of this application, visit:
-🔗 [Web Wedding App Demo](jejakkebahagiaan.com)
+🔗 [Web Wedding App Demo](https://jejakkebahagiaan.com)
+
 
 ---
 
