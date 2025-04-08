@@ -217,21 +217,14 @@
                 <p>Tanpa mengurangi rasa hormat kami mengundang Bapak/Ibu/Saudara/i pada pernikahan kami:</p>
             </div>
             <div class="container-card-gallery">
-                <div class="card-gallery">
-                    <a href="https://bit.ly/34MdBRc" data-fancybox="gallery">
-                        <img class="gallery-img object-fit-cover" src="https://bit.ly/34MdBRc" alt="Image Gallery">
-                    </a>
-                </div>
-                <div class="card-gallery">
-                    <a href="https://bit.ly/2Nv9zHh" data-fancybox="gallery">
-                        <img class="gallery-img object-fit-cover" src="https://bit.ly/2Nv9zHh" alt="Image Gallery">
-                    </a>
-                </div>
-                <div class="card-gallery">
-                    <a href="https://bit.ly/2Nv9zHh" data-fancybox="gallery">
-                        <img class="gallery-img object-fit-cover" src="https://bit.ly/2Nv9zHh" alt="Image Gallery">
-                    </a>
-                </div>
+                @foreach ($data->PerjalananCintaDesign6 as $item)
+                    <div class="card-gallery">
+                        <a href="{{ Storage::url($item->image) }}" data-fancybox="gallery">
+                            <img class="gallery-img object-fit-cover" src="{{ Storage::url($item->image) }}"
+                                alt="Image Gallery">
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -318,15 +311,15 @@
                 </div>
             </div>
             @if (!empty($data->link_streaming))
-            <div class="anm_mod bottom-bit fast live-streaming">
-                <div class="detail-info">
-                    <h3>Live Streaming</h3>
-                    <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
-                        siaran langsung secara live virtual di platform berikut</p>
+                <div class="anm_mod bottom-bit fast live-streaming">
+                    <div class="detail-info">
+                        <h3>Live Streaming</h3>
+                        <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
+                            siaran langsung secara live virtual di platform berikut</p>
+                    </div>
+                    <a type="button" target="_blank" href="{{ $data->link_streaming }}" class="btn-secondary">Buka
+                        Link</a>
                 </div>
-                <a type="button" target="_blank" href="{{ $data->link_streaming }}" class="btn-secondary">Buka
-                    Link</a>
-            </div>
             @endif
         </div>
     </section>
@@ -499,7 +492,8 @@
             <p class="anm_mod bottom-bit fast">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
                 Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami
                 ucapkan terima kasih. Kami yang berbahagia</p>
-            <h3 class="anm_mod bottom-bit fast">{{$data->nama_mempelai_perempuan}} & {{$data->nama_mempelai_laki}}</h3>
+            <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
+                {{ $data->nama_mempelai_laki }}</h3>
         </div>
         <img class="ending-background object-fit-cover" src="{{ asset('img/element-4.svg') }}" alt="background">
     </section>
@@ -616,38 +610,35 @@
         })
     </script>
     <script>
-        // Set the date we're counting down to (1 month from now)
-        const countDownDate = new Date("Sep 20, 2024 22:18:00").getTime();
+        function updateTimer(tgl_akad) {
+            const future = Date.parse(tgl_akad);
+            const now = new Date();
+            const diff = future - now;
 
-        // Update the countdown every 1 second
-        const x = setInterval(function() {
-            // Get today's date and time
-            const now = new Date().getTime();
-
-            // Find the distance between now and the countdown date
-            const distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result
-            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-
-            // If the countdown is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("days").innerHTML = "00";
-                document.getElementById("hours").innerHTML = "00";
-                document.getElementById("minutes").innerHTML = "00";
-                document.getElementById("seconds").innerHTML = "00";
+            if (diff <= 0) {
+                // Waktu telah berlalu, atur semua nilai menjadi 0
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+                return;
             }
-        }, 1000);
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // Format nilai untuk menambahkan angka 0 di depan jika nilainya < 10
+            document.getElementById("days").textContent = days < 10 ? "0" + days : days;
+            document.getElementById("hours").textContent = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").textContent = mins < 10 ? "0" + mins : mins;
+            document.getElementById("seconds").textContent = secs < 10 ? "0" + secs : secs;
+        }
+
+        // Inisialisasi timer
+        const tglAkad = "{{ $data->tgl_akad }}"; // Pastikan ini diisi dengan format tanggal yang valid
+        setInterval(() => updateTimer(tglAkad), 1000);
     </script>
     <script>
         function copyText(element) {

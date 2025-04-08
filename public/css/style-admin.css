@@ -1,3 +1,8 @@
+html,
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 
 .mandatory {
     color: red; /* Atau warna lain yang sesuai */
@@ -11,7 +16,7 @@
 }
 
 .btn-tertiary {
-    color: #fd267d !important; 
+    color: #fd267d !important;
 }
 
 .btn-secondary {
@@ -95,8 +100,6 @@
     display: none;
 }
 
-
-
 /* .modal-backdrop.show {
     z-index: -999;
   }
@@ -107,7 +110,7 @@
 
 /* Tambahan gaya lain untuk modal example jika dibutuhkan */
 
- /* .modal-backdrop {
+/* .modal-backdrop {
     display: none !important;
 } */
 
@@ -118,7 +121,6 @@
 /* .shareModal .modal-backdrop .modal-backdrop.show{
     display: none !important; 
 } */
-
 
 /* Tambahan gaya lain untuk modal share jika dibutuhkan */
 

@@ -5,6 +5,7 @@
 @section('pageContent')
 
     @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 5'])
+
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
             <section class="content">
@@ -173,7 +174,7 @@
                                     Tambah Cerita
                             </div>
                             <div class="table-responsive mb-4 border rounded-1">
-                                <table class="table text-nowrap mb-0 align-middle text-center">
+                                <table class="table text-nowrap mb-0 align-middle text-center" id="tablePerjalananCinta">
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
@@ -588,67 +589,56 @@
 
     <!-- Modal JS Perjalanan Cinta -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('formPerjalananCinta');
-            const modalElement = document.getElementById('modalPerjalananCinta');
-
-            form.addEventListener('submit', function(e) {
+        $(document).ready(function() {
+            $('#formPerjalananCinta').on('submit', function(e) {
                 e.preventDefault();
 
-                const url = form.action;
-                const formData = new FormData(form);
+                let form = $(this);
+                let formData = new FormData(this);
+                let method = $('#formMethod').val();
+                let url = form.attr('action');
 
-                fetch(url, {
-                        method: form.querySelector('#formMethod').value === 'PUT' ? 'POST' : 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
-                                .getAttribute('content'),
-                        },
-                        body: formData,
-                        credentials: 'same-origin'
-                    })
-                    .then(response => {
-                        if (!response.ok) throw new Error("Gagal mengirim data");
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('Sukses:', data);
-                        Swal.fire('Berhasil!', data.message, 'success');
+                $.ajax({
+                    url: url,
+                    method: method,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(res) {
+                        Swal.fire('Sukses!', res.message, 'success');
 
-                        // Reset form
-                        form.reset();
-                        document.getElementById('currentimage').style.display = 'none';
-                        form.querySelector('#formMethod').value = 'POST';
-                        form.querySelector('#perjalananCintaId').value = '';
-
-                        // Tutup modal
-                        const modal = bootstrap.Modal.getInstance(modalElement);
+                        // Tutup modal (Bootstrap 5)
+                        let modal = bootstrap.Modal.getInstance(document.getElementById(
+                            'modalPerjalananCinta'));
                         modal.hide();
 
-                        // Load ulang daftar perjalanan cinta
-                        loadPerjalananCintaList();
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        Swal.fire('Gagal!', 'Terjadi kesalahan saat mengirim data.', 'error');
-                    });
-            });
+                        // Tambahan: bersihkan class/modal artefak
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
 
-            // Fungsi load ulang list tanpa reload halaman
-            function loadPerjalananCintaList() {
-                const container = document.getElementById('list-perjalanan-cinta');
-                const id = `{{ $informasiDesign6->id }}`;
-                fetch(`/wedding-design6/${id}/get-perjalanan-cinta`)
-                    .then(response => response.text())
-                    .then(html => {
-                        container.innerHTML = html;
-                    })
-                    .catch(error => {
-                        console.error('Gagal load ulang list:', error);
-                    });
-            }
+
+                        // Reset form dan preview image
+                        $('#formPerjalananCinta')[0].reset();
+                        $('#currentimage').hide().attr('src', '');
+
+                        // Reload tabel (tanpa DataTables)
+                        $('#tablePerjalananCinta').load(location.href +
+                            " #tablePerjalananCinta>*", "");
+                    },
+                    error: function(xhr) {
+                        let errors = xhr.responseJSON?.errors;
+                        let errorMsg = 'Terjadi kesalahan.';
+                        if (errors) {
+                            errorMsg = Object.values(errors).join('<br>');
+                        }
+                        Swal.fire('Gagal!', errorMsg, 'error');
+                    }
+                });
+            });
         });
+        
     </script>
+
 
     <!-- Modal JS Direct Transfer -->
     <script>

@@ -47,7 +47,7 @@ class WeddingDesign6Controller extends Controller
         $perjalananCinta = PerjalananCintaDesign6::where('informasi_design6_id', $informasiDesign6Id)->get();
 
         // Kirimkan data yang sesuai ke view
-        return view('admin-design6.create', compact('informasiDesign6Id', 'dataMempelaiPria', 'informasiDesign6', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah' ,'perjalananCinta'));
+        return view('admin-design6.create', compact('informasiDesign6Id', 'dataMempelaiPria', 'informasiDesign6', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah', 'perjalananCinta'));
     }
 
     /**
@@ -286,9 +286,15 @@ class WeddingDesign6Controller extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            Storage::delete($perjalananCinta->image);
-            $data['image'] = $request->file('image')->storeAs('public/wedding-design6/perjalanan-cinta', $request->file('image')->getClientOriginalName());
+            if ($perjalananCinta->image) {
+                Storage::delete($perjalananCinta->image);
+            }
+            $data['image'] = $request->file('image')->storeAs(
+                'public/wedding-design6/perjalanan-cinta',
+                $request->file('image')->getClientOriginalName()
+            );
         }
+
 
         $perjalananCinta->update($data);
 
@@ -344,13 +350,8 @@ class WeddingDesign6Controller extends Controller
         }
     }
 
-    public function ajaxList($id)
-    {
-        $perjalananCinta = PerjalananCintaDesign6::where('wedding_design6_id', $id)->get();
 
-        return view('admin-design6.perjalanan-cinta.table', compact('perjalananCinta'))->render();
-    }
 
-    
+
 
 }
