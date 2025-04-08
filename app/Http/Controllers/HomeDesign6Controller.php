@@ -39,6 +39,7 @@ class HomeDesign6Controller extends Controller
     {
         $data = WeddingDesign6::where('nama_mempelai_laki', $nama_mempelai_laki)
             ->where('nama_mempelai_perempuan', $nama_mempelai_perempuan)
+            ->with('PerjalananCintaDesign6')
             ->firstOrFail();
 
         return view('admin-design6.home-design6', compact('data'));

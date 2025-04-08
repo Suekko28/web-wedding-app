@@ -36,7 +36,7 @@ class PromoController extends Controller
         $data = $request->all();
         $userId = auth()->user()->id;
         $image = $request->file('image');
-        $nama_image = rand() . $image->getClientOriginalName();
+        $nama_image = rand() . $image->hashName();
         $image->storeAs('public/promo', $nama_image);
 
         $data['image'] = $nama_image;

@@ -200,11 +200,11 @@
     </section>
     <!-- MEMPELAI END -->
 
-    <!-- PERJALANAN CINTA -->
-    <section class="animation perjalanan-cinta" id="perjalanan-cinta">
-        <div class="anm_mod bottom-bit fast perjalanan-cinta-cover">
-            <h3 class="anm_mod bottom-bit fast">Perjalanan Cinta Kami</h3>
-            @if ($data->PerjalananCintaDesign5->isNotEmpty())
+    @if ($data->PerjalananCintaDesign5->isNotEmpty())
+        <!-- PERJALANAN CINTA -->
+        <section class="animation perjalanan-cinta" id="perjalanan-cinta">
+            <div class="anm_mod bottom-bit fast perjalanan-cinta-cover">
+                <h3 class="anm_mod bottom-bit fast">Perjalanan Cinta Kami</h3>
                 <div id="carouselExampleCaptions" class="carousel slide anm_mod bottom-bit delay"
                     data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -244,8 +244,8 @@
                         <span class="visually-hidden"></span>
                     </button>
                 </div>
-            @endif
-        </div>
+    @endif
+    </div>
     </section>
     <!-- PERJALANAN CINTA END -->
 
@@ -638,7 +638,7 @@
             }
         }
     </script>
-    
+
     <script>
         var myOffcanvas = document.getElementById('myOffcanvas')
         myOffcanvas.addEventListener('show.bs.offcanvas', function() {

@@ -118,13 +118,6 @@ class InformasiDesign6Controller extends Controller
             if ($PerjalananCinta->image) {
                 Storage::delete($PerjalananCinta->image);
             }
-            if ($PerjalananCinta->image1) {
-                Storage::delete($PerjalananCinta->image1);
-            }
-            if ($PerjalananCinta->image2) {
-                Storage::delete($PerjalananCinta->image2);
-            }
-
             $PerjalananCinta->delete();
         }
 

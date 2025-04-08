@@ -21,18 +21,19 @@ class PerjalananCintaDesign6FormRequest extends FormRequest
      */
     public function rules(): array
     {
-        $method = $this->method(); // Ambil metode HTTP dari request (POST untuk create, PUT/PATCH untuk update)
+        $method = $this->method();
 
-        // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib diupload
         if ($method === 'POST') {
-            $rules['image'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['image'] = ['required', 'array'];
+            $rules['image.*'] = ['image', 'mimes:jpeg,png,jpg'];
         } else {
-            // Jika ini adalah request untuk update, gambar bersifat opsional (nullable)
-            $rules['image'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['image'] = ['nullable', 'array'];
+            $rules['image.*'] = ['image', 'mimes:jpeg,png,jpg'];
         }
 
         return $rules;
     }
+
 
     public function messages(): array
     {

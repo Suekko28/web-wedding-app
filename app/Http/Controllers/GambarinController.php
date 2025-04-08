@@ -34,7 +34,7 @@ class GambarinController extends Controller
         $data = $request->all();
         $userId = auth()->user()->id;
         $image = $request->file('image');
-        $nama_image = rand() . $image->getClientOriginalName();
+        $nama_image = rand() . $image->hashName();
         $image->storeAs('public/gambarin', $nama_image);
         $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
         $latestGambarin = Gambarin::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
@@ -92,7 +92,7 @@ class GambarinController extends Controller
             }
 
             $image = $request->file('image');
-            $extension = $image->getClientOriginalName();
+            $extension = $image->hashName();
             $nama_image = time() . '_' . uniqid() . '.' . $extension;
 
             $image->storeAs('public/gambarin', $nama_image);

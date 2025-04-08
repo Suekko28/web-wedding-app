@@ -24,9 +24,9 @@ class InformasiDesign6 extends Model
         return $this->hasMany(WeddingDesign6::class, 'informasi_design6_id', 'id');
     }
 
-    public function PerjalananCintaDesign6(): HasOne
+    public function PerjalananCintaDesign6(): HasMany
     {
-        return $this->HasOne(PerjalananCintaDesign6::class, 'informasi_design6_id', 'id');
+        return $this->hasMany(PerjalananCintaDesign6::class, 'informasi_design6_id', 'id');
     }
     public function DirectTransfterDesign6(): HasMany
     {

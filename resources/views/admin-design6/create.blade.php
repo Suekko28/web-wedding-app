@@ -4,7 +4,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 5'])
+    @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 6'])
 
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
@@ -197,12 +197,11 @@
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
 
-                                                    <button class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
+                                                    <button type="button"
+                                                        class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
                                                         data-id="{{ $item->id }}">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
-
-                                                    <!-- Add delete button if needed -->
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>
@@ -455,7 +454,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat/Edit Perjalanan Cinta</h5>
+                    <!-- Judul yang bisa berubah -->
+                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat Perjalanan Cinta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -472,17 +472,24 @@
                         <div class="form-group mb-2">
                             <div class="d-flex justify-content-between align-items-center">
                                 <label for="image">Foto<span class="mandatory">*</span></label>
-                                <button type="button" class="btn btn-tertiary">+ Tambah Foto</button>
+                                <button type="button" class="btn btn-tertiary" id="tambahFotoBtn">+ Tambah Foto</button>
                             </div>
-                            <input type="file" name="image" id="image" class="form-control">
-                            <!-- Current Image Preview -->
-                            <img id="currentimage" class="img-thumbnail mt-2" src="" alt="Current Image 1"
+
+                            <div id="fotoContainer">
+                                <div class="mb-2">
+                                    <input type="file" name="image[]" class="form-control">
+                                </div>
+                            </div>
+
+                            <img id="currentimage" class="img-thumbnail mt-2" src="" alt="Current Image"
                                 width="120" style="display: none;">
                         </div>
+
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        id="btnBatal">Batal</button>
                     <button type="submit" class="btn btn-primary" form="formPerjalananCinta">Simpan</button>
                 </div>
             </div>
@@ -589,54 +596,155 @@
 
     <!-- Modal JS Perjalanan Cinta -->
     <script>
-        $(document).ready(function() {
-            $('#formPerjalananCinta').on('submit', function(e) {
-                e.preventDefault();
+        function resetFormPerjalananCinta() {
+            $('#formPerjalananCinta')[0].reset(); // reset semua input
+            $('#perjalananCintaId').val('');
+            $('#currentimage').hide().attr('src', '');
 
-                let form = $(this);
-                let formData = new FormData(this);
-                let method = $('#formMethod').val();
-                let url = form.attr('action');
+            // Reset input foto dinamis ke 1 input awal
+            $('#fotoContainer').html(`
+        <div class="mb-2 d-flex gap-2 align-items-center foto-item">
+            <input type="file" name="image[]" class="form-control" required>
+        </div>
+    `);
+        }
 
-                $.ajax({
-                    url: url,
-                    method: method,
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(res) {
-                        Swal.fire('Sukses!', res.message, 'success');
+        // Ketika tombol "Tambah Cerita" diklik
+        $('#btnPerjalananCinta').on('click', function() {
+            $('#modalPerjalananCintaLabel').text('Buat Perjalanan Cinta');
+            $('#formMethod').val('POST');
+            $('#formPerjalananCinta').attr('action',
+                '{{ route('perjalanancinta-design6.store', ['id' => $informasiDesign6->id]) }}');
+            $('#formPerjalananCinta')[0].reset();
+            $('#perjalananCintaId').val('');
+            $('#currentimage').hide().attr('src', '');
+            resetFormPerjalananCinta();
+        });
 
-                        // Tutup modal (Bootstrap 5)
-                        let modal = bootstrap.Modal.getInstance(document.getElementById(
-                            'modalPerjalananCinta'));
-                        modal.hide();
+        // Ketika tombol Edit diklik
+        $(document).on('click', '.edit-btn-perjalanan-cinta', function() {
+            const id = $(this).data('id');
+            const imageUrl = $(this).data('image');
 
-                        // Tambahan: bersihkan class/modal artefak
-                        $('body').removeClass('modal-open');
-                        $('.modal-backdrop').remove();
+            $('#modalPerjalananCintaLabel').text('Edit Perjalanan Cinta');
+            $('#perjalananCintaId').val(id);
+            $('#formMethod').val('PUT');
+            $('#currentimage').attr('src', imageUrl).show();
 
+            const updateUrl = `/wedding-design6/${id}/update-perjalanan-cinta`;
+            $('#formPerjalananCinta').attr('action', updateUrl);
 
-                        // Reset form dan preview image
-                        $('#formPerjalananCinta')[0].reset();
-                        $('#currentimage').hide().attr('src', '');
+            const modalEdit = new bootstrap.Modal(document.getElementById('modalPerjalananCinta'));
+            modalEdit.show();
+        });
 
-                        // Reload tabel (tanpa DataTables)
-                        $('#tablePerjalananCinta').load(location.href +
-                            " #tablePerjalananCinta>*", "");
-                    },
-                    error: function(xhr) {
-                        let errors = xhr.responseJSON?.errors;
-                        let errorMsg = 'Terjadi kesalahan.';
-                        if (errors) {
-                            errorMsg = Object.values(errors).join('<br>');
-                        }
-                        Swal.fire('Gagal!', errorMsg, 'error');
+        // Submit form (tambah/edit)
+        $('#formPerjalananCinta').on('submit', function(e) {
+            e.preventDefault();
+
+            const form = $(this);
+            const formData = new FormData(this);
+            const id = $('#perjalananCintaId').val();
+            const isEdit = id !== '';
+
+            if (isEdit) {
+                formData.append('_method', 'PUT');
+            }
+
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST', // tetap POST meski update (karena kita override pakai _method)
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(res) {
+                    Swal.fire('Sukses!', res.message, 'success');
+                    const modal = bootstrap.Modal.getInstance(document.getElementById(
+                        'modalPerjalananCinta'));
+                    modal.hide();
+
+                    resetFormPerjalananCinta();
+
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+
+                    $('#formPerjalananCinta')[0].reset();
+                    $('#perjalananCintaId').val('');
+                    $('#currentimage').hide().attr('src', '');
+
+                    $('#tablePerjalananCinta').load(location.href + " #tablePerjalananCinta>*", "");
+                },
+                error: function(xhr) {
+                    let errors = xhr.responseJSON?.errors;
+                    let errorMsg = 'Terjadi kesalahan.';
+                    if (errors) {
+                        errorMsg = Object.values(errors).join('<br>');
                     }
-                });
+                    Swal.fire('Gagal!', errorMsg, 'error');
+                    console.error(xhr.responseText);
+                }
             });
         });
-        
+
+        $(document).on('click', '.delete-btn-perjalanan-cinta', function() {
+            const id = $(this).data('id');
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data ini akan dihapus secara permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ url('/wedding-design6') }}/" + id + "/delete-perjalanan-cinta",
+                        type: 'DELETE',
+                        data: {
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(res) {
+                            Swal.fire('Terhapus!', res.message, 'success');
+                            $('#tablePerjalananCinta').load(location.href +
+                                " #tablePerjalananCinta>*", "");
+                        },
+                        error: function(xhr) {
+                            Swal.fire('Gagal!', 'Terjadi kesalahan saat menghapus.', 'error');
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+
+        $(document).ready(function() {
+            $('#tambahFotoBtn').click(function(e) {
+                e.preventDefault();
+
+                const fotoInput = `
+            <div class="mb-2 d-flex gap-2 align-items-center foto-item">
+                <input type="file" name="image[]" class="form-control" required>
+                <button type="button" class="btn btn-danger btn-sm removeFotoBtn"><i class="fa fa-trash"></i></button>
+            </div>
+        `;
+
+                $('#fotoContainer').append(fotoInput);
+            });
+
+            // Hapus input foto
+            $(document).on('click', '.removeFotoBtn', function() {
+                $(this).closest('.foto-item').remove();
+            });
+        });
+
+        $('#btnBatal').on('click', function() {
+            resetFormPerjalananCinta();
+        });
     </script>
 
 
@@ -721,7 +829,7 @@
     </script>
 
 
-    <script>
+    {{-- <script>
         document.querySelectorAll('.delete-btn-perjalanan-cinta, .delete-btn-kirim-hadiah, .delete-btn-direct-transfer')
             .forEach(function(button) {
                 button.addEventListener('click', function(event) {
@@ -758,7 +866,7 @@
                     });
                 });
             });
-    </script>
+    </script> --}}
 
 
 

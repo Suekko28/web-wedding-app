@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DirectTransfterDesign6FormRequest;
 use App\Http\Requests\KirimHadiahDesign6FormRequest;
 use App\Http\Requests\PerjalananCintaDesign6FormRequest;
 use App\Http\Requests\WeddingDesign6FormRequest;
@@ -11,6 +12,7 @@ use App\Models\KirimHadiahDesign6;
 use App\Models\PerjalananCintaDesign6;
 use App\Models\WeddingDesign6;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WeddingDesign6Controller extends Controller
 {
@@ -61,23 +63,23 @@ class WeddingDesign6Controller extends Controller
 
 
         if ($request->hasFile('banner_img')) {
-            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design6', $request->file('banner_img')->getClientOriginalName());
+            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design6', $request->file('banner_img')->hashName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design6', $request->file('foto_prewedding')->getClientOriginalName());
+            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design6', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
-            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design6', $request->file('foto_mempelai_laki')->getClientOriginalName());
+            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design6', $request->file('foto_mempelai_laki')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
-            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design6', $request->file('foto_mempelai_perempuan')->getClientOriginalName());
+            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design6', $request->file('foto_mempelai_perempuan')->hashName());
         }
 
         if ($request->hasFile('music')) {
-            $data['music'] = $request->file('music')->storeAs('public/wedding-design6-music', $request->file('music')->getClientOriginalName());
+            $data['music'] = $request->file('music')->storeAs('public/wedding-design6-music', $request->file('music')->hashName());
         }
 
         if ($request->hasFile('quote_img')) {
@@ -85,14 +87,14 @@ class WeddingDesign6Controller extends Controller
             $quoteImagePaths = [];
 
             foreach ($quoteImages as $quoteImage) {
-                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design6', $quoteImage->getClientOriginalName());
+                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design6', $quoteImage->hashName());
             }
 
             $data['quote_img'] = json_encode($quoteImagePaths); // Store paths as a JSON array or adjust according to your needs
         }
 
         if ($request->hasFile('akad_img')) {
-            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design6', $request->file(key: 'akad_img')->getClientOriginalName());
+            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design6', $request->file(key: 'akad_img')->hashName());
         }
 
         $data['informasi_design6_id'] = $informasiDesign6->id;
@@ -108,20 +110,28 @@ class WeddingDesign6Controller extends Controller
     public function storePerjalananCinta(PerjalananCintaDesign6FormRequest $request, $informasiDesign6Id)
     {
         $informasiDesign6 = InformasiDesign6::findOrFail($informasiDesign6Id);
-        $data = $request->all();
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->storeAs(
-                'public/wedding-design6/perjalanan-cinta',
-                $request->file('image')->getClientOriginalName()
-            );
-        }
-
+        $data = $request->except('image'); // ambil semua data kecuali image
         $data['informasi_design6_id'] = $informasiDesign6->id;
-        PerjalananCintaDesign6::create($data);
+
+        // Simpan setiap gambar ke folder dan buat entri baru
+        foreach ($request->file('image') as $file) {
+            $path = $file->storeAs(
+                'public/wedding-design6/perjalanan-cinta',
+                $file->hashName()
+            );
+
+            PerjalananCintaDesign6::create([
+                'image' => $path,
+                'informasi_design6_id' => $data['informasi_design6_id'],
+                'nama_pasangan' => $request->nama_pasangan,
+                'tgl_pernikahan' => $request->tgl_pernikahan,
+            ]);
+        }
 
         return response()->json(['message' => 'Perjalanan Cinta berhasil ditambahkan.']);
     }
+
 
 
     public function storeDirectTransfer(DirectTransferDesign6FormRequest $request, $informasiDesign6Id)
@@ -217,35 +227,35 @@ class WeddingDesign6Controller extends Controller
             if ($weddingDesign6->banner_img) {
                 Storage::delete($weddingDesign6->banner_img);
             }
-            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design6', $request->file('banner_img')->getClientOriginalName());
+            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design6', $request->file('banner_img')->hashName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
             if ($weddingDesign6->foto_prewedding) {
                 Storage::delete($weddingDesign6->foto_prewedding);
             }
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design6', $request->file('foto_prewedding')->getClientOriginalName());
+            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design6', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
             if ($weddingDesign6->foto_mempelai_laki) {
                 Storage::delete($weddingDesign6->foto_mempelai_laki);
             }
-            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design6', $request->file('foto_mempelai_laki')->getClientOriginalName());
+            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design6', $request->file('foto_mempelai_laki')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
             if ($weddingDesign6->foto_mempelai_perempuan) {
                 Storage::delete($weddingDesign6->foto_mempelai_perempuan);
             }
-            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design6', $request->file('foto_mempelai_perempuan')->getClientOriginalName());
+            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design6', $request->file('foto_mempelai_perempuan')->hashName());
         }
 
         if ($request->hasFile('music')) {
             if ($weddingDesign6->music) {
                 Storage::delete($weddingDesign6->music);
             }
-            $data['music'] = $request->file('music')->storeAs('public/wedding-design6-music', $request->file('music')->getClientOriginalName());
+            $data['music'] = $request->file('music')->storeAs('public/wedding-design6-music', $request->file('music')->hashName());
         }
 
         if ($request->hasFile('quote_img')) {
@@ -261,7 +271,7 @@ class WeddingDesign6Controller extends Controller
             $quoteImagePaths = [];
 
             foreach ($quoteImages as $quoteImage) {
-                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design6', $quoteImage->getClientOriginalName());
+                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design6', $quoteImage->hashName());
             }
 
             $data['quote_img'] = json_encode($quoteImagePaths); // Store paths as a JSON array
@@ -271,7 +281,7 @@ class WeddingDesign6Controller extends Controller
             if ($weddingDesign6->akad_img) {
                 Storage::delete($weddingDesign6->akad_img);
             }
-            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design6', $request->file('akad_img')->getClientOriginalName());
+            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design6', $request->file('akad_img')->hashName());
         }
 
         $weddingDesign6->update($data);
@@ -291,17 +301,18 @@ class WeddingDesign6Controller extends Controller
             }
             $data['image'] = $request->file('image')->storeAs(
                 'public/wedding-design6/perjalanan-cinta',
-                $request->file('image')->getClientOriginalName()
+                $request->file('image')->hashName()
             );
         }
 
 
         $perjalananCinta->update($data);
 
+
         return response()->json(['message' => 'Perjalanan Cinta berhasil diubah.']);
     }
 
-    public function updateDirectTransfer(DirectTransferDesign6FormRequest $request, $id)
+    public function updateDirectTransfer(DirectTransfterDesign6FormRequest $request, $id)
     {
         $directTransfer = DirectTransferDesign6::findOrFail($id);
         $data = $request->all();
@@ -350,8 +361,17 @@ class WeddingDesign6Controller extends Controller
         }
     }
 
+    public function destroyPerjalananCinta($id)
+    {
+        $perjalananCinta = PerjalananCintaDesign6::findOrFail($id);
 
+        if ($perjalananCinta->image) {
+            Storage::delete($perjalananCinta->image);
+        }
 
+        $perjalananCinta->delete();
 
+        return response()->json(['message' => 'Perjalanan Cinta berhasil dihapus']);
+    }
 
 }

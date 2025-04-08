@@ -210,24 +210,27 @@
     </section>
     <!-- MEMPELAI END -->
     <!-- Gallery -->
-    <section class="animation gallery" id="gallery">
-        <div class="anm_mod bottom-bit fast container-gallery">
-            <div class="title">
-                <h2>Perjalanan Cinta Kami</h2>
-                <p>Tanpa mengurangi rasa hormat kami mengundang Bapak/Ibu/Saudara/i pada pernikahan kami:</p>
+    @if (!empty($data) && $data->PerjalananCintaDesign6->isNotEmpty())
+        <section class="animation gallery" id="gallery">
+            <div class="anm_mod bottom-bit fast container-gallery">
+                <div class="title">
+                    <h2>Perjalanan Cinta Kami</h2>
+                    <p>Tanpa mengurangi rasa hormat kami mengundang Bapak/Ibu/Saudara/i pada pernikahan kami:</p>
+                </div>
+                <div class="container-card-gallery">
+                    @foreach ($data->PerjalananCintaDesign6 as $item)
+                        <div class="card-gallery">
+                            <a href="{{ Storage::url($item->image) }}" data-fancybox="gallery">
+                                <img class="gallery-img object-fit-cover" src="{{ Storage::url($item->image) }}"
+                                    alt="Image Gallery">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-            <div class="container-card-gallery">
-                @foreach ($data->PerjalananCintaDesign6 as $item)
-                    <div class="card-gallery">
-                        <a href="{{ Storage::url($item->image) }}" data-fancybox="gallery">
-                            <img class="gallery-img object-fit-cover" src="{{ Storage::url($item->image) }}"
-                                alt="Image Gallery">
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
+
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->

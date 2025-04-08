@@ -4,7 +4,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Wedding Design 4'])
+    @include('layouts.breadcrumb', ['title' => 'Show', 'subtitle' => 'Wedding Design 6'])
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
             <section class="content">
@@ -480,13 +480,13 @@
             </section>
         </div>
     </div>
-    <!-- Modal Buat dan Edit Perjalanan Cinta -->
+    <!-- Modal Buat dan Show Perjalanan Cinta -->
     <div class="modal fade" id="modalPerjalananCinta" tabindex="-1" aria-labelledby="modalPerjalananCintaLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat/Edit Direct Transfer</h5>
+                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat/Show Direct Transfer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -544,13 +544,13 @@
 
 
 
-    <!-- Modal Buat dan Edit DirectTransfer -->
+    <!-- Modal Buat dan Show DirectTransfer -->
     <div class="modal fade" id="modalDirectTransfer" tabindex="-1" aria-labelledby="modalDirectTransferLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalDirectTransferLabel">Buat/Edit Direct Transfer</h5>
+                    <h5 class="modal-title" id="modalDirectTransferLabel">Buat/Show Direct Transfer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -592,13 +592,13 @@
         </div>
     </div>
 
-    <!-- Modal Buat dan Edit Kirim Hadiah -->
+    <!-- Modal Buat dan Show Kirim Hadiah -->
     <div class="modal fade" id="modalKirimHadiah" tabindex="-1" aria-labelledby="modalKirimHadiahLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Edit Direct Transfer</h5>
+                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Show Direct Transfer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -660,7 +660,7 @@
             document.getElementById('modalPerjalananCintaLabel').textContent = 'Tambah Cerita';
         });
 
-        document.querySelectorAll('.edit-btn-perjalanan-cinta').forEach(function(button) {
+        document.querySelectorAll('.Show-btn-perjalanan-cinta').forEach(function(button) {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
                 var tanggal = this.getAttribute('data-tanggal');
@@ -688,7 +688,7 @@
                 document.getElementById('formPerjalananCinta').action =
                     `/wedding-design6/${id}/update-perjalanan-cinta`;
                 document.getElementById('formMethod').value = 'PUT'; // Set method for updating
-                document.getElementById('modalPerjalananCintaLabel').textContent = 'Edit Cerita';
+                document.getElementById('modalPerjalananCintaLabel').textContent = 'Show Cerita';
 
                 // Show the modal
                 var modal = new bootstrap.Modal(document.getElementById('modalPerjalananCinta'));
@@ -711,7 +711,7 @@
             document.getElementById('modalDirectTransferLabel').textContent = 'Tambah Direct Transfer';
         });
 
-        document.querySelectorAll('.edit-btn-direct-transfer').forEach(function(button) {
+        document.querySelectorAll('.Show-btn-direct-transfer').forEach(function(button) {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
                 var bank = this.getAttribute('data-bank');
@@ -728,7 +728,7 @@
                 document.getElementById('formDirectTransfer').action =
                     `/wedding-design6/${id}/update-direct-transfer`;
                 document.getElementById('formMethod').value = 'PUT'; // Set method for updating
-                document.getElementById('modalDirectTransferLabel').textContent = 'Edit Direct Transfer';
+                document.getElementById('modalDirectTransferLabel').textContent = 'Show Direct Transfer';
 
                 // Show the modal
                 var modal = new bootstrap.Modal(document.getElementById('modalDirectTransfer'));
@@ -751,7 +751,7 @@
             document.getElementById('modalKirimHadiahLabel').textContent = 'Tambah Kirim Hadiah';
         });
 
-        document.querySelectorAll('.edit-btn-kirim-hadiah').forEach(function(button) {
+        document.querySelectorAll('.Show-btn-kirim-hadiah').forEach(function(button) {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
                 var bank = this.getAttribute('data-bank');
@@ -768,7 +768,7 @@
                 document.getElementById('formKirimHadiah').action =
                     `/wedding-design6/${id}/update-kirim-hadiah`;
                 document.getElementById('formMethod').value = 'PUT'; // Set method for updating
-                document.getElementById('modalKirimHadiahLabel').textContent = 'Edit Direct Transfer';
+                document.getElementById('modalKirimHadiahLabel').textContent = 'Show Direct Transfer';
 
                 // Show the modal
                 var modal = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));
