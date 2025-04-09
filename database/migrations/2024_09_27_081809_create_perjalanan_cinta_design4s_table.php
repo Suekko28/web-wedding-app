@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create('perjalanan_cinta_design4', function (Blueprint $table) {
             $table->id();
             $table->string('image1');
-            $table->string('image2');
             $table->date('tanggal');
             $table->string('judul_cerita');
             $table->text('deskripsi');

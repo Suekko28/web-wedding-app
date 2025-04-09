@@ -36,7 +36,7 @@ class PromoController extends Controller
         $data = $request->all();
         $userId = auth()->user()->id;
         $image = $request->file('image');
-        $nama_image = rand() . $image->getClientOriginalName();
+        $nama_image = rand() . $image->hashName();
         $image->storeAs('public/promo', $nama_image);
 
         $data['image'] = $nama_image;
@@ -106,7 +106,14 @@ class PromoController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Promo::find($id)->delete();
+        $data = Promo::findOrFail($id);
+
+        if ($data->image) {
+            Storage::delete('public/promo/' . $data->image);
+        }
+
+        $data->delete();
+
         return redirect()->route('promo.index')->with('success', 'Berhasil Menghapus Data');
     }
 }

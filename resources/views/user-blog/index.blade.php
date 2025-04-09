@@ -1,6 +1,13 @@
 @extends('layouts.app-user')
 
 @section('navbar')
+    <style>
+        .card-blog-paragraph img {
+            display: none;
+            /* Menyembunyikan semua gambar di dalam elemen card-blog-paragraph */
+        }
+
+    </style>
     <div class="container">
         <section class="blog-hero" id="blog-hero">
             <div class="d-flex flex-wrap">
@@ -9,6 +16,7 @@
                     <span>Joko Pinurbo</span>
                 </div>
                 <div class="col-12 col-lg-6 blog-hero-img">
+                    <img class="img-fluid" src="{{ asset('img/Banner_Blog.png') }}" alt="Foto Blog">
                 </div>
             </div>
         </section>
@@ -18,16 +26,17 @@
                 <div class="row">
                     @foreach ($data as $item)
                         <div class="col-sm-12 col-md-3">
-                            <a href="{{ route('blog-view.show', $item->id) }}" class="card card-blog-custom">
+                            <a href="{{ route('blog-list.show', $item->id) }}" class="card card-blog-custom">
                                 <div class="card card-blog-custom">
                                     <div class="card-blog-img">
-                                        <img class="rounded-4 img-fluid object-fit-cover"
+                                        <img class="rounded-4 img-fluid object-fit-cover h-100"
                                             src="{{ asset('storage/blog/' . $item->image) }}" alt="Foto Blog" width="100%"
                                             height="100%">
                                     </div>
                                     <div class="card-blog-detail">
                                         <div class="card-blog-container-title">
-                                            <div class="card-blog-date">{{ $item->created_at->format('d F Y') }}</div>
+                                            <div class="card-blog-date">
+                                                {{ $item->created_at->locale('id')->translatedFormat('d F Y') }}</div>
                                             <div class="card-blog-title">{{ $item->judul }}</div>
                                         </div>
                                         <div class="card-blog-paragraph">{!! $item->deskripsi !!}</div>

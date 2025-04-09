@@ -1,9 +1,9 @@
 <!-- ---------------------------------- -->
 <!-- Start Vertical Layout Sidebar -->
 <!-- ---------------------------------- -->
-<div class="brand-logo d-flex align-items-center justify-content-between">
+<div class="brand-logo d-flex align-items-center justify-content-center">
     <a href="{{route('dashboard')}}" class="text-nowrap logo-img">
-        <img src="{{ asset('img/logo.png') }}" alt="logo">
+        <img src="{{ asset('img/Jejak-Kebahagiaan_Logo-Full.svg') }}" alt="logo">
     </a>
     <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
         <i class="ti ti-x"></i>
@@ -30,7 +30,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}"
+            <a class="sidebar-link has-arrow {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3', 'wedding-design4', 'wedding-design5', 'wedding-design6') ? 'in' : '' }}"
                 href="javascript:void(0)" aria-expanded="false">
                 <span class="d-flex">
                     <i class="ti ti-chart-donut-3"></i>
@@ -38,7 +38,7 @@
                 <span class="hide-menu">Wedding Design</span>
             </a>
             <ul aria-expanded="false"
-                class="collapse first-level {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3') ? 'in' : '' }}">
+                class="collapse first-level {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3', 'wedding-design4', 'wedding-design5', 'wedding-design6') ? 'in' : '' }}">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('wedding-design1') ? 'active' : '' }}"
                         href="{{ route('wedding-design1.index') }}" aria-expanded="false">
@@ -73,6 +73,24 @@
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Design 4</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('wedding-design5.index') }}"
+                        class="sidebar-link {{ request()->is('wedding-design5') ? 'active' : '' }}">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Design 5</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('wedding-design6.index') }}"
+                        class="sidebar-link {{ request()->is('wedding-design6') ? 'active' : '' }}">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Design 6</span>
                     </a>
                 </li>
             </ul>

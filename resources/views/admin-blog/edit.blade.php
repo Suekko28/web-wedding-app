@@ -13,7 +13,6 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css" />
-
     @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Blog'])
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
@@ -34,21 +33,21 @@
 
                                         <!-- Tampilkan gambar lama jika ada -->
                                         @if ($data->image)
-                                        <div class="d-flex flex-column">
-                                        <span>Gambar saat ini:</span>
-                                            <img src="{{ asset('storage/blog/' . $data->image) }}" alt="Foto Blog"
-                                                class="img-thumbnail mt-2" width="150">
+                                            <div class="d-flex flex-column">
+                                                <span>Gambar saat ini:</span>
+                                                <img src="{{ asset('storage/blog/' . $data->image) }}" alt="Foto Blog"
+                                                    class="img-thumbnail mt-2" width="150">
                                             </div>
                                         @endif
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="judul">Judul <span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul" name="judul"
-                                            placeholder="Masukkan judul" value="{{$data->judul}}">
+                                            placeholder="Masukkan judul" value="{{ $data->judul }}">
                                     </div>
                                     <div class="col-sm-12 mb-3">
                                         <label for="deskripsi">Deskripsi <span class="mandatory">*</span></label>
-                                        <textarea class="form-control" rows="10" id="deskripsi" name="deskripsi" placeholder="Masukkan isi deskripsi">{{$data->deskripsi}}</textarea>
+                                        <textarea class="form-control" rows="10" id="deskripsi" name="deskripsi" placeholder="Masukkan isi deskripsi">{{ $data->deskripsi }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +65,6 @@
         </div>
     </div>
 @endsection
-
 <script type="importmap">
     {
         "imports": {
@@ -75,11 +73,13 @@
         }
     }
 </script>
+
 <script type="module">
     import {
         ClassicEditor,
         Essentials,
-        Paragraph,
+        Paragraph,          // Added Paragraph plugin
+        Heading,            // Added Heading plugin
         Bold,
         Italic,
         Font,
@@ -89,18 +89,22 @@
         Image,
         ImageToolbar,
         ImageUpload,
+        ImageResize,
         Table,
         TableToolbar,
         MediaEmbed,
-        Clipboard // Clipboard plugin enabled
+        Clipboard,
+        SimpleUploadAdapter // Import SimpleUploadAdapter
     } from 'ckeditor5';
 
     ClassicEditor
         .create(document.querySelector('#deskripsi'), {
             plugins: [
-                Essentials, Paragraph, Bold, Italic, Font, Alignment,
-                Link, List, Image, ImageToolbar, ImageUpload,
-                Table, TableToolbar, MediaEmbed, Clipboard // Clipboard plugin enabled
+                Essentials, Paragraph, Heading, // Include Paragraph and Heading plugins
+                Bold, Italic, Font, Alignment, Link, List,
+                Image, ImageToolbar, ImageUpload, ImageResize,
+                SimpleUploadAdapter, // Use SimpleUploadAdapter for uploading images
+                Table, TableToolbar, MediaEmbed, Clipboard
             ],
             toolbar: [
                 'undo', 'redo', '|', 'bold', 'italic', '|',
@@ -108,25 +112,49 @@
                 'alignment:left', 'alignment:center', 'alignment:right', '|',
                 'bulletedList', 'numberedList', '|',
                 'link', 'imageUpload', 'insertTable', 'mediaEmbed', '|',
-                'blockQuote'
+                'blockQuote', 'paragraph', 'heading' // Include paragraph and heading in the toolbar
             ],
-            clipboard: {
-                // Clipboard configuration (optional, but recommended for better handling of pasted content)
-                removeFormatting: true, // Removes unwanted formatting from pasted content
-                pastePlainTextOnly: false // Allows rich text pasting
-            },
             image: {
                 toolbar: [
-                    'imageTextAlternative', 'imageStyle:full', 'imageStyle:side'
-                ]
+                    'imageTextAlternative', 'imageStyle:full', 'imageStyle:side',
+                    'resizeImage'
+                ],
+                resizeOptions: [{
+                        name: 'resizeImage:original',
+                        label: 'Original',
+                        value: null
+                    },
+                    {
+                        name: 'resizeImage:25',
+                        label: '25%',
+                        value: '25'
+                    },
+                    {
+                        name: 'resizeImage:50',
+                        label: '50%',
+                        value: '50'
+                    },
+                    {
+                        name: 'resizeImage:75',
+                        label: '75%',
+                        value: '75'
+                    },
+                    {
+                        name: 'resizeImage:custom',
+                        label: 'Custom',
+                        value: 'custom'
+                    },
+                ],
+                resizeUnit: '%'
             },
-            table: {
-                contentToolbar: [
-                    'tableColumn', 'tableRow', 'mergeTableCells'
-                ]
-            },
-            mediaEmbed: {
-                previewsInData: true
+            simpleUpload: {
+                // The URL that the images are uploaded to.
+                uploadUrl: '{{ route('ckeditor.upload') }}',
+
+                // Headers sent along with the XMLHttpRequest during the upload
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include CSRF token for security
+                }
             }
         })
         .then(editor => {
@@ -136,6 +164,7 @@
             console.error(error);
         });
 </script>
+
 
 <!-- A friendly reminder to run on a server, remove this during the integration. -->
 <script>

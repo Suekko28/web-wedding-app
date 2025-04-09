@@ -204,9 +204,7 @@
                                 </div>
                             </div>
                         </div>
-
                         <hr>
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Perjalanan Cinta</div>
                             <div class="d-flex">
@@ -219,7 +217,6 @@
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
-                                            <th>Image</th>
                                             <th>Foto</th>
                                             <th>Tanggal</th>
                                             <th>Judul Cerita</th>
@@ -244,10 +241,10 @@
                                                         data-tanggal="{{ $item->tanggal }}"
                                                         data-judul="{{ $item->judul_cerita }}"
                                                         data-deskripsi="{{ $item->deskripsi }}"
-                                                        data-image1="{{ $item->image1 }}">
-
+                                                        data-image1="{{ Storage::url($item->image1) }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
+
                                                     <button class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
                                                         data-id="{{ $item->id }}">
                                                         <i class="fa fa-trash"></i>
@@ -408,7 +405,7 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_streaming">Link Streaming<span class="mandatory">*</span></label>
+                                        <label for="link_streaming">Link Streaming<span class="fst-italic"> (Opsional)</span></label>
                                         <input type="text" class="form-control" id="link_streaming"
                                             name="link_streaming" placeholder="Masukkan link"
                                             value="{{ $data->link_streaming }}">
@@ -491,7 +488,7 @@
                                                 <td>{{ $item->deskripsi_alamat }}</td>
                                                 <td>
                                                     <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded edit-btn-direct-transfer"
+                                                        class="btn btn-warning mb-2 rounded edit-btn-kirim-hadiah"
                                                         data-id="{{ $item->id }}" data-alamat="{{ $item->alamat }}"
                                                         data-deskripsi_alamat="{{ $item->deskripsi_alamat }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
@@ -509,7 +506,6 @@
                             </div>
                             <div class="p-2">{{ $dataKirimHadiah->links() }}</div>
                         </div>
-
 
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
@@ -530,7 +526,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat/Edit Direct Transfer</h5>
+                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat/Edit Perjalanan Cinta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -547,10 +543,9 @@
                         <div class="form-group mb-2">
                             <label for="image1">Foto<span class="mandatory">*</span></label>
                             <input type="file" name="image1" id="image1" class="form-control">
-                            <div id="currentImage1Container" class="mt-2">
-                                <img id="currentImage1" class="img-thumbnail" src="" alt="Current Image 1"
-                                    width="120" style="display:none;">
-                            </div>
+                            <!-- Current Image Preview -->
+                            <img id="currentImage1" class="img-thumbnail mt-2" src="" alt="Current Image 1"
+                                width="120" style="display: none;">
                         </div>
 
                         <div class="form-group mb-2">
@@ -574,7 +569,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary" form="formPerjalananCinta">Simpan</button>
-                    <!-- Updated here -->
                 </div>
             </div>
         </div>
@@ -595,13 +589,13 @@
                         action="{{ route('directtransfer-design4.store', ['id' => $informasiDesign4->id]) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
-                        {{-- This will be updated dynamically in JS --}}
-                        <input type="hidden" name="_method" id="formMethod" value="POST">
+                        <input type="hidden" name="_method" id="formMethodDirectTransfer" value="POST">
                         <input type="hidden" name="directTransferId" id="directTransferId">
                         <input type="hidden" name="wedding_design4_id" value="{{ $informasiDesign4->id }}">
                         <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
                         <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign4->tgl_pernikahan }}">
 
+                        <!-- Form Fields -->
                         <div class="form-group mb-2">
                             <label for="bank">Bank<span class="mandatory">*</span></label>
                             <input type="text" name="bank" id="bank" class="form-control"
@@ -620,6 +614,7 @@
                                 value="{{ old('nama_rek') }}" placeholder="Masukkan nama pemilik rekening">
                         </div>
                     </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -635,7 +630,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Edit Direct Transfer</h5>
+                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Edit Kirim Hadiah</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -644,7 +639,7 @@
                         enctype="multipart/form-data">
                         @csrf
                         {{-- This will be updated dynamically in JS --}}
-                        <input type="hidden" name="_method" id="formMethod" value="POST">
+                        <input type="hidden" name="_method" id="formMethodKirimHadiah" value="POST">
                         <input type="hidden" name="kirimHadiahId" id="kirimHadiahId">
                         <input type="hidden" name="wedding_design4_id" value="{{ $informasiDesign4->id }}">
                         <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign4->nama_pasangan }}">
@@ -670,7 +665,6 @@
             </div>
         </div>
     </div>
-
     <!-- Hidden form for delete -->
     <form id="deleteForm" method="POST" style="display:none;">
         @csrf
@@ -697,25 +691,19 @@
                 var tanggal = this.getAttribute('data-tanggal');
                 var judul_cerita = this.getAttribute('data-judul');
                 var deskripsi = this.getAttribute('data-deskripsi');
-
-                // Data gambar
-                var image1 = this.getAttribute('data-image1');
-                var image2 = this.getAttribute('data-image2');
+                var image1 = this.getAttribute('data-image1'); // Add this line
 
                 // Populate form with existing data
-                document.getElementById('perjalananCintaId').value = id;
+                document.getElementById('perjalananCintaId').value = id; // Set ID
                 document.getElementById('tanggal').value = tanggal;
                 document.getElementById('judul_cerita').value = judul_cerita;
                 document.getElementById('deskripsi').value = deskripsi;
 
-                // Show the current images if available
-                if (image1) {
-                    document.getElementById('currentImage1').src = `/storage/${image1}`;
-                    document.getElementById('currentImage1').style.display = 'block';
-                } else {
-                    document.getElementById('currentImage1').style.display = 'none';
-                }
+                // Set the image previews
+                var currentImage1 = document.getElementById('currentImage1');
 
+                currentImage1.src = image1; // Set current image src
+                currentImage1.style.display = image1 ? 'block' : 'none'; // Show if image exists
 
                 // Set the form action to the update route
                 document.getElementById('formPerjalananCinta').action =
@@ -736,7 +724,7 @@
             // Reset the form for new entries
             document.getElementById('formDirectTransfer').reset();
             document.getElementById('directTransferId').value = ''; // Reset hidden field for ID
-            document.getElementById('formMethod').value = 'POST'; // Set method for creating
+            document.getElementById('formMethodDirectTransfer').value = 'POST'; // Set method for creating
 
             // Set the action to the store route
             document.getElementById('formDirectTransfer').action =
@@ -752,7 +740,7 @@
                 var nama_rek = this.getAttribute('data-nama_rek');
 
                 // Populate form with existing data
-                document.getElementById('directTransferId').value = id; // Set ID
+                document.getElementById('directTransferId').value = id;
                 document.getElementById('bank').value = bank;
                 document.getElementById('no_rek').value = no_rek;
                 document.getElementById('nama_rek').value = nama_rek;
@@ -760,7 +748,8 @@
                 // Set the form action to the update route
                 document.getElementById('formDirectTransfer').action =
                     `/wedding-design4/${id}/update-direct-transfer`;
-                document.getElementById('formMethod').value = 'PUT'; // Set method for updating
+                document.getElementById('formMethodDirectTransfer').value =
+                    'PUT'; // Set method for updating
                 document.getElementById('modalDirectTransferLabel').textContent = 'Edit Direct Transfer';
 
                 // Show the modal
@@ -769,6 +758,7 @@
             });
         });
     </script>
+
 
     <!-- Modal JS Kirim Hadiah -->
     <script>
@@ -798,8 +788,8 @@
                 // Set the form action to the update route
                 document.getElementById('formKirimHadiah').action =
                     `/wedding-design4/${id}/update-kirim-hadiah`;
-                document.getElementById('formMethod').value = 'PUT'; // Set method for updating
-                document.getElementById('modalKirimHadiahLabel').textContent = 'Edit Direct Transfer';
+                document.getElementById('formMethodKirimHadiah').value = 'PUT'; // Set method for updating
+                document.getElementById('modalKirimHadiahLabel').textContent = 'Edit Kirim Hadiah';
 
                 // Show the modal
                 var modal = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));

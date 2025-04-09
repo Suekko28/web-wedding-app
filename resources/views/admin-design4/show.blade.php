@@ -1,4 +1,4 @@
-@extends('layouts.master')
+    @extends('layouts.master')
 
 @section('title', 'JejakKebahagiaan')
 
@@ -37,7 +37,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
-                                            placeholder="" disabled value="{{ $informasiDesign4->nama_pasangan }}" >
+                                            placeholder="" disabled value="{{ $informasiDesign4->nama_pasangan }}">
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +162,8 @@
                                             <div class="d-flex flex-column mt-2">
                                                 <span>Gambar saat ini:</span>
                                                 <img src="{{ Storage::url($data->foto_mempelai_laki) }}"
-                                                    alt="Foto Mempelai Laki" class="img-thumbnail mt-2" width="150" disabled>
+                                                    alt="Foto Mempelai Laki" class="img-thumbnail mt-2" width="150"
+                                                    disabled>
                                             </div>
                                         @endif
                                     </div>
@@ -185,7 +186,7 @@
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="putra_dari_ibu"
                                             name="putra_dari_ibu" placeholder="Putra dari ibu"
-                                            value="{{ $data->putra_dari_ibu }}" disabled> 
+                                            value="{{ $data->putra_dari_ibu }}" disabled>
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_instagram2">Nama Instagram <span
@@ -213,7 +214,6 @@
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
-                                            <th>Image</th>
                                             <th>Foto</th>
                                             <th>Tanggal</th>
                                             <th>Judul Cerita</th>
@@ -227,12 +227,10 @@
                                                 <td>{{ $i }}</td>
                                                 <td><img class="img-thumbnail" src="{{ Storage::url($item->image1) }}"
                                                         alt="Image 1" width="120"></td>
-                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image2) }}"
-                                                        alt="Image 2" width="120"></td>
                                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                                 <td>{{ $item->judul_cerita }}</td>
                                                 <td>{{ $item->deskripsi }}</td>
-                                        
+
                                             </tr>
                                             <?php $i++; ?>
                                         @endforeach
@@ -395,7 +393,7 @@
                         </div>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
-                           
+
                             <div class="table-responsive mb-4 border rounded-1">
                                 <table class="table text-nowrap mb-0 align-middle text-center">
                                     <thead>
@@ -414,7 +412,7 @@
                                                 <td>{{ $item->bank }}</td>
                                                 <td>{{ $item->no_rek }}</td>
                                                 <td>{{ $item->nama_rek }}</td>
-                                                
+
                                             </tr>
                                             <?php $i++; ?>
                                         @endforeach
@@ -424,7 +422,7 @@
                         </div>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
-                           
+
                             <div class="table-responsive mb-4 border rounded-1">
                                 <table class="table text-nowrap mb-0 align-middle text-center">
                                     <thead>
@@ -449,13 +447,35 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-row-reverse">
-                            <a href="{{ route('wedding-design4.index') }}" class="btn btn-secondary">Kembali</a>
-                        </div>
-
                     </form>
+                    <table class="table table-bordered">
+                        <h6>Daftar Tamu Undangan</h6>
+                        <thead>
+                            <tr class="text-nowrap text-center">
+                                <th>No</th>
+                                <th>Nama Undangan</th>
+                                {{-- <th>Template Message</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i = 1; ?>
+                            @foreach ($nama_undangan as $item)
+                                <tr class="text-center">
+                                    <td scope="row">{{ $i }}</td>
+                                    <td scope="row">{{ $item->nama_undangan }}</td>
+                                    {{-- Other table cells --}}
+                                </tr>
+                                <?php $i++; ?>
+                            @endforeach
+
+                        </tbody>
+
+                    </table>
                     <!-- Small boxes (Stat box) -->
                     <!-- /.row (main row) -->
+                    <div class="d-flex flex-row-reverse">
+                        <a href="{{ route('wedding-design4.index') }}" class="btn btn-secondary">Kembali</a>
+                    </div>
                 </div><!-- /.container-fluid -->
             </section>
         </div>

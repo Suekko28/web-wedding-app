@@ -34,11 +34,9 @@ class PerjalananCintaDesign4FormRequest extends FormRequest
         // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib diupload
         if ($method === 'POST') {
             $rules['image1'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
-            $rules['image2'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
         } else {
             // Jika ini adalah request untuk update, gambar bersifat opsional (nullable)
             $rules['image1'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
-            $rules['image2'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
         }
 
         return $rules;
@@ -54,13 +52,9 @@ class PerjalananCintaDesign4FormRequest extends FormRequest
 
             'deskripsi.required' => 'Deskripsi cerita wajib diisi.',
 
-            'image1.required' => 'Gambar 1 wajib diupload',
-            'image1.image' => 'Gambar 1 harus berupa file gambar.',
-            'image1.mimes' => 'Gambar 1 harus dalam format jpeg, png, atau jpg.',
-
-            'image2.required' => 'Gambar 2 wajib diupload',
-            'image2.image' => 'Gambar 2 harus berupa file gambar.',
-            'image2.mimes' => 'Gambar 2 harus dalam format jpeg, png, atau jpg.',
+            'image1.required' => 'Gambar wajib diupload',
+            'image1.image' => 'Gambar harus berupa file gambar.',
+            'image1.mimes' => 'Gambar harus dalam format jpeg, png, atau jpg.',
         ];
     }
 

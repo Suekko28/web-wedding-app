@@ -10,7 +10,7 @@
             <h4 class="card-title mb-0">Basic Table</h4>
         </div> --}}
         <div class="card-body">
-            <a class="btn btn-primary mb-3" href="{{ url('cetakfoto/create') }}">+ Buat Cetak Foto</a>
+            <a class="btn btn-primary mb-3" href="{{ url('cetakfoto/create') }}">+ Produk</a>
             @include('layouts.message')
             <div class="search">
                 <div class="mb-3">
@@ -26,7 +26,7 @@
                         <tr class="text-nowrap text-center">
                             {{-- <th><input type="checkbox" id="selectAll"></th> --}}
                             <th>No</th>
-                            <th>ID Cetak Foto</th>
+                            <th>Id Produk</th>
                             {{-- <th>Nama Undangan</th> --}}
                             <th>Foto</th>
                             <th>Judul</th>
@@ -63,7 +63,7 @@
                                 </td>
 
                                 <td>
-                                    <div class="btn-group-vertical">
+                                    <div class="btn-group-horizontal">
                                         <a href="{{ url('cetakfoto/' . $item->id) . '/edit' }}"
                                             class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
                                                 style="color:white;"></i></a>
@@ -90,55 +90,57 @@
 
     <script>
         document.querySelectorAll('.delete-btn').forEach(function(button) {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                var itemId = this.getAttribute('data-id');
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Set the action URL for the delete form
-                        document.getElementById('deleteForm').action =
-                            "{{ url('cetakfoto') }}/" + itemId;
-                        // Submit the form
-                        document.getElementById('deleteForm').submit();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        );
-                    }
+                    button.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            var itemId = this.getAttribute('data-id');
+                            Swal.fire({
+                                title: 'Apakah kamu yakin?',
+                                text: "Data ini akan dihapus secara permanen!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: "#3086d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Ya, Hapus!"
+                            }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        // Set the action URL for the delete form
+                                        document.getElementById('deleteForm').action =
+                                            "{{ url('cetakfoto') }}/" + itemId;
+                                        // Submit the form
+                                        document.getElementById('deleteForm').submit();
+                                        Swal.fire({
+                                                title: 'Terhapus',
+                                                text: "Data berhasil dihapus",
+                                                icon: 'success',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            }
+                                        }
+                                    });
+                            });
+                    });
+
+                // Search functionality
+                const searchInput = document.getElementById('searchInput');
+                const tableRows = document.querySelectorAll('.table tbody tr');
+                const noDataMessage = document.getElementById('noDataMessage');
+
+                searchInput.addEventListener('input', function() {
+                    const searchText = this.value.toLowerCase();
+                    let found = false;
+
+                    tableRows.forEach(function(row) {
+                        const rowData = row.innerText.toLowerCase();
+                        if (rowData.includes(searchText)) {
+                            row.style.display = '';
+                            found = true;
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+
+                    noDataMessage.style.display = found ? 'none' : 'block';
                 });
-            });
-        });
-
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const tableRows = document.querySelectorAll('.table tbody tr');
-        const noDataMessage = document.getElementById('noDataMessage');
-
-        searchInput.addEventListener('input', function() {
-            const searchText = this.value.toLowerCase();
-            let found = false;
-
-            tableRows.forEach(function(row) {
-                const rowData = row.innerText.toLowerCase();
-                if (rowData.includes(searchText)) {
-                    row.style.display = '';
-                    found = true;
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-
-            noDataMessage.style.display = found ? 'none' : 'block';
-        });
     </script>
 @endsection
 

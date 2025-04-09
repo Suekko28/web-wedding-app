@@ -10,7 +10,7 @@
             <h4 class="card-title mb-0">Basic Table</h4>
         </div> --}}
         <div class="card-body">
-            <a class="btn btn-primary mb-3" href="{{ url('gambarin/create') }}">+ Buat Gambarin</a>
+            <a class="btn btn-primary mb-3" href="{{ url('gambarin/create') }}">+ Produk</a>
             @include('layouts.message')
             <div class="search">
                 <div class="mb-3">
@@ -26,7 +26,7 @@
                         <tr class="text-nowrap text-center">
                             {{-- <th><input type="checkbox" id="selectAll"></th> --}}
                             <th>No</th>
-                            <th>ID Gambarin</th>
+                            <th>Id Produk</th>
                             {{-- <th>Nama Undangan</th> --}}
                             <th>Foto</th>
                             <th>Judul</th>
@@ -51,7 +51,7 @@
                                 </td> --}}
                                 <td>
                                     <img class="img-fluid" src="{{ asset('storage/gambarin/' . $item->image) }}"
-                                        alt="" width="120" height="120" alt="Foto gambarin">
+                                        alt="" width="200" height="200" alt="Foto gambarin">
                                 </td>
                                 <td>{{ $item->judul }} </td>
                                 <td>Rp {{ number_format($item->harga, 0, ',', '.') }} </td>
@@ -62,7 +62,7 @@
 
                                 </td>
                                 <td>
-                                    <div class="btn-group-vertical">
+                                    <div class="btn-group-horizontal">
                                         <a href="{{ url('gambarin/' . $item->id) . '/edit' }}"
                                             class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
                                                 style="color:white;"></i></a>
@@ -93,13 +93,13 @@
                 event.preventDefault();
                 var itemId = this.getAttribute('data-id');
                 Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
+                    title: 'Apakah kamu yakin?',
+                    text: "Data ini akan dihapus secara permanen!",
+                    icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
+                    confirmButtonColor: "#3086d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
+                    confirmButtonText: "Ya, Hapus!"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Set the action URL for the delete form
@@ -107,11 +107,13 @@
                             "{{ url('gambarin') }}/" + itemId;
                         // Submit the form
                         document.getElementById('deleteForm').submit();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        );
+                        Swal.fire({
+                                title: 'Terhapus',
+                                text: "Data berhasil dihapus",
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }
                     }
                 });
             });

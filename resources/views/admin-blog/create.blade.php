@@ -14,6 +14,7 @@
     </style>
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css" />
     @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Blog'])
+
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
             <section class="content">
@@ -47,9 +48,7 @@
                                 <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
                                 <a href="{{ route('blog.index') }}" class="btn btn-secondary">Batal</a>
                             </div>
-
                         </div>
-
                     </form>
                 </div>
             </section>
@@ -65,11 +64,13 @@
         }
     }
 </script>
+
 <script type="module">
     import {
         ClassicEditor,
         Essentials,
-        Paragraph,
+        Paragraph,          // Added Paragraph plugin
+        Heading,            // Added Heading plugin
         Bold,
         Italic,
         Font,
@@ -79,18 +80,22 @@
         Image,
         ImageToolbar,
         ImageUpload,
+        ImageResize,
         Table,
         TableToolbar,
         MediaEmbed,
-        Clipboard // Clipboard plugin enabled
+        Clipboard,
+        SimpleUploadAdapter // Import SimpleUploadAdapter
     } from 'ckeditor5';
 
     ClassicEditor
         .create(document.querySelector('#deskripsi'), {
             plugins: [
-                Essentials, Paragraph, Bold, Italic, Font, Alignment,
-                Link, List, Image, ImageToolbar, ImageUpload,
-                Table, TableToolbar, MediaEmbed, Clipboard // Clipboard plugin enabled
+                Essentials, Paragraph, Heading, // Include Paragraph and Heading plugins
+                Bold, Italic, Font, Alignment, Link, List,
+                Image, ImageToolbar, ImageUpload, ImageResize,
+                SimpleUploadAdapter, // Use SimpleUploadAdapter for uploading images
+                Table, TableToolbar, MediaEmbed, Clipboard
             ],
             toolbar: [
                 'undo', 'redo', '|', 'bold', 'italic', '|',
@@ -98,25 +103,49 @@
                 'alignment:left', 'alignment:center', 'alignment:right', '|',
                 'bulletedList', 'numberedList', '|',
                 'link', 'imageUpload', 'insertTable', 'mediaEmbed', '|',
-                'blockQuote'
+                'blockQuote', 'paragraph', 'heading' // Include paragraph and heading in the toolbar
             ],
-            clipboard: {
-                // Clipboard configuration (optional, but recommended for better handling of pasted content)
-                removeFormatting: true, // Removes unwanted formatting from pasted content
-                pastePlainTextOnly: false // Allows rich text pasting
-            },
             image: {
                 toolbar: [
-                    'imageTextAlternative', 'imageStyle:full', 'imageStyle:side'
-                ]
+                    'imageTextAlternative', 'imageStyle:full', 'imageStyle:side',
+                    'resizeImage'
+                ],
+                resizeOptions: [{
+                        name: 'resizeImage:original',
+                        label: 'Original',
+                        value: null
+                    },
+                    {
+                        name: 'resizeImage:25',
+                        label: '25%',
+                        value: '25'
+                    },
+                    {
+                        name: 'resizeImage:50',
+                        label: '50%',
+                        value: '50'
+                    },
+                    {
+                        name: 'resizeImage:75',
+                        label: '75%',
+                        value: '75'
+                    },
+                    {
+                        name: 'resizeImage:custom',
+                        label: 'Custom',
+                        value: 'custom'
+                    },
+                ],
+                resizeUnit: '%'
             },
-            table: {
-                contentToolbar: [
-                    'tableColumn', 'tableRow', 'mergeTableCells'
-                ]
-            },
-            mediaEmbed: {
-                previewsInData: true
+            simpleUpload: {
+                // The URL that the images are uploaded to.
+                uploadUrl: '{{ route('ckeditor.upload') }}',
+
+                // Headers sent along with the XMLHttpRequest during the upload
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include CSRF token for security
+                }
             }
         })
         .then(editor => {
@@ -126,6 +155,7 @@
             console.error(error);
         });
 </script>
+
 
 <!-- A friendly reminder to run on a server, remove this during the integration. -->
 <script>

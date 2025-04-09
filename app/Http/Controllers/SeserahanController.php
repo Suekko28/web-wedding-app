@@ -37,7 +37,7 @@ class SeserahanController extends Controller
         $data = $request->all();
         $userId = auth()->user()->id;
         $image = $request->file('image');
-        $nama_image = rand() . $image->getClientOriginalName();
+        $nama_image = rand() . $image->hashName();
         $image->storeAs('public/seserahan', $nama_image);
 
         // Buat ID Seserahan
@@ -126,7 +126,11 @@ class SeserahanController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Seserahan::find($id)->delete();
+        $data = Seserahan::findOrFail($id);
+
+        if ($data->image) {
+            Storage::delete('public/seserahan/' . $data->image);
+        }
         return redirect()->route('seserahan.index')->with('success', 'Berhasil Menghapus Data');
     }
 }

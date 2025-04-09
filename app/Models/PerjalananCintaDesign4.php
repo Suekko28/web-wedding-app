@@ -14,7 +14,6 @@ class PerjalananCintaDesign4 extends Model
 
     protected $fillable = [
         'image1',
-        'image2',
         'tanggal',
         'judul_cerita',
         'deskripsi',

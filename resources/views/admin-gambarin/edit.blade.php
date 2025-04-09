@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="harga">Harga <span class="mandatory">*</span></label>
-                                        <input type="text" class="form-control" id="harga" name="harga"
+                                        <input type="number" class="form-control" id="harga" name="harga"
                                             placeholder="Masukkan harga" value="{{ $data->harga }}"
                                             onkeyup="formatRupiah(this)">
                                     </div>

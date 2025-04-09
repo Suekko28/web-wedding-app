@@ -23,18 +23,22 @@ class NamaUndanganDesign4Controller extends Controller
         ]);
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      */
     public function create($weddingDesign4Id)
     {
         $weddingDesign4 = WeddingDesign4::findOrFail($weddingDesign4Id);
-        return view('user-design4.create', compact('weddingDesign4Id', 'weddingDesign4'));
+
+
+        // Pass both `$weddingDesign4Id` and `$idWeddingDesign4` to the view
+        return view('user-design4.create', [
+            'weddingDesign4' => $weddingDesign4,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request, $weddingDesign4Id)
     {
         // Definisikan pesan untuk validasi
@@ -46,15 +50,14 @@ class NamaUndanganDesign4Controller extends Controller
 
         // Validasi input nama undangan
         $validator = Validator::make($request->all(), [
-            'nama_undangan' => 'required|string', // Anda dapat menyesuaikan aturan validasi sesuai kebutuhan
+            'nama_undangan' => 'required|string',
         ], $messages);
 
-        // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan error
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Mendapatkan instance weddingDesign4$weddingDesign4 berdasarkan ID
+        // Mendapatkan instance weddingDesign4 berdasarkan ID
         $weddingDesign4 = WeddingDesign4::findOrFail($weddingDesign4Id);
 
         // Memecah nama undangan menjadi array
@@ -69,14 +72,14 @@ class NamaUndanganDesign4Controller extends Controller
 
             // Buat instance NamaUndangan
             $namaUndangan = new NamaUndanganDesign4($data);
-
-            // Simpan model NamaUndangan terkait dengan weddingDesign4$weddingDesign4
+            // Simpan model NamaUndangan terkait dengan weddingDesign4
             $weddingDesign4->namaUndangan()->save($namaUndangan);
         }
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('nama-undangan-list4', $weddingDesign4Id)->with('success', 'Berhasil menambahkan data');
+        return redirect()->route('nama-undangan-list4', ['weddingDesign4Id' => $weddingDesign4Id])->with('success', 'Berhasil menambahkan data');
     }
+
 
     /**
      * Display the specified resource.
@@ -89,6 +92,7 @@ class NamaUndanganDesign4Controller extends Controller
         ]);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -96,11 +100,17 @@ class NamaUndanganDesign4Controller extends Controller
     {
         $data = NamaUndanganDesign4::findOrFail($id);
         $weddingDesign4Id = $data->wedding_design4_id;
+
+        // Dapatkan weddingDesign4 berdasarkan ID
+        $weddingDesign4 = WeddingDesign4::findOrFail($weddingDesign4Id);
+
         return view('user-design4.edit', [
             'data' => $data,
+            'weddingDesign4' => $weddingDesign4, // Kirimkan variabel ini
             'weddingDesign4Id' => $weddingDesign4Id,
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.

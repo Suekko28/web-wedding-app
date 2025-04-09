@@ -25,7 +25,7 @@
                         <thead>
                             <tr class="text-nowrap text-center">
                                 <th>No</th>
-                                <th>ID Wedding</th>
+                                <th>Id Wedding</th>
                                 <th>Nama Pasangan</th>
                                 <th>Tanggal Pernikahan</th>
                                 <th>Konten Undangan</th>
@@ -41,35 +41,42 @@
                                     <td scope="row">{{ $i }}</td>
                                     <td>{{ $item->id_weddingdesign4 }}</td>
                                     <td>
-                                        <p>{{ $item->nama_pasangan }}</p>
+                                        {{ $item->nama_pasangan }}
                                     </td>
                                     <td>
                                         {{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->tgl_pernikahan)->format('d-m-Y') }}
                                     </td>
                                     <td>
                                         @if ($item->KontenDesign4->isEmpty())
-                                            <a class="btn btn-primary mb-3"
+                                            <a class="btn btn-primary"
                                                 href="{{ route('form-design4.create', ['id' => $item->id]) }}">Buat
                                                 Konten</a>
                                         @else
-                                            <a class="btn btn-secondary mb-3"
+                                            <a class="btn btn-secondary"
                                                 href="{{ route('form-design4.edit', ['informasiDesign4Id' => $item->KontenDesign4->first()->informasi_design4_id, 'id' => $item->KontenDesign4->first()->id]) }}">
                                                 Edit Konten
                                             </a>
                                         @endif
                                     </td>
-
                                     <td>
-                                        <a class="btn btn-primary mb-3 {{ $item->KontenDesign4->isEmpty() ? 'disabled' : '' }}"
-                                            href="{{ route('nama-undangan-list4', ['id' => $item]) }}" target="_blank">
-                                            Buat Tamu
-                                        </a>
+                                        @if ($item->KontenDesign4->isNotEmpty())
+                                            <a class="btn btn-primary"
+                                                href="{{ route('nama-undangan-list4', ['weddingDesign4Id' => $item->KontenDesign4->first()->id]) }}"
+                                                target="_blank">
+                                                Buat Tamu
+                                            </a>
+                                        @else
+                                            <a class="btn btn-primary disabled">
+                                                Buat Tamu
+                                            </a>
+                                        @endif
                                     </td>
+
                                     <td>
                                         {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
                                     </td>
                                     <td>
-                                        <div class="btn-group-vertical">
+                                        <div class="btn-group-horizontal">
                                             <a href="javascript:void(0)" class="btn btn-warning mb-2 rounded edit-btn"
                                                 data-id="{{ $item->id }}"
                                                 data-nama-pasangan="{{ $item->nama_pasangan }}"
@@ -80,20 +87,24 @@
                                                 data-id="{{ $item->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                            <a href="{{ route('wedding-design4.show', ['wedding_design4' => $item->id]) }}"
-                                                class="btn btn-info rounded mb-2">
+                                            <a href="{{ $item->KontenDesign4->first() && $item->KontenDesign4->first()->id
+                                                ? route('wedding-design4.show', ['wedding_design4' => $item->KontenDesign4->first()->id])
+                                                : '#' }}"
+                                                class="btn btn-info rounded mb-2 
+                                              {{ !$item->KontenDesign4->first() || !$item->KontenDesign4->first()->nama_mempelai_laki || !$item->KontenDesign4->first()->nama_mempelai_perempuan ? 'disabled' : '' }}">
                                                 <i class="fa fa-circle-info" style="color:white;"></i>
                                             </a>
-                                            <a href="{{ route('wedding-design4-home-preview', [
-                                                'nama_mempelai_laki' => $item->KontenDesign4->first()->nama_mempelai_laki ?? 'Unknown',
-                                                'nama_mempelai_perempuan' => $item->KontenDesign4->first()->nama_mempelai_perempuan ?? 'Unknown',
-                                            ]) }}"
-                                                target="_blank" class="btn btn-primary rounded mb-2">
+
+
+
+                                            <a class="btn btn-primary mb-2 {{ !$item->KontenDesign4->first() || !$item->KontenDesign4->first()->nama_mempelai_laki || !$item->KontenDesign4->first()->nama_mempelai_perempuan ? 'disabled' : '' }}"
+                                                href="{{ route('wedding-design4-home-preview', [
+                                                    'nama_mempelai_laki' => $item->KontenDesign4->first()->nama_mempelai_laki ?? 'Unknown',
+                                                    'nama_mempelai_perempuan' => $item->KontenDesign4->first()->nama_mempelai_perempuan ?? 'Unknown',
+                                                ]) }}"
+                                                target="_blank">
                                                 <i class="fa fa-eye" style="color:white;"></i>
                                             </a>
-
-
-
                                         </div>
                                     </td>
                                 </tr>
@@ -138,8 +149,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
         <!-- Hidden form for delete -->
@@ -188,55 +197,57 @@
 
         <script>
             document.querySelectorAll('.delete-btn').forEach(function(button) {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    var itemId = this.getAttribute('data-id');
-                    Swal.fire({
-                        title: "Are you sure?",
-                        text: "You won't be able to revert this!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes, delete it!"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Set the action URL for the delete form
-                            document.getElementById('deleteForm').action =
-                                "{{ url('wedding-design4') }}/" + itemId;
-                            // Submit the form
-                            document.getElementById('deleteForm').submit();
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            );
-                        }
+                        button.addEventListener('click', function(event) {
+                                event.preventDefault();
+                                var itemId = this.getAttribute('data-id');
+                                Swal.fire({
+                                    title: 'Apakah kamu yakin?',
+                                    text: "Data ini akan dihapus secara permanen!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3086d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "Ya, Hapus!"
+                                }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Set the action URL for the delete form
+                                            document.getElementById('deleteForm').action =
+                                                "{{ url('wedding-design4') }}/" + itemId;
+                                            // Submit the form
+                                            document.getElementById('deleteForm').submit();
+                                            Swal.fire({
+                                                    title: 'Terhapus',
+                                                    text: "Data berhasil dihapus",
+                                                    icon: 'success',
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                }
+                                            }
+                                        });
+                                });
+                        });
+
+                    // Search functionality
+                    const searchInput = document.getElementById('searchInput');
+                    const tableRows = document.querySelectorAll('.table tbody tr');
+                    const noDataMessage = document.getElementById('noDataMessage');
+
+                    searchInput.addEventListener('input', function() {
+                        const searchText = this.value.toLowerCase();
+                        let found = false;
+
+                        tableRows.forEach(function(row) {
+                            const rowData = row.innerText.toLowerCase();
+                            if (rowData.includes(searchText)) {
+                                row.style.display = '';
+                                found = true;
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        });
+
+                        noDataMessage.style.display = found ? 'none' : 'block';
                     });
-                });
-            });
-
-            // Search functionality
-            const searchInput = document.getElementById('searchInput');
-            const tableRows = document.querySelectorAll('.table tbody tr');
-            const noDataMessage = document.getElementById('noDataMessage');
-
-            searchInput.addEventListener('input', function() {
-                const searchText = this.value.toLowerCase();
-                let found = false;
-
-                tableRows.forEach(function(row) {
-                    const rowData = row.innerText.toLowerCase();
-                    if (rowData.includes(searchText)) {
-                        row.style.display = '';
-                        found = true;
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-
-                noDataMessage.style.display = found ? 'none' : 'block';
-            });
         </script>
 
     @endsection

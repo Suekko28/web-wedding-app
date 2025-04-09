@@ -4,7 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JejakKebahagiaan</title>
+    @vite(['resources/scss/styles.scss'])
+
+    <!-- Meta Title -->
+    <title>Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!</title>
+
+    <!-- Meta Description -->
+    <meta name="description"
+        content="Solusi terbaik dalam persiapan pernikahan dari Hias Seserahan & Undangan Digital. Dapatkan konsultasi gratis untuk merancang seserahan dan undangan digital sesuai dengan keinginan Anda.">
+
+    <!-- Meta Keywords -->
+    <meta name="keywords"
+        content="Undangan Digital, Pernikahan, Hias Seserahan, Konsultasi Gratis, Undangan Online, Persiapan Pernikahan, Seserahan Custom">
+
+    <!-- Meta Author -->
+    <meta name="author" content="JejakKebahagiaan">
+
+    <!-- Open Graph for Social Media Sharing -->
+    <meta property="og:title" content="Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!">
+    <meta property="og:description"
+        content="Solusi terbaik dalam persiapan pernikahan dari Hias Seserahan & Undangan Digital.">
+    <meta property="og:image" content="{{ asset('img/Tumbnail-Jejakkebahagiaan.jpg') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!">
+    <meta name="twitter:description"
+        content="Solusi terbaik dalam persiapan pernikahan dari Hias Seserahan & Undangan Digital.">
+    <meta name="twitter:image" content="{{ asset('img/Tumbnail-Jejakkebahagiaan.jpg') }}">
 
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -12,16 +41,18 @@
 
     <!-- CSS STYLE -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
-    <link rel="shortcut icon" type="image/png" href="{{ asset('img/small-logo.jpg') }}" />
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
+
+
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
             <a class="nav-link trigger" href="{{ url('/') }}">
-                <img src="{{ asset('img/logo.png') }}" alt="logo">
+                <img src="{{ asset('img/Jejak-Kebahagiaan_Logo-Full.svg') }}" alt="logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
@@ -97,5 +128,19 @@
 
 <!-- JS STYLE -->
 <script src="{{ asset('js/style.js') }}"></script>
-
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WeddingEvent",
+      "name": "Undangan Digital & Hias Seserahan",
+      "description": "Konsultasi gratis untuk undangan digital pernikahan dan hias seserahan.",
+      "image": "{{ asset('img/Jejak-Kebahagiaan_Favicon_64px.svg') }}",
+      "url": "{{ url()->current() }}",
+      "organizer": {
+        "@type": "Organization",
+        "name": "JejakKebahagiaan",
+        "url": "{{ url('/') }}"
+      }
+    }
+    </script>
 </html>

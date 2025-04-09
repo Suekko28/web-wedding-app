@@ -34,7 +34,7 @@ class UndanganDigitalController extends Controller
         $data = $request->all();
         $userId = auth()->user()->id;
         $image = $request->file('image');
-        $nama_image = rand() . $image->getClientOriginalName();
+        $nama_image = rand() . $image->hashName();
         $image->storeAs('public/undangandigital', $nama_image);
         $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
         $latestUndanganDigital = UndanganDigital::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
@@ -92,7 +92,7 @@ class UndanganDigitalController extends Controller
             }
 
             $image = $request->file('image');
-            $extension = $image->getClientOriginalName();
+            $extension = $image->hashName();
             $nama_image = time() . '_' . uniqid() . '.' . $extension;
 
             $image->storeAs('public/undangandigital', $nama_image);
@@ -114,7 +114,14 @@ class UndanganDigitalController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = UndanganDigital::find($id)->delete();
+        $data = UndanganDigital::findOrFail($id);
+
+        if ($data->image) {
+            Storage::delete('public/undangandigital/' . $data->image);
+        }
+ 
+        $data->delete();
+
         return redirect()->route('undangandigital.index')->with('success', 'Berhasil Menghapus Data');
 
     }

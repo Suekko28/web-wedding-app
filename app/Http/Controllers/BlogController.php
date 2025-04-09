@@ -36,8 +36,9 @@ class BlogController extends Controller
         $data = $request->all();
         $userId = auth()->user()->id;
         $image = $request->file('image');
-        $nama_image = rand() . $image->getClientOriginalName();
+        $nama_image = rand() . $image->hashName();
         $image->storeAs('public/blog', $nama_image);
+
         // Buat ID Seserahan
         $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
         $latestBlog = Blog::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
@@ -62,6 +63,22 @@ class BlogController extends Controller
 
         return redirect()->route('blog.index')->with('success', 'Data berhasil ditambahkan');
     }
+
+    public function upload(Request $request)
+    {
+        // Validate the uploaded file
+        $request->validate([
+            'upload' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
+
+        // Store the uploaded file
+        $path = $request->file('upload')->store('blog-post', 'public');
+        $url = Storage::url($path);
+
+        // Return the response
+        return response()->json(['url' => $url]);
+    }
+
 
     /**
      * Display the specified resource.
@@ -95,7 +112,8 @@ class BlogController extends Controller
         if ($request->hasFile('image')) {
             // Delete the old image if it exists
             if ($user->image) {
-                Storage::delete('public/blog/' . $user->image);
+                Storage::disk('public')->delete('blog/' . $user->image);
+                Storage::disk('public')->delete('blog-post/' . $user->image);
             }
 
             $image = $request->file('image');
@@ -124,7 +142,37 @@ class BlogController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Blog::find($id)->delete();
+        $data = Blog::findOrFail($id);
+
+        // Check if there is an image to delete
+        if ($data->image) {
+            $imagePath = 'blog/' . basename($data->image);
+            Storage::disk('public')->delete($imagePath);
+        }
+
+        // Check if there are images in the deskripsi to delete
+        if ($data->deskripsi) {
+            // Use a regex to find all image URLs in the deskripsi
+            preg_match_all('/<img[^>]+src="([^">]+)"/', $data->deskripsi, $matches);
+
+            if (!empty($matches[1])) {
+                foreach ($matches[1] as $imageUrl) {
+                    // Extract the filename from the URL
+                    $imageName = basename($imageUrl);
+                    $imagePath = 'blog-post/' . $imageName;
+
+                    // Delete the image if it exists
+                    Storage::disk('public')->delete($imagePath);
+                }
+            }
+        }
+
+        // Delete the blog entry
+        $data->delete();
+
         return redirect()->route('blog.index')->with('success', 'Berhasil Menghapus Data');
     }
+
+
+
 }

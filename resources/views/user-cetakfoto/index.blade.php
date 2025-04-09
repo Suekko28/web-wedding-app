@@ -5,10 +5,11 @@
         <section class="blog-hero" id="blog-hero">
             <div class="d-flex flex-wrap">
                 <div class="col-12 col-lg-6 align-content-center">
-                    <h4 class="text-black">Abadikan Setiap Kenganganmu!</h4>
+                    <h4 class="text-black">Abadikan Setiap Kenanganmu!</h4>
                     <span>Mengenang setiap momen yang terabadikan dalam foto</span>
                 </div>
                 <div class="col-12 col-lg-6 blog-hero-img">
+                    <img class="img-fluid" src="{{ asset('img/Banner_Cetak-Foto.png') }}" alt="Foto Cetak Foto">
                 </div>
             </div>
         </section>

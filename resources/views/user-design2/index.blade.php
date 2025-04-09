@@ -11,34 +11,7 @@
     {{-- @include('layouts.breadcrumb', ['title' => 'Nama Undangan', 'subtitle' => 'Dashboard']) --}}
     <!-- Row -->
 
-    <style>
-        .radio_group {
-            display: flex;
-            gap: 16px;
-        }
-
-        .radio_group label {
-            padding: 7px 51px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 0.6px solid #b0b0b0;
-            border-radius: 100px;
-        }
-
-        .radio_group input:checked+.radio_label {
-            background: var(--bs-blue);
-            color: white;
-        }
-
-        .radio_group input {
-            display: none;
-        }
-
-        label {
-            font-size: 16px;
-        }
-    </style>
+   
     <main>
         <div class="container-xxl flex-grow-1 container-p-y">
             <a class="btn btn-primary mb-3" href="{{ route('nama-undangan-create2', ['id' => $weddingDesign2->id]) }}">+
@@ -83,7 +56,7 @@
                                             <td scope="row">{{ $i }}</td>
                                             <td scope="row">{{ $item->nama_undangan }}</td>
                                             <td>
-                                                <div class="btn-group-vertical">
+                                                <div class="btn-group-horizontal">
                                                     <a href="{{ url('nama-undangan/design2/' . $item->id) . '/edit' }}"
                                                         class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
                                                             style="color:white;"></i></a>

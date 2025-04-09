@@ -37,4 +37,9 @@ class InformasiDesign4 extends Model
         return $this->hasMany(KirimHadiahDesign4::class, 'informasi_design4_id', 'id');
     }
 
+    public function weddingDesign4()
+    {
+        return $this->belongsTo(WeddingDesign4::class, 'id_weddingdesign4', 'id'); // Adjust the second parameter if necessary
+    }
+
 }

@@ -1406,6 +1406,8 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'Aws\\MarketplaceEntitlementService\\MarketplaceEntitlementServiceClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MarketplaceEntitlementService/MarketplaceEntitlementServiceClient.php',
         'Aws\\MarketplaceMetering\\Exception\\MarketplaceMeteringException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MarketplaceMetering/Exception/MarketplaceMeteringException.php',
         'Aws\\MarketplaceMetering\\MarketplaceMeteringClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MarketplaceMetering/MarketplaceMeteringClient.php',
+        'Aws\\MarketplaceReporting\\Exception\\MarketplaceReportingException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MarketplaceReporting/Exception/MarketplaceReportingException.php',
+        'Aws\\MarketplaceReporting\\MarketplaceReportingClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MarketplaceReporting/MarketplaceReportingClient.php',
         'Aws\\MediaConnect\\Exception\\MediaConnectException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MediaConnect/Exception/MediaConnectException.php',
         'Aws\\MediaConnect\\MediaConnectClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MediaConnect/MediaConnectClient.php',
         'Aws\\MediaConvert\\Exception\\MediaConvertException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MediaConvert/Exception/MediaConvertException.php',

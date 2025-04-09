@@ -36,7 +36,7 @@ class CetakFotoController extends Controller
         $data = $request->all();
         $userId = auth()->user()->id;
         $image = $request->file('image');
-        $nama_image = rand() . $image->getClientOriginalName();
+        $nama_image = rand() . $image->hashName();
         $image->storeAs('public/cetakfoto', $nama_image);
 
         // Buat ID Seserahan
@@ -95,7 +95,7 @@ class CetakFotoController extends Controller
             }
 
             $image = $request->file('image');
-            $extension = $image->getClientOriginalName();
+            $extension = $image->hashName();
             $nama_image = time() . '_' . uniqid() . '.' . $extension;
 
             $image->storeAs('public/cetakfoto', $nama_image);
@@ -117,7 +117,13 @@ class CetakFotoController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = CetakFoto::find($id)->delete();
+        $data = CetakFoto::findOrFail($id);
+
+        if ($data->image) {
+            Storage::delete('public/cetakfoto/' . $data->image);
+        }
+
+        $data->delete();
         return redirect()->route('cetakfoto.index')->with('success', 'Berhasil Menghapus Data');
 
     }

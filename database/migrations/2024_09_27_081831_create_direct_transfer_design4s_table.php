@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('direct_transfer_design4', function (Blueprint $table) {
             $table->id();
             $table->string('bank');
-            $table->integer('no_rek');
+            $table->bigInteger('no_rek');
             $table->string('nama_rek');
             $table->unsignedBigInteger('informasi_design4_id');
             $table->foreign('informasi_design4_id')

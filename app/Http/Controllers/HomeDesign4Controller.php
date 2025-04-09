@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UcapanDesign4FormRequest;
+use Illuminate\Support\Str;
 use App\Models\InformasiDesign4;
 use App\Models\UcapanDesign4;
 use App\Models\WeddingDesign4;
@@ -28,9 +29,16 @@ class HomeDesign4Controller extends Controller
         // Simpan alt4Model ke dalam relasi undanganAlt4$undanganAlt4RSVP pada undanganAlt4$undanganAlt4 yang sesuai
         $undanganAlt4->alt4Models()->save($alt4Model);
 
-        // Redirect kembali ke halaman showDetail dengan parameter yang sesuai
-        return redirect()->route('wedding-design4-home', compact('nama_mempelai_laki', 'nama_mempelai_perempuan', 'nama_undangan'))
-            ->with('success', 'Berhasil menambahkan data');
+        return redirect()->route('wedding-design4-home', [
+            'nama_mempelai_laki' => $nama_mempelai_laki,
+            'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
+            'nama_undangan' => $nama_undangan,
+        ])->with('success', 'Berhasil menambahkan doa ucapan')
+            ->with('hide_offcanvas', true)
+            ->with('activeTab', 'pills-home'); // Menyimpan tab yang aktif (misalnya pills-home)
+
+
+
     }
 
     public function show($nama_mempelai_laki, $nama_mempelai_perempuan)
@@ -49,20 +57,19 @@ class HomeDesign4Controller extends Controller
             ->whereHas('namaUndangan', function ($query) use ($nama_undangan) {
                 $query->where('nama_undangan', $nama_undangan);
             })
-            ->with('PerjalananCintaDesign4') // Load the PerjalananCintaDesign4 relationship
+            ->with('PerjalananCintaDesign4')
             ->with('DirectTransferDesign4')
-            ->with('alt4Models') // Load the PerjalananCintaDesign4 relationship
+            ->with('KirimHadiahDesign4')
             ->firstOrFail();
 
-        // Retrieve alt4models related to the instance
-        $alt4models = $data->alt4Models;
+        $alt4models = $data->alt4Models()->orderBy('created_at', 'desc')->get();
 
-        // Count hadir dan tidak hadir
         $hadirCount = $alt4models->where('kehadiran', 1)->count();
         $tidakHadirCount = $alt4models->where('kehadiran', 0)->count();
 
         return view('wedding-design4.home', compact('data', 'alt4models', 'nama_mempelai_laki', 'nama_mempelai_perempuan', 'nama_undangan', 'hadirCount', 'tidakHadirCount'));
     }
+
 
 
 }

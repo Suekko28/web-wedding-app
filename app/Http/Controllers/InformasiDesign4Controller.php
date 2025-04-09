@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InformasiDesign4FormRequest;
 use App\Models\InformasiDesign4;
 use Illuminate\Http\Request;
+use Storage;
 
 class InformasiDesign4Controller extends Controller
 {
@@ -13,11 +14,12 @@ class InformasiDesign4Controller extends Controller
      */
     public function index()
     {
-        $data = InformasiDesign4::orderBy('id', 'desc')->with('KontenDesign4')->paginate(10);
+        $data = InformasiDesign4::orderBy('id', 'desc')->with(['KontenDesign4', 'weddingDesign4'])->paginate(10);
         return view('admin-design4.index', [
             'data' => $data,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -35,11 +37,11 @@ class InformasiDesign4Controller extends Controller
         $data = $request->all();
 
         $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
-        $latestWeddingDesign1 = InformasiDesign4::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
+        $latestWeddingDesign4 = InformasiDesign4::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
 
         // Menentukan urutan ID Seserahan
-        if ($latestWeddingDesign1) {
-            $lastId = intval(substr($latestWeddingDesign1->id_weddingdesign4, -4)); // Mengambil 4 digit terakhir dari id_weddingdesign4
+        if ($latestWeddingDesign4) {
+            $lastId = intval(substr($latestWeddingDesign4->id_weddingdesign4, -4)); // Mengambil 4 digit terakhir dari id_weddingdesign4
             $newIdNumber = $lastId + 1; // Menambah 1 dari id terakhir
         } else {
             $newIdNumber = 1; // Jika belum ada data, mulai dari 1
@@ -61,7 +63,7 @@ class InformasiDesign4Controller extends Controller
      */
     public function show(string $id)
     {
-        
+
     }
 
     /**
@@ -94,7 +96,58 @@ class InformasiDesign4Controller extends Controller
      */
     public function destroy(string $id)
     {
-        $data = InformasiDesign4::find($id)->delete();
+        $data = InformasiDesign4::with(['KontenDesign4', 'PerjalananCintaDesign4'])->find($id);
+
+
+        foreach ($data->KontenDesign4 as $weddingDesign) {
+            if ($weddingDesign->banner_img) {
+                Storage::delete($weddingDesign->banner_img);
+            }
+
+            if ($weddingDesign->foto_prewedding) {
+                Storage::delete($weddingDesign->foto_prewedding);
+            }
+
+            if ($weddingDesign->foto_mempelai_laki) {
+                Storage::delete($weddingDesign->foto_mempelai_laki);
+            }
+
+            if ($weddingDesign->foto_mempelai_perempuan) {
+                Storage::delete($weddingDesign->foto_mempelai_perempuan);
+            }
+
+            if ($weddingDesign->music) {
+                Storage::delete($weddingDesign->music);
+            }
+
+            if ($weddingDesign->quote_img) {
+                $existingQuoteImages = json_decode($weddingDesign->quote_img, true);
+                foreach ($existingQuoteImages as $existingImage) {
+                    Storage::delete($existingImage);
+                }
+            }
+
+            if ($weddingDesign->akad_img) {
+                Storage::delete($weddingDesign->akad_img);
+            }
+
+            $weddingDesign->delete();
+        }
+
+        foreach ($data->PerjalananCintaDesign4 as $PerjalananCinta) {
+            if ($PerjalananCinta->image1) {
+                Storage::delete($PerjalananCinta->image1);
+            }
+            if ($PerjalananCinta->image2) {
+                Storage::delete($PerjalananCinta->image2);
+            }
+
+            $PerjalananCinta->delete();
+        }
+
+        $data->delete();
+
         return redirect()->route('wedding-design4.index')->with('success', 'Data berhasil Dihapus');
     }
+
 }

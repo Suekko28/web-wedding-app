@@ -16,9 +16,10 @@ class UserBlogController extends Controller
         return view('user-blog.index', compact('data'));
     }
 
-    public function show(string $id)
+    public function show($id)
     {
-        $data = Blog::find($id);
+        $data = Blog::where('id',$id)
+        ->firstOrFail();
         return view('user-blog.show', compact('data'));
     }
 

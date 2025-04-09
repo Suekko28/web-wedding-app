@@ -8,41 +8,55 @@
 
 @section('pageContent')
 
-    {{-- @include('layouts.breadcrumb', ['title' => 'Nama Undangan', 'subtitle' => 'Dashboard'])
-    <!-- Row --> --}}
     <style>
-        .radio_group {
-            display: flex;
-            gap: 16px;
+        .manual-backdrop {
+            display: none;
+            /* Secara default tidak ditampilkan */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 1);
+            /* Warna dan transparansi backdrop */
+            z-index: -1;
+            /* Pastikan backdrop berada di belakang modal */
         }
 
-        .radio_group label {
-            padding: 7px 51px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 0.6px solid #b0b0b0;
-            border-radius: 100px;
+        .modal-body,
+        .modal-header {
+            color: #000;
+            /* Atur warna teks menjadi hitam atau warna yang lebih kontras */
         }
 
-        .radio_group input:checked+.radio_label {
-            background: var(--bs-blue);
-            color: white;
+        .modal {
+            z-index: 1050;
+            /* Setel z-index agar modal berada di atas elemen lainnya */
         }
 
-        .radio_group input {
+        .modal-backdrop {
+            z-index: 1040;
+            /* Pastikan backdrop berada tepat di belakang modal */
+        }
+
+        .modal-backdrop.show,
+        .modal-backdrop.fade {
             display: none;
         }
-
-        label {
-            font-size: 16px;
-        }
     </style>
+
+    {{-- @include('layouts.breadcrumb', ['title' => 'Nama Undangan', 'subtitle' => 'Dashboard'])
+    <!-- Row --> --}}
+
     <main>
         <div class="container-xxl flex-grow-1 container-p-y">
-            <a class="btn btn-primary mb-3" href="{{ route('nama-undangan-create4', ['id' => $weddingDesign4->id]) }}">+
-                Nama
-                Undangan</a>
+            <a class="btn btn-primary mb-3"
+                href="{{ route('nama-undangan-create4', [
+                    'id' => $weddingDesign4->id, // This is the weddingDesign4 ID (e.g., 2)
+                ]) }}">
+                + Nama Undangan
+            </a>
+
             @include('layouts.message')
             <!-- Responsive Table -->
             <div class="card">
@@ -82,16 +96,16 @@
                                             <td scope="row">{{ $i }}</td>
                                             <td scope="row">{{ $item->nama_undangan }}</td>
                                             <td>
-                                                <div class="btn-group-vertical">
-                                                    <a href="{{ url('nama-undangan/design4/' . $item->id) . '/edit' }}"
+                                                <div class="btn-group-horizontal">
+                                                    <a href="{{ url('nama-undangan/premium-gold/' . $item->id) . '/edit' }}"
                                                         class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
                                                             style="color:white;"></i></a>
                                                     <button class="btn btn-danger delete-btn rounded mb-2"
                                                         nama_undangan-id="{{ $item->id }}"><i
                                                             class="fa fa-trash"></i></button>
-                                                    <a href="#exampleModal{{ $item->id }}"
+                                                    <a href="#exampleModalToggle{{ $item->id }}"
                                                         class="btn btn-primary rounded mb-2" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal{{ $item->id }}">
+                                                        data-bs-target="#exampleModalToggle{{ $item->id }}">
                                                         <i class="fa fa-link" style="color:white;"></i>
                                                     </a>
 
@@ -103,94 +117,83 @@
                                 </tbody>
                             </table>
                         </form>
-                        @foreach ($nama_undangan as $item)
-                            <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
-                                aria-labelledby="exampleModalLabel{{ $item->id }}" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel{{ $item->id }}">Template
-                                                Message</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="radio_group">
-                                                <input type="radio" name="kehadiran" value="1"
-                                                    id="radio1{{ $item->id }}"
-                                                    data-nama-undangan="{{ $item->nama_undangan }}"
-                                                    data-item-id="{{ $item->id }}">
-                                                <label for="radio1{{ $item->id }}" class="radio_label">1</label>
 
-                                                <input type="radio" name="kehadiran" value="2"
-                                                    id="radio2{{ $item->id }}"
-                                                    data-nama-undangan="{{ $item->nama_undangan }}"
-                                                    data-item-id="{{ $item->id }}">
-                                                <label for="radio2{{ $item->id }}" class="radio_label">2</label>
-
-                                                <input type="radio" name="kehadiran" value="3"
-                                                    id="radio3{{ $item->id }}"
-                                                    data-nama-undangan="{{ $item->nama_undangan }}"
-                                                    data-item-id="{{ $item->id }}">
-                                                <label for="radio3{{ $item->id }}" class="radio_label">3</label>
-                                            </div>
-                                            <textarea class="form-control mt-3" rows="20" id="nama_undangan{{ $item->id }}" name="nama_undangan"
-                                                placeholder="Silahkan pilih template message terlebih dahulu" readonly></textarea>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#shareModal{{ $item->id }}"
-                                                data-nama-undangan="{{ $item->nama_undangan }}"
-                                                id="shareButton{{ $item->id }}" disabled>Share</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
 
                         <div class="p-2">{{ $nama_undangan->links() }}</div>
                     </div>
 
-                    @foreach ($nama_undangan as $item)
-                        <div class="modal fade" id="shareModal{{ $item->id }}" tabindex="-1"
-                            aria-labelledby="shareModalLabel{{ $item->id }}" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="shareModalLabel">Share Link</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- Isi modal -->
-                                        {{-- <p>Content of your modal goes here...</p> --}}
-                                        <div>
-                                            {{-- <button class="btn btn-primary"
-                                            onclick="copyLink('{{ $item->id }}', '{{ $weddingDesign4->nama_mempelai_laki }}', '{{ $weddingDesign4->nama_mempelai_perempuan }}', '{{ $item->nama_undangan }}')">
-                                            <i class="fas fa-copy"></i> Copy Link
-                                        </button> --}}
-                                            <a href="#" class="btn btn-primary" id="shareOptionWhatsApp"
-                                                data-nama-undangan="{{ $item->nama_undangan }}"
-                                                id="shareButton{{ $item->id }}" class="btn btn-primary"
-                                                onclick="shareOnWhatsApp('{{ $item->nama_undangan }}', '{{ $item->id }}')">
-                                                <i class="fab fa-whatsapp"></i> Share on WhatsApp
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-
 
                 </div>
             </div>
+
+            @foreach ($nama_undangan as $item)
+                <div class="modal fade manual-backdrop" id="exampleModalToggle{{ $item->id }}" tabindex="-1"
+                    aria-labelledby="exampleModalToggleLabel{{ $item->id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel{{ $item->id }}">
+                                    Template
+                                    Message</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="radio_group">
+                                    <input type="radio" name="kehadiran" value="1" id="radio1{{ $item->id }}"
+                                        data-nama-undangan="{{ $item->nama_undangan }}"
+                                        data-item-id="{{ $item->id }}">
+                                    <label for="radio1{{ $item->id }}" class="radio_label">1</label>
+
+                                    <input type="radio" name="kehadiran" value="2" id="radio2{{ $item->id }}"
+                                        data-nama-undangan="{{ $item->nama_undangan }}"
+                                        data-item-id="{{ $item->id }}">
+                                    <label for="radio2{{ $item->id }}" class="radio_label">2</label>
+
+                                    <input type="radio" name="kehadiran" value="3" id="radio3{{ $item->id }}"
+                                        data-nama-undangan="{{ $item->nama_undangan }}"
+                                        data-item-id="{{ $item->id }}">
+                                    <label for="radio3{{ $item->id }}" class="radio_label">3</label>
+                                </div>
+                                <textarea class="form-control mt-3" rows="20" id="nama_undangan{{ $item->id }}" name="nama_undangan"
+                                    placeholder="Silahkan pilih template message terlebih dahulu" readonly></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalToggleToggle2{{ $item->id }}"
+                                    data-nama-undangan="{{ $item->nama_undangan }}" id="shareButton{{ $item->id }}"
+                                    disabled>Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+            @foreach ($nama_undangan as $item)
+                <div class="modal fade manual-backdrop" id="exampleModalToggleToggle2{{ $item->id }}" tabindex="-1"
+                    aria-labelledby="exampleModalToggleToggle2Label{{ $item->id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalToggleToggle2Label">Share Link</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <a href="#" class="btn btn-primary" id="shareOptionWhatsApp"
+                                    data-nama-undangan="{{ $item->nama_undangan }}" id="shareButton{{ $item->id }}"
+                                    onclick="shareOnWhatsApp('{{ $item->nama_undangan }}', '{{ $item->id }}')">
+                                    <i class="fab fa-whatsapp"></i> Share on WhatsApp
+                                </a>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
 
 
     </main>
@@ -266,16 +269,6 @@
             window.open(whatsappLink, '_blank');
         }
 
-        // function copyLink(itemId, namaMempelaiLaki, namaMempelaiPerempuan, namaUndangan) {
-        //     var link = "jejakkebahagiaan.com/" + namaMempelaiLaki + "&" + namaMempelaiPerempuan + "/" + namaUndangan;
-        //     navigator.clipboard.writeText(link)
-        //         .then(function() {
-        //             alert("Link berhasil disalin: " + link);
-        //         })
-        //         .catch(function(error) {
-        //             console.error("Gagal menyalin link: ", error);
-        //         });
-        // }
 
 
         // Fitur Delete by id menggunakan swal 
@@ -297,7 +290,7 @@
                     if (result.isConfirmed) {
                         // Replace the delete form action with the correct route and ID
                         document.getElementById('deleteForm').action =
-                            "{{ route('nama-undangan.destroy3', ['id' => ':id']) }}".replace(':id',
+                            "{{ route('nama-undangan.destroy4', ['id' => ':id']) }}".replace(':id',
                                 itemId);
                         document.getElementById('deleteForm').submit();
                         Swal.fire(
@@ -337,10 +330,11 @@
             }
         });
     </script>
+
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/prismjs/prism.js') }}"></script>
     <script src="{{ URL::asset('build/js/widget/ui-card-init.js') }}"></script>
-@endsection
+@endsection --}}
