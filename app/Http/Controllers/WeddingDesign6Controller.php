@@ -82,16 +82,6 @@ class WeddingDesign6Controller extends Controller
             $data['music'] = $request->file('music')->storeAs('public/wedding-design6-music', $request->file('music')->hashName());
         }
 
-        if ($request->hasFile('quote_img')) {
-            $quoteImages = $request->file('quote_img');
-            $quoteImagePaths = [];
-
-            foreach ($quoteImages as $quoteImage) {
-                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design6', $quoteImage->hashName());
-            }
-
-            $data['quote_img'] = json_encode($quoteImagePaths); // Store paths as a JSON array or adjust according to your needs
-        }
 
         if ($request->hasFile('akad_img')) {
             $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design6', $request->file(key: 'akad_img')->hashName());
@@ -105,61 +95,6 @@ class WeddingDesign6Controller extends Controller
 
         return redirect()->route('wedding-design6.index', $informasiDesign6Id)->with('success', 'Berhasil menambahkan data');
 
-    }
-
-    public function storePerjalananCinta(PerjalananCintaDesign6FormRequest $request, $informasiDesign6Id)
-    {
-        $informasiDesign6 = InformasiDesign6::findOrFail($informasiDesign6Id);
-
-        $data = $request->except('image'); // ambil semua data kecuali image
-        $data['informasi_design6_id'] = $informasiDesign6->id;
-
-        // Simpan setiap gambar ke folder dan buat entri baru
-        foreach ($request->file('image') as $file) {
-            $path = $file->storeAs(
-                'public/wedding-design6/perjalanan-cinta',
-                $file->hashName()
-            );
-
-            PerjalananCintaDesign6::create([
-                'image' => $path,
-                'informasi_design6_id' => $data['informasi_design6_id'],
-                'nama_pasangan' => $request->nama_pasangan,
-                'tgl_pernikahan' => $request->tgl_pernikahan,
-            ]);
-        }
-
-        return response()->json(['message' => 'Perjalanan Cinta berhasil ditambahkan.']);
-    }
-
-
-
-    public function storeDirectTransfer(DirectTransferDesign6FormRequest $request, $informasiDesign6Id)
-    {
-        $informasiDesign6 = InformasiDesign6::findOrFail($informasiDesign6Id);
-        $data = $request->all();
-
-        $data['informasi_design6_id'] = $informasiDesign6->id;
-
-
-        // Create the PerjalananCintaDesign6 record
-        DirectTransferDesign6::create($data);
-
-        return back()->with('success', 'Kirim Hadiah berhasil ditambahkan.');
-    }
-
-    public function storeKirimHadiah(KirimHadiahDesign6FormRequest $request, $informasiDesign6Id)
-    {
-        $informasiDesign6 = InformasiDesign6::findOrFail($informasiDesign6Id);
-        $data = $request->all();
-
-        $data['informasi_design6_id'] = $informasiDesign6->id;
-
-
-        // Create the PerjalananCintaDesign6 record
-        KirimHadiahDesign6::create($data);
-
-        return back()->with('success', 'Kirim Hadiah berhasil ditambahkan.');
     }
 
     public function show(string $id)
@@ -258,24 +193,6 @@ class WeddingDesign6Controller extends Controller
             $data['music'] = $request->file('music')->storeAs('public/wedding-design6-music', $request->file('music')->hashName());
         }
 
-        if ($request->hasFile('quote_img')) {
-            // Delete existing quote images if necessary
-            if ($weddingDesign6->quote_img) {
-                $existingQuoteImages = json_decode($weddingDesign6->quote_img, true);
-                foreach ($existingQuoteImages as $existingImage) {
-                    Storage::delete($existingImage);
-                }
-            }
-
-            $quoteImages = $request->file('quote_img');
-            $quoteImagePaths = [];
-
-            foreach ($quoteImages as $quoteImage) {
-                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design6', $quoteImage->hashName());
-            }
-
-            $data['quote_img'] = json_encode($quoteImagePaths); // Store paths as a JSON array
-        }
 
         if ($request->hasFile('akad_img')) {
             if ($weddingDesign6->akad_img) {
@@ -290,26 +207,91 @@ class WeddingDesign6Controller extends Controller
     }
 
 
+    // Function Controller Perjalanan Cinta
+
+    public function storePerjalananCinta(PerjalananCintaDesign6FormRequest $request, $informasiDesign6Id)
+    {
+        $informasiDesign6 = InformasiDesign6::findOrFail($informasiDesign6Id);
+
+        $data = $request->except('image');
+        $data['informasi_design6_id'] = $informasiDesign6->id;
+
+        if ($request->hasFile('image')) {
+            $paths = [];
+
+            foreach ($request->file('image') as $image) {
+                $paths[] = $image->storeAs('public/wedding-design6/perjalanan-cinta', $image->hashName());
+            }
+
+            $data['image'] = json_encode($paths); // simpan sebagai JSON array
+        }
+
+        PerjalananCintaDesign6::create($data);
+
+        return response()->json(['message' => 'Perjalanan Cinta berhasil ditambahkan.']);
+    }
+
     public function updatePerjalananCinta(PerjalananCintaDesign6FormRequest $request, $id)
     {
         $perjalananCinta = PerjalananCintaDesign6::findOrFail($id);
-        $data = $request->all();
+        $data = $request->except('image');
 
         if ($request->hasFile('image')) {
-            if ($perjalananCinta->image) {
-                Storage::delete($perjalananCinta->image);
+            // Hapus semua gambar lama
+            $oldImages = json_decode($perjalananCinta->image, true);
+            if (is_array($oldImages)) {
+                foreach ($oldImages as $oldImage) {
+                    Storage::delete($oldImage);
+                }
             }
-            $data['image'] = $request->file('image')->storeAs(
-                'public/wedding-design6/perjalanan-cinta',
-                $request->file('image')->hashName()
-            );
-        }
 
+            $paths = [];
+            foreach ($request->file('image') as $image) {
+                $paths[] = $image->storeAs('public/wedding-design6/perjalanan-cinta', $image->hashName());
+            }
+
+            $data['image'] = json_encode($paths);
+        }
 
         $perjalananCinta->update($data);
 
-
         return response()->json(['message' => 'Perjalanan Cinta berhasil diubah.']);
+    }
+
+    public function destroyPerjalananCinta($id)
+    {
+        $perjalananCinta = PerjalananCintaDesign6::findOrFail($id);
+
+        // Hapus semua gambar jika ada
+        if ($perjalananCinta->image) {
+            $images = json_decode($perjalananCinta->image, true);
+            if (is_array($images)) {
+                foreach ($images as $image) {
+                    Storage::delete($image);
+                }
+            }
+        }
+
+        $perjalananCinta->delete();
+
+        return response()->json(['message' => 'Perjalanan Cinta berhasil dihapus']);
+    }
+
+
+
+
+    // Function Controller Direct Transfer
+
+    public function storeDirectTransfer(DirectTransfterDesign6FormRequest $request, $informasiDesign6Id)
+    {
+        $informasiDesign6 = InformasiDesign6::findOrFail($informasiDesign6Id);
+        $data = $request->all();
+
+        $data['informasi_design6_id'] = $informasiDesign6->id;
+
+        DirectTransferDesign6::create($data);
+
+        return response()->json(['message' => 'Direct Transfer berhasil ditambahkan.']);
     }
 
     public function updateDirectTransfer(DirectTransfterDesign6FormRequest $request, $id)
@@ -319,59 +301,48 @@ class WeddingDesign6Controller extends Controller
 
         $directTransfer->update($data); // Update model PerjalananCintaDesign6
 
-        return back()->with('success', 'Direct Transfer berhasil diubah.');
+        return response()->json(['message' => 'Direct Transfer berhasil diubah.']);
+    }
+
+    public function destroyDirectTransfer($id)
+    {
+        $directTransfer = DirectTransferDesign6::findOrFail($id);
+
+        $directTransfer->delete();
+
+        return response()->json(['message' => 'Direct Transfer berhasil dihapus']);
+    }
+
+
+    // Function Controller Kirim Hadiah
+
+    public function storeKirimHadiah(KirimHadiahDesign6FormRequest $request, $informasiDesign6Id)
+    {
+        $informasiDesign6 = InformasiDesign6::findOrFail($informasiDesign6Id);
+        $data = $request->all();
+        $data['informasi_design6_id'] = $informasiDesign6->id;
+
+        KirimHadiahDesign6::create($data);
+
+        return response()->json(['message' => 'Kirim Hadiah berhasil ditambahkan.']);
     }
 
     public function updateKirimHadiah(KirimHadiahDesign6FormRequest $request, $id)
     {
-        $directTransfer = KirimHadiahDesign6::findOrFail($id);
+        $kirimHadiah = KirimHadiahDesign6::findOrFail($id);
         $data = $request->all();
 
-        $directTransfer->update($data); // Update model PerjalananCintaDesign6
+        $kirimHadiah->update($data); // Update model PerjalananCintaDesign6
 
-        return back()->with('success', 'Direct Transfer berhasil diubah.');
+        return response()->json(['message' => 'Kirim Hadiah berhasil diubah.']);
     }
 
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id, string $type)
+    public function destroyKirimHadiah($id)
     {
-        switch ($type) {
-            case 'perjalanan-cinta':
-                $model = PerjalananCintaDesign6::find($id);
-                break;
-            case 'direct-transfer':
-                $model = DirectTransferDesign6::find($id);
-                break;
-            case 'kirim-hadiah':
-                $model = KirimHadiahDesign6::find($id);
-                break;
-            default:
-                return redirect()->back()->with('error', 'Data tidak ditemukan.');
-        }
+        $kirimHadiah = KirimHadiahDesign6::findOrFail($id);
 
-        if ($model) {
-            $model->delete();
-            return redirect()->back()->with('success', 'Data berhasil dihapus.');
-        } else {
-            return redirect()->back()->with('error', 'Data tidak ditemukan.');
-        }
+        $kirimHadiah->delete();
+
+        return response()->json(['message' => 'Kirim Hadiah berhasil dihapus']);
     }
-
-    public function destroyPerjalananCinta($id)
-    {
-        $perjalananCinta = PerjalananCintaDesign6::findOrFail($id);
-
-        if ($perjalananCinta->image) {
-            Storage::delete($perjalananCinta->image);
-        }
-
-        $perjalananCinta->delete();
-
-        return response()->json(['message' => 'Perjalanan Cinta berhasil dihapus']);
-    }
-
 }

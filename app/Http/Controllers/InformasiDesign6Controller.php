@@ -78,7 +78,7 @@ class InformasiDesign6Controller extends Controller
     {
         $data = InformasiDesign6::with(['KontenDesign6', 'PerjalananCintaDesign6'])->find($id);
 
-
+        // Hapus semua file pada KontenDesign6
         foreach ($data->KontenDesign6 as $weddingDesign) {
             if ($weddingDesign->banner_img) {
                 Storage::delete($weddingDesign->banner_img);
@@ -100,12 +100,6 @@ class InformasiDesign6Controller extends Controller
                 Storage::delete($weddingDesign->music);
             }
 
-            if ($weddingDesign->quote_img) {
-                $existingQuoteImages = json_decode($weddingDesign->quote_img, true);
-                foreach ($existingQuoteImages as $existingImage) {
-                    Storage::delete($existingImage);
-                }
-            }
 
             if ($weddingDesign->akad_img) {
                 Storage::delete($weddingDesign->akad_img);
@@ -114,10 +108,17 @@ class InformasiDesign6Controller extends Controller
             $weddingDesign->delete();
         }
 
+        // Hapus semua file pada PerjalananCintaDesign6
         foreach ($data->PerjalananCintaDesign6 as $PerjalananCinta) {
             if ($PerjalananCinta->image) {
-                Storage::delete($PerjalananCinta->image);
+                $images = json_decode($PerjalananCinta->image, true);
+                if (is_array($images)) {
+                    foreach ($images as $image) {
+                        Storage::delete($image);
+                    }
+                }
             }
+
             $PerjalananCinta->delete();
         }
 

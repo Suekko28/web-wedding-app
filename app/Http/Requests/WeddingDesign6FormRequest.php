@@ -34,7 +34,6 @@ class WeddingDesign6FormRequest extends FormRequest
             'putra_dari_ibu' => ['required', 'string', 'max:255'],
             'nama_instagram2' => ['string', 'max:255'],
             'link_instagram2' => ['url', 'max:255'],
-            'quote' => ['string'],
             'lokasi_akad' => ['required', 'string', 'max:255'],
             'deskripsi_akad' => ['string'],
             'simpan_tgl_akad' => ['required', 'string', 'max:255'],
@@ -58,8 +57,6 @@ class WeddingDesign6FormRequest extends FormRequest
             $rules['foto_prewedding'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_mempelai_perempuan'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_mempelai_laki'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
-            $rules['quote_img'] = ['required', 'array']; // Change to array
-            $rules['quote_img.*'] = ['image', 'mimes:jpeg,png,jpg']; // Validate each image
             $rules['akad_img'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
         } else {
             // Jika ini adalah request untuk update, gambar bersifat opsional (nullable)
@@ -68,8 +65,6 @@ class WeddingDesign6FormRequest extends FormRequest
             $rules['foto_prewedding'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_mempelai_perempuan'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_mempelai_laki'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
-            $rules['quote_img'] = ['nullable', 'array'];
-            $rules['quote_img.*'] = ['image', 'mimes:jpeg,png,jpg'];
             $rules['akad_img'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
         }
 
@@ -116,11 +111,6 @@ class WeddingDesign6FormRequest extends FormRequest
             'putra_dari_bpk.required' => 'Nama ayah dari mempelai laki-laki harus diisi.',
             'putra_dari_ibu.required' => 'Nama ibu dari mempelai laki-laki harus diisi.',
 
-            'quote.string' => 'Quote harus berupa teks.',
-
-            'quote_img.required' => 'Gambar quote harus diunggah.',
-            'quote_img.image' => 'Gambar quote harus berupa file gambar.',
-            'quote_img.mimes' => 'Gambar quote hanya boleh berupa file dengan format jpeg, png, jpg.',
 
             'akad_img.required' => 'Gambar akad harus diunggah.',
             'akad_img.image' => 'Gambar akad harus berupa file gambar.',
@@ -161,8 +151,6 @@ class WeddingDesign6FormRequest extends FormRequest
             'simpan_tgl_resepsi.required' => 'Tanggal resepsi harus diisi.',
             'simpan_tgl_resepsi.string' => 'Tanggal resepsi harus berupa teks.',
             'simpan_tgl_resepsi.max' => 'Tanggal resepsi tidak boleh lebih dari 255 karakter.',
-
-            'link_streaming.required' => 'Link streaming harus diisi.',
 
             'informasi_design6_id.required' => 'Informasi design harus diisi.',
             'informasi_design6_id.exists' => 'Informasi design tidak valid.',

@@ -28,7 +28,7 @@
         type="text/css" media="screen" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
-    <title>Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!</title>
+    <title>The Wedding Of {{ $data->InformasiDesign6->nama_pasangan }}</title>
 
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -37,6 +37,8 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-design6.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+
 </head>
 
 <body>
@@ -209,24 +211,33 @@
         </div>
     </section>
     <!-- MEMPELAI END -->
+
     <!-- Gallery -->
     @if (!empty($data) && $data->PerjalananCintaDesign6->isNotEmpty())
         <section class="animation gallery" id="gallery">
             <div class="anm_mod bottom-bit fast container-gallery">
-                <div class="title">
-                    <h2>Perjalanan Cinta Kami</h2>
-                    <p>Tanpa mengurangi rasa hormat kami mengundang Bapak/Ibu/Saudara/i pada pernikahan kami:</p>
-                </div>
-                <div class="container-card-gallery">
-                    @foreach ($data->PerjalananCintaDesign6 as $item)
-                        <div class="card-gallery">
-                            <a href="{{ Storage::url($item->image) }}" data-fancybox="gallery">
-                                <img class="gallery-img object-fit-cover" src="{{ Storage::url($item->image) }}"
-                                    alt="Image Gallery">
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
+                @foreach ($data->PerjalananCintaDesign6 as $item)
+                    @php
+                        $images = is_array($item->image) ? $item->image : json_decode($item->image, true);
+                    @endphp
+                    <div class="title">
+                        <h2>Perjalanan Cinta Kami</h2>
+                        <p>{{ $item->deskripsi }}</p>
+                    </div>
+                    <div class="container-card-gallery">
+
+                        @if (!empty($images))
+                            @foreach ($images as $image)
+                                <div class="card-gallery">
+                                    <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
+                                        <img class="gallery-img object-fit-cover" src="{{ Storage::url($image) }}"
+                                            alt="Image Gallery">
+                                    </a>
+                                </div>
+                            @endforeach
+                        @endif
+                @endforeach
+            </div>
             </div>
         </section>
     @endif
@@ -313,17 +324,6 @@
                             </div>
                 </div>
             </div>
-            @if (!empty($data->link_streaming))
-                <div class="anm_mod bottom-bit fast live-streaming">
-                    <div class="detail-info">
-                        <h3>Live Streaming</h3>
-                        <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
-                            siaran langsung secara live virtual di platform berikut</p>
-                    </div>
-                    <a type="button" target="_blank" href="{{ $data->link_streaming }}" class="btn-secondary">Buka
-                        Link</a>
-                </div>
-            @endif
         </div>
     </section>
     <!-- JADWAL PERNIKAHAN END -->
@@ -446,45 +446,46 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">BCA</h4>
-                                <div class="info-norek">
-                                    <p id="first">0660580697</p>
-                                    <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
+                        @foreach ($data->DirectTransferDesign6 as $index => $item)
+                            <div class="card">
+                                <div class="card-body">
+                                    @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
+                                        @if (!empty($item->bank))
+                                            <h4 class="card-title">{{ $item->bank }}</h4>
+                                        @endif
+                                        <div class="info-norek">
+                                            @if (!empty($item->no_rek))
+                                                <!-- Tambahkan indeks ke ID -->
+                                                <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
+                                            @endif
+                                            <!-- Tombol salin dengan ID unik -->
+                                            <a id="btn-copy-{{ $index }}"
+                                                onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
+                                                title="Copy Text" class="btn-ghost">
+                                                Copy
+                                            </a>
+                                        </div>
+                                        @if (!empty($item->nama_rek))
+                                            <p class="card-text">A/N {{ $item->nama_rek }}</p>
+                                        @endif
+                                    @endif
                                 </div>
-                                <p class="card-text">A/N Eka Syafitry Dewi</p>
                             </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">BCA</h4>
-                                <div class="info-norek">
-                                    <p id="second">09999</p>
-                                    <a id="second-button" onclick="copyText('second');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
-                                </div>
-                                <p class="card-text">A/N Eka Syafitry Dewi</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                        aria-labelledby="pills-profile-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Rumah</h4>
-                                <p class="card-text">Jl. Hos Cokroaminoto, Kuripan Lor Gg. 16 No.5, Kec. Pekalongan
-                                    Selatan, Kota Pekalongan, Jawa Tengah 51136</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    @foreach ($data->KirimHadiahDesign6 as $item)
+                        <div class="card">
+                            <div class="card-body">
+                                @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
+                                    <h4 class="card-title">{{ $item->alamat }}</h4>
+                                    <p class="card-text">{{ $item->deskripsi_alamat }}</p>
+                                @endif
+                    @endforeach
+                </div>
             </div>
+        </div>
         </div>
     </section>
     <!-- DOA & UCAPAN -->

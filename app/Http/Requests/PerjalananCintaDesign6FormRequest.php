@@ -23,6 +23,10 @@ class PerjalananCintaDesign6FormRequest extends FormRequest
     {
         $method = $this->method();
 
+        $rules = [
+            'deskripsi' => ['required'],
+        ];
+
         if ($method === 'POST') {
             $rules['image'] = ['required', 'array'];
             $rules['image.*'] = ['image', 'mimes:jpeg,png,jpg'];
@@ -39,6 +43,7 @@ class PerjalananCintaDesign6FormRequest extends FormRequest
     {
         return [
 
+            'deskripsi.required' => 'Deskripsi wajib diisi',
             'image.required' => 'Gambar wajib diupload',
             'image.image' => 'Gambar harus berupa file gambar.',
             'image.mimes' => 'Gambar harus dalam format jpeg, png, atau jpg.',

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('perjalanan_cinta_design6', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->text('deskripsi');
+            $table->text('image');
             $table->unsignedBigInteger('informasi_design6_id');
             $table->foreign('informasi_design6_id')
                 ->references('id')

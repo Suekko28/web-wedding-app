@@ -10,11 +10,9 @@ use App\Http\Controllers\HomeDesign3Controller;
 use App\Http\Controllers\HomeDesign4Controller;
 use App\Http\Controllers\HomeDesign5Controller;
 use App\Http\Controllers\HomeDesign6Controller;
-use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\IndexDesign1Controller;
 use App\Http\Controllers\IndexDesign2Controller;
 use App\Http\Controllers\IndexDesign3Controller;
-use App\Http\Controllers\IndexDesign4Controller;
 use App\Http\Controllers\InformasiDesign4Controller;
 use App\Http\Controllers\InformasiDesign5Controller;
 use App\Http\Controllers\InformasiDesign6Controller;
@@ -157,7 +155,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/wedding-design6/{id}/store-kirim-hadiah', [WeddingDesign6Controller::class, 'storeKirimHadiah'])->name('kirimhadiah-design6.store');
     Route::put('/wedding-design6/{id}/update-kirim-hadiah', [WeddingDesign6Controller::class, 'updateKirimHadiah'])->name('kirimhadiah-design6.update');
     Route::delete('/wedding-design6/{id}/delete-kirim-hadiah', [WeddingDesign6Controller::class, 'destroyKirimHadiah'])->name('kirimhadiah-design6.destroy');
-    Route::delete('/wedding-design6/{id}/{type}/delete', [WeddingDesign6Controller::class, 'destroy'])->name('design6.destroy');
 
 
     // Routes for Blog

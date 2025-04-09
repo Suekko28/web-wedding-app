@@ -31,8 +31,6 @@ class WeddingDesign6 extends Model
         'putra_dari_ibu',
         'nama_instagram2',
         'link_instagram2',
-        'quote',
-        'quote_img',
         'akad_img',
         'tgl_akad',
         'mulai_akad',
@@ -48,7 +46,6 @@ class WeddingDesign6 extends Model
         'deskripsi_resepsi',
         'link_resepsi',
         'simpan_tgl_resepsi',
-        'link_streaming',
         'informasi_design6_id'
 
     ];
