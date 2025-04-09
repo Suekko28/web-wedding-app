@@ -46,6 +46,12 @@ class WeddingDesign6 extends Model
         'deskripsi_resepsi',
         'link_resepsi',
         'simpan_tgl_resepsi',
+        'judul_pembuka',
+        'deskripsi_pembuka',
+        'judul_cinta',
+        'deskripsi_cinta',
+        'image_cinta',
+        'live_streaming',
         'informasi_design6_id'
 
     ];

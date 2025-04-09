@@ -24,7 +24,7 @@
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="banner_img">Upload Image<span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="banner_img" name="banner_img"
+                                        <input type="file" accept="image/*" class="form-control" id="banner_img" name="banner_img"
                                             placeholder="Rhoma Irama" value="{{ old('banner_img') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
@@ -42,7 +42,7 @@
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="foto_prewedding">Upload Image<span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="foto_prewedding"
+                                        <input type="file" accept="image/*" class="form-control" id="foto_prewedding"
                                             name="foto_prewedding" placeholder="Rhoma Irama"
                                             value="{{ old('foto_prewedding') }}">
                                     </div>
@@ -74,7 +74,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="foto_mempelai_perempuan">Foto Mempelai Perempuan <span
                                                 class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="foto_mempelai_perempuan"
+                                        <input type="file" accept="image/*" class="form-control" id="foto_mempelai_perempuan"
                                             name="foto_mempelai_perempuan" placeholder="">
                                     </div>
                                     <div class="col-sm-4 mb-3">
@@ -123,7 +123,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="foto_mempelai_laki">Foto Mempelai Laki <span
                                                 class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="foto_mempelai_laki"
+                                        <input type="file" accept="image/*" class="form-control" id="foto_mempelai_laki"
                                             name="foto_mempelai_laki" placeholder="">
                                     </div>
                                     <div class="col-sm-4 mb-3">
@@ -230,7 +230,7 @@
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="quote_img">Upload Images <span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="quote_img" name="quote_img[]"
+                                        <input type="file" accept="image/*" class="form-control" id="quote_img" name="quote_img[]"
                                             multiple>
                                     </div>
                                 </div>
@@ -242,7 +242,7 @@
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="akad_img">Upload Image <span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="akad_img" name="akad_img"
+                                        <input type="file" accept="image/*" class="form-control" id="akad_img" name="akad_img"
                                             placeholder="" value="{{ old('akad_img') }}">
                                     </div>
                                 </div>
@@ -478,7 +478,7 @@
 
                         <div class="form-group mb-2">
                             <label for="image1">Foto<span class="mandatory">*</span></label>
-                            <input type="file" name="image1" id="image1" class="form-control">
+                            <input type="file" accept="image/*" name="image1" id="image1" class="form-control">
                             <!-- Current Image Preview -->
                             <img id="currentImage1" class="img-thumbnail mt-2" src="" alt="Current Image 1"
                                 width="120" style="display: none;">

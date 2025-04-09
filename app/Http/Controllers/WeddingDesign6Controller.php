@@ -61,6 +61,15 @@ class WeddingDesign6Controller extends Controller
         $informasiDesign6 = InformasiDesign6::findOrFail($informasiDesign6Id);
         $data = $request->all();
 
+        // Default values
+        $defaultJudul = 'Assalamu’alaikum Wr. Wb.';
+        $defaultDeskripsi = "Tanpa mengurangi rasa hormat\nkami mengundang Bapak/Ibu/Saudara/i\npada pernikahan kami:";
+
+        // Cek dan set default jika tidak ada input / sama
+        $data['judul_pembuka'] = $request->filled('judul_pembuka') ? $request->input('judul_pembuka') : $defaultJudul;
+        $data['deskripsi_pembuka'] = $request->filled('deskripsi_pembuka') ? $request->input('deskripsi_pembuka') : $defaultDeskripsi;
+        $data['judul_cinta'] = $request->filled('judul_cinta') ? $request->input('judul_cinta') : $defaultJudul;
+        $data['deskripsi_cinta'] = $request->filled('deskripsi_cinta') ? $request->input('deskripsi_cinta') : $defaultDeskripsi;
 
         if ($request->hasFile('banner_img')) {
             $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design6', $request->file('banner_img')->hashName());
@@ -85,6 +94,17 @@ class WeddingDesign6Controller extends Controller
 
         if ($request->hasFile('akad_img')) {
             $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design6', $request->file(key: 'akad_img')->hashName());
+        }
+
+        if ($request->hasFile('image_cinta')) {
+            $cintaImages = $request->file('image_cinta');
+            $cintaImagesPaths = [];
+
+            foreach ($cintaImages as $quoteImage) {
+                $cintaImagesPaths[] = $quoteImage->storeAs('public/wedding-design6', $quoteImage->hashName());
+            }
+
+            $data['image_cinta'] = json_encode($cintaImagesPaths); // Store paths as a JSON array or adjust according to your needs
         }
 
         $data['informasi_design6_id'] = $informasiDesign6->id;
@@ -157,7 +177,17 @@ class WeddingDesign6Controller extends Controller
         $weddingDesign6 = WeddingDesign6::findOrFail($id);
         $data = $request->all();
 
-        // Check and handle uploaded files
+        // Default values
+        $defaultJudul = 'Assalamu’alaikum Wr. Wb.';
+        $defaultDeskripsi = "Tanpa mengurangi rasa hormat\nkami mengundang Bapak/Ibu/Saudara/i\npada pernikahan kami:";
+
+        // Set default jika input kosong/null
+        $data['judul_pembuka'] = $request->filled('judul_pembuka') ? $request->input('judul_pembuka') : $defaultJudul;
+        $data['deskripsi_pembuka'] = $request->filled('deskripsi_pembuka') ? $request->input('deskripsi_pembuka') : $defaultDeskripsi;
+        $data['judul_cinta'] = $request->filled('judul_cinta') ? $request->input('judul_cinta') : $defaultJudul;
+        $data['deskripsi_cinta'] = $request->filled('deskripsi_cinta') ? $request->input('deskripsi_cinta') : $defaultDeskripsi;
+
+        // Handle file uploads & delete old files
         if ($request->hasFile('banner_img')) {
             if ($weddingDesign6->banner_img) {
                 Storage::delete($weddingDesign6->banner_img);
@@ -193,12 +223,31 @@ class WeddingDesign6Controller extends Controller
             $data['music'] = $request->file('music')->storeAs('public/wedding-design6-music', $request->file('music')->hashName());
         }
 
-
         if ($request->hasFile('akad_img')) {
             if ($weddingDesign6->akad_img) {
                 Storage::delete($weddingDesign6->akad_img);
             }
             $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design6', $request->file('akad_img')->hashName());
+        }
+
+        // Optional: Update multiple image_cinta jika dibolehkan saat edit
+        if ($request->hasFile('image_cinta')) {
+            // Hapus data lama jika ingin replace semua
+            if ($weddingDesign6->image_cinta) {
+                $oldImages = json_decode($weddingDesign6->image_cinta, true);
+                foreach ($oldImages as $img) {
+                    Storage::delete($img);
+                }
+            }
+
+            $cintaImages = $request->file('image_cinta');
+            $cintaImagesPaths = [];
+
+            foreach ($cintaImages as $quoteImage) {
+                $cintaImagesPaths[] = $quoteImage->storeAs('public/wedding-design6', $quoteImage->hashName());
+            }
+
+            $data['image_cinta'] = json_encode($cintaImagesPaths);
         }
 
         $weddingDesign6->update($data);

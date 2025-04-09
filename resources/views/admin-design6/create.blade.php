@@ -6,6 +6,11 @@
 
     @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 6'])
 
+    @php
+        $defaultJudul = 'Assalamu’alaikum Wr. Wb.';
+        $defaultDeskripsi = "Tanpa mengurangi rasa hormat\nkami mengundang Bapak/Ibu/Saudara/i\npada pernikahan kami:";
+    @endphp
+
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
             <section class="content">
@@ -25,8 +30,8 @@
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="banner_img">Upload Image<span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="banner_img" name="banner_img"
-                                            placeholder="Rhoma Irama" value="{{ old('banner_img') }}">
+                                        <input type="file" accept="image/*" class="form-control" id="banner_img"
+                                            name="banner_img" placeholder="Rhoma Irama" value="{{ old('banner_img') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
@@ -43,7 +48,7 @@
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="foto_prewedding">Upload Image<span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="foto_prewedding"
+                                        <input type="file" accept="image/*" class="form-control" id="foto_prewedding"
                                             name="foto_prewedding" placeholder="Rhoma Irama"
                                             value="{{ old('foto_prewedding') }}">
                                     </div>
@@ -69,14 +74,32 @@
                         </div>
                         <hr>
                         <div class="card-body container bg-white">
+                            <div class="ucapan-pembuka fw-bold fs-5 mb-4">Ucapan Pembuka</div>
+                            <div class="form-group form-group fs-3">
+                                <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="judul_pembuka">Judul<span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="judul_pembuka" name="judul_pembuka"
+                                            placeholder="Judul ucapan pembuka" value="{{ old('judul', $defaultJudul) }}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="deskripsi_pembuka">Deskripsi<span class="mandatory">*</span></label>
+                                        <textarea class="form-control" rows="5" id="deskripsi_pembuka" name="deskripsi_pembuka"
+                                            placeholder="Deskripsi">{{ old('deskripsi_pembuka', $defaultDeskripsi) }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Mempelai Wanita</div>
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="foto_mempelai_perempuan">Foto Mempelai Perempuan <span
                                                 class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="foto_mempelai_perempuan"
-                                            name="foto_mempelai_perempuan" placeholder="">
+                                        <input type="file" accept="image/*" class="form-control"
+                                            id="foto_mempelai_perempuan" name="foto_mempelai_perempuan" placeholder="">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_mempelai_perempuan">Nama Mempelai Perempuan <span
@@ -124,8 +147,8 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="foto_mempelai_laki">Foto Mempelai Laki <span
                                                 class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="foto_mempelai_laki"
-                                            name="foto_mempelai_laki" placeholder="">
+                                        <input type="file" accept="image/*" class="form-control"
+                                            id="foto_mempelai_laki" name="foto_mempelai_laki" placeholder="">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_mempelai_laki">Nama Mempelai Laki <span
@@ -168,66 +191,36 @@
                         <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Perjalanan Cinta</div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnPerjalananCinta"
-                                    data-bs-toggle="modal" data-bs-target="#modalPerjalananCinta">
-                                    Tambah Cerita
-                                </button>
-                            </div>
-                            <div class="table-responsive mb-4 border rounded-1">
-                                <table class="table text-nowrap mb-0 align-middle text-center" id="tablePerjalananCinta">
-                                    <thead>
-                                        <tr class="text-nowrap">
-                                            <th>No</th>
-                                            <th>Deskripsi</th>
-                                            <th>Foto</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i = $dataPerjalananCinta->firstItem(); ?>
-                                        @foreach ($dataPerjalananCinta as $item)
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>{{ Str::limit($item->deskripsi, 50) }}</td>
-                                                <td>
-                                                    <div class="d-flex flex-column justify-center align-items-center">
-                                                        @foreach (json_decode($item->image) as $image)
-                                                            <img src="{{ Storage::url($image) }}"
-                                                                alt="Perjalanan Cinta Image" class="img-thumbnail mt-2"
-                                                                width="150" height="150">
-                                                        @endforeach
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded edit-btn-perjalanan-cinta"
-                                                        data-id="{{ $item->id }}"
-                                                        data-deskripsi="{{ $item->deskripsi }}"
-                                                        data-image='@json(collect(json_decode($item->image))->map(fn($img) => Storage::url($img)))'>
-                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
-                                                    </a>
-                                                    <button type="button"
-                                                        class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
-                                                        data-id="{{ $item->id }}">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <?php $i++; ?>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                            <div class="form-group fs-3">
+                                <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="judul_cinta">Judul<span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="judul_cinta" name="judul_cinta"
+                                            placeholder="Masukkan judul perjalanan cinta"
+                                            value="{{ old('judul_cinta', $defaultJudul) }}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="deskripsi_cinta">Deskripsi<span class="mandatory">*</span></label>
+                                        <textarea class="form-control" rows="5" id="deskripsi_cinta" name="deskripsi_cinta"
+                                            placeholder="Masukan alamat">{{ old('deskripsi_cinta', $defaultDeskripsi) }}</textarea>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="image_cinta">Upload Images<span class="mandatory">*</span></label>
+                                        <input type="file" class="form-control" id="image_cinta" name="image_cinta[]"
+                                            multiple>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Akad & Resepsi</div>
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="akad_img">Upload Image <span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="akad_img" name="akad_img"
-                                            placeholder="" value="{{ old('akad_img') }}">
+                                        <input type="file" accept="image/*" class="form-control" id="akad_img"
+                                            name="akad_img" placeholder="" value="{{ old('akad_img') }}">
                                     </div>
                                 </div>
                             </div>
@@ -322,7 +315,21 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="card-body container bg-white">
+                            <div class="mempelai fw-bold fs-5 mb-4">Live Streaming</div>
+                            <div class="form-group fs-3">
+                                <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="link_streaming">Link Streaming<span class="fst-italic">
+                                                (Opsional)</span></label>
+                                        <input type="text" class="form-control" id="link_streaming"
+                                            name="link_streaming" placeholder="Masukkan link"
+                                            value="{{ old('link_streaming') }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
                             <div class="d-flex">
@@ -372,7 +379,7 @@
                             </div>
                             <div class="p-2">{{ $dataDirectTransfer->links() }}</div>
                         </div>
-
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
                             <div class="d-flex">
@@ -430,51 +437,6 @@
             </section>
         </div>
     </div>
-
-    <!-- Modal Buat dan Edit Perjalanan Cinta -->
-    <div class="modal fade" id="modalPerjalananCinta" tabindex="-1" aria-labelledby="modalPerjalananCintaLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- Judul yang bisa berubah -->
-                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat Perjalanan Cinta</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="formPerjalananCinta"
-                        action="{{ route('perjalanancinta-design6.store', ['id' => $informasiDesign6->id]) }}"
-                        method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="_method" id="formMethodPerjalananCinta" value="POST">
-                        <input type="hidden" name="perjalananCintaId" id="perjalananCintaId">
-                        <input type="hidden" name="wedding_design6_id" value="{{ $informasiDesign6->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign6->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign6->tgl_pernikahan }}">
-
-                        <div class="form-group mb-2">
-                            <label for="deskripsi">Deskripsi<span class="mandatory">*</span></label>
-                            <textarea class="form-control" rows="5" id="deskripsi" name="deskripsi" placeholder="Masukan deskripsi">{{ old('deskripsi') }}</textarea>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="image">Foto<span class="mandatory">*</span></label>
-                            <input type="file" name="image[]" class="form-control" multiple>
-                            <img id="currentimage" class="img-thumbnail mt-2" src="" alt="Current Image"
-                                width="120" style="display: none;">
-                        </div>
-
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                        id="btnBatal">Batal</button>
-                    <button type="submit" class="btn btn-primary" form="formPerjalananCinta">Simpan</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- Modal Buat dan Edit DirectTransfer -->
     <div class="modal fade" id="modalDirectTransfer" tabindex="-1" aria-labelledby="modalDirectTransferLabel"
@@ -566,184 +528,6 @@
             </div>
         </div>
     </div>
-
-    {{-- <!-- Hidden form for delete -->
-    <form id="deleteForm" action="" method="POST" style="display: none;">
-        @csrf
-        @method('DELETE')
-    </form> --}}
-
-    <!-- Modal JS Perjalanan Cinta -->
-    <script>
-        function resetFormPerjalananCinta() {
-            $('#formPerjalananCinta')[0].reset(); // Reset form input
-            $('#perjalananCintaId').val('');
-            $('#currentimage').hide().attr('src', '');
-
-            // Hapus gambar yang ditampilkan saat edit sebelumnya
-            $('.existing-images').remove();
-
-            // Reset input foto jika kamu pakai container dinamis
-            $('#fotoContainer').html(`
-        <div class="mb-2 d-flex gap-2 align-items-center foto-item">
-            <input type="file" name="image[]" class="form-control" required>
-        </div>
-    `);
-        }
-
-        // Ketika tombol "Tambah Cerita" diklik
-        $('#btnPerjalananCinta').on('click', function() {
-            $('#modalPerjalananCintaLabel').text('Buat Perjalanan Cinta');
-            $('#formMethodPerjalananCinta').val('POST');
-            $('#formPerjalananCinta').attr('action',
-                '{{ route('perjalanancinta-design6.store', ['id' => $informasiDesign6->id]) }}');
-            $('#formPerjalananCinta')[0].reset();
-            $('#perjalananCintaId').val('');
-            $('#currentimage').hide().attr('src', '');
-            resetFormPerjalananCinta();
-        });
-
-        // Ketika tombol Edit diklik
-        $(document).on('click', '.edit-btn-perjalanan-cinta', function() {
-            const id = $(this).data('id');
-            const deskripsi = $(this).data('deskripsi');
-            const imageUrl = $(this).data('image'); // Sudah berupa array JSON
-
-            $('#modalPerjalananCintaLabel').text('Edit Perjalanan Cinta');
-            $('#perjalananCintaId').val(id);
-            $('#formMethodPerjalananCinta').val('PUT');
-
-            // Set nilai ke input form
-            $('#deskripsi').val(deskripsi);
-            $('#currentimage').hide().attr('src', '');
-
-            // Hapus gambar yang sebelumnya ditampilkan
-            $('.existing-images').remove();
-
-            if (Array.isArray(imageUrl)) {
-                imageUrl.forEach(url => {
-                    $('#currentimage').after(
-                        `<img src="${url}" class="img-thumbnail mt-2 existing-images" width="120">`);
-                });
-            } else if (imageUrl) {
-                $('#currentimage').attr('src', imageUrl).show();
-            }
-
-            const updateUrl = `/wedding-design6/${id}/update-perjalanan-cinta`;
-            $('#formPerjalananCinta').attr('action', updateUrl);
-
-            const modalEdit = new bootstrap.Modal(document.getElementById('modalPerjalananCinta'));
-            modalEdit.show();
-        });
-
-        // Submit form (tambah/edit)
-        $('#formPerjalananCinta').on('submit', function(e) {
-            e.preventDefault();
-
-            const form = $(this);
-            const formData = new FormData(this);
-            const id = $('#perjalananCintaId').val();
-            const isEdit = id !== '';
-
-            if (isEdit) {
-                formData.append('_method', 'PUT');
-            }
-
-            $.ajax({
-                url: form.attr('action'),
-                type: 'POST', // tetap POST meski update (karena kita override pakai _method)
-                data: formData,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(res) {
-                    Swal.fire('Sukses!', res.message, 'success');
-                    const modal = bootstrap.Modal.getInstance(document.getElementById(
-                        'modalPerjalananCinta'));
-                    modal.hide();
-
-                    resetFormPerjalananCinta();
-
-                    $('body').removeClass('modal-open');
-                    $('.modal-backdrop').remove();
-
-                    $('#formPerjalananCinta')[0].reset();
-                    $('#perjalananCintaId').val('');
-                    $('#currentimage').hide().attr('src', '');
-
-                    $('#tablePerjalananCinta').load(location.href + " #tablePerjalananCinta>*", "");
-                },
-                error: function(xhr) {
-                    let errors = xhr.responseJSON?.errors;
-                    let errorMsg = 'Terjadi kesalahan.';
-                    if (errors) {
-                        errorMsg = Object.values(errors).join('<br>');
-                    }
-                    Swal.fire('Gagal!', errorMsg, 'error');
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-
-        $(document).on('click', '.delete-btn-perjalanan-cinta', function() {
-            const id = $(this).data('id');
-            Swal.fire({
-                title: 'Apakah kamu yakin?',
-                text: "Data ini akan dihapus secara permanen!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, hapus!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "{{ url('/wedding-design6') }}/" + id + "/delete-perjalanan-cinta",
-                        type: 'DELETE',
-                        data: {
-                            _token: $('meta[name="csrf-token"]').attr('content')
-                        },
-                        success: function(res) {
-                            Swal.fire('Terhapus!', res.message, 'success');
-                            $('#tablePerjalananCinta').load(location.href +
-                                " #tablePerjalananCinta>*", "");
-                        },
-                        error: function(xhr) {
-                            Swal.fire('Gagal!', 'Terjadi kesalahan saat menghapus.', 'error');
-                            console.error(xhr.responseText);
-                        }
-                    });
-                }
-            });
-        });
-
-        $(document).ready(function() {
-            $('#tambahFotoBtn').click(function(e) {
-                e.preventDefault();
-
-                const fotoInput = `
-            <div class="mb-2 d-flex gap-2 align-items-center foto-item">
-                <input type="file" name="image[]" class="form-control" required>
-                <button type="button" class="btn btn-danger btn-sm removeFotoBtn"><i class="fa fa-trash"></i></button>
-            </div>
-        `;
-
-                $('#fotoContainer').append(fotoInput);
-            });
-
-            // Hapus input foto
-            $(document).on('click', '.removeFotoBtn', function() {
-                $(this).closest('.foto-item').remove();
-            });
-        });
-
-        $('#btnBatal').on('click', function() {
-            resetFormPerjalananCinta();
-        });
-    </script>
 
     <!-- Modal JS Direct Transfer -->
     <script>
