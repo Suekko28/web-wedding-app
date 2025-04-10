@@ -251,7 +251,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="image_cinta">Upload Images<span class="fst-italic">
                                                 (Opsional)</span></label>
-                                        <input type="file" class="form-control" id="image_cinta" name="image_cinta[]"
+                                        <input type="file" accept="image/*" class="form-control" id="image_cinta" name="image_cinta[]"
                                             multiple>
                                         @if ($data->image_cinta)
                                             <div class="d-flex flex-column">

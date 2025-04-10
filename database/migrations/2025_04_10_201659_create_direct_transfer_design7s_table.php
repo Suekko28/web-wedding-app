@@ -10,15 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('direct_transfer_design6', function (Blueprint $table) {
+        Schema::create('direct_transfer_design7', function (Blueprint $table) {
             $table->id();
             $table->string('bank');
-            $table->bigInteger('no_rek');
+            $table->bigInteger('no_rek');   
             $table->string('nama_rek');
-            $table->unsignedBigInteger('informasi_design6_id');
-            $table->foreign('informasi_design6_id')
+            $table->unsignedBigInteger('informasi_design7_id');
+            $table->foreign('informasi_design7_id')
                 ->references('id')
-                ->on('informasi_design6')
+                ->on('informasi_design7')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('direct_transfer_design6');
+        Schema::dropIfExists('direct_transfer_design7');
     }
 };

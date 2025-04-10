@@ -40,7 +40,6 @@ class HomeDesign6Controller extends Controller
     {
         $data = WeddingDesign6::where('nama_mempelai_laki', $nama_mempelai_laki)
             ->where('nama_mempelai_perempuan', $nama_mempelai_perempuan)
-            ->with('PerjalananCintaDesign6')
             ->firstOrFail();
 
         return view('admin-design6.home-design6', compact('data'));
@@ -54,7 +53,6 @@ class HomeDesign6Controller extends Controller
             ->whereHas('namaUndangan', function ($query) use ($nama_undangan) {
                 $query->where('nama_undangan', $nama_undangan);
             })
-            ->with('PerjalananCintaDesign6')
             ->with('DirectTransferDesign6')
             ->with('KirimHadiahDesign6')
             ->firstOrFail();

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InformasiDesign6FormRequest extends FormRequest
+class KirimHadiahDesign7FormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +22,30 @@ class InformasiDesign6FormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_pasangan' => ['required', 'max:100'],
-            'tgl_pernikahan' => ['required',]
+            'alamat' => [
+                'required',
+                'max:100',
+            ],
+            'deskripsi_alamat' => [
+                'required',
+
+            ],
+
         ];
     }
 
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array<string, string>
+     */
     public function messages(): array
     {
         return [
-            'nama_pasangan.required' => 'Nama Pasangan Wajib Diisi',
-            'nama_pasangan.max' => 'Nama Pasangan Tidak Boleh Melebihin 100 Karakter',
-            'tgl_pernikahan.required' => 'Tanggal Pernikahan Wajib Diisi',
+            'alamat.required' => 'Alamat harus diisi.',
+            'alamat.max' => 'Alamat tidak boleh lebih dari 100 karakter.',
+            'deskripsi_alamat.required' => 'Alamat Detail harus diisi.',
+
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InformasiDesign6FormRequest extends FormRequest
+class InformasiDesign7FormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class InformasiDesign6FormRequest extends FormRequest
     {
         return [
             'nama_pasangan' => ['required', 'max:100'],
-            'tgl_pernikahan' => ['required',]
+            'tgl_pernikahan' => ['required']
         ];
     }
 
@@ -36,3 +36,4 @@ class InformasiDesign6FormRequest extends FormRequest
         ];
     }
 }
+

@@ -4,7 +4,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 6'])
+    @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 7'])
 
     @php
         $defaultJudulPembuka = 'Assalamu’alaikum Wr. Wb.';
@@ -22,12 +22,12 @@
                 <div class="container-fluid">
                     @include('layouts.message')
                     <!-- Small boxes (Stat box) -->
-                    <form action="{{ route('form-design6.store', ['id' => $informasiDesign6Id]) }}" method="post"
+                    <form action="{{ route('form-design7.store', ['id' => $informasiDesign7Id]) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="informasi_design6_id" value="{{ $informasiDesign6->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign6->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign6->tgl_pernikahan }}">
+                        <input type="hidden" name="informasi_design7_id" value="{{ $informasiDesign7->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign7->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign7->tgl_pernikahan }}">
                         <input type="hidden" name="id" id="perjalananCintaId">
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Cover Undangan</div>
@@ -41,7 +41,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
-                                            placeholder="" disabled value="{{ $informasiDesign6->nama_pasangan }}">
+                                            placeholder="" disabled value="{{ $informasiDesign7->nama_pasangan }}">
                                     </div>
                                 </div>
                             </div>
@@ -60,14 +60,14 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
-                                            placeholder="" disabled value="{{ $informasiDesign6->nama_pasangan }}">
+                                            placeholder="" disabled value="{{ $informasiDesign7->nama_pasangan }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_pernikahan">Tanggal Pernikahan<span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="tgl_pernikahan" name="tgl_pernikahan"
                                             placeholder="" disabled
-                                            value="{{ \Carbon\Carbon::parse($informasiDesign6->tgl_pernikahan)->format('d-m-Y') }}">
+                                            value="{{ \Carbon\Carbon::parse($informasiDesign7->tgl_pernikahan)->format('d-m-Y') }}">
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="music">Music <span class="mandatory">*</span></label>
@@ -454,7 +454,7 @@
                         </div>
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                            <a href="{{ route('wedding-design6.index') }}" class="btn btn-secondary">Batal</a>
+                            <a href="{{ route('wedding-design7.index') }}" class="btn btn-secondary">Batal</a>
                         </div>
 
                     </form>
@@ -474,14 +474,14 @@
                 </div>
                 <div class="modal-body">
                     <form id="formDirectTransfer"
-                        action="{{ route('directtransfer-design6.store', ['id' => $informasiDesign6->id]) }}"
+                        action="{{ route('directtransfer-design7.store', ['id' => $informasiDesign7->id]) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="_method" id="formMethodDirectTransfer" value="POST">
                         <input type="hidden" name="directTransferId" id="directTransferId">
-                        <input type="hidden" name="wedding_design6_id" value="{{ $informasiDesign6->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign6->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign6->tgl_pernikahan }}">
+                        <input type="hidden" name="wedding_design7_id" value="{{ $informasiDesign7->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign7->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign7->tgl_pernikahan }}">
 
                         <!-- Form Fields -->
                         <div class="form-group mb-2">
@@ -523,15 +523,15 @@
                 </div>
                 <div class="modal-body">
                     <form id="formKirimHadiah"
-                        action="{{ route('kirimhadiah-design6.store', ['id' => $informasiDesign6->id]) }}" method="POST"
+                        action="{{ route('kirimhadiah-design7.store', ['id' => $informasiDesign7->id]) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         {{-- This will be updated dynamically in JS --}}
                         <input type="hidden" name="_method" id="formMethodKirimHadiah" value="POST">
                         <input type="hidden" name="kirimHadiahId" id="kirimHadiahId">
-                        <input type="hidden" name="wedding_design6_id" value="{{ $informasiDesign6->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign6->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign6->tgl_pernikahan }}">
+                        <input type="hidden" name="wedding_design7_id" value="{{ $informasiDesign7->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign7->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign7->tgl_pernikahan }}">
 
                         <div class="form-group mb-2">
                             <label for="alamat">Alamat<span class="mandatory">*</span></label>
@@ -566,7 +566,7 @@
             $('#modalDirectTransferLabel').text('Buat Direct Transfer');
             $('#formMethodDirectTransfer').val('POST');
             $('#formDirectTransfer').attr('action',
-                '{{ route('directtransfer-design6.store', ['id' => $informasiDesign6->id]) }}');
+                '{{ route('directtransfer-design7.store', ['id' => $informasiDesign7->id]) }}');
             $('#formDirectTransfer')[0].reset();
             $('#directTransferId').val('');
 
@@ -589,7 +589,7 @@
             $('#no_rek').val(no_rek);
             $('#nama_rek').val(nama_rek);
 
-            const updateUrl = `/wedding-design6/${id}/update-direct-transfer`;
+            const updateUrl = `/wedding-design7/${id}/update-direct-transfer`;
             $('#formDirectTransfer').attr('action', updateUrl);
 
             const modalEdit = new bootstrap.Modal(document.getElementById('modalDirectTransfer'));
@@ -660,7 +660,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ url('/wedding-design6') }}/" + id + "/delete-direct-transfer",
+                        url: "{{ url('/wedding-design7') }}/" + id + "/delete-direct-transfer",
                         type: 'DELETE',
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content')
@@ -698,7 +698,7 @@
             $('#modalKirimHadiahLabel').text('Buat Direct Transfer');
             $('#formMethodKirimHadiah').val('POST');
             $('#formKirimHadiah').attr('action',
-                '{{ route('kirimhadiah-design6.store', ['id' => $informasiDesign6->id]) }}');
+                '{{ route('kirimhadiah-design7.store', ['id' => $informasiDesign7->id]) }}');
             $('#formKirimHadiah')[0].reset();
             $('#kirimHadiahId').val('');
 
@@ -719,7 +719,7 @@
             $('#alamat').val(alamat);
             $('#deskripsi_alamat').val(deskripsi_alamat);
 
-            const updateUrl = `/wedding-design6/${id}/update-kirim-hadiah`;
+            const updateUrl = `/wedding-design7/${id}/update-kirim-hadiah`;
             $('#formKirimHadiah').attr('action', updateUrl);
 
             const modalEdit = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));
@@ -790,7 +790,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ url('/wedding-design6') }}/" + id + "/delete-kirim-hadiah",
+                        url: "{{ url('/wedding-design7') }}/" + id + "/delete-kirim-hadiah",
                         type: 'DELETE',
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content')

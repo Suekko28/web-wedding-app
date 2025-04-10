@@ -16,13 +16,13 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
     <title>Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!</title>
-    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- CSS STYLE -->
-    <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/wedding-design7.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
@@ -40,13 +40,19 @@
     </div>
     <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
         <!-- <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-    <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
-  </div> -->
+            <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
+        </div> -->
         <div class="offcanvas-body">
+            <div class="flower-left-cover">
+                <img class="flower-left object-fit-cover" src="{{ asset('img/element-1.png') }}" alt="background">
+            </div>
+            <div class="flower-right-cover">
+                <img class="flower-right object-fit-cover" src="{{ asset('img/element-2.png') }}" alt="background">
+            </div>
             <div class="opening-undangan">
                 <p>Undangan Pernikahan</p>
-                <h2>Ndaru & Lala</h2>
+                <h1>Ndaru & Lala</h1>
             </div>
             <div class="tujuan-undangan">
                 <div class="opening">
@@ -54,11 +60,10 @@
                     <p>Bapak/Ibu/Saudara/i</p>
                 </div>
                 <h3>Nama Tamu</h3>
-                <button type="button" onclick="playAudio()" class="btn-primary" data-bs-dismiss="offcanvas">Buka
-                    Undangan</button>
+                <button type="button" onclick="playAudio()" style="display:none" class="btn-primary" id="buttonPage"
+                    data-bs-dismiss="offcanvas">Buka Undangan</button>
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/cover-image.jpg') }}"
-                alt="background">
+            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/background.jpg') }}" alt="background">
         </div>
     </div>
     <audio loop id="track">
@@ -79,9 +84,9 @@
                 <a href="#kedua-mempelai">
                     <img src="{{ asset('img/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
-                <a href="#perjalanan-cinta">
-                    <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
-                </a>
+                <!-- <a href="#perjalanan-cinta">
+                        <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
+                    </a> -->
                 <a href="#gallery">
                     <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
                 </a>
@@ -94,25 +99,14 @@
             </li>
         </ul>
     </nav>
-    <img class="background-template object-fit-cover" src="{{ asset('img/Sample-BG.jpg') }}" alt="background">
-    <div class="w-100 h-100" id="animation container">
-        <script>
-            var animation = bodymovin.loadAnimation({
-                container: document.getElementById('animation container'),
-                path: 'overlay-animation.json',
-                render: 'svg',
-                loop: true,
-                autoplay: true,
-                name: 'overlay animation'
-            })
-        </script>
-    </div>
+    <img class="background-template object-fit-cover" src="{{ asset('img/background.jpg') }}" alt="background">
     <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
         <div class="title">
+            <img src="{{ asset('img/element-3.png') }}" class="devider-flower" alt="devider">
             <p>Pernikahan</p>
-            <h2>Ndaru & Lilau</h2>
+            <h1>Ndaru & Lilau</h1>
         </div>
         <div class="wedding-timer">
             <div id="timer">
@@ -145,165 +139,84 @@
                 <p>Kamis, 29 Oktober 2024</p>
             </div>
         </div>
-        <div class="background-overlay"></div>
+        <!-- <div class="background-overlay"></div> -->
     </section>
     <!-- HERO END -->
-
     <!-- MEMPELAI -->
     <section class="animation kedua-mempelai" id="kedua-mempelai">
         <div class="anm_mod bottom-bit fast mempelai-cover">
-            <div class="mempelai-wanita">
-                <img class="anm_mod left fast mempelai-wanita-img" src="{{ asset('img/mempelai-wanita.jpg') }}"
-                    alt="Seserahan">
-                <div class="anm_mod bottom fast detail-mempelai-wanita">
-                    <div class="data-mempelai-wanita">
-                        <span class="label">PENGANTIN WANITA</span>
-                        <h2>Lili</h2>
-                        <p>Anak dari Bapak Rudi dan Ibu Risma</p>
-                    </div>
-                    <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
-                        <img src="{{ asset('img/instagram-logo.svg') }}" alt="instagram">
-                        <span>lili</span>
-                    </a>
-                </div>
+            <div class="title">
+                <h2>Assalamu’alaikum Wr. Wb.</h2>
+                <p>Tanpa mengurangi rasa hormat kami mengundang Bapak/Ibu/Saudara/i pada pernikahan kami:</p>
             </div>
-            <h2 class="anm_mod bottom-bit fast">&</h2>
-            <div class="mempelai-pria">
-                <div class="anm_mod bottom fast detail-mempelai-pria">
-                    <div class="data-mempelai-pria">
-                        <span class="label">PENGANTIN PRIA</span>
-                        <h2>Ndaru</h2>
-                        <p>Anak dari Bapak Budi dan Ibu Irma</p>
+            <div class="anm_mod bottom-bit fast inner-mempelai">
+                <div class="mempelai-wanita">
+                    <div class="container-image-wanita">
+                        <img class="anm_mod left fast mempelai-wanita-img object-fit-cover"
+                            src="{{ asset('img/mempelai-wanita.jpg') }}" alt="mempelai-wanita">
+                        <img class="anm_mod left fast ring-wanita-img object-fit-cover"
+                            src="{{ asset('img/ring.png') }}" alt="mempelai-wanita">
+                        <img class="anm_mod left fast ring-flower-left object-fit-cover"
+                            src="{{ asset('img/element-4.svg') }}" alt="mempelai-wanita">
                     </div>
-                    <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
-                        <img src="{{ asset('img/instagram-logo.svg') }}" alt="instagram">
-                        <span>Ndaru</span>
-                    </a>
+                    <div class="anm_mod bottom fast detail-mempelai-wanita">
+                        <div class="data-mempelai-wanita">
+                            <h3>Lili</h3>
+                            <p>Anak dari Bapak Rudi dan Ibu Risma</p>
+                        </div>
+                        <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
+                            <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
+                            <span>lili</span>
+                        </a>
+                    </div>
                 </div>
-                <img class="anm_mod right fast mempelai-wanita-img" src="{{ asset('img/mempelai-pria.jpg') }}"
-                    alt="Seserahan">
+                <h3 class="anm_mod bottom-bit fast">&</h3>
+                <div class="mempelai-pria">
+                    <div class="container-image-pria">
+                        <img class="anm_mod right fast mempelai-wanita-img object-fit-cover"
+                            src="{{ asset('img/mempelai-pria.jpg') }}" alt="mempelai-pria">
+                        <img class="anm_mod right fast ring-pria-img object-fit-cover"
+                            src="{{ asset('img/ring.png') }}" alt="mempelai-wanita">
+                        <img class="anm_mod right fast ring-flower-right object-fit-cover"
+                            src="{{ asset('img/element-5.svg') }}" alt="mempelai-wanita">
+                    </div>
+                    <div class="anm_mod bottom fast detail-mempelai-pria">
+                        <div class="data-mempelai-pria">
+                            <h3>Ndaru</h3>
+                            <p>Anak dari Bapak Budi dan Ibu Irma</p>
+                        </div>
+                        <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
+                            <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
+                            <span>Ndaru</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <!-- MEMPELAI END -->
-
-    <!-- PERJALANAN CINTA -->
-    <section class="animation perjalanan-cinta" id="perjalanan-cinta">
-        <div class="anm_mod bottom-bit fast perjalanan-cinta-cover">
-            <h3 class="anm_mod bottom-bit fast">Perjalanan Cinta Kami</h3>
-            <div id="carouselExampleCaptions" class="carousel slide anm_mod bottom-bit delay"
-                data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('img/mempelai-pria.jpg') }}" class="d-block story-img object-fit-cover"
-                            alt="story">
-                        <div class="carousel-caption d-md-block">
-                            <div class="story-detail">
-                                <span class="vertical-line"></span>
-                                <span class="label">12 Januari 2024</span>
-                                <h3>Pertemuan Pertama</h3>
-                                <p>Pertemuan pertama yang singkat tapi sangat berkesan</p>
-                                <span class="vertical-line"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img/mempelai-wanita.jpg') }}" class="d-block story-img object-fit-cover"
-                            alt="story">
-                        <div class="carousel-caption d-md-block">
-                            <div class="story-detail">
-                                <span class="vertical-line"></span>
-                                <span class="label">12 Januari 2024</span>
-                                <h3>Pertemuan Pertama</h3>
-                                <p>Pertemuan pertama yang singkat tapi sangat berkesan</p>
-                                <span class="vertical-line"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img/mempelai-pria.jpg') }}" class="d-block story-img object-fit-cover"
-                            alt="story">
-                        <div class="carousel-caption d-md-block">
-                            <div class="story-detail">
-                                <span class="vertical-line"></span>
-                                <span class="label">12 Januari 2024</span>
-                                <h3>Pertemuan Pertama</h3>
-                                <p>Pertemuan pertama yang singkat tapi sangat berkesan</p>
-                                <span class="vertical-line"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden"></span>
-                </button>
-            </div>
-        </div>
-    </section>
-    <!-- PERJALANAN CINTA END -->
-
     <!-- Gallery -->
     <section class="animation gallery" id="gallery">
         <div class="anm_mod bottom-bit fast container-gallery">
-            <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
-            <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
-                data-bs-ride="carousel">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="anm_mod bottom-bit fast quotes">
-                        <div class="carousel-inner carousel-gallery">
-                            <div class="carousel-item active">
-                                <a href="{{ asset('img/Sample-BG.jpg') }}" data-fancybox="gallery">
-                                    <img src="{{ asset('img/Sample-BG.jpg') }}"
-                                        class="d-block w-100 h-100 object-fit-cover img-fluid" alt="Image Gallery">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="https://bit.ly/34MdBRc" data-fancybox="gallery">
-                                    <img src="https://codingyaar.com/wp-content/uploads/bootstrap-carousel-slide-1.jpg"
-                                        class="d-block w-100 h-100 object-fit-cover img-fluid" alt="Image Gallery">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="https://bit.ly/34MdBRc" data-fancybox="gallery"
-                                    data-caption="Caption Images 1">
-                                </a>
-                            </div>
-                        </div>
-                        <p>"Creating memories is a priceless gift. Memories last a lifetime; things last only a short
-                            time."</p>
-                    </div>
-                    <div class="carousel-indicators indicators-gallery w-100">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active thumbnail rounded-2" aria-current="true" aria-label="Slide 1">
-                            <img src="https://codingyaar.com/wp-content/uploads/bootstrap-carousel-slide-2.jpg"
-                                class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
-                        </button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            class="thumbnail rounded-2" aria-label="Slide 2">
-                            <img src="https://codingyaar.com/wp-content/uploads/bootstrap-carousel-slide-1.jpg"
-                                class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
-                        </button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            class="thumbnail rounded-2" aria-label="Slide 3">
-                            <img src="https://codingyaar.com/wp-content/uploads/bootstrap-carousel-slide-3.jpg"
-                                class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
-                        </button>
-                    </div>
+            <div class="title">
+                <h2>Perjalanan Cinta Kami</h2>
+                <p>Tanpa mengurangi rasa hormat kami mengundang Bapak/Ibu/Saudara/i pada pernikahan kami:</p>
+            </div>
+            <div class="container-card-gallery">
+                <div class="card-gallery">
+                    <a href="https://bit.ly/34MdBRc" data-fancybox="gallery">
+                        <img class="gallery-img object-fit-cover" src="https://bit.ly/34MdBRc" alt="Image Gallery">
+                    </a>
+                </div>
+                <div class="card-gallery">
+                    <a href="https://bit.ly/2Nv9zHh" data-fancybox="gallery">
+                        <img class="gallery-img object-fit-cover" src="https://bit.ly/2Nv9zHh" alt="Image Gallery">
+                    </a>
+                </div>
+                <div class="card-gallery">
+                    <a href="https://bit.ly/2Nv9zHh" data-fancybox="gallery">
+                        <img class="gallery-img object-fit-cover" src="https://bit.ly/2Nv9zHh" alt="Image Gallery">
+                    </a>
                 </div>
             </div>
         </div>
@@ -313,9 +226,12 @@
     <!-- JADWAL PERNIKAHAN -->
     <section class="animation jadwal-pernikahan" id="jadwal-pernikahan">
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
-            <h3 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h3>
-            <img src="{{ asset('img/mempelai-wanita.jpg') }}"
-                class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
+            <h2 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h2>
+            <div class="container-img-jadwal anm_mod bottom-bit fast">
+                <img src="{{ asset('img/mempelai-wanita.jpg') }}"
+                    class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
+                <img src="{{ asset('img/element-6.svg') }}" class="element-flower" alt="devider">
+            </div>
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
                     <h3>Akad<h3>
@@ -415,12 +331,12 @@
                             <div class="form-group">
                                 <label for="name">Nama</label>
                                 <input placeholder="Masukkan nama lengkap" type="text" name="name"
-                                    id="fullname" class="form-control" disabled>
+                                    id="fullname" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="message">Ucapan</label>
                                 <textarea placeholder="Masukkan kalimat ucapan" name="msg" id=""msg cols="30" rows="5"
-                                    class="form-control" disabled></textarea>
+                                    class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="name">Konfirmasi Kehadiran</label>
@@ -440,7 +356,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="button" id="post" class="btn-primary" disabled>Kirim</button>
+                                <button type="button" id="post" class="btn-primary">Kirim</button>
                             </div>
                         </form>
                     </div>
@@ -558,10 +474,12 @@
     <!-- ENDING -->
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
-            <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">Lily & Ndaru</h4>
+            <p class="anm_mod bottom-bit fast">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
+                Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami
+                ucapkan terima kasih. Kami yang berbahagia</p>
+            <h3 class="anm_mod bottom-bit fast">Lily & Ndaru</h3>
         </div>
-        <div class="overlay-bottom"></div>
+        <img class="ending-background object-fit-cover" src="{{ asset('img/element-7.svg') }}" alt="background">
     </section>
     <!-- ENDING END -->
 
@@ -669,7 +587,6 @@
         var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
         triggerTabList.forEach(function(triggerEl) {
             var tabTrigger = new bootstrap.Tab(triggerEl)
-
             triggerEl.addEventListener('click', function(event) {
                 event.preventDefault()
                 tabTrigger.show()
@@ -787,18 +704,15 @@
                 show: true
             });
         });
-
         $('#modal').on('show.bs.modal', function() {
             $('.col-6,.row .thumbnail-image').addClass('blur');
         })
-
         $('#modal').on('hide.bs.modal', function() {
             $('.col-6,.row .thumbnail-image').removeClass('blur');
         })
     </script>
     <script>
         var track = document.getElementById('track');
-
         var controlBtn = document.getElementById('play-pause');
 
         function playPause() {
@@ -819,139 +733,6 @@
         });
     </script>
     <script>
-        const html = document.querySelector('html');
-        html.setAttribute('data-bs-theme', 'dark');
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Create LightBox
-            const galleryGrid = document.querySelector(".gallery-grid");
-            const links = galleryGrid.querySelectorAll("a");
-            const imgs = galleryGrid.querySelectorAll("img");
-            const lightboxModal = document.getElementById("lightbox-modal");
-            const bsModal = new bootstrap.Modal(lightboxModal);
-            const modalBody = lightboxModal.querySelector(".lightbox-content");
-
-            function createCaption(caption) {
-                return `<div class="carousel-caption d-none d-md-block">
-        <h4 class="m-0">${caption}</h4>
-      </div>`;
-            }
-
-            function createIndicators(img) {
-                let markup = "",
-                    i, len;
-
-                const countSlides = links.length;
-                const parentCol = img.closest('.col');
-                const curIndex = [...parentCol.parentElement.children].indexOf(parentCol);
-
-                for (i = 0, len = countSlides; i < len; i++) {
-                    markup += `
-        <button type="button" data-bs-target="#lightboxCarousel"
-          data-bs-slide-to="${i}"
-          ${i === curIndex ? 'class="active" aria-current="true"' : ''}
-          aria-label="Slide ${i + 1}">
-        </button>`;
-                }
-
-                return markup;
-            }
-
-            function createSlides(img) {
-                let markup = "";
-                const currentImgSrc = img.closest('.gallery-item').getAttribute("href");
-
-                for (const img of imgs) {
-                    const imgSrc = img.closest('.gallery-item').getAttribute("href");
-                    const imgAlt = img.getAttribute("alt");
-
-                    markup += `
-        <div class="carousel-item${currentImgSrc === imgSrc ? " active" : ""}">
-          <img class="d-block img-fluid w-100" src=${imgSrc} alt="${imgAlt}">
-          ${imgAlt ? createCaption(imgAlt) : ""}
-        </div>`;
-                }
-
-                return markup;
-            }
-
-            function createCarousel(img) {
-                const markup = `
-      <!-- Lightbox Carousel -->
-      <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="true">
-        <!-- Indicators/dots -->
-        <div class="carousel-indicators">
-          ${createIndicators(img)}
-        </div>
-        <!-- Wrapper for Slides -->
-        <div class="carousel-inner justify-content-center mx-auto">
-          ${createSlides(img)}
-        </div>
-        <!-- Controls/icons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      `;
-
-                modalBody.innerHTML = markup;
-            }
-
-            for (const link of links) {
-                link.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    const currentImg = link.querySelector("img");
-                    const lightboxCarousel = document.getElementById("lightboxCarousel");
-
-                    if (lightboxCarousel) {
-                        const parentCol = link.closest('.col');
-                        const index = [...parentCol.parentElement.children].indexOf(parentCol);
-
-                        const bsCarousel = new bootstrap.Carousel(lightboxCarousel);
-                        bsCarousel.to(index);
-                    } else {
-                        createCarousel(currentImg);
-                    }
-
-                    bsModal.show();
-                });
-            }
-
-            // --- Support Fullscreen
-            const fsEnlarge = document.querySelector(".btn-fullscreen-enlarge");
-            const fsExit = document.querySelector(".btn-fullscreen-exit");
-
-            function enterFS() {
-                lightboxModal.requestFullscreen().then({}).catch(err => {
-                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-                });
-                fsEnlarge.classList.toggle("d-none");
-                fsExit.classList.toggle("d-none");
-            }
-
-            function exitFS() {
-                document.exitFullscreen();
-                fsExit.classList.toggle("d-none");
-                fsEnlarge.classList.toggle("d-none");
-            }
-
-            fsEnlarge.addEventListener("click", (e) => {
-                e.preventDefault();
-                enterFS();
-            });
-
-            fsExit.addEventListener("click", (e) => {
-                e.preventDefault();
-                exitFS();
-            });
-        })
-    </script>
-    <script>
         // Fancybox Config
         $('[data-fancybox="gallery"]').fancybox({
             buttons: [
@@ -966,9 +747,14 @@
             protect: true
         });
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="jquery.fancybox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
+    <script>
+        window.onload = function() {
+            // code goes here
+        };
+        {
+            $("button").show()
+        };
+    </script>
     <script>
         $(document).ready(function() {
             // Users can skip the loading process if they want.
@@ -985,13 +771,70 @@
                     })
                 }, 2500)
             });
-
-            // Will remove overlay after 1min for users cannnot load properly.
-            setTimeout(function() {
-                $('.overlay, body').addClass('loaded');
-            }, 2000);
         })
     </script>
+    <!-- <script>
+        let items = document.querySelectorAll('.carousel .carousel-item')
+
+        items.forEach((el) => {
+            const minPerSlide = 4
+            let next = el.nextElementSibling
+            for (var i = 1; i < minPerSlide; i++) {
+                if (!next) {
+                    // wrap carousel by using first child
+                    next = items[0]
+                }
+                let cloneChild = next.cloneNode(true)
+                el.appendChild(cloneChild.children[0])
+                next = next.nextElementSibling
+            }
+        })
+    </script> -->
+    </script>
+    <script>
+        (function($) {
+            "use strict";
+            // Auto-scroll
+            $('#myCarousel').carousel({
+                interval: 5000
+            });
+
+            // Control buttons
+            $('.next').click(function() {
+                $('.carousel').carousel('next');
+                return false;
+            });
+            $('.prev').click(function() {
+                $('.carousel').carousel('prev');
+                return false;
+            });
+
+            // On carousel scroll
+            $("#myCarousel").on("slide.bs.carousel", function(e) {
+                var $e = $(e.relatedTarget);
+                var idx = $e.index();
+                var itemsPerSlide = 3;
+                var totalItems = $(".carousel-item").length;
+                if (idx >= totalItems - (itemsPerSlide - 1)) {
+                    var it = itemsPerSlide -
+                        (totalItems - idx);
+                    for (var i = 0; i < it; i++) {
+                        // append slides to end 
+                        if (e.direction == "left") {
+                            $(
+                                ".carousel-item").eq(i).appendTo(".carousel-inner");
+                        } else {
+                            $(".carousel-item").eq(0).appendTo(".carousel-inner");
+                        }
+                    }
+                }
+            });
+        })
+        (jQuery);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="jquery.fancybox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
 </body>
 
 </html>

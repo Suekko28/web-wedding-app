@@ -6,6 +6,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
+    <!-- Meta tags for Open Graph (OGP) -->
+    <meta property="og:title" content="The Wedding Of {{ $data->InformasiDesign7->nama_pasangan }}">
+    <meta property="og:description" content="Undangan Pernikahan {{ $data->InformasiDesign7->nama_pasangan }}">
+    <meta property="og:image" content="{{ Storage::url('' . $data->banner_img) }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Wedding Of {{ $data->InformasiDesign7->nama_pasangan }}">
+    <meta name="twitter:description" content="Undangan Pernikahan {{ $data->InformasiDesign7->nama_pasangan }}">
+    <meta name="twitter:image" content="{{ Storage::url('' . $data->banner_img) }}">
+
     <!-- Fancybox and Jquery CDN
     This link get github repository -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
@@ -15,14 +28,14 @@
         type="text/css" media="screen" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
-    <title>Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!</title>
-    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+    <title>The Wedding Of {{ $data->InformasiDesign7->nama_pasangan }}</title>
+
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- CSS STYLE -->
-    <link href="{{ asset('css/wedding-design4.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/wedding-design7.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
@@ -40,13 +53,19 @@
     </div>
     <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
         <!-- <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-    <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
-  </div> -->
+            <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
+        </div> -->
         <div class="offcanvas-body">
+            <div class="flower-left-cover">
+                <img class="flower-left object-fit-cover" src="{{ asset('img/element-1.png') }}" alt="background">
+            </div>
+            <div class="flower-right-cover">
+                <img class="flower-right object-fit-cover" src="{{ asset('img/element-2.png') }}" alt="background">
+            </div>
             <div class="opening-undangan">
                 <p>Undangan Pernikahan</p>
-                <h2>Ndaru & Lala</h2>
+                <h1>{{ $data->InformasiDesign7->nama_pasangan }}</h1>
             </div>
             <div class="tujuan-undangan">
                 <div class="opening">
@@ -54,15 +73,15 @@
                     <p>Bapak/Ibu/Saudara/i</p>
                 </div>
                 <h3>Nama Tamu</h3>
-                <button type="button" onclick="playAudio()" class="btn-primary" data-bs-dismiss="offcanvas">Buka
-                    Undangan</button>
+                <button type="button" onclick="playAudio()" style="display:none" class="btn-primary" id="buttonPage"
+                    data-bs-dismiss="offcanvas">Buka Undangan</button>
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/cover-image.jpg') }}"
+            <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
                 alt="background">
         </div>
     </div>
     <audio loop id="track">
-        <source src="{{ asset('img/sweet.mp3') }}" type="audio/mpeg" />
+        <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
     <button class="btn-float">
         <img id="play" onclick="toggleAudio()" src="{{ asset('img/sound-on.svg') }}" class="img-fluid"
@@ -79,9 +98,9 @@
                 <a href="#kedua-mempelai">
                     <img src="{{ asset('img/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
-                <a href="#perjalanan-cinta">
-                    <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
-                </a>
+                <!-- <a href="#perjalanan-cinta">
+                        <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
+                    </a> -->
                 <a href="#gallery">
                     <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
                 </a>
@@ -94,25 +113,15 @@
             </li>
         </ul>
     </nav>
-    <img class="background-template object-fit-cover" src="{{ asset('img/Sample-BG.jpg') }}" alt="background">
-    <div class="w-100 h-100" id="animation container">
-        <script>
-            var animation = bodymovin.loadAnimation({
-                container: document.getElementById('animation container'),
-                path: 'overlay-animation.json',
-                render: 'svg',
-                loop: true,
-                autoplay: true,
-                name: 'overlay animation'
-            })
-        </script>
-    </div>
+    <img class="background-template object-fit-cover" src="{{ Storage::url('' . $data->foto_prewedding) }}"
+        alt="background">
     <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
         <div class="title">
+            <img src="{{ asset('img/element-3.png') }}" class="devider-flower" alt="devider">
             <p>Pernikahan</p>
-            <h2>Ndaru & Lilau</h2>
+            <h1>{{ $data->InformasiDesign7->nama_pasangan }}</h1>
         </div>
         <div class="wedding-timer">
             <div id="timer">
@@ -142,169 +151,89 @@
                 </div>
             </div>
             <div class="date">
-                <p>Kamis, 29 Oktober 2024</p>
+                <p>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
+                </p>
             </div>
         </div>
-        <div class="background-overlay"></div>
+        <!-- <div class="background-overlay"></div> -->
     </section>
     <!-- HERO END -->
-
     <!-- MEMPELAI -->
     <section class="animation kedua-mempelai" id="kedua-mempelai">
         <div class="anm_mod bottom-bit fast mempelai-cover">
-            <div class="mempelai-wanita">
-                <img class="anm_mod left fast mempelai-wanita-img" src="{{ asset('img/mempelai-wanita.jpg') }}"
-                    alt="Seserahan">
-                <div class="anm_mod bottom fast detail-mempelai-wanita">
-                    <div class="data-mempelai-wanita">
-                        <span class="label">PENGANTIN WANITA</span>
-                        <h2>Lili</h2>
-                        <p>Anak dari Bapak Rudi dan Ibu Risma</p>
-                    </div>
-                    <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
-                        <img src="{{ asset('img/instagram-logo.svg') }}" alt="instagram">
-                        <span>lili</span>
-                    </a>
-                </div>
+            <div class="title">
+                <h2>{{ $data->judul_pembuka }}</h2>
+                <p>{{ $data->deskripsi_pembuka }}</p>
             </div>
-            <h2 class="anm_mod bottom-bit fast">&</h2>
-            <div class="mempelai-pria">
-                <div class="anm_mod bottom fast detail-mempelai-pria">
-                    <div class="data-mempelai-pria">
-                        <span class="label">PENGANTIN PRIA</span>
-                        <h2>Ndaru</h2>
-                        <p>Anak dari Bapak Budi dan Ibu Irma</p>
+            <div class="anm_mod bottom-bit fast inner-mempelai">
+                <div class="mempelai-wanita">
+                    <div class="container-image-wanita">
+                        <img class="anm_mod left fast mempelai-wanita-img object-fit-cover"
+                            src="{{ Storage::url('' . $data->foto_mempelai_perempuan) }}" alt="mempelai-wanita">
+                        <img class="anm_mod left fast ring-wanita-img object-fit-cover"
+                            src="{{ asset('img/ring.png') }}" alt="mempelai-wanita">
+                        <img class="anm_mod left fast ring-flower-left object-fit-cover"
+                            src="{{ asset('img/element-4.svg') }}" alt="mempelai-wanita">
                     </div>
-                    <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
-                        <img src="{{ asset('img/instagram-logo.svg') }}" alt="instagram">
-                        <span>Ndaru</span>
-                    </a>
+                    <div class="anm_mod bottom fast detail-mempelai-wanita">
+                        <div class="data-mempelai-wanita">
+                            <h3>{{ $data->nama_mempelai_perempuan }}</h3>
+                            <p>Anak dari Bapak {{ $data->putri_dari_bpk }} dan Ibu {{ $data->putri_dari_ibu }}</p>
+                        </div>
+                        <a href="{{ $data->link_instagram1 }}" target="_blank" class="btn-link">
+                            <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
+                            <span>{{ $data->nama_instagram1 }}</span>
+                        </a>
+                    </div>
                 </div>
-                <img class="anm_mod right fast mempelai-wanita-img" src="{{ asset('img/mempelai-pria.jpg') }}"
-                    alt="Seserahan">
+                <h3 class="anm_mod bottom-bit fast">&</h3>
+                <div class="mempelai-pria">
+                    <div class="container-image-pria">
+                        <img class="anm_mod right fast mempelai-wanita-img object-fit-cover"
+                            src="{{ Storage::url('' . $data->foto_mempelai_laki) }}" alt="mempelai-pria">
+                        <img class="anm_mod right fast ring-pria-img object-fit-cover"
+                            src="{{ asset('img/ring.png') }}" alt="mempelai-wanita">
+                        <img class="anm_mod right fast ring-flower-right object-fit-cover"
+                            src="{{ asset('img/element-5.svg') }}" alt="mempelai-wanita">
+                    </div>
+                    <div class="anm_mod bottom fast detail-mempelai-pria">
+                        <div class="data-mempelai-pria">
+                            <h3>{{ $data->nama_mempelai_laki }}</h3>
+                            <p>Anak dari Bapak {{ $data->putra_dari_bpk }} dan Ibu {{ $data->putra_dari_ibu }}</p>
+                        </div>
+                        <a href="{{ $data->link_instagram2 }}" target="_blank" class="btn-link">
+                            <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
+                            <span>{{ $data->nama_instagram2 }}</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <!-- MEMPELAI END -->
 
-    <!-- PERJALANAN CINTA -->
-    <section class="animation perjalanan-cinta" id="perjalanan-cinta">
-        <div class="anm_mod bottom-bit fast perjalanan-cinta-cover">
-            <h3 class="anm_mod bottom-bit fast">Perjalanan Cinta Kami</h3>
-            <div id="carouselExampleCaptions" class="carousel slide anm_mod bottom-bit delay"
-                data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('img/mempelai-pria.jpg') }}" class="d-block story-img object-fit-cover"
-                            alt="story">
-                        <div class="carousel-caption d-md-block">
-                            <div class="story-detail">
-                                <span class="vertical-line"></span>
-                                <span class="label">12 Januari 2024</span>
-                                <h3>Pertemuan Pertama</h3>
-                                <p>Pertemuan pertama yang singkat tapi sangat berkesan</p>
-                                <span class="vertical-line"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img/mempelai-wanita.jpg') }}" class="d-block story-img object-fit-cover"
-                            alt="story">
-                        <div class="carousel-caption d-md-block">
-                            <div class="story-detail">
-                                <span class="vertical-line"></span>
-                                <span class="label">12 Januari 2024</span>
-                                <h3>Pertemuan Pertama</h3>
-                                <p>Pertemuan pertama yang singkat tapi sangat berkesan</p>
-                                <span class="vertical-line"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img/mempelai-pria.jpg') }}" class="d-block story-img object-fit-cover"
-                            alt="story">
-                        <div class="carousel-caption d-md-block">
-                            <div class="story-detail">
-                                <span class="vertical-line"></span>
-                                <span class="label">12 Januari 2024</span>
-                                <h3>Pertemuan Pertama</h3>
-                                <p>Pertemuan pertama yang singkat tapi sangat berkesan</p>
-                                <span class="vertical-line"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden"></span>
-                </button>
-            </div>
-        </div>
-    </section>
-    <!-- PERJALANAN CINTA END -->
-
     <!-- Gallery -->
     <section class="animation gallery" id="gallery">
         <div class="anm_mod bottom-bit fast container-gallery">
-            <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
-            <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
-                data-bs-ride="carousel">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="anm_mod bottom-bit fast quotes">
-                        <div class="carousel-inner carousel-gallery">
-                            <div class="carousel-item active">
-                                <a href="{{ asset('img/Sample-BG.jpg') }}" data-fancybox="gallery">
-                                    <img src="{{ asset('img/Sample-BG.jpg') }}"
-                                        class="d-block w-100 h-100 object-fit-cover img-fluid" alt="Image Gallery">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="https://bit.ly/34MdBRc" data-fancybox="gallery">
-                                    <img src="https://codingyaar.com/wp-content/uploads/bootstrap-carousel-slide-1.jpg"
-                                        class="d-block w-100 h-100 object-fit-cover img-fluid" alt="Image Gallery">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="https://bit.ly/34MdBRc" data-fancybox="gallery"
-                                    data-caption="Caption Images 1">
-                                </a>
-                            </div>
+            <div class="title">
+                <h2>{{ $data->judul_cinta }}</h2>
+                <p>{{ $data->deskripsi_cinta }}</p>
+            </div>
+            @php
+                $images = is_array($data->image_cinta) ? $data->image_cinta : json_decode($data->image_cinta, true);
+            @endphp
+            <div class="container-card-gallery">
+
+                @if (!empty($images))
+                    @foreach ($images as $image)
+                        <div class="card-gallery">
+                            <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
+                                <img class="gallery-img object-fit-cover" src="{{ Storage::url($image) }}"
+                                    alt="Image Gallery">
+                            </a>
                         </div>
-                        <p>"Creating memories is a priceless gift. Memories last a lifetime; things last only a short
-                            time."</p>
-                    </div>
-                    <div class="carousel-indicators indicators-gallery w-100">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active thumbnail rounded-2" aria-current="true" aria-label="Slide 1">
-                            <img src="https://codingyaar.com/wp-content/uploads/bootstrap-carousel-slide-2.jpg"
-                                class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
-                        </button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            class="thumbnail rounded-2" aria-label="Slide 2">
-                            <img src="https://codingyaar.com/wp-content/uploads/bootstrap-carousel-slide-1.jpg"
-                                class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
-                        </button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            class="thumbnail rounded-2" aria-label="Slide 3">
-                            <img src="https://codingyaar.com/wp-content/uploads/bootstrap-carousel-slide-3.jpg"
-                                class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
-                        </button>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -313,9 +242,13 @@
     <!-- JADWAL PERNIKAHAN -->
     <section class="animation jadwal-pernikahan" id="jadwal-pernikahan">
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
-            <h3 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h3>
-            <img src="{{ asset('img/mempelai-wanita.jpg') }}"
-                class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
+            <h2 class="anm_mod bottom-bit fast">{{ $data->judul_jadwal }}</h2>
+            <div class="container-img-jadwal anm_mod bottom-bit fast">
+                <img src="{{ Storage::url('' . $data->akad_img) }}"
+                    class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story" width="328"
+                    height="328">
+                <img src="{{ asset('img/element-6.svg') }}" class="element-flower" alt="devider">
+            </div>
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
                     <h3>Akad<h3>
@@ -323,28 +256,30 @@
                                 <div class="info">
                                     <img src="{{ asset('img/calendar-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">Sabtu, 4 Mei 2024</span>
+                                        <span
+                                            class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                                     </div>
                                 </div>
                                 <div class="info">
                                     <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">10.00 - 12.00 WIB</span>
+                                        <span class="label">
+                                            {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} -
+                                            {{ \Carbon\Carbon::parse($data->selesai_akad)->format('H:i') }} WIB</span>
                                     </div>
                                 </div>
                                 <div class="info">
                                     <img src="{{ asset('img/location-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">Masjid Salman Al-Farisi</span>
-                                        <p>Jl. Komp. Bulog Jl. H. Ten Raya No.14 7 14, RT.14/RW.7, Kayu Putih,Kec. Pulo
-                                            Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta</p>
+                                        <span class="label">{{ $data->lokasi_akad }}</span>
+                                        <p>{{ $data->deskripsi_akad }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="button-button">
-                                <a type="button" target="_blank" href="https://www.w3schools.com"
+                                <a type="button" target="_blank" href="{{ $data->link_akad }}"
                                     class="btn-secondary">Lihat Lokasi</a>
-                                <a type="button" target="_blank" href="https://www.w3schools.com"
+                                <a type="button" target="_blank" href="{{ $data->simpan_tgl_akad }}"
                                     class="btn-primary">Simpan Tanggal</a>
                             </div>
                 </div>
@@ -355,41 +290,46 @@
                                 <div class="info">
                                     <img src="{{ asset('img/calendar-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">Sabtu, 4 Mei 2024</span>
+                                        <span
+                                            class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                                     </div>
                                 </div>
                                 <div class="info">
                                     <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">10.00 - 12.00 WIB</span>
+                                        <span class="label">
+                                            {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
+                                            {{ \Carbon\Carbon::parse($data->selesai_resepsi)->format('H:i') }}
+                                            WIB</span>
                                     </div>
                                 </div>
                                 <div class="info">
                                     <img src="{{ asset('img/location-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
-                                        <span class="label">Masjid Salman Al-Farisi</span>
-                                        <p>Jl. Komp. Bulog Jl. H. Ten Raya No.14 7 14, RT.14/RW.7, Kayu Putih,Kec. Pulo
-                                            Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta</p>
+                                        <span class="label">{{ $data->lokasi_resepsi }}</span>
+                                        <p>{{ $data->deskripsi_resepsi }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="button-button">
-                                <a type="button" target="_blank" href="https://www.w3schools.com"
+                                <a type="button" target="_blank" href="{{ $data->link_resepsi }}"
                                     class="btn-secondary">Lihat Lokasi</a>
-                                <a type="button" target="_blank" href="https://www.w3schools.com"
+                                <a type="button" target="_blank" href="{{ $data->simpan_tgl_resepsi }}"
                                     class="btn-primary">Simpan Tanggal</a>
                             </div>
                 </div>
             </div>
-            <div class="anm_mod bottom-bit fast live-streaming">
-                <div class="detail-info">
-                    <h3>Live Streaming</h3>
-                    <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
-                        siaran langsung secara live virtual di platform berikut</p>
+            @if (!empty($data->link_streaming))
+                <div class="anm_mod bottom-bit fast live-streaming">
+                    <div class="detail-info">
+                        <h3>Live Streaming</h3>
+                        <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
+                            siaran langsung secara live virtual di platform berikut</p>
+                    </div>
+                    <a type="button" target="_blank" href="{{ $data->link_streaming }}" class="btn-secondary">Buka
+                        Link</a>
                 </div>
-                <a type="button" target="_blank" href="https://www.w3schools.com" class="btn-secondary">Buka
-                    Link</a>
-            </div>
+            @endif
         </div>
     </section>
     <!-- JADWAL PERNIKAHAN END -->
@@ -415,12 +355,12 @@
                             <div class="form-group">
                                 <label for="name">Nama</label>
                                 <input placeholder="Masukkan nama lengkap" type="text" name="name"
-                                    id="fullname" class="form-control" disabled>
+                                    id="fullname" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="message">Ucapan</label>
                                 <textarea placeholder="Masukkan kalimat ucapan" name="msg" id=""msg cols="30" rows="5"
-                                    class="form-control" disabled></textarea>
+                                    class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="name">Konfirmasi Kehadiran</label>
@@ -492,65 +432,83 @@
                     </div>
                 </div>
             </div>
-            <div class="kirim-hadiah anm_mod bottom-bit fast">
-                <div class="info">
-                    <h3>Kirim Hadiah</h3>
-                    <p>Berikan hadiah kepada kedua mempelai</p>
-                </div>
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                            aria-selected="true">Direct Transfer</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-profile" type="button" role="tab"
-                            aria-controls="pills-profile" aria-selected="false">Kirim Hadiah</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                        aria-labelledby="pills-home-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">BCA</h4>
-                                <div class="info-norek">
-                                    <p id="first">0660580697</p>
-                                    <a id="first-button" onclick="copyText('first');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
-                                </div>
-                                <p class="card-text">A/N Eka Syafitry Dewi</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">BCA</h4>
-                                <div class="info-norek">
-                                    <p id="second">09999</p>
-                                    <a id="second-button" onclick="copyText('second');" title="Copy Text"
-                                        class="btn-ghost">
-                                        Copy
-                                    </a>
-                                </div>
-                                <p class="card-text">A/N Eka Syafitry Dewi</p>
-                            </div>
-                        </div>
+            @if ($data->DirectTransferDesign7->isNotEmpty() || $data->KirimHadiahDesign7->isNotEmpty())
+                <div class="kirim-hadiah anm_mod bottom-bit fast">
+                    <div class="info">
+                        <h3>Kirim Hadiah</h3>
+                        <p>Berikan hadiah kepada kedua mempelai</p>
                     </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                        aria-labelledby="pills-profile-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Rumah</h4>
-                                <p class="card-text">Jl. Hos Cokroaminoto, Kuripan Lor Gg. 16 No.5, Kec. Pekalongan
-                                    Selatan, Kota Pekalongan, Jawa Tengah 51136</p>
+
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        @if ($data->DirectTransferDesign7->isNotEmpty())
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-home" type="button" role="tab"
+                                    aria-controls="pills-home" aria-selected="true">Direct Transfer</button>
+                            </li>
+                        @endif
+                        @if ($data->KirimHadiahDesign7->isNotEmpty())
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link {{ $data->DirectTransferDesign7->isEmpty() ? 'active' : '' }}"
+                                    id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                                    type="button" role="tab" aria-controls="pills-profile"
+                                    aria-selected="{{ $data->DirectTransferDesign7->isEmpty() ? 'true' : 'false' }}">
+                                    Kirim Hadiah
+                                </button>
+                            </li>
+                        @endif
+                    </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        @if ($data->DirectTransferDesign7->isNotEmpty())
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                aria-labelledby="pills-home-tab">
+                                @foreach ($data->DirectTransferDesign7 as $index => $item)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
+                                                @if (!empty($item->bank))
+                                                    <h4 class="card-title">{{ $item->bank }}</h4>
+                                                @endif
+                                                <div class="info-norek">
+                                                    @if (!empty($item->no_rek))
+                                                        <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
+                                                    @endif
+                                                    <a id="btn-copy-{{ $index }}"
+                                                        onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
+                                                        title="Copy Text" class="btn-ghost">
+                                                        Copy
+                                                    </a>
+                                                </div>
+                                                @if (!empty($item->nama_rek))
+                                                    <p class="card-text">A/N {{ $item->nama_rek }}</p>
+                                                @endif
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        </div>
+                        @endif
+
+                        @if ($data->KirimHadiahDesign7->isNotEmpty())
+                            <div class="tab-pane fade {{ $data->DirectTransferDesign7->isEmpty() ? 'show active' : '' }}"
+                                id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                @foreach ($data->KirimHadiahDesign7 as $item)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
+                                                <h4 class="card-title">{{ $item->alamat }}</h4>
+                                                <p class="card-text">{{ $item->deskripsi_alamat }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
-            </div>
+            @endif
+        </div>
         </div>
     </section>
     <!-- DOA & UCAPAN -->
@@ -558,10 +516,11 @@
     <!-- ENDING -->
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
-            <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">Lily & Ndaru</h4>
+            <p class="anm_mod bottom-bit fast">{{ $data->deskripsi_penutup }}</p>
+            <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
+                {{ $data->nama_mempelai_laki }}</h3>
         </div>
-        <div class="overlay-bottom"></div>
+        <img class="ending-background object-fit-cover" src="{{ asset('img/element-7.svg') }}" alt="background">
     </section>
     <!-- ENDING END -->
 
@@ -669,7 +628,6 @@
         var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
         triggerTabList.forEach(function(triggerEl) {
             var tabTrigger = new bootstrap.Tab(triggerEl)
-
             triggerEl.addEventListener('click', function(event) {
                 event.preventDefault()
                 tabTrigger.show()
@@ -677,52 +635,59 @@
         })
     </script>
     <script>
-        // Set the date we're counting down to (1 month from now)
-        const countDownDate = new Date("Sep 20, 2024 22:18:00").getTime();
+        function updateTimer(tgl_akad) {
+            const future = Date.parse(tgl_akad);
+            const now = new Date();
+            const diff = future - now;
 
-        // Update the countdown every 1 second
-        const x = setInterval(function() {
-            // Get today's date and time
-            const now = new Date().getTime();
-
-            // Find the distance between now and the countdown date
-            const distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result
-            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-
-            // If the countdown is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("days").innerHTML = "00";
-                document.getElementById("hours").innerHTML = "00";
-                document.getElementById("minutes").innerHTML = "00";
-                document.getElementById("seconds").innerHTML = "00";
+            if (diff <= 0) {
+                // Waktu telah berlalu, atur semua nilai menjadi 0
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+                return;
             }
-        }, 1000);
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // Format nilai untuk menambahkan angka 0 di depan jika nilainya < 10
+            document.getElementById("days").textContent = days < 10 ? "0" + days : days;
+            document.getElementById("hours").textContent = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").textContent = mins < 10 ? "0" + mins : mins;
+            document.getElementById("seconds").textContent = secs < 10 ? "0" + secs : secs;
+        }
+
+        // Inisialisasi timer
+        const tglAkad = "{{ $data->tgl_akad }}"; // Pastikan ini diisi dengan format tanggal yang valid
+        setInterval(() => updateTimer(tglAkad), 1000);
     </script>
     <script>
-        function copyText(element) {
-            var $copyText = document.getElementById(element).innerText;
-            var button = document.getElementById(element + '-button');
-            navigator.clipboard.writeText($copyText).then(function() {
-                var originalText = button.innerText;
-                button.innerText = 'Copied!';
-                setTimeout(function() {
-                    button.innerText = originalText;
-                }, 750);
-            }, function() {
-                button.style.cssText = "background-color: var(--red);";
-                button.innerText = 'Error';
+        function copyText(textElementId, buttonId) {
+            var textElement = document.getElementById(textElementId);
+            var button = document.getElementById(buttonId);
+
+            if (!textElement) {
+                console.error("Element with ID " + textElementId + " not found.");
+                return;
+            }
+
+            var text = textElement.textContent.trim();
+
+            navigator.clipboard.writeText(text).then(function() {
+                // Ubah teks tombol menjadi "Copied"
+                if (button) {
+                    button.textContent = 'Copied';
+                    // Kembalikan teks tombol ke "Copy" setelah 2 detik
+                    setTimeout(function() {
+                        button.textContent = 'Copy';
+                    }, 2000);
+                }
+            }).catch(function(error) {
+                console.error('Error copying text: ', error);
             });
         }
     </script>
@@ -787,18 +752,15 @@
                 show: true
             });
         });
-
         $('#modal').on('show.bs.modal', function() {
             $('.col-6,.row .thumbnail-image').addClass('blur');
         })
-
         $('#modal').on('hide.bs.modal', function() {
             $('.col-6,.row .thumbnail-image').removeClass('blur');
         })
     </script>
     <script>
         var track = document.getElementById('track');
-
         var controlBtn = document.getElementById('play-pause');
 
         function playPause() {
@@ -819,139 +781,6 @@
         });
     </script>
     <script>
-        const html = document.querySelector('html');
-        html.setAttribute('data-bs-theme', 'dark');
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Create LightBox
-            const galleryGrid = document.querySelector(".gallery-grid");
-            const links = galleryGrid.querySelectorAll("a");
-            const imgs = galleryGrid.querySelectorAll("img");
-            const lightboxModal = document.getElementById("lightbox-modal");
-            const bsModal = new bootstrap.Modal(lightboxModal);
-            const modalBody = lightboxModal.querySelector(".lightbox-content");
-
-            function createCaption(caption) {
-                return `<div class="carousel-caption d-none d-md-block">
-        <h4 class="m-0">${caption}</h4>
-      </div>`;
-            }
-
-            function createIndicators(img) {
-                let markup = "",
-                    i, len;
-
-                const countSlides = links.length;
-                const parentCol = img.closest('.col');
-                const curIndex = [...parentCol.parentElement.children].indexOf(parentCol);
-
-                for (i = 0, len = countSlides; i < len; i++) {
-                    markup += `
-        <button type="button" data-bs-target="#lightboxCarousel"
-          data-bs-slide-to="${i}"
-          ${i === curIndex ? 'class="active" aria-current="true"' : ''}
-          aria-label="Slide ${i + 1}">
-        </button>`;
-                }
-
-                return markup;
-            }
-
-            function createSlides(img) {
-                let markup = "";
-                const currentImgSrc = img.closest('.gallery-item').getAttribute("href");
-
-                for (const img of imgs) {
-                    const imgSrc = img.closest('.gallery-item').getAttribute("href");
-                    const imgAlt = img.getAttribute("alt");
-
-                    markup += `
-        <div class="carousel-item${currentImgSrc === imgSrc ? " active" : ""}">
-          <img class="d-block img-fluid w-100" src=${imgSrc} alt="${imgAlt}">
-          ${imgAlt ? createCaption(imgAlt) : ""}
-        </div>`;
-                }
-
-                return markup;
-            }
-
-            function createCarousel(img) {
-                const markup = `
-      <!-- Lightbox Carousel -->
-      <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="true">
-        <!-- Indicators/dots -->
-        <div class="carousel-indicators">
-          ${createIndicators(img)}
-        </div>
-        <!-- Wrapper for Slides -->
-        <div class="carousel-inner justify-content-center mx-auto">
-          ${createSlides(img)}
-        </div>
-        <!-- Controls/icons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      `;
-
-                modalBody.innerHTML = markup;
-            }
-
-            for (const link of links) {
-                link.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    const currentImg = link.querySelector("img");
-                    const lightboxCarousel = document.getElementById("lightboxCarousel");
-
-                    if (lightboxCarousel) {
-                        const parentCol = link.closest('.col');
-                        const index = [...parentCol.parentElement.children].indexOf(parentCol);
-
-                        const bsCarousel = new bootstrap.Carousel(lightboxCarousel);
-                        bsCarousel.to(index);
-                    } else {
-                        createCarousel(currentImg);
-                    }
-
-                    bsModal.show();
-                });
-            }
-
-            // --- Support Fullscreen
-            const fsEnlarge = document.querySelector(".btn-fullscreen-enlarge");
-            const fsExit = document.querySelector(".btn-fullscreen-exit");
-
-            function enterFS() {
-                lightboxModal.requestFullscreen().then({}).catch(err => {
-                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-                });
-                fsEnlarge.classList.toggle("d-none");
-                fsExit.classList.toggle("d-none");
-            }
-
-            function exitFS() {
-                document.exitFullscreen();
-                fsExit.classList.toggle("d-none");
-                fsEnlarge.classList.toggle("d-none");
-            }
-
-            fsEnlarge.addEventListener("click", (e) => {
-                e.preventDefault();
-                enterFS();
-            });
-
-            fsExit.addEventListener("click", (e) => {
-                e.preventDefault();
-                exitFS();
-            });
-        })
-    </script>
-    <script>
         // Fancybox Config
         $('[data-fancybox="gallery"]').fancybox({
             buttons: [
@@ -966,9 +795,14 @@
             protect: true
         });
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="jquery.fancybox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
+    <script>
+        window.onload = function() {
+            // code goes here
+        };
+        {
+            $("button").show()
+        };
+    </script>
     <script>
         $(document).ready(function() {
             // Users can skip the loading process if they want.
@@ -985,13 +819,70 @@
                     })
                 }, 2500)
             });
-
-            // Will remove overlay after 1min for users cannnot load properly.
-            setTimeout(function() {
-                $('.overlay, body').addClass('loaded');
-            }, 2000);
         })
     </script>
+    <!-- <script>
+        let items = document.querySelectorAll('.carousel .carousel-item')
+
+        items.forEach((el) => {
+            const minPerSlide = 4
+            let next = el.nextElementSibling
+            for (var i = 1; i < minPerSlide; i++) {
+                if (!next) {
+                    // wrap carousel by using first child
+                    next = items[0]
+                }
+                let cloneChild = next.cloneNode(true)
+                el.appendChild(cloneChild.children[0])
+                next = next.nextElementSibling
+            }
+        })
+    </script> -->
+    </script>
+    <script>
+        (function($) {
+            "use strict";
+            // Auto-scroll
+            $('#myCarousel').carousel({
+                interval: 5000
+            });
+
+            // Control buttons
+            $('.next').click(function() {
+                $('.carousel').carousel('next');
+                return false;
+            });
+            $('.prev').click(function() {
+                $('.carousel').carousel('prev');
+                return false;
+            });
+
+            // On carousel scroll
+            $("#myCarousel").on("slide.bs.carousel", function(e) {
+                var $e = $(e.relatedTarget);
+                var idx = $e.index();
+                var itemsPerSlide = 3;
+                var totalItems = $(".carousel-item").length;
+                if (idx >= totalItems - (itemsPerSlide - 1)) {
+                    var it = itemsPerSlide -
+                        (totalItems - idx);
+                    for (var i = 0; i < it; i++) {
+                        // append slides to end 
+                        if (e.direction == "left") {
+                            $(
+                                ".carousel-item").eq(i).appendTo(".carousel-inner");
+                        } else {
+                            $(".carousel-item").eq(0).appendTo(".carousel-inner");
+                        }
+                    }
+                }
+            });
+        })
+        (jQuery);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="jquery.fancybox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
 </body>
 
 </html>

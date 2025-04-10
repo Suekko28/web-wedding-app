@@ -39,7 +39,10 @@
                     'nama-undangan-edit5',
                     'nama-undangan-list6',
                     'nama-undangan-create6',
-                    'nama-undangan-edit6',))
+                    'nama-undangan-edit6',
+                    'nama-undangan-list7',
+                    'nama-undangan-create7',
+                    'nama-undangan-edit7',))
                 <!-- Sidebar will not be displayed for this route -->
                 <!-- Sidebar only for other routes -->
                 <aside class="left-sidebar with-vertical">
@@ -65,7 +68,10 @@
                     'nama-undangan-edit5',
                     'nama-undangan-list6',
                     'nama-undangan-create6',
-                    'nama-undangan-edit6',))
+                    'nama-undangan-edit6',
+                    'nama-undangan-list7',
+                    'nama-undangan-create7',
+                    'nama-undangan-edit7',))
                 <div class="page-wrapper">
                     <!-- Header Start -->
                     <header class="topbar">
@@ -95,7 +101,10 @@
                     'nama-undangan-edit5',
                     'nama-undangan-list6',
                     'nama-undangan-create6',
-                    'nama-undangan-edit6',))
+                    'nama-undangan-edit6',
+                    'nama-undangan-list7',
+                    'nama-undangan-create7',
+                    'nama-undangan-edit7',))
                 <!-- Horizontal Sidebar -->
                 <aside class="left-sidebar with-horizontal">
                     @include('layouts.horizontal-sidebar')

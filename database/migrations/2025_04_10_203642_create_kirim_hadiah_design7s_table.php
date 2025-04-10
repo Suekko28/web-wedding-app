@@ -4,21 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('direct_transfer_design6', function (Blueprint $table) {
+        Schema::create('kirim_hadiah_design7', function (Blueprint $table) {
             $table->id();
-            $table->string('bank');
-            $table->bigInteger('no_rek');
-            $table->string('nama_rek');
-            $table->unsignedBigInteger('informasi_design6_id');
-            $table->foreign('informasi_design6_id')
+            $table->string('alamat', length: 100);
+            $table->text('deskripsi_alamat');
+            $table->unsignedBigInteger('informasi_design7_id');
+            $table->foreign('informasi_design7_id')
                 ->references('id')
-                ->on('informasi_design6')
+                ->on('informasi_design7')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('direct_transfer_design6');
+        Schema::dropIfExists('kirim_hadiah_design7');
     }
 };

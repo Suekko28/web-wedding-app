@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class WeddingDesign6 extends Model
+class WeddingDesign7 extends Model
 {
     use HasFactory;
 
 
-    protected $table = 'wedding_design6';
+    protected $table = 'wedding_design7';
 
     protected $fillable = [
         'banner_img',
@@ -54,33 +53,31 @@ class WeddingDesign6 extends Model
         'link_streaming',
         'judul_jadwal',
         'deskripsi_penutup',
-        'informasi_design6_id'
+        'informasi_design7_id'
 
     ];
 
-    public function InformasiDesign6(): BelongsTo
+    public function InformasiDesign7(): BelongsTo
     {
-        return $this->belongsTo(InformasiDesign6::class, 'informasi_design6_id', 'id');
+        return $this->belongsTo(InformasiDesign7::class, 'informasi_design7_id', 'id');
     }
 
     public function namaUndangan(): HasMany
     {
-        return $this->hasMany(NamaUndanganDesign6::class, 'wedding_design6_id', 'id');
+        return $this->hasMany(NamaUndanganDesign7::class, 'wedding_design7_id', 'id');
     }
 
-    public function DirectTransferDesign6(): HasMany
+    public function DirectTransferDesign7(): HasMany
     {
-        return $this->hasMany(DirectTransferDesign6::class, 'informasi_design6_id', 'informasi_design6_id');
+        return $this->hasMany(DirectTransferDesign7::class, 'informasi_design7_id', 'informasi_design7_id');
     }
-    public function KirimHadiahDesign6(): HasMany
+    public function KirimHadiahDesign7(): HasMany
     {
-        return $this->hasMany(KirimHadiahDesign6::class, 'informasi_design6_id', 'informasi_design6_id');
+        return $this->hasMany(KirimHadiahDesign7::class, 'informasi_design7_id', 'informasi_design7_id');
     }
 
-    public function alt6Models(): HasMany
+    public function alt7Models(): HasMany
     {
-        return $this->hasMany(UcapanDesign6::class, 'wedding_design6_id', 'id');
+        return $this->hasMany(UcapanDesign7::class, 'wedding_design7_id', 'id');
     }
-
-
 }

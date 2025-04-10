@@ -10,12 +10,14 @@ use App\Http\Controllers\HomeDesign3Controller;
 use App\Http\Controllers\HomeDesign4Controller;
 use App\Http\Controllers\HomeDesign5Controller;
 use App\Http\Controllers\HomeDesign6Controller;
+use App\Http\Controllers\HomeDesign7Controller;
 use App\Http\Controllers\IndexDesign1Controller;
 use App\Http\Controllers\IndexDesign2Controller;
 use App\Http\Controllers\IndexDesign3Controller;
 use App\Http\Controllers\InformasiDesign4Controller;
 use App\Http\Controllers\InformasiDesign5Controller;
 use App\Http\Controllers\InformasiDesign6Controller;
+use App\Http\Controllers\InformasiDesign7Controller;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NamaUndanganDesign1Controller;
 use App\Http\Controllers\NamaUndanganDesign2Controller;
@@ -23,6 +25,7 @@ use App\Http\Controllers\NamaUndanganDesign3Controller;
 use App\Http\Controllers\NamaUndanganDesign4Controller;
 use App\Http\Controllers\NamaUndanganDesign5Controller;
 use App\Http\Controllers\NamaUndanganDesign6Controller;
+use App\Http\Controllers\NamaUndanganDesign7Controller;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\SeserahanController;
 use App\Http\Controllers\UndanganDigitalController;
@@ -37,6 +40,7 @@ use App\Http\Controllers\WeddingDesign3Controller;
 use App\Http\Controllers\WeddingDesign4Controller;
 use App\Http\Controllers\WeddingDesign5Controller;
 use App\Http\Controllers\WeddingDesign6Controller;
+use App\Http\Controllers\WeddingDesign7Controlller;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -150,10 +154,32 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/wedding-design6/{id}/update-direct-transfer', [WeddingDesign6Controller::class, 'updateDirectTransfer'])->name('directtransfer-design6.update');
     Route::delete('/wedding-design6/{id}/delete-direct-transfer', [WeddingDesign6Controller::class, 'destroyDirectTransfer'])->name('directtransfer-design6.destroy');
 
-    // Routes for Kirim Hadiah6
+    // Routes for Kirim Hadiah6 
     Route::post('/wedding-design6/{id}/store-kirim-hadiah', [WeddingDesign6Controller::class, 'storeKirimHadiah'])->name('kirimhadiah-design6.store');
     Route::put('/wedding-design6/{id}/update-kirim-hadiah', [WeddingDesign6Controller::class, 'updateKirimHadiah'])->name('kirimhadiah-design6.update');
     Route::delete('/wedding-design6/{id}/delete-kirim-hadiah', [WeddingDesign6Controller::class, 'destroyKirimHadiah'])->name('kirimhadiah-design6.destroy');
+
+    // Routes for InformasiDesign7
+    Route::resource('/wedding-design7', InformasiDesign7Controller::class);
+    Route::get('/wedding-design7/{wedding_design7}', [WeddingDesign7Controlller::class, 'show'])->name('wedding-design7.show');
+    Route::post('/wedding-design7/{id}/update', [InformasiDesign7Controller::class, 'update']);
+
+    // Routes for WeddingDesign7
+    Route::get('/wedding-design7/{id}/create', [WeddingDesign7Controlller::class, 'create'])->name('form-design7.create');
+    Route::post('/wedding-design7/{id}/store', [WeddingDesign7Controlller::class, 'store'])->name('form-design7.store');
+    Route::get('/wedding-design7/{informasiDesign7Id}/edit/{id}', [WeddingDesign7Controlller::class, 'edit'])->name('form-design7.edit');
+    Route::put('/wedding-design7/{informasiDesign7Id}/update/{id}', [WeddingDesign7Controlller::class, 'update'])->name('form-design7.update');
+    Route::delete('/wedding-design7/{id}', [WeddingDesign7Controlller::class, 'destroy'])->name('form-design7.destroy');
+
+    // Routes for Direct Transfer7
+    Route::post('/wedding-design7/{id}/store-direct-transfer', [WeddingDesign7Controlller::class, 'storeDirectTransfer'])->name('directtransfer-design7.store');
+    Route::put('/wedding-design7/{id}/update-direct-transfer', [WeddingDesign7Controlller::class, 'updateDirectTransfer'])->name('directtransfer-design7.update');
+    Route::delete('/wedding-design7/{id}/delete-direct-transfer', [WeddingDesign7Controlller::class, 'destroyDirectTransfer'])->name('directtransfer-design7.destroy');
+
+    // Routes for Kirim Hadiah7
+    Route::post('/wedding-design6/{id}/store-kirim-hadiah', [WeddingDesign7Controlller::class, 'storeKirimHadiah'])->name('kirimhadiah-design7.store');
+    Route::put('/wedding-design6/{id}/update-kirim-hadiah', [WeddingDesign7Controlller::class, 'updateKirimHadiah'])->name('kirimhadiah-design7.update');
+    Route::delete('/wedding-design6/{id}/delete-kirim-hadiah', [WeddingDesign7Controlller::class, 'destroyKirimHadiah'])->name('kirimhadiah-design7.destroy');
 
 
     // Routes for Blog
@@ -290,6 +316,23 @@ Route::put('/nama-undangan/platinum-silver/{weddingDesign6Id}/{id}', [NamaUndang
 Route::delete('/nama-undangan/platinum-silver/{id}', [NamaUndanganDesign6Controller::class, 'destroy'])->name('nama-undangan.destroy6');
 
 
+// Route undangan design 7
+Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/tertuju=')->group(function () {
+    Route::get('/preview', [HomeDesign7Controller::class, 'show'])->name('wedding-design7-home-preview');
+});
+
+Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/tertuju={nama_undangan}', [HomeDesign7Controller::class, 'showDetail'])->name('wedding-design7-home');
+Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/tertuju={nama_undangan}', [HomeDesign7Controller::class, 'store'])->name('wedding-design7-post');
+
+Route::resource('/nama-undangan', NamaUndanganDesign7Controller::class);
+Route::get('nama-undangan/platinum-gold/{weddingDesign7Id}/list', [NamaUndanganDesign7Controller::class, 'index'])->name('nama-undangan-list7');
+Route::get('/nama-undangan/platinum-gold/{id}/create', [NamaUndanganDesign7Controller::class, 'create'])->name('nama-undangan-create7');
+Route::post('/nama-undangan/platinum-gold/{id}/list', [NamaUndanganDesign7Controller::class, 'store'])->name('nama-undangan-store7');
+Route::get('/nama-undangan/platinum-gold/{id}/edit', [NamaUndanganDesign7Controller::class, 'edit'])->name('nama-undangan-edit7');
+Route::put('/nama-undangan/platinum-gold/{weddingDesign7Id}/{id}', [NamaUndanganDesign7Controller::class, 'update'])->name('nama-undangan-update7');
+Route::delete('/nama-undangan/platinum-gold/{id}', [NamaUndanganDesign7Controller::class, 'destroy'])->name('nama-undangan.destroy7');
+
+
 // User Route
 
 Route::resource('/', LandingPageController::class);
@@ -337,8 +380,13 @@ Route::get('/wedding-4', function () {
 Route::get('/wedding-5', function () {
     return view('wedding-design5.home-preview');
 });
+
 Route::get('/wedding-6', function () {
     return view('wedding-design6.home-preview');
+});
+
+Route::get('/wedding-7', function () {
+    return view('wedding-design7.home-preview');
 });
 
 
