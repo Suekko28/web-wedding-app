@@ -7,8 +7,13 @@
     @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Wedding Design 6'])
 
     @php
-        $defaultJudul = 'Assalamu’alaikum Wr. Wb.';
-        $defaultDeskripsi = "Tanpa mengurangi rasa hormat\nkami mengundang Bapak/Ibu/Saudara/i\npada pernikahan kami:";
+        $defaultJudulPembuka = 'Assalamu’alaikum Wr. Wb.';
+        $defaultJudulPerjalananCinta = 'Perjalanan Cinta Kami';
+        $defaultDeskripsiPembuka =
+            "Tanpa mengurangi rasa hormat\nkami mengundang Bapak/Ibu/Saudara/i\npada pernikahan kami:";
+        $defaultDeskripsiPenutup =
+            'Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami ucapkan terima kasih. Kami yang berbahagia';
+        $defaultJudulJadwal = 'Jadwal Pernikahan';
     @endphp
 
     <div class="card w-100 position-relative overflow-hidden">
@@ -104,12 +109,12 @@
                                         <label for="judul_pembuka">Judul<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul_pembuka"
                                             name="judul_pembuka" placeholder="Judul ucapan pembuka"
-                                            value="{{ old('judul_pembuka', $data->judul_pembuka ?? $defaultJudul) }}">
+                                            value="{{ old('judul_pembuka', $data->judul_pembuka ?? $defaultJudulPembuka) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="deskripsi_pembuka">Deskripsi<span class="mandatory">*</span></label>
                                         <textarea class="form-control" rows="5" id="deskripsi_pembuka" name="deskripsi_pembuka"
-                                            placeholder="Deskripsi">{{ old('deskripsi_pembuka', $data->deskripsi_pembuka ?? $defaultDeskripsi) }}</textarea>
+                                            placeholder="Deskripsi">{{ old('deskripsi_pembuka', $data->deskripsi_pembuka ?? $defaultDeskripsiPembuka) }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +241,7 @@
                                         <label for="judul_cinta">Judul<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul_cinta" name="judul_cinta"
                                             placeholder="Masukkan judul perjalanan cinta"
-                                            value="{{ old('judul_cinta', $data->judul_cinta ?? $defaultJudul) }}">
+                                            value="{{ old('judul_cinta', $data->judul_cinta ?? $defaultJudulPerjalananCinta) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="deskripsi_cinta">Deskripsi<span class="mandatory">*</span></label>
@@ -244,7 +249,8 @@
                                             placeholder="Masukkan deskripsi perjalanan cinta">{{ old('deskripsi_cinta', $data->deskripsi_cinta ?? $defaultDeskripsi) }}</textarea>
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="image_cinta">Upload Images<span class="mandatory">*</span></label>
+                                        <label for="image_cinta">Upload Images<span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="file" class="form-control" id="image_cinta" name="image_cinta[]"
                                             multiple>
                                         @if ($data->image_cinta)
@@ -265,6 +271,12 @@
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Akad & Resepsi</div>
                             <div class="form-group fs-3">
                                 <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="judul_jadwal">Judul<span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="judul_jadwal" name="judul_jadwal"
+                                            placeholder="Judul ucapan pembuka"
+                                            value="{{ old('judul', $data->judul_jadwal ?? $defaultJudulJadwal) }}">
+                                    </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="akad_img">Upload Image <span class="mandatory">*</span></label>
                                         <input type="file" accept="image/*" class="form-control" id="akad_img"
@@ -482,6 +494,19 @@
                                 </table>
                             </div>
                             <div class="p-2">{{ $dataKirimHadiah->links() }}</div>
+                        </div>
+                        <hr>
+                        <div class="card-body container bg-white">
+                            <div class="ucapan-pembuka fw-bold fs-5 mb-4">Ucapan Penutup</div>
+                            <div class="form-group form-group fs-3">
+                                <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="deskripsi_penutup">Deskripsi<span class="mandatory">*</span></label>
+                                        <textarea class="form-control" rows="5" id="deskripsi_penutup" name="deskripsi_penutup"
+                                            placeholder="Deskripsi">{{ old('deskripsi_penutup', $data->deskripsi_penutup ?? $defaultDeskripsiPenutup) }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="d-flex flex-row-reverse">

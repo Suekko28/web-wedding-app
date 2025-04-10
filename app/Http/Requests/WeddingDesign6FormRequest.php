@@ -48,10 +48,12 @@ class WeddingDesign6FormRequest extends FormRequest
             'tgl_resepsi' => ['required', 'date'],
             'mulai_resepsi' => ['required', 'date_format:H:i'],
             'selesai_resepsi' => ['required', 'date_format:H:i'],
-            'judul_pembuka' => ['required', 'max:255'],        
+            'judul_pembuka' => ['required', 'max:255'],
             'deskripsi_pembuka' => ['required'],
             'judul_cinta' => ['required', 'max:255'],
             'deskripsi_cinta' => ['required'],
+            'judul_jadwal' => ['required', 'max:255'],
+            'deskripsi_penutup' => ['required'],
         ];
 
         // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib di-upload
@@ -61,7 +63,7 @@ class WeddingDesign6FormRequest extends FormRequest
             $rules['foto_prewedding'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_mempelai_perempuan'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_mempelai_laki'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
-            $rules['image_cinta'] = ['required', 'array']; // Change to array
+            $rules['image_cinta'] = ['nullable', 'array']; // Change to array
             $rules['image_cinta.*'] = ['image', 'mimes:jpeg,png,jpg']; // Validate each image
             $rules['akad_img'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
         } else {
@@ -119,7 +121,6 @@ class WeddingDesign6FormRequest extends FormRequest
             'putra_dari_bpk.required' => 'Nama ayah dari mempelai laki-laki harus diisi.',
             'putra_dari_ibu.required' => 'Nama ibu dari mempelai laki-laki harus diisi.',
 
-            'image_cinta.required' => 'Gambar perjalanan cinta harus diunggah.',
             'image_cinta.image' => 'Gambar perjalanan cinta harus berupa file gambar.',
             'image_cinta.mimes' => 'Gambar perjalanan cinta hanya boleh berupa file dengan format jpeg, png, jpg.',
 

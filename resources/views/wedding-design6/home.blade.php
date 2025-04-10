@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha385-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
     <!-- Meta tags for Open Graph (OGP) -->
-    <meta property="og:title" content="The Wedding Of {{ $data->InformasiDesign5->nama_pasangan }}">
-    <meta property="og:description" content="Undangan Pernikahan {{ $data->InformasiDesign5->nama_pasangan }}">
+    <meta property="og:title" content="The Wedding Of {{ $data->InformasiDesign6->nama_pasangan }}">
+    <meta property="og:description" content="Undangan Pernikahan {{ $data->InformasiDesign6->nama_pasangan }}">
     <meta property="og:image" content="{{ Storage::url('' . $data->banner_img) }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Wedding Of {{ $data->InformasiDesign5->nama_pasangan }}">
-    <meta name="twitter:description" content="Undangan Pernikahan {{ $data->InformasiDesign5->nama_pasangan }}">
+    <meta name="twitter:title" content="The Wedding Of {{ $data->InformasiDesign6->nama_pasangan }}">
+    <meta name="twitter:description" content="Undangan Pernikahan {{ $data->InformasiDesign6->nama_pasangan }}">
     <meta name="twitter:image" content="{{ Storage::url('' . $data->banner_img) }}">
 
     <!-- Fancybox and Jquery CDN
@@ -28,14 +28,14 @@
         type="text/css" media="screen" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
-    <title>The Wedding Of {{ $data->InformasiDesign5->nama_pasangan }}</title>
+    <title>The Wedding Of {{ $data->InformasiDesign6->nama_pasangan }}</title>
 
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha385-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- CSS STYLE -->
-    <link href="{{ asset('css/wedding-design5.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/wedding-design6.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
@@ -53,10 +53,20 @@
     </div>
     @if (!session('hide_offcanvas'))
         <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+            <!-- <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
+        </div> -->
             <div class="offcanvas-body">
+                <div class="flower-left-cover">
+                    <img class="flower-left object-fit-cover" src="{{ asset('img/element-2.svg') }}" alt="background">
+                </div>
+                <div class="flower-right-cover">
+                    <img class="flower-right object-fit-cover" src="{{ asset('img/element-1.svg') }}" alt="background">
+                </div>
                 <div class="opening-undangan">
                     <p>Undangan Pernikahan</p>
-                    <h2>{{ $data->InformasiDesign5->nama_pasangan }}</h2>
+                    <h1>{{ $data->InformasiDesign6->nama_pasangan }}</h1>
                 </div>
                 <div class="tujuan-undangan">
                     <div class="opening">
@@ -64,14 +74,15 @@
                         <p>Bapak/Ibu/Saudara/i</p>
                     </div>
                     <h3>{{ $nama_undangan }}</h3>
-                    <button type="button" onclick="playAudio()" class="btn-primary" data-bs-dismiss="offcanvas">Buka
-                        Undangan</button>
+                    <button type="button" onclick="playAudio()" style="display:none" class="btn-primary"
+                        id="buttonPage" data-bs-dismiss="offcanvas">Buka Undangan</button>
                 </div>
                 <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
                     alt="background">
             </div>
         </div>
     @endif
+
     <audio loop id="track">
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
@@ -90,9 +101,9 @@
                 <a href="#kedua-mempelai">
                     <img src="{{ asset('img/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
-                <a href="#perjalanan-cinta">
-                    <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
-                </a>
+                <!-- <a href="#perjalanan-cinta">
+                        <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
+                    </a> -->
                 <a href="#gallery">
                     <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
                 </a>
@@ -107,24 +118,13 @@
     </nav>
     <img class="background-template object-fit-cover" src="{{ Storage::url('' . $data->foto_prewedding) }}"
         alt="background">
-    <div class="w-100 h-100" id="animation container">
-        <script>
-            var animation = bodymovin.loadAnimation({
-                container: document.getElementById('animation container'),
-                path: 'overlay-animation.json',
-                render: 'svg',
-                loop: true,
-                autoplay: true,
-                name: 'overlay animation'
-            })
-        </script>
-    </div>
     <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
         <div class="title">
+            <img src="{{ asset('img/devider.svg') }}" class="devider-flower" alt="devider">
             <p>Pernikahan</p>
-            <h2>{{ $data->InformasiDesign5->nama_pasangan }}</h2>
+            <h1>{{ $data->InformasiDesign6->nama_pasangan }}</h1>
         </div>
         <div class="wedding-timer">
             <div id="timer">
@@ -158,147 +158,100 @@
                 </p>
             </div>
         </div>
-        <div class="background-overlay"></div>
+        <!-- <div class="background-overlay"></div> -->
     </section>
     <!-- HERO END -->
-
     <!-- MEMPELAI -->
     <section class="animation kedua-mempelai" id="kedua-mempelai">
         <div class="anm_mod bottom-bit fast mempelai-cover">
-            <div class="mempelai-wanita">
-                <img class="anm_mod left fast mempelai-wanita-img"
-                    src="{{ Storage::url('' . $data->foto_mempelai_perempuan) }}" alt="Foto Mempelai Perempuan">
-                <div class="anm_mod bottom fast detail-mempelai-wanita">
-                    <div class="data-mempelai-wanita">
-                        <span class="label">PENGANTIN WANITA</span>
-                        <h2>{{ $data->nama_mempelai_perempuan }}</h2>
-                        <p>Anak dari bapak {{ $data->putri_dari_bpk }} dan ibu {{ $data->putri_dari_ibu }}</p>
-                    </div>
-                    <a href="{{ $data->link_instagram1 }}" target="_blank" class="btn-link">
-                        <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
-                        <span>{{ $data->nama_instagram1 }}</span>
-                    </a>
-                </div>
+            <div class="title">
+                <h2>{{ $data->judul_pembuka }}</h2>
+                <p>{{ $data->deskripsi_pembuka }}</p>
             </div>
-            <h2 class="anm_mod bottom-bit fast">&</h2>
-            <div class="mempelai-pria">
-                <div class="anm_mod bottom fast detail-mempelai-pria">
-                    <div class="data-mempelai-pria">
-                        <span class="label">PENGANTIN PRIA</span>
-                        <h2>{{ $data->nama_mempelai_laki }}</h2>
-                        <p>Anak dari bapak {{ $data->putra_dari_bpk }} dan ibu {{ $data->putra_dari_ibu }}</p>
+            <div class="anm_mod bottom-bit fast inner-mempelai">
+                <div class="mempelai-wanita">
+                    <div class="container-image-wanita">
+                        <img class="anm_mod left fast mempelai-wanita-img object-fit-cover"
+                            src="{{ Storage::url('' . $data->foto_mempelai_perempuan) }}" alt="mempelai-wanita">
+                        <img class="anm_mod left fast ring-wanita-img object-fit-cover"
+                            src="{{ asset('img/ring.png') }}" alt="mempelai-wanita">
+                        <img class="anm_mod left fast ring-flower-left object-fit-cover"
+                            src="{{ asset('img/ring-flower-left.svg') }}" alt="mempelai-wanita">
                     </div>
-                    <a href="{{ $data->link_instagram2 }}" target="_blank" class="btn-link">
-                        <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
-                        <span>{{ $data->nama_instagram2 }}</span>
-                    </a>
+                    <div class="anm_mod bottom fast detail-mempelai-wanita">
+                        <div class="data-mempelai-wanita">
+                            <h3>{{ $data->nama_mempelai_perempuan }}</h3>
+                            <p>Anak dari Bapak {{ $data->putri_dari_bpk }} dan Ibu {{ $data->putri_dari_ibu }}</p>
+                        </div>
+                        <a href="{{ $data->link_instagram1 }}" target="_blank" class="btn-link">
+                            <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
+                            <span>{{ $data->nama_instagram1 }}</span>
+                        </a>
+                    </div>
                 </div>
-                <img class="anm_mod right fast mempelai-wanita-img"src="{{ Storage::url('' . $data->foto_mempelai_laki) }}"
-                    alt="Seserahan">
+                <h3 class="anm_mod bottom-bit fast">&</h3>
+                <div class="mempelai-pria">
+                    <div class="container-image-pria">
+                        <img class="anm_mod right fast mempelai-wanita-img object-fit-cover"
+                            src="{{ Storage::url('' . $data->foto_mempelai_laki) }}" alt="mempelai-pria">
+                        <img class="anm_mod right fast ring-pria-img object-fit-cover"
+                            src="{{ asset('img/ring.png') }}" alt="mempelai-wanita">
+                        <img class="anm_mod right fast ring-flower-right object-fit-cover"
+                            src="{{ asset('img/ring-flower-right.svg') }}" alt="mempelai-wanita">
+                    </div>
+                    <div class="anm_mod bottom fast detail-mempelai-pria">
+                        <div class="data-mempelai-pria">
+                            <h3>{{ $data->nama_mempelai_laki }}</h3>
+                            <p>Anak dari Bapak {{ $data->putra_dari_bpk }} dan Ibu {{ $data->putra_dari_ibu }}</p>
+                        </div>
+                        <a href="{{ $data->link_instagram2 }}" target="_blank" class="btn-link">
+                            <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
+                            <span>{{ $data->nama_instagram2 }}</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <!-- MEMPELAI END -->
 
-    <!-- PERJALANAN CINTA -->
-    <section class="animation perjalanan-cinta" id="perjalanan-cinta">
-        <div class="anm_mod bottom-bit fast perjalanan-cinta-cover">
-            <h3 class="anm_mod bottom-bit fast">Perjalanan Cinta Kami</h3>
-            @if ($data->PerjalananCintaDesign5->isNotEmpty())
-                <div id="carouselExampleCaptions" class="carousel slide anm_mod bottom-bit delay"
-                    data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        @foreach ($data->PerjalananCintaDesign5 as $key => $perjalanan)
-                            <button type="button" data-bs-target="#carouselExampleCaptions"
-                                data-bs-slide-to="{{ $key }}" class="{{ $loop->first ? 'active' : '' }}"
-                                aria-current="{{ $loop->first ? 'true' : '' }}"
-                                aria-label="Slide {{ $key + 1 }}"></button>
-                        @endforeach
-                    </div>
-                    <div class="carousel-inner">
-                        @foreach ($data->PerjalananCintaDesign5 as $key => $perjalanan)
-                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                <img src="{{ Storage::url('' . $perjalanan->image1) }}"
-                                    class="d-block story-img object-fit-cover" alt="story">
-                                <div class="carousel-caption d-md-block">
-                                    <div class="story-detail">
-                                        <span class="vertical-line"></span>
-                                        <span
-                                            class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $perjalanan->tanggal)->format('d-m-Y') }}</span>
-                                        <h3>{{ $perjalanan->judul_cerita }}</h3>
-                                        <p>{{ $perjalanan->deskripsi }}</p>
-                                        <span class="vertical-line"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden"></span>
-                    </button>
-                </div>
-            @endif
-        </div>
-    </section>
-    <!-- PERJALANAN CINTA END -->
-
     <!-- Gallery -->
     <section class="animation gallery" id="gallery">
         <div class="anm_mod bottom-bit fast container-gallery">
-            <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
-            @if (!empty($data) && !empty($data->quote_img))
-                <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
-                    data-bs-ride="carousel">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                        <div class="anm_mod bottom-bit fast quotes">
-                            <div class="carousel-inner carousel-gallery">
-                                @php
-                                    $quoteImages = json_decode($data->quote_img, true); // Decode the JSON to get an array
-                                @endphp
-                                @foreach ($quoteImages as $index => $image)
-                                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                        <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
-                                            <img src="{{ Storage::url($image) }}"
-                                                class="d-block w-100 h-100 object-fit-cover img-fluid"
-                                                alt="Image Gallery">
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <p>"{{ $data->quote }}"</p>
+            <div class="title">
+                <h2>{{ $data->judul_cinta }}</h2>
+                <p>{{ $data->deskripsi_cinta }}</p>
+            </div>
+            @php
+                $images = is_array($data->image_cinta) ? $data->image_cinta : json_decode($data->image_cinta, true);
+            @endphp
+            <div class="container-card-gallery">
+
+                @if (!empty($images))
+                    @foreach ($images as $image)
+                        <div class="card-gallery">
+                            <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
+                                <img class="gallery-img object-fit-cover" src="{{ Storage::url($image) }}"
+                                    alt="Image Gallery">
+                            </a>
                         </div>
-                        <div class="carousel-indicators indicators-gallery w-100">
-                            @foreach ($quoteImages as $index => $image)
-                                <button type="button" data-bs-target="#carouselExampleIndicators"
-                                    data-bs-slide-to="{{ $index }}"
-                                    class="{{ $index === 0 ? 'active' : '' }} thumbnail rounded-2"
-                                    aria-current="{{ $index === 0 ? 'true' : 'false' }}"
-                                    aria-label="Slide {{ $index + 1 }}">
-                                    <img src="{{ Storage::url($image) }}"
-                                        class="d-block w-100 h-100 object-fit-cover rounded-2" alt="...">
-                                </button>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            @endif
+                    @endforeach
+                @endif
+            </div>
         </div>
     </section>
     <!-- GALLERY END -->
-
+    
     <!-- JADWAL PERNIKAHAN -->
     <section class="animation jadwal-pernikahan" id="jadwal-pernikahan">
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
-            <h3 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h3>
-            <img src="{{ Storage::url('' . $data->akad_img) }}"
-                class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
+            <h2 class="anm_mod bottom-bit fast">{{ $data->judul_jadwal }}</h2>
+            <div class="container-img-jadwal anm_mod bottom-bit fast">
+                <img src="{{ Storage::url('' . $data->akad_img) }}"
+                    class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story" width="328"
+                    height="328">
+                <img src="{{ asset('img/element-3.svg') }}" class="element-flower" alt="devider">
+            </div>
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
                     <h3>Akad<h3>
@@ -314,8 +267,9 @@
                                     <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">
-                                            {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} WIB -
-                                            {{ \Carbon\Carbon::parse($data->selesai_akad)->format('H:i') }} WIB</span>
+                                            {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} -
+                                            {{ \Carbon\Carbon::parse($data->selesai_akad)->format('H:i') }}
+                                            WIB</span>
                                     </div>
                                 </div>
                                 <div class="info">
@@ -348,7 +302,7 @@
                                     <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">
-                                            {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} WIB -
+                                            {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
                                             {{ \Carbon\Carbon::parse($data->selesai_resepsi)->format('H:i') }}
                                             WIB</span>
                                     </div>
@@ -373,7 +327,8 @@
                 <div class="anm_mod bottom-bit fast live-streaming">
                     <div class="detail-info">
                         <h3>Live Streaming</h3>
-                        <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
+                        <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami
+                            melalui
                             siaran langsung secara live virtual di platform berikut</p>
                     </div>
                     <a type="button" target="_blank" href="{{ $data->link_streaming }}" class="btn-secondary">Buka
@@ -402,7 +357,7 @@
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
                         <form id="algin-form" class="rsvp-mobile3" method="POST"
-                            action="{{ route('wedding-design5-post', [
+                            action="{{ route('wedding-design6-post', [
                                 'nama_mempelai_laki' => $nama_mempelai_laki,
                                 'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
                                 'nama_undangan' => $nama_undangan,
@@ -441,7 +396,7 @@
                         </form>
                     </div>
                     <div class="comment-list">
-                        @foreach ($alt5models as $item)
+                        @foreach ($alt6models as $item)
                             <div class="card-comment">
                                 <div class="title">
                                     <div class="name">
@@ -461,80 +416,97 @@
                             </div>
                         @endforeach
                     </div>
-
                 </div>
             </div>
-            <div class="kirim-hadiah anm_mod bottom-bit fast">
-                <div class="info">
-                    <h3>Kirim Hadiah</h3>
-                    <p>Berikan hadiah kepada kedua mempelai</p>
-                </div>
-                <ul class="nav nav-pills id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                            aria-selected="true">Direct Transfer</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-profile" type="button" role="tab"
-                            aria-controls="pills-profile" aria-selected="false">Kirim Hadiah</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                        aria-labelledby="pills-home-tab">
-                        @foreach ($data->DirectTransferDesign5 as $index => $item)
-                            <div class="card">
-                                <div class="card-body">
-                                    @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
-                                        @if (!empty($item->bank))
-                                            <h4 class="card-title">{{ $item->bank }}</h4>
-                                        @endif
-                                        <div class="info-norek">
-                                            @if (!empty($item->no_rek))
-                                                <!-- Tambahkan indeks ke ID -->
-                                                <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
+            @if ($data->DirectTransferDesign6->isNotEmpty() || $data->KirimHadiahDesign6->isNotEmpty())
+                <div class="kirim-hadiah anm_mod bottom-bit fast">
+                    <div class="info">
+                        <h3>Kirim Hadiah</h3>
+                        <p>Berikan hadiah kepada kedua mempelai</p>
+                    </div>
+
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        @if ($data->DirectTransferDesign6->isNotEmpty())
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-home" type="button" role="tab"
+                                    aria-controls="pills-home" aria-selected="true">Direct Transfer</button>
+                            </li>
+                        @endif
+                        @if ($data->KirimHadiahDesign6->isNotEmpty())
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link {{ $data->DirectTransferDesign6->isEmpty() ? 'active' : '' }}"
+                                    id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                                    type="button" role="tab" aria-controls="pills-profile"
+                                    aria-selected="{{ $data->DirectTransferDesign6->isEmpty() ? 'true' : 'false' }}">
+                                    Kirim Hadiah
+                                </button>
+                            </li>
+                        @endif
+                    </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        @if ($data->DirectTransferDesign6->isNotEmpty())
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                aria-labelledby="pills-home-tab">
+                                @foreach ($data->DirectTransferDesign6 as $index => $item)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
+                                                @if (!empty($item->bank))
+                                                    <h4 class="card-title">{{ $item->bank }}</h4>
+                                                @endif
+                                                <div class="info-norek">
+                                                    @if (!empty($item->no_rek))
+                                                        <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
+                                                    @endif
+                                                    <a id="btn-copy-{{ $index }}"
+                                                        onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
+                                                        title="Copy Text" class="btn-ghost">
+                                                        Copy
+                                                    </a>
+                                                </div>
+                                                @if (!empty($item->nama_rek))
+                                                    <p class="card-text">A/N {{ $item->nama_rek }}</p>
+                                                @endif
                                             @endif
-                                            <!-- Tombol salin dengan ID unik -->
-                                            <a id="btn-copy-{{ $index }}"
-                                                onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
-                                                title="Copy Text" class="btn-ghost">
-                                                Copy
-                                            </a>
                                         </div>
-                                        @if (!empty($item->nama_rek))
-                                            <p class="card-text">A/N {{ $item->nama_rek }}</p>
-                                        @endif
-                                    @endif
-                                </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
+                        @endif
+
+                        @if ($data->KirimHadiahDesign6->isNotEmpty())
+                            <div class="tab-pane fade {{ $data->DirectTransferDesign6->isEmpty() ? 'show active' : '' }}"
+                                id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                @foreach ($data->KirimHadiahDesign6 as $item)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
+                                                <h4 class="card-title">{{ $item->alamat }}</h4>
+                                                <p class="card-text">{{ $item->deskripsi_alamat }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    @foreach ($data->KirimHadiahDesign5 as $item)
-                        <div class="card">
-                            <div class="card-body">
-                                @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
-                                    <h4 class="card-title">{{ $item->alamat }}</h4>
-                                    <p class="card-text">{{ $item->deskripsi_alamat }}</p>
-                                @endif
-                    @endforeach
-                </div>
-            </div>
+            @endif
         </div>
-
+        </div>
     </section>
     <!-- DOA & UCAPAN -->
 
     <!-- ENDING -->
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
-            <p class="anm_mod bottom-bit fast">Thank You</p>
-            <h4 class="anm_mod bottom-bit fast">{{ $data->InformasiDesign5->nama_pasangan }}</h4>
+            <p class="anm_mod bottom-bit fast">{{ $data->deskripsi_penutup }}</p>
+            <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
+                {{ $data->nama_mempelai_laki }}</h3>
         </div>
-        <div class="overlay-bottom"></div>
+        <img class="ending-background object-fit-cover" src="{{ asset('img/element-4.svg') }}" alt="background">
     </section>
     <!-- ENDING END -->
 
@@ -549,13 +521,13 @@
         <div class="follow-us">
             <p>Follow Us</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:25px" src="{{ asset('img/icon-facebook.svg') }}" alt="Facebook">
+                <img style="height:24px" src="{{ asset('img/icon-facebook.svg') }}" alt="Facebook">
             </a>
             <a href="https://www.instagram.com/jejakkebahagiaan/" target="_blank">
-                <img style="height:25px" src="{{ asset('img/icon-instagram.svg') }}" alt="Instagram">
+                <img style="height:24px" src="{{ asset('img/icon-instagram.svg') }}" alt="Instagram">
             </a>
             <a href="https://www.tiktok.com/@jejakkebahagiaan?_t=8pjtPh8o2JL&_r=1" target="_blank">
-                <img style="height:25px" src="{{ asset('img/icon-tiktok.svg') }}" alt="Tiktok">
+                <img style="height:24px" src="{{ asset('img/icon-tiktok.svg') }}" alt="Tiktok">
             </a>
         </div>
     </section>
@@ -563,7 +535,7 @@
 
     <!-- BOOTSTRAP 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha385-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
     <!-- JQUERY -->
@@ -605,12 +577,6 @@
             });
         }
     </script>
-    @if (session('hide_offcanvas'))
-        <script>
-            window.location.hash = '#doa-ucapan'; // Redirect with the hash
-            document.getElementById('doa-ucapan').scrollIntoView();
-        </script>
-    @endif
     <script>
         var x = document.getElementById("track");
 
@@ -638,7 +604,6 @@
             }
         }
     </script>
-    
     <script>
         var myOffcanvas = document.getElementById('myOffcanvas')
         myOffcanvas.addEventListener('show.bs.offcanvas', function() {
@@ -649,7 +614,6 @@
         var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
         triggerTabList.forEach(function(triggerEl) {
             var tabTrigger = new bootstrap.Tab(triggerEl)
-
             triggerEl.addEventListener('click', function(event) {
                 event.preventDefault()
                 tabTrigger.show()
@@ -713,21 +677,20 @@
             });
         }
     </script>
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha385-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT5GN1R8p" crossorigin="anonymous">
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha385-cVKIPhGWiC2Al5u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl5H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha385-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha385-I7E8VVD/ismYTF5hNIPjVp/Zjvgyol6VFvRkX/vR+Vc5jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha385-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
     <script>
         $(window).scroll(function() {
@@ -775,18 +738,15 @@
                 show: true
             });
         });
-
         $('#modal').on('show.bs.modal', function() {
             $('.col-6,.row .thumbnail-image').addClass('blur');
         })
-
         $('#modal').on('hide.bs.modal', function() {
             $('.col-6,.row .thumbnail-image').removeClass('blur');
         })
     </script>
     <script>
         var track = document.getElementById('track');
-
         var controlBtn = document.getElementById('play-pause');
 
         function playPause() {
@@ -807,139 +767,6 @@
         });
     </script>
     <script>
-        const html = document.querySelector('html');
-        html.setAttribute('data-bs-theme', 'light');
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Create LightBox
-            const galleryGrid = document.querySelector(".gallery-grid");
-            const links = galleryGrid.querySelectorAll("a");
-            const imgs = galleryGrid.querySelectorAll("img");
-            const lightboxModal = document.getElementById("lightbox-modal");
-            const bsModal = new bootstrap.Modal(lightboxModal);
-            const modalBody = lightboxModal.querySelector(".lightbox-content");
-
-            function createCaption(caption) {
-                return `<div class="carousel-caption d-none d-md-block">
-        <h5 class="m-0">${caption}</h5>
-      </div>`;
-            }
-
-            function createIndicators(img) {
-                let markup = "",
-                    i, len;
-
-                const countSlides = links.length;
-                const parentCol = img.closest('.col');
-                const curIndex = [...parentCol.parentElement.children].indexOf(parentCol);
-
-                for (i = 0, len = countSlides; i < len; i++) {
-                    markup += `
-        <button type="button" data-bs-target="#lightboxCarousel"
-          data-bs-slide-to="${i}"
-          ${i === curIndex ? 'class="active" aria-current="true"' : ''}
-          aria-label="Slide ${i + 1}">
-        </button>`;
-                }
-
-                return markup;
-            }
-
-            function createSlides(img) {
-                let markup = "";
-                const currentImgSrc = img.closest('.gallery-item').getAttribute("href");
-
-                for (const img of imgs) {
-                    const imgSrc = img.closest('.gallery-item').getAttribute("href");
-                    const imgAlt = img.getAttribute("alt");
-
-                    markup += `
-        <div class="carousel-item${currentImgSrc === imgSrc ? " active" : ""}">
-          <img class="d-block img-fluid w-100" src=${imgSrc} alt="${imgAlt}">
-          ${imgAlt ? createCaption(imgAlt) : ""}
-        </div>`;
-                }
-
-                return markup;
-            }
-
-            function createCarousel(img) {
-                const markup = `
-      <!-- Lightbox Carousel -->
-      <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="true">
-        <!-- Indicators/dots -->
-        <div class="carousel-indicators">
-          ${createIndicators(img)}
-        </div>
-        <!-- Wrapper for Slides -->
-        <div class="carousel-inner justify-content-center mx-auto">
-          ${createSlides(img)}
-        </div>
-        <!-- Controls/icons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      `;
-
-                modalBody.innerHTML = markup;
-            }
-
-            for (const link of links) {
-                link.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    const currentImg = link.querySelector("img");
-                    const lightboxCarousel = document.getElementById("lightboxCarousel");
-
-                    if (lightboxCarousel) {
-                        const parentCol = link.closest('.col');
-                        const index = [...parentCol.parentElement.children].indexOf(parentCol);
-
-                        const bsCarousel = new bootstrap.Carousel(lightboxCarousel);
-                        bsCarousel.to(index);
-                    } else {
-                        createCarousel(currentImg);
-                    }
-
-                    bsModal.show();
-                });
-            }
-
-            // --- Support Fullscreen
-            const fsEnlarge = document.querySelector(".btn-fullscreen-enlarge");
-            const fsExit = document.querySelector(".btn-fullscreen-exit");
-
-            function enterFS() {
-                lightboxModal.requestFullscreen().then({}).catch(err => {
-                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-                });
-                fsEnlarge.classList.toggle("d-none");
-                fsExit.classList.toggle("d-none");
-            }
-
-            function exitFS() {
-                document.exitFullscreen();
-                fsExit.classList.toggle("d-none");
-                fsEnlarge.classList.toggle("d-none");
-            }
-
-            fsEnlarge.addEventListener("click", (e) => {
-                e.preventDefault();
-                enterFS();
-            });
-
-            fsExit.addEventListener("click", (e) => {
-                e.preventDefault();
-                exitFS();
-            });
-        })
-    </script>
-    <script>
         // Fancybox Config
         $('[data-fancybox="gallery"]').fancybox({
             buttons: [
@@ -955,9 +782,12 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
+        window.onload = function() {
+            // code goes here
+        };
+        {
             $("button").show()
-        });
+        };
     </script>
     <script>
         $(document).ready(function() {
@@ -975,13 +805,76 @@
                     })
                 }, 2500)
             });
-
-            // Will remove overlay after 1min for users cannnot load properly.
-            setTimeout(function() {
-                $('.overlay, body').addClass('loaded');
-            }, 2000);
         })
     </script>
+    <!-- <script>
+        let items = document.querySelectorAll('.carousel .carousel-item')
+
+        items.forEach((el) => {
+            const minPerSlide = 4
+            let next = el.nextElementSibling
+            for (var i = 1; i < minPerSlide; i++) {
+                if (!next) {
+                    // wrap carousel by using first child
+                    next = items[0]
+                }
+                let cloneChild = next.cloneNode(true)
+                el.appendChild(cloneChild.children[0])
+                next = next.nextElementSibling
+            }
+        })
+    </script> -->
+    </script>
+    <script>
+        (function($) {
+            "use strict";
+            // Auto-scroll
+            $('#myCarousel').carousel({
+                interval: 5000
+            });
+
+            // Control buttons
+            $('.next').click(function() {
+                $('.carousel').carousel('next');
+                return false;
+            });
+            $('.prev').click(function() {
+                $('.carousel').carousel('prev');
+                return false;
+            });
+
+            // On carousel scroll
+            $("#myCarousel").on("slide.bs.carousel", function(e) {
+                var $e = $(e.relatedTarget);
+                var idx = $e.index();
+                var itemsPerSlide = 3;
+                var totalItems = $(".carousel-item").length;
+                if (idx >= totalItems - (itemsPerSlide - 1)) {
+                    var it = itemsPerSlide -
+                        (totalItems - idx);
+                    for (var i = 0; i < it; i++) {
+                        // append slides to end 
+                        if (e.direction == "left") {
+                            $(
+                                ".carousel-item").eq(i).appendTo(".carousel-inner");
+                        } else {
+                            $(".carousel-item").eq(0).appendTo(".carousel-inner");
+                        }
+                    }
+                }
+            });
+        })
+        (jQuery);
+    </script>
+
+    </script>
+    @if (session('hide_offcanvas'))
+        <script>
+            window.location.hash = '#doa-ucapan'; // Redirect with the hash
+            document.getElementById('doa-ucapan').scrollIntoView();
+        </script>
+    @endif
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="jquery.fancybox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>

@@ -18,11 +18,11 @@
                 <div class="card">
                     <div class="card-body">
                         <form
-                            action="{{ route('nama-undangan-update5', ['weddingDesign5Id' => $weddingDesign5Id, 'id' => $data->id]) }}"
+                            action="{{ route('nama-undangan-update6', ['weddingDesign6Id' => $weddingDesign6Id, 'id' => $data->id]) }}"
                             method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" name="wedding_design5_id" value="{{ $weddingDesign5->id }}">
+                            <input type="hidden" name="wedding_design6_id" value="{{ $weddingDesign6->id }}">
                             <div class="card-body container bg-white mt-5">
                                 <div class="mempelai text-center fw-bold fs-5">Nama Undangan</div>
                                 <div class="fs-3">
@@ -35,7 +35,7 @@
 
                                 <div class="d-flex flex-row-reverse mt-5">
                                     <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                    <a href="{{ route('nama-undangan-list5', ['weddingDesign5Id' => $weddingDesign5->id]) }}"
+                                    <a href="{{ route('nama-undangan-list6', ['weddingDesign6Id' => $weddingDesign6->id]) }}"
                                         class="btn btn-secondary">Batal</a>
                                 </div>
                             </div>

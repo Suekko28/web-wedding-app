@@ -51,7 +51,9 @@ class WeddingDesign6 extends Model
         'judul_cinta',
         'deskripsi_cinta',
         'image_cinta',
-        'live_streaming',
+        'link_streaming',
+        'judul_jadwal',
+        'deskripsi_penutup',
         'informasi_design6_id'
 
     ];

@@ -162,8 +162,8 @@
     <section class="animation kedua-mempelai" id="kedua-mempelai">
         <div class="anm_mod bottom-bit fast mempelai-cover">
             <div class="title">
-                <h2>Assalamu’alaikum Wr. Wb.</h2>
-                <p>Tanpa mengurangi rasa hormat kami mengundang Bapak/Ibu/Saudara/i pada pernikahan kami:</p>
+                <h2>{{ $data->judul_pembuka }}</h2>
+                <p>{{ $data->deskripsi_pembuka }}</p>
             </div>
             <div class="anm_mod bottom-bit fast inner-mempelai">
                 <div class="mempelai-wanita">
@@ -213,41 +213,36 @@
     <!-- MEMPELAI END -->
 
     <!-- Gallery -->
-    @if (!empty($data) && $data->PerjalananCintaDesign6->isNotEmpty())
-        <section class="animation gallery" id="gallery">
-            <div class="anm_mod bottom-bit fast container-gallery">
-                @foreach ($data->PerjalananCintaDesign6 as $item)
-                    @php
-                        $images = is_array($item->image) ? $item->image : json_decode($item->image, true);
-                    @endphp
-                    <div class="title">
-                        <h2>Perjalanan Cinta Kami</h2>
-                        <p>{{ $item->deskripsi }}</p>
-                    </div>
-                    <div class="container-card-gallery">
-
-                        @if (!empty($images))
-                            @foreach ($images as $image)
-                                <div class="card-gallery">
-                                    <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
-                                        <img class="gallery-img object-fit-cover" src="{{ Storage::url($image) }}"
-                                            alt="Image Gallery">
-                                    </a>
-                                </div>
-                            @endforeach
-                        @endif
-                @endforeach
+    <section class="animation gallery" id="gallery">
+        <div class="anm_mod bottom-bit fast container-gallery">
+            <div class="title">
+                <h2>{{ $data->judul_cinta }}</h2>
+                <p>{{ $data->deskripsi_cinta }}</p>
             </div>
-            </div>
-        </section>
-    @endif
+            @php
+                $images = is_array($data->image_cinta) ? $data->image_cinta : json_decode($data->image_cinta, true);
+            @endphp
+            <div class="container-card-gallery">
 
+                @if (!empty($images))
+                    @foreach ($images as $image)
+                        <div class="card-gallery">
+                            <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
+                                <img class="gallery-img object-fit-cover" src="{{ Storage::url($image) }}"
+                                    alt="Image Gallery">
+                            </a>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
+    </section>
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->
     <section class="animation jadwal-pernikahan" id="jadwal-pernikahan">
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
-            <h2 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h2>
+            <h2 class="anm_mod bottom-bit fast">{{ $data->judul_jadwal }}</h2>
             <div class="container-img-jadwal anm_mod bottom-bit fast">
                 <img src="{{ Storage::url('' . $data->akad_img) }}"
                     class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story" width="328"
@@ -324,6 +319,17 @@
                             </div>
                 </div>
             </div>
+            @if (!empty($data->link_streaming))
+                <div class="anm_mod bottom-bit fast live-streaming">
+                    <div class="detail-info">
+                        <h3>Live Streaming</h3>
+                        <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
+                            siaran langsung secara live virtual di platform berikut</p>
+                    </div>
+                    <a type="button" target="_blank" href="{{ $data->link_streaming }}" class="btn-secondary">Buka
+                        Link</a>
+                </div>
+            @endif
         </div>
     </section>
     <!-- JADWAL PERNIKAHAN END -->
@@ -426,65 +432,82 @@
                     </div>
                 </div>
             </div>
-            <div class="kirim-hadiah anm_mod bottom-bit fast">
-                <div class="info">
-                    <h3>Kirim Hadiah</h3>
-                    <p>Berikan hadiah kepada kedua mempelai</p>
-                </div>
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                            aria-selected="true">Direct Transfer</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-profile" type="button" role="tab"
-                            aria-controls="pills-profile" aria-selected="false">Kirim Hadiah</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                        aria-labelledby="pills-home-tab">
-                        @foreach ($data->DirectTransferDesign6 as $index => $item)
-                            <div class="card">
-                                <div class="card-body">
-                                    @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
-                                        @if (!empty($item->bank))
-                                            <h4 class="card-title">{{ $item->bank }}</h4>
-                                        @endif
-                                        <div class="info-norek">
-                                            @if (!empty($item->no_rek))
-                                                <!-- Tambahkan indeks ke ID -->
-                                                <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
+            @if ($data->DirectTransferDesign6->isNotEmpty() || $data->KirimHadiahDesign6->isNotEmpty())
+                <div class="kirim-hadiah anm_mod bottom-bit fast">
+                    <div class="info">
+                        <h3>Kirim Hadiah</h3>
+                        <p>Berikan hadiah kepada kedua mempelai</p>
+                    </div>
+
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        @if ($data->DirectTransferDesign6->isNotEmpty())
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-home" type="button" role="tab"
+                                    aria-controls="pills-home" aria-selected="true">Direct Transfer</button>
+                            </li>
+                        @endif
+                        @if ($data->KirimHadiahDesign6->isNotEmpty())
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link {{ $data->DirectTransferDesign6->isEmpty() ? 'active' : '' }}"
+                                    id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                                    type="button" role="tab" aria-controls="pills-profile"
+                                    aria-selected="{{ $data->DirectTransferDesign6->isEmpty() ? 'true' : 'false' }}">
+                                    Kirim Hadiah
+                                </button>
+                            </li>
+                        @endif
+                    </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        @if ($data->DirectTransferDesign6->isNotEmpty())
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                aria-labelledby="pills-home-tab">
+                                @foreach ($data->DirectTransferDesign6 as $index => $item)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
+                                                @if (!empty($item->bank))
+                                                    <h4 class="card-title">{{ $item->bank }}</h4>
+                                                @endif
+                                                <div class="info-norek">
+                                                    @if (!empty($item->no_rek))
+                                                        <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
+                                                    @endif
+                                                    <a id="btn-copy-{{ $index }}"
+                                                        onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
+                                                        title="Copy Text" class="btn-ghost">
+                                                        Copy
+                                                    </a>
+                                                </div>
+                                                @if (!empty($item->nama_rek))
+                                                    <p class="card-text">A/N {{ $item->nama_rek }}</p>
+                                                @endif
                                             @endif
-                                            <!-- Tombol salin dengan ID unik -->
-                                            <a id="btn-copy-{{ $index }}"
-                                                onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
-                                                title="Copy Text" class="btn-ghost">
-                                                Copy
-                                            </a>
                                         </div>
-                                        @if (!empty($item->nama_rek))
-                                            <p class="card-text">A/N {{ $item->nama_rek }}</p>
-                                        @endif
-                                    @endif
-                                </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
+                        @endif
+
+                        @if ($data->KirimHadiahDesign6->isNotEmpty())
+                            <div class="tab-pane fade {{ $data->DirectTransferDesign6->isEmpty() ? 'show active' : '' }}"
+                                id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                @foreach ($data->KirimHadiahDesign6 as $item)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
+                                                <h4 class="card-title">{{ $item->alamat }}</h4>
+                                                <p class="card-text">{{ $item->deskripsi_alamat }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    @foreach ($data->KirimHadiahDesign6 as $item)
-                        <div class="card">
-                            <div class="card-body">
-                                @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
-                                    <h4 class="card-title">{{ $item->alamat }}</h4>
-                                    <p class="card-text">{{ $item->deskripsi_alamat }}</p>
-                                @endif
-                    @endforeach
-                </div>
-            </div>
+            @endif
         </div>
         </div>
     </section>
@@ -493,9 +516,7 @@
     <!-- ENDING -->
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
-            <p class="anm_mod bottom-bit fast">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
-                Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami
-                ucapkan terima kasih. Kami yang berbahagia</p>
+            <p class="anm_mod bottom-bit fast">{{ $data->deskripsi_penutup }}</p>
             <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
                 {{ $data->nama_mempelai_laki }}</h3>
         </div>
@@ -645,18 +666,28 @@
         setInterval(() => updateTimer(tglAkad), 1000);
     </script>
     <script>
-        function copyText(element) {
-            var $copyText = document.getElementById(element).innerText;
-            var button = document.getElementById(element + '-button');
-            navigator.clipboard.writeText($copyText).then(function() {
-                var originalText = button.innerText;
-                button.innerText = 'Copied!';
-                setTimeout(function() {
-                    button.innerText = originalText;
-                }, 750);
-            }, function() {
-                button.style.cssText = "background-color: var(--red);";
-                button.innerText = 'Error';
+        function copyText(textElementId, buttonId) {
+            var textElement = document.getElementById(textElementId);
+            var button = document.getElementById(buttonId);
+
+            if (!textElement) {
+                console.error("Element with ID " + textElementId + " not found.");
+                return;
+            }
+
+            var text = textElement.textContent.trim();
+
+            navigator.clipboard.writeText(text).then(function() {
+                // Ubah teks tombol menjadi "Copied"
+                if (button) {
+                    button.textContent = 'Copied';
+                    // Kembalikan teks tombol ke "Copy" setelah 2 detik
+                    setTimeout(function() {
+                        button.textContent = 'Copy';
+                    }, 2000);
+                }
+            }).catch(function(error) {
+                console.error('Error copying text: ', error);
             });
         }
     </script>

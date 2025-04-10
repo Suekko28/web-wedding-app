@@ -105,21 +105,14 @@ class InformasiDesign6Controller extends Controller
                 Storage::delete($weddingDesign->akad_img);
             }
 
-            $weddingDesign->delete();
-        }
-
-        // Hapus semua file pada PerjalananCintaDesign6
-        foreach ($data->PerjalananCintaDesign6 as $PerjalananCinta) {
-            if ($PerjalananCinta->image) {
-                $images = json_decode($PerjalananCinta->image, true);
-                if (is_array($images)) {
-                    foreach ($images as $image) {
-                        Storage::delete($image);
-                    }
+            if ($weddingDesign->image_cinta) {
+                $existingQuoteImages = json_decode($weddingDesign->image_cinta, true);
+                foreach ($existingQuoteImages as $existingImage) {
+                    Storage::delete($existingImage);
                 }
             }
 
-            $PerjalananCinta->delete();
+            $weddingDesign->delete();
         }
 
         $data->delete();
