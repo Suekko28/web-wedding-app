@@ -55,7 +55,6 @@ return new class extends Migration {
                 ->references('id')
                 ->on('informasi_design7')
                 ->onDelete('cascade');
-
             $table->timestamps();
         });
     }

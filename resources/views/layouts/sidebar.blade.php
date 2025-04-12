@@ -38,7 +38,7 @@
                 <span class="hide-menu">Wedding Design</span>
             </a>
             <ul aria-expanded="false"
-                class="collapse first-level {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3', 'wedding-design4', 'wedding-design5', 'wedding-design6') ? 'in' : '' }}">
+                class="collapse first-level {{ request()->is('wedding-design1', 'wedding-design2', 'wedding-design3', 'wedding-design4', 'wedding-design5', 'wedding-design6', 'wedding-design7', 'wedding-design8') ? 'in' : '' }}">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('wedding-design1') ? 'active' : '' }}"
                         href="{{ route('wedding-design1.index') }}" aria-expanded="false">
@@ -100,6 +100,14 @@
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Design 7</span>
+                    </a>
+                <li class="sidebar-item">
+                    <a href="{{ route('wedding-design8.index') }}"
+                        class="sidebar-link {{ request()->is('wedding-design8') ? 'active' : '' }}">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Design 8</span>
                     </a>
                 </li>
             </ul>

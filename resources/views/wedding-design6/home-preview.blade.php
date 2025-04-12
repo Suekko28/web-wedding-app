@@ -1,5 +1,5 @@
-
-]<!DOCTYPE html>
+]
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,9 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
-    
     <!-- Fancybox and Jquery CDN
-    This link get github repository -->
+        This link get github repository -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
@@ -18,7 +17,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
     <title>Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!</title>
-
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -27,7 +26,7 @@
     <link href="{{ asset('css/wedding-design6.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
-
+</head>
 </head>
 
 <body>
@@ -35,9 +34,9 @@
         <div class="overlayDoor"></div>
         <div class="overlayContent">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-            <lottie-player class="animation-loading" src="{{ asset('img/loading.json') }}" background="transparent"
-                speed="1" style="width: 96px; height: 96px" direction="1" mode="normal" loop
-                autoplay></lottie-player>
+            <lottie-player class="animation-loading" src="{{ asset('img/design-6/loading.json') }}"
+                background="transparent" speed="1" style="width: 96px; height: 96px" direction="1" mode="normal"
+                loop autoplay></lottie-player>
         </div>
     </div>
     <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
@@ -47,10 +46,12 @@
         </div> -->
         <div class="offcanvas-body">
             <div class="flower-left-cover">
-                <img class="flower-left object-fit-cover" src="{{ asset('img/element-2.svg') }}" alt="background">
+                <img class="flower-left object-fit-cover" src="{{ asset('img/design-6/element-2.svg') }}"
+                    alt="background">
             </div>
             <div class="flower-right-cover">
-                <img class="flower-right object-fit-cover" src="{{ asset('img/element-1.svg') }}" alt="background">
+                <img class="flower-right object-fit-cover" src="{{ asset('img/design-6/element-1.svg') }}"
+                    alt="background">
             </div>
             <div class="opening-undangan">
                 <p>Undangan Pernikahan</p>
@@ -65,48 +66,50 @@
                 <button type="button" onclick="playAudio()" style="display:none" class="btn-primary" id="buttonPage"
                     data-bs-dismiss="offcanvas">Buka Undangan</button>
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/background.jpg') }}" alt="background">
+            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/design-6/background.jpg') }}"
+                alt="background">
         </div>
     </div>
     <audio loop id="track">
-        <source src="{{ asset('img/sweet.mp3') }}" type="audio/mpeg" />
+        <source src="{{ asset('img/design-6/sweet.mp3') }}" type="audio/mpeg" />
     </audio>
     <button class="btn-float">
-        <img id="play" onclick="toggleAudio()" src="{{ asset('img/sound-on.svg') }}" class="img-fluid"
+        <img id="play" onclick="toggleAudio()" src="{{ asset('img/design-6/sound-on.svg') }}" class="img-fluid"
             alt="Responsive image">
-        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/sound-off.svg') }}" class="img-fluid"
+        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/design-6/sound-off.svg') }}" class="img-fluid"
             alt="Responsive image">
     </button>
     <nav class="navigation">
         <ul>
             <li>
                 <a href="#hero">
-                    <img src="{{ asset('img/home-icon.svg') }}" alt="hero">
+                    <img src="{{ asset('img/design-6/home-icon.svg') }}" alt="hero">
                 </a>
                 <a href="#kedua-mempelai">
-                    <img src="{{ asset('img/ring-icon.svg') }}" alt="kedua-mempelai">
+                    <img src="{{ asset('img/design-6/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
                 <!-- <a href="#perjalanan-cinta">
-                        <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
+                        <img src="{{ asset('img/design-6/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
                     </a> -->
                 <a href="#gallery">
-                    <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
+                    <img src="{{ asset('img/design-6/gallery-icon.svg') }}" alt="gallery">
                 </a>
                 <a href="#jadwal-pernikahan">
-                    <img src="{{ asset('img/calendar-icon.svg') }}" alt="jadwal-pernikahan">
+                    <img src="{{ asset('img/design-6/calendar-icon.svg') }}" alt="jadwal-pernikahan">
                 </a>
                 <a href="#doa-ucapan">
-                    <img src="{{ asset('img/chat-icon.svg') }}" alt="doa-ucapan">
+                    <img src="{{ asset('img/design-6/chat-icon.svg') }}" alt="doa-ucapan">
                 </a>
             </li>
         </ul>
     </nav>
-    <img class="background-template object-fit-cover" src="{{ asset('img/background.jpg') }}" alt="background">
+    <img class="background-template object-fit-cover" src="{{ asset('img/design-6/background.jpg') }}"
+        alt="background">
     <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
         <div class="title">
-            <img src="{{ asset('img/devider.svg') }}" class="devider-flower" alt="devider">
+            <img src="{{ asset('img/design-6/devider.svg') }}" class="devider-flower" alt="devider">
             <p>Pernikahan</p>
             <h1>Ndaru & Lilau</h1>
         </div>
@@ -155,11 +158,11 @@
                 <div class="mempelai-wanita">
                     <div class="container-image-wanita">
                         <img class="anm_mod left fast mempelai-wanita-img object-fit-cover"
-                            src="{{ asset('img/mempelai-wanita.jpg') }}" alt="mempelai-wanita">
+                            src="{{ asset('img/design-6/mempelai-wanita.jpg') }}" alt="mempelai-wanita">
                         <img class="anm_mod left fast ring-wanita-img object-fit-cover"
-                            src="{{ asset('img/ring.png') }}" alt="mempelai-wanita">
+                            src="{{ asset('img/design-6/ring.png') }}" alt="mempelai-wanita">
                         <img class="anm_mod left fast ring-flower-left object-fit-cover"
-                            src="{{ asset('img/ring-flower-left.svg') }}" alt="mempelai-wanita">
+                            src="{{ asset('img/design-6/ring-flower-left.svg') }}" alt="mempelai-wanita">
                     </div>
                     <div class="anm_mod bottom fast detail-mempelai-wanita">
                         <div class="data-mempelai-wanita">
@@ -167,7 +170,7 @@
                             <p>Anak dari Bapak Rudi dan Ibu Risma</p>
                         </div>
                         <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
-                            <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
+                            <img src="{{ asset('img/design-6/icon-instagram-black.svg') }}" alt="instagram">
                             <span>lili</span>
                         </a>
                     </div>
@@ -176,11 +179,11 @@
                 <div class="mempelai-pria">
                     <div class="container-image-pria">
                         <img class="anm_mod right fast mempelai-wanita-img object-fit-cover"
-                            src="{{ asset('img/mempelai-pria.jpg') }}" alt="mempelai-pria">
+                            src="{{ asset('img/design-6/mempelai-pria.jpg') }}" alt="mempelai-pria">
                         <img class="anm_mod right fast ring-pria-img object-fit-cover"
-                            src="{{ asset('img/ring.png') }}" alt="mempelai-wanita">
+                            src="{{ asset('img/design-6/ring.png') }}" alt="mempelai-wanita">
                         <img class="anm_mod right fast ring-flower-right object-fit-cover"
-                            src="{{ asset('img/ring-flower-right.svg') }}" alt="mempelai-wanita">
+                            src="{{ asset('img/design-6/ring-flower-right.svg') }}" alt="mempelai-wanita">
                     </div>
                     <div class="anm_mod bottom fast detail-mempelai-pria">
                         <div class="data-mempelai-pria">
@@ -188,7 +191,7 @@
                             <p>Anak dari Bapak Budi dan Ibu Irma</p>
                         </div>
                         <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
-                            <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
+                            <img src="{{ asset('img/design-6/icon-instagram-black.svg') }}" alt="instagram">
                             <span>Ndaru</span>
                         </a>
                     </div>
@@ -230,28 +233,28 @@
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
             <h2 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h2>
             <div class="container-img-jadwal anm_mod bottom-bit fast">
-                <img src="{{ asset('img/mempelai-wanita.jpg') }}"
+                <img src="{{ asset('img/design-6/mempelai-wanita.jpg') }}"
                     class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
-                <img src="{{ asset('img/element-3.svg') }}" class="element-flower" alt="devider">
+                <img src="{{ asset('img/design-6/element-3.svg') }}" class="element-flower" alt="devider">
             </div>
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
                     <h3>Akad<h3>
                             <div class="detail">
                                 <div class="info">
-                                    <img src="{{ asset('img/calendar-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-6/calendar-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">Sabtu, 4 Mei 2024</span>
                                     </div>
                                 </div>
                                 <div class="info">
-                                    <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-6/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">10.00 - 12.00 WIB</span>
                                     </div>
                                 </div>
                                 <div class="info">
-                                    <img src="{{ asset('img/location-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-6/location-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">Masjid Salman Al-Farisi</span>
                                         <p>Jl. Komp. Bulog Jl. H. Ten Raya No.14 7 14, RT.14/RW.7, Kayu Putih,Kec. Pulo
@@ -271,19 +274,19 @@
                     <h3>Resepsi<h3>
                             <div class="detail">
                                 <div class="info">
-                                    <img src="{{ asset('img/calendar-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-6/calendar-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">Sabtu, 4 Mei 2024</span>
                                     </div>
                                 </div>
                                 <div class="info">
-                                    <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-6/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">10.00 - 12.00 WIB</span>
                                     </div>
                                 </div>
                                 <div class="info">
-                                    <img src="{{ asset('img/location-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-6/location-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">Masjid Salman Al-Farisi</span>
                                         <p>Jl. Komp. Bulog Jl. H. Ten Raya No.14 7 14, RT.14/RW.7, Kayu Putih,Kec. Pulo
@@ -367,7 +370,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Jhon Doe</h4>
-                                    <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-6/hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 October, 2018 | 20:00 WIB</span>
                             </div>
@@ -378,7 +381,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-6/tidak-hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
@@ -389,7 +392,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-6/tidak-hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
@@ -400,7 +403,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-6/tidak-hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
@@ -481,7 +484,8 @@
                 ucapkan terima kasih. Kami yang berbahagia</p>
             <h3 class="anm_mod bottom-bit fast">Lily & Ndaru</h3>
         </div>
-        <img class="ending-background object-fit-cover" src="{{ asset('img/element-7.svg') }}" alt="background">
+        <img class="ending-background object-fit-cover" src="{{ asset('img/design-6/element-7.svg') }}"
+            alt="background">
     </section>
     <!-- ENDING END -->
 
@@ -490,19 +494,19 @@
         <div class="follow-us">
             <p>Powered By</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:32px" src="{{ asset('img/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
+                <img style="height:32px" src="{{ asset('img/design-6/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
             </a>
         </div>
         <div class="follow-us">
             <p>Follow Us</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:24px" src="{{ asset('img/icon-facebook.svg') }}" alt="Facebook">
+                <img style="height:24px" src="{{ asset('img/design-6/icon-facebook.svg') }}" alt="Facebook">
             </a>
             <a href="https://www.instagram.com/jejakkebahagiaan/" target="_blank">
-                <img style="height:24px" src="{{ asset('img/icon-instagram.svg') }}" alt="Instagram">
+                <img style="height:24px" src="{{ asset('img/design-6/icon-instagram.svg') }}" alt="Instagram">
             </a>
             <a href="https://www.tiktok.com/@jejakkebahagiaan?_t=8pjtPh8o2JL&_r=1" target="_blank">
-                <img style="height:24px" src="{{ asset('img/icon-tiktok.svg') }}" alt="Tiktok">
+                <img style="height:24px" src="{{ asset('img/design-6/icon-tiktok.svg') }}" alt="Tiktok">
             </a>
         </div>
     </section>
