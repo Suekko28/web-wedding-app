@@ -83,7 +83,7 @@
         </div>
     @endif
 
-    <audio loop id="track">
+    <audio loop autoplay id="track">
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
     <button class="btn-float">

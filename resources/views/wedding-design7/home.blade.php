@@ -37,7 +37,8 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-Design7.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
-    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/design-7/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+    <link rel="shortcut icon" type="image/svg+xml"
+        href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
 </head>
 
@@ -46,9 +47,9 @@
         <div class="overlayDoor"></div>
         <div class="overlayContent">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-            <lottie-player class="animation-loading" src="{{ asset('img/design-7/loading.json') }}" background="transparent"
-                speed="1" style="width: 96px; height: 96px" direction="1" mode="normal" loop
-                autoplay></lottie-player>
+            <lottie-player class="animation-loading" src="{{ asset('img/design-7/loading.json') }}"
+                background="transparent" speed="1" style="width: 96px; height: 96px" direction="1" mode="normal"
+                loop autoplay></lottie-player>
         </div>
     </div>
     @if (!session('hide_offcanvas'))
@@ -59,10 +60,12 @@
         </div> -->
             <div class="offcanvas-body">
                 <div class="flower-left-cover">
-                    <img class="flower-left object-fit-cover" src="{{ asset('img/design-7/element-1.png') }}" alt="background">
+                    <img class="flower-left object-fit-cover" src="{{ asset('img/design-7/element-1.png') }}"
+                        alt="background">
                 </div>
                 <div class="flower-right-cover">
-                    <img class="flower-right object-fit-cover" src="{{ asset('img/design-7/element-2.png') }}" alt="background">
+                    <img class="flower-right object-fit-cover" src="{{ asset('img/design-7/element-2.png') }}"
+                        alt="background">
                 </div>
                 <div class="opening-undangan">
                     <p>Undangan Pernikahan</p>
@@ -83,7 +86,7 @@
         </div>
     @endif
 
-    <audio loop id="track">
+    <audio loop autoplay id="track">
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
     <button class="btn-float">
@@ -241,7 +244,7 @@
         </div>
     </section>
     <!-- GALLERY END -->
-    
+
     <!-- JADWAL PERNIKAHAN -->
     <section class="animation jadwal-pernikahan" id="jadwal-pernikahan">
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
@@ -404,7 +407,8 @@
                                         @if ($item->kehadiran == 1)
                                             <img src="{{ asset('img/design-7/hadir-icon.svg') }}" alt="hadir">
                                         @else
-                                            <img src="{{ asset('img/design-7/tidak-hadir-icon.svg') }}" alt="tidak hadir">
+                                            <img src="{{ asset('img/design-7/tidak-hadir-icon.svg') }}"
+                                                alt="tidak hadir">
                                         @endif
 
                                     </div>
@@ -506,7 +510,8 @@
             <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
                 {{ $data->nama_mempelai_laki }}</h3>
         </div>
-        <img class="ending-background object-fit-cover" src="{{ asset('img/design-7/element-7.svg') }}" alt="background">
+        <img class="ending-background object-fit-cover" src="{{ asset('img/design-7/element-7.svg') }}"
+            alt="background">
     </section>
     <!-- ENDING END -->
 
@@ -515,7 +520,8 @@
         <div class="follow-us">
             <p>Powered By</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:32px" src="{{ asset('img/design-7/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
+                <img style="height:32px" src="{{ asset('img/design-7/logo-jejakkebahagiaan.svg') }}"
+                    alt="Facebook">
             </a>
         </div>
         <div class="follow-us">

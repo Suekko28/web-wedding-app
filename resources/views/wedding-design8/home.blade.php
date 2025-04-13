@@ -52,6 +52,7 @@
                 loop autoplay></lottie-player>
         </div>
     </div>
+    @if (!session('hide_offcanvas'))
     <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
         <!-- <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
@@ -85,7 +86,8 @@
                 alt="background">
         </div>
     </div>
-    <audio loop id="track">
+    @endif
+    <audio loop autoplay id="track">
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
     <button class="btn-float">
@@ -119,7 +121,7 @@
         </ul>
     </nav>
     <img class="background-template object-fit-cover" src="{{ Storage::url('' . $data->foto_prewedding) }}"
-    alt="background">
+        alt="background">
     <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
@@ -498,6 +500,8 @@
         </div>
         </div>
     </section>
+    <!-- DOA & UCAPAN -->
+
 
     <!-- ENDING -->
     <section class="animation akhir-undangan" id="akhir-undangan">
@@ -868,6 +872,13 @@
         })
         (jQuery);
     </script>
+
+    @if (session('hide_offcanvas'))
+        <script>
+            window.location.hash = '#doa-ucapan'; // Redirect with the hash
+            document.getElementById('doa-ucapan').scrollIntoView();
+        </script>
+    @endif
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="jquery.fancybox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.8.13/lottie.min.js"></script>

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DirectTransferDesign8FormRequest;
-use App\Http\Requests\KirimHadiahDesign8FormRequest;
-use App\Http\Requests\WeddingDesign8FormRequest;
-use App\Models\DirectTransferDesign8;
-use App\Models\InformasiDesign8;
-use App\Models\KirimHadiahDesign8;
-use App\Models\WeddingDesign8;
+use App\Http\Requests\DirectTransferDesign9FormRequest;
+use App\Http\Requests\KirimHadiahDesign9FormRequest;
+use App\Http\Requests\WeddingDesign9FormRequest;
+use App\Models\DirectTransferDesign9;
+use App\Models\InformasiDesign9;
+use App\Models\KirimHadiahDesign9;
+use App\Models\WeddingDesign9;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class WeddingDesign8Controller extends Controller
+class WeddingDesign9Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,33 +25,33 @@ class WeddingDesign8Controller extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($informasiDesign8Id)
+    public function create($informasiDesign9Id)
     {
-        $informasiDesign8 = InformasiDesign8::findOrFail($informasiDesign8Id);
+        $informasiDesign9 = InformasiDesign9::findOrFail($informasiDesign9Id);
 
-        $dataDirectTransfer = DirectTransferDesign8::where('informasi_design8_id', $informasiDesign8Id)
+        $dataDirectTransfer = DirectTransferDesign9::where('informasi_design9_id', $informasiDesign9Id)
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        $dataKirimHadiah = KirimHadiahDesign8::where('informasi_design8_id', $informasiDesign8Id)
+        $dataKirimHadiah = KirimHadiahDesign9::where('informasi_design9_id', $informasiDesign9Id)
             ->orderBy('id', 'desc')
             ->paginate(10);
 
         // Mengambil data mempelai pria
-        $dataMempelaiPria = WeddingDesign8::where('informasi_design8_id', $informasiDesign8Id)->first();
+        $dataMempelaiPria = WeddingDesign9::where('informasi_design9_id', $informasiDesign9Id)->first();
 
 
         // Kirimkan data yang sesuai ke view
-        return view('admin-design8.create', compact('informasiDesign8Id', 'dataMempelaiPria', 'informasiDesign8', 'dataDirectTransfer', 'dataKirimHadiah', ));
+        return view('admin-design9.create', compact('informasiDesign9Id', 'dataMempelaiPria', 'informasiDesign9', 'dataDirectTransfer', 'dataKirimHadiah', ));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(WeddingDesign8FormRequest $request, $informasiDesign8Id)
+    public function store(WeddingDesign9FormRequest $request, $informasiDesign9Id)
     {
-        // Cek apakah InformasiDesign8 sudah ada
-        $informasiDesign8 = InformasiDesign8::findOrFail($informasiDesign8Id);
+        // Cek apakah InformasiDesign9 sudah ada
+        $informasiDesign9 = InformasiDesign9::findOrFail($informasiDesign9Id);
         $data = $request->all();
 
         // Default values
@@ -70,28 +70,28 @@ class WeddingDesign8Controller extends Controller
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
 
         if ($request->hasFile('banner_img')) {
-            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design8', $request->file('banner_img')->hashName());
+            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design9', $request->file('banner_img')->hashName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design8', $request->file('foto_prewedding')->hashName());
+            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design9', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
-            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design8', $request->file('foto_mempelai_laki')->hashName());
+            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design9', $request->file('foto_mempelai_laki')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
-            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design8', $request->file('foto_mempelai_perempuan')->hashName());
+            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design9', $request->file('foto_mempelai_perempuan')->hashName());
         }
 
         if ($request->hasFile('music')) {
-            $data['music'] = $request->file('music')->storeAs('public/wedding-design8-music', $request->file('music')->hashName());
+            $data['music'] = $request->file('music')->storeAs('public/wedding-design9-music', $request->file('music')->hashName());
         }
 
 
         if ($request->hasFile('akad_img')) {
-            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design8', $request->file(key: 'akad_img')->hashName());
+            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design9', $request->file(key: 'akad_img')->hashName());
         }
 
         if ($request->hasFile('image_cinta')) {
@@ -99,42 +99,42 @@ class WeddingDesign8Controller extends Controller
             $cintaImagesPaths = [];
 
             foreach ($cintaImages as $quoteImage) {
-                $cintaImagesPaths[] = $quoteImage->storeAs('public/wedding-design8', $quoteImage->hashName());
+                $cintaImagesPaths[] = $quoteImage->storeAs('public/wedding-design9', $quoteImage->hashName());
             }
 
             $data['image_cinta'] = json_encode($cintaImagesPaths); // Store paths as a JSON array or adjust according to your needs
         }
 
-        $data['informasi_design8_id'] = $informasiDesign8->id;
+        $data['informasi_design9_id'] = $informasiDesign9->id;
 
-        WeddingDesign8::create($data);
+        WeddingDesign9::create($data);
 
 
 
-        return redirect()->route('wedding-design8.index', $informasiDesign8Id)->with('success', 'Berhasil menambahkan data');
+        return redirect()->route('wedding-design9.index', $informasiDesign9Id)->with('success', 'Berhasil menambahkan data');
 
     }
 
     public function show(string $id)
     {
-        $data = WeddingDesign8::findOrFail($id);
+        $data = WeddingDesign9::findOrFail($id);
 
-        $informasiDesign8 = InformasiDesign8::findOrFail($data->informasi_design8_id);
+        $informasiDesign9 = InformasiDesign9::findOrFail($data->informasi_design9_id);
 
         $nama_undangan = $data->namaUndangan;
 
-        $dataDirectTransfer = DirectTransferDesign8::where('informasi_design8_id', $informasiDesign8->id)
+        $dataDirectTransfer = DirectTransferDesign9::where('informasi_design9_id', $informasiDesign9->id)
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        $dataKirimHadiah = KirimHadiahDesign8::where('informasi_design8_id', $informasiDesign8->id)
+        $dataKirimHadiah = KirimHadiahDesign9::where('informasi_design9_id', $informasiDesign9->id)
             ->orderBy('id', 'desc')
             ->paginate(10);
 
         // Pass all the necessary data to the view
-        return view('admin-design8.show', [
+        return view('admin-design9.show', [
             'data' => $data,
-            'informasiDesign8' => $informasiDesign8,
+            'informasiDesign9' => $informasiDesign9,
             'dataDirectTransfer' => $dataDirectTransfer,
             'dataKirimHadiah' => $dataKirimHadiah,
             'nama_undangan' => $nama_undangan
@@ -143,28 +143,28 @@ class WeddingDesign8Controller extends Controller
 
 
 
-    public function edit($informasiDesign8Id, $id)
+    public function edit($informasiDesign9Id, $id)
     {
-        $data = WeddingDesign8::findOrFail($id);
-        $informasiDesign8 = InformasiDesign8::findOrFail($informasiDesign8Id);
+        $data = WeddingDesign9::findOrFail($id);
+        $informasiDesign9 = InformasiDesign9::findOrFail($informasiDesign9Id);
 
-        $dataDirectTransfer = DirectTransferDesign8::where('informasi_design8_id', $informasiDesign8Id)
+        $dataDirectTransfer = DirectTransferDesign9::where('informasi_design9_id', $informasiDesign9Id)
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        $dataKirimHadiah = KirimHadiahDesign8::where('informasi_design8_id', $informasiDesign8Id)
+        $dataKirimHadiah = KirimHadiahDesign9::where('informasi_design9_id', $informasiDesign9Id)
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        return view('admin-design8.edit', compact('data', 'informasiDesign8', 'dataDirectTransfer', 'dataKirimHadiah'));
+        return view('admin-design9.edit', compact('data', 'informasiDesign9', 'dataDirectTransfer', 'dataKirimHadiah'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(WeddingDesign8FormRequest $request, $informasiDesign8Id, $id)
+    public function update(WeddingDesign9FormRequest $request, $informasiDesign9Id, $id)
     {
-        $weddingDesign8 = WeddingDesign8::findOrFail($id);
+        $weddingDesign9 = WeddingDesign9::findOrFail($id);
         $data = $request->all();
 
         // Default values
@@ -184,52 +184,52 @@ class WeddingDesign8Controller extends Controller
 
         // Handle file uploads & delete old files
         if ($request->hasFile('banner_img')) {
-            if ($weddingDesign8->banner_img) {
-                Storage::delete($weddingDesign8->banner_img);
+            if ($weddingDesign9->banner_img) {
+                Storage::delete($weddingDesign9->banner_img);
             }
-            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design8', $request->file('banner_img')->hashName());
+            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design9', $request->file('banner_img')->hashName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
-            if ($weddingDesign8->foto_prewedding) {
-                Storage::delete($weddingDesign8->foto_prewedding);
+            if ($weddingDesign9->foto_prewedding) {
+                Storage::delete($weddingDesign9->foto_prewedding);
             }
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design8', $request->file('foto_prewedding')->hashName());
+            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design9', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
-            if ($weddingDesign8->foto_mempelai_laki) {
-                Storage::delete($weddingDesign8->foto_mempelai_laki);
+            if ($weddingDesign9->foto_mempelai_laki) {
+                Storage::delete($weddingDesign9->foto_mempelai_laki);
             }
-            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design8', $request->file('foto_mempelai_laki')->hashName());
+            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design9', $request->file('foto_mempelai_laki')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
-            if ($weddingDesign8->foto_mempelai_perempuan) {
-                Storage::delete($weddingDesign8->foto_mempelai_perempuan);
+            if ($weddingDesign9->foto_mempelai_perempuan) {
+                Storage::delete($weddingDesign9->foto_mempelai_perempuan);
             }
-            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design8', $request->file('foto_mempelai_perempuan')->hashName());
+            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design9', $request->file('foto_mempelai_perempuan')->hashName());
         }
 
         if ($request->hasFile('music')) {
-            if ($weddingDesign8->music) {
-                Storage::delete($weddingDesign8->music);
+            if ($weddingDesign9->music) {
+                Storage::delete($weddingDesign9->music);
             }
-            $data['music'] = $request->file('music')->storeAs('public/wedding-design8-music', $request->file('music')->hashName());
+            $data['music'] = $request->file('music')->storeAs('public/wedding-design9-music', $request->file('music')->hashName());
         }
 
         if ($request->hasFile('akad_img')) {
-            if ($weddingDesign8->akad_img) {
-                Storage::delete($weddingDesign8->akad_img);
+            if ($weddingDesign9->akad_img) {
+                Storage::delete($weddingDesign9->akad_img);
             }
-            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design8', $request->file('akad_img')->hashName());
+            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design9', $request->file('akad_img')->hashName());
         }
 
         // Optional: Update multiple image_cinta jika dibolehkan saat edit
         if ($request->hasFile('image_cinta')) {
             // Hapus data lama jika ingin replace semua
-            if ($weddingDesign8->image_cinta) {
-                $oldImages = json_decode($weddingDesign8->image_cinta, true);
+            if ($weddingDesign9->image_cinta) {
+                $oldImages = json_decode($weddingDesign9->image_cinta, true);
                 foreach ($oldImages as $img) {
                     Storage::delete($img);
                 }
@@ -239,35 +239,35 @@ class WeddingDesign8Controller extends Controller
             $cintaImagesPaths = [];
 
             foreach ($cintaImages as $quoteImage) {
-                $cintaImagesPaths[] = $quoteImage->storeAs('public/wedding-design8', $quoteImage->hashName());
+                $cintaImagesPaths[] = $quoteImage->storeAs('public/wedding-design9', $quoteImage->hashName());
             }
 
             $data['image_cinta'] = json_encode($cintaImagesPaths);
         }
 
-        $weddingDesign8->update($data);
+        $weddingDesign9->update($data);
 
-        return redirect()->route('wedding-design8.index', $informasiDesign8Id)->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('wedding-design9.index', $informasiDesign9Id)->with('success', 'Data berhasil diperbarui.');
     }
 
 
     // Function Controller Direct Transfer
 
-    public function storeDirectTransfer(DirectTransferDesign8FormRequest $request, $informasiDesign8Id)
+    public function storeDirectTransfer(DirectTransferDesign9FormRequest $request, $informasiDesign9Id)
     {
-        $informasiDesign8 = InformasiDesign8::findOrFail($informasiDesign8Id);
+        $informasiDesign9 = InformasiDesign9::findOrFail($informasiDesign9Id);
         $data = $request->all();
 
-        $data['informasi_design8_id'] = $informasiDesign8->id;
+        $data['informasi_design9_id'] = $informasiDesign9->id;
 
-        DirectTransferDesign8::create($data);
+        DirectTransferDesign9::create($data);
 
         return response()->json(['message' => 'Direct Transfer berhasil ditambahkan.']);
     }
 
-    public function updateDirectTransfer(DirectTransferDesign8FormRequest $request, $id)
+    public function updateDirectTransfer(DirectTransferDesign9FormRequest $request, $id)
     {
-        $directTransfer = DirectTransferDesign8::findOrFail($id);
+        $directTransfer = DirectTransferDesign9::findOrFail($id);
         $data = $request->all();
 
         $directTransfer->update($data);
@@ -277,7 +277,7 @@ class WeddingDesign8Controller extends Controller
 
     public function destroyDirectTransfer($id)
     {
-        $directTransfer = DirectTransferDesign8::findOrFail($id);
+        $directTransfer = DirectTransferDesign9::findOrFail($id);
 
         $directTransfer->delete();
 
@@ -287,20 +287,20 @@ class WeddingDesign8Controller extends Controller
 
     // Function Controller Kirim Hadiah
 
-    public function storeKirimHadiah(KirimHadiahDesign8FormRequest $request, $informasiDesign8Id)
+    public function storeKirimHadiah(KirimHadiahDesign9FormRequest $request, $informasiDesign9Id)
     {
-        $informasiDesign8 = InformasiDesign8::findOrFail($informasiDesign8Id);
+        $informasiDesign9 = InformasiDesign9::findOrFail($informasiDesign9Id);
         $data = $request->all();
-        $data['informasi_design8_id'] = $informasiDesign8->id;
+        $data['informasi_design9_id'] = $informasiDesign9->id;
 
-        KirimHadiahDesign8::create($data);
+        KirimHadiahDesign9::create($data);
 
         return response()->json(['message' => 'Kirim Hadiah berhasil ditambahkan.']);
     }
 
-    public function updateKirimHadiah(KirimHadiahDesign8FormRequest $request, $id)
+    public function updateKirimHadiah(KirimHadiahDesign9FormRequest $request, $id)
     {
-        $kirimHadiah = KirimHadiahDesign8::findOrFail($id);
+        $kirimHadiah = KirimHadiahDesign9::findOrFail($id);
         $data = $request->all();
 
         $kirimHadiah->update($data);
@@ -310,7 +310,7 @@ class WeddingDesign8Controller extends Controller
 
     public function destroyKirimHadiah($id)
     {
-        $kirimHadiah = KirimHadiahDesign8::findOrFail($id);
+        $kirimHadiah = KirimHadiahDesign9::findOrFail($id);
 
         $kirimHadiah->delete();
 

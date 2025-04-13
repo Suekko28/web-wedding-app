@@ -76,7 +76,7 @@ class InformasiDesign8Controller extends Controller
      */
     public function destroy(string $id)
     {
-        $data = InformasiDesign8::with(['KontenDesign8', 'PerjalananCintaDesign8'])->find($id);
+        $data = InformasiDesign8::with(['KontenDesign8'])->find($id);
 
         // Hapus semua file pada KontenDesign8
         foreach ($data->KontenDesign8 as $weddingDesign) {

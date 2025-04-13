@@ -554,9 +554,8 @@
                         </form>
 
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" form="formDirectTransfer">Simpan</button>
+                    <div class="d-flex flex-row-reverse">
+                        <a href="{{ route('wedding-design7.index') }}" class="btn btn-secondary">Kembali</a>
                     </div>
                 </div>
             </div>

@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\InformasiDesign7FormRequest;
-use App\Models\InformasiDesign7;
+use App\Http\Requests\InformasiDesign9FormRequest;
+use App\Models\InformasiDesign9;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class InformasiDesign7Controller extends Controller
+class InformasiDesign9Controller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $data = InformasiDesign7::orderBy('id', 'desc')->with(['KontenDesign7', 'weddingDesign7'])->paginate(10);
-        return view('admin-design7.index', [
+        $data = InformasiDesign9::orderBy('id', 'desc')->with(['KontenDesign9', 'weddingDesign9'])->paginate(10);
+        return view('admin-design9.index', [
             'data' => $data
         ]);
     }
@@ -31,44 +28,44 @@ class InformasiDesign7Controller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(InformasiDesign7FormRequest $request)
+    public function store(InformasiDesign9FormRequest $request)
     {
         $data = $request->all();
 
         $currentDate = date('dmY'); // Mengambil tanggal dengan format Ymd
-        $latestWeddingDesign7 = InformasiDesign7::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
+        $latestWeddingDesign9 = InformasiDesign9::orderBy('id', 'desc')->first(); // Mengambil data seserahan terakhir
 
         // Menentukan urutan ID Seserahan
-        if ($latestWeddingDesign7) {
-            $lastId = intval(substr($latestWeddingDesign7->id_weddingdesign7, -7)); // Mengambil 7 digit terakhir dari id_weddingdesign7
+        if ($latestWeddingDesign9) {
+            $lastId = intval(substr($latestWeddingDesign9->id_weddingdesign9, -9)); // Mengambil 9 digit terakhir dari id_weddingdesign9
             $newIdNumber = $lastId + 1; // Menambah 1 dari id terakhir
         } else {
             $newIdNumber = 1; // Jika belum ada data, mulai dari 1
         }
 
-        $idWeddingDesign7 = 'PDT-WDDS7-' . $currentDate . '-' . sprintf('%07d', $newIdNumber); // Format PDT-SSH-Ymd0001
+        $idWeddingDesign9 = 'PDT-WDDS9-' . $currentDate . '-' . sprintf('%09d', $newIdNumber); // Format PDT-SSH-Ymd0001
 
-        $data['id_weddingdesign7'] = $idWeddingDesign7;
+        $data['id_weddingdesign9'] = $idWeddingDesign9;
 
-        InformasiDesign7::create($data);
+        InformasiDesign9::create($data);
 
-        return redirect()->route('wedding-design7.index')->with('success', 'Berhasil menambahkan data');
+        return redirect()->route('wedding-design9.index')->with('success', 'Berhasil menambahkan data');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(InformasiDesign7FormRequest $request, string $id)
+    public function update(InformasiDesign9FormRequest $request, string $id)
     {
-        $undangan = InformasiDesign7::find($id);
+        $undangan = InformasiDesign9::find($id);
 
         if (!$undangan) {
-            return redirect()->route('wedding-design7.index')->with('error', 'Data undangan tidak ditemukan.');
+            return redirect()->route('wedding-design9.index')->with('error', 'Data undangan tidak ditemukan.');
         }
 
         $undangan->update($request->all());
 
-        return redirect()->route('wedding-design7.index')->with('success', 'Data undangan berhasil diperbarui.');
+        return redirect()->route('wedding-design9.index')->with('success', 'Data undangan berhasil diperbarui.');
     }
 
     /**
@@ -76,10 +73,10 @@ class InformasiDesign7Controller extends Controller
      */
     public function destroy(string $id)
     {
-        $data = InformasiDesign7::with(['KontenDesign7'])->find($id);
+        $data = InformasiDesign9::with(['KontenDesign9'])->find($id);
 
-        // Hapus semua file pada KontenDesign7
-        foreach ($data->KontenDesign7 as $weddingDesign) {
+        // Hapus semua file pada KontenDesign9
+        foreach ($data->KontenDesign9 as $weddingDesign) {
             if ($weddingDesign->banner_img) {
                 Storage::delete($weddingDesign->banner_img);
             }
@@ -117,7 +114,7 @@ class InformasiDesign7Controller extends Controller
 
         $data->delete();
 
-        return redirect()->route('wedding-design7.index')->with('success', 'Data berhasil Dihapus');
+        return redirect()->route('wedding-design9.index')->with('success', 'Data berhasil Dihapus');
     }
 
 }

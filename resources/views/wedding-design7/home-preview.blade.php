@@ -24,7 +24,7 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-design7.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
-    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/design-7/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
 </head>
 

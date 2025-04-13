@@ -6,8 +6,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Meta tags for Open Graph (OGP) -->
-    <meta property="og:title" content="The Wedding Of {{ $data->InformasiDesign8->nama_pasangan }}">
-    <meta property="og:description" content="Undangan Pernikahan {{ $data->InformasiDesign8->nama_pasangan }}">
+    <meta property="og:title" content="The Wedding Of {{ $data->InformasiDesign9->nama_pasangan }}">
+    <meta property="og:description" content="Undangan Pernikahan {{ $data->InformasiDesign9->nama_pasangan }}">
     <meta property="og:image" content="{{ Storage::url('' . $data->banner_img) }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
@@ -15,10 +15,10 @@
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Wedding Of {{ $data->InformasiDesign8->nama_pasangan }}">
-    <meta name="twitter:description" content="Undangan Pernikahan {{ $data->InformasiDesign8->nama_pasangan }}">
+    <meta name="twitter:title" content="The Wedding Of {{ $data->InformasiDesign9->nama_pasangan }}">
+    <meta name="twitter:description" content="Undangan Pernikahan {{ $data->InformasiDesign9->nama_pasangan }}">
     <meta name="twitter:image" content="{{ Storage::url('' . $data->banner_img) }}">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
 
     <!-- Fancybox and Jquery CDN
     This link get github repository -->
@@ -29,14 +29,14 @@
         type="text/css" media="screen" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
-    <title>The Wedding Of {{ $data->InformasiDesign8->nama_pasangan }}</title>
+    <title>The Wedding Of {{ $data->InformasiDesign9->nama_pasangan }}</title>
 
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- CSS STYLE -->
-    <link href="{{ asset('css/wedding-design8.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/wedding-design9.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
@@ -47,29 +47,29 @@
         <div class="overlayDoor"></div>
         <div class="overlayContent">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-            <lottie-player class="animation-loading" src="{{ asset('img/design-8/loading.json') }}"
+            <lottie-player class="animation-loading" src="{{ asset('img/design-9/loading.json') }}"
                 background="transparent" speed="1" style="width: 96px; height: 96px" direction="1" mode="normal"
                 loop autoplay></lottie-player>
         </div>
     </div>
-    <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-        <!-- <div class="offcanvas-header">
+    @if (!session('hide_offcanvas'))
+        <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+            <!-- <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
             <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
         </div> -->
-        <div class="offcanvas-body">
-            <div class="flower-left-cover">
-                <img class="flower-left object-fit-cover" src="{{ asset('img/design-8/element-2.svg') }}"
-                    alt="background">
-            </div>
-            <div class="flower-right-cover">
-                <img class="flower-right object-fit-cover" src="{{ asset('img/design-8/element-1.svg') }}"
-                    alt="background">
-            </div>
-            <div class="outer-undangan">
+            <div class="offcanvas-body">
+                <div class="flower-left-cover">
+                    <img class="flower-left object-fit-cover" src="{{ asset('img/design-9/element-1.svg') }}"
+                        alt="background">
+                </div>
+                <div class="flower-right-cover">
+                    <img class="flower-right object-fit-cover" src="{{ asset('img/design-9/element-2.svg') }}"
+                        alt="background">
+                </div>
                 <div class="opening-undangan">
                     <p>Undangan Pernikahan</p>
-                    <h1>{{ $data->InformasiDesign8->nama_pasangan }}</h1>
+                    <h1>{{ $data->InformasiDesign9->nama_pasangan }}</h1>
                 </div>
                 <div class="tujuan-undangan">
                     <div class="opening">
@@ -80,53 +80,53 @@
                     <button type="button" onclick="playAudio()" style="display:none" class="btn-primary"
                         id="buttonPage" data-bs-dismiss="offcanvas">Buka Undangan</button>
                 </div>
+                <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
+                    alt="background">
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
-                alt="background">
         </div>
-    </div>
-    <audio loop id="track">
+    @endif
+
+    <audio loop autoplay id="track">
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
     <button class="btn-float">
-        <img id="play" onclick="toggleAudio()" src="{{ asset('img/design-8/sound-on.svg') }}" class="img-fluid"
+        <img id="play" onclick="toggleAudio()" src="{{ asset('img/design-9/sound-on.svg') }}" class="img-fluid"
             alt="Responsive image">
-        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/design-8/sound-off.svg') }}" class="img-fluid"
+        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/design-9/sound-off.svg') }}" class="img-fluid"
             alt="Responsive image">
     </button>
     <nav class="navigation">
         <ul>
             <li>
                 <a href="#hero">
-                    <img src="{{ asset('img/design-8/home-icon.svg') }}" alt="hero">
+                    <img src="{{ asset('img/design-9/home-icon.svg') }}" alt="hero">
                 </a>
                 <a href="#kedua-mempelai">
-                    <img src="{{ asset('img/design-8/ring-icon.svg') }}" alt="kedua-mempelai">
+                    <img src="{{ asset('img/design-9/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
                 <!-- <a href="#perjalanan-cinta">
-                        <img src="{{ asset('img/design-8/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
+                        <img src="{{ asset('img/design-9/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
                     </a> -->
                 <a href="#gallery">
-                    <img src="{{ asset('img/design-8/gallery-icon.svg') }}" alt="gallery">
+                    <img src="{{ asset('img/design-9/gallery-icon.svg') }}" alt="gallery">
                 </a>
                 <a href="#jadwal-pernikahan">
-                    <img src="{{ asset('img/design-8/calendar-icon.svg') }}" alt="jadwal-pernikahan">
+                    <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="jadwal-pernikahan">
                 </a>
                 <a href="#doa-ucapan">
-                    <img src="{{ asset('img/design-8/chat-icon.svg') }}" alt="doa-ucapan">
+                    <img src="{{ asset('img/design-9/chat-icon.svg') }}" alt="doa-ucapan">
                 </a>
             </li>
         </ul>
     </nav>
     <img class="background-template object-fit-cover" src="{{ Storage::url('' . $data->foto_prewedding) }}"
-        alt="background">
-    <!-- HERO -->
+        alt="background"> <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
         <div class="title">
-            <img src="{{ asset('img/design-8/element-3.svg') }}" class="devider-flower" alt="devider">
+            <img src="{{ asset('img/design-9/element-3.svg') }}" class="devider-flower" alt="devider">
             <p>Pernikahan</p>
-            <h1>{{ $data->InformasiDesign8->nama_pasangan }}</h1>
+            <h1>{{ $data->InformasiDesign9->nama_pasangan }}</h1>
         </div>
         <div class="wedding-timer">
             <div id="timer">
@@ -173,12 +173,10 @@
             <div class="anm_mod bottom-bit fast inner-mempelai">
                 <div class="mempelai-wanita">
                     <div class="container-image-wanita">
-                        <img class="anm_mod left fast ring-wanita-img object-fit-cover"
-                            src="{{ asset('img/design-8/element-6.svg') }}" alt="mempelai-wanita">
                         <img class="anm_mod left fast mempelai-wanita-img object-fit-cover"
                             src="{{ Storage::url('' . $data->foto_mempelai_perempuan) }}" alt="mempelai-wanita">
-                        <img class="anm_mod left fast ring-flower-left object-fit-cover"
-                            src="{{ asset('img/design-8/element-4.svg') }}" alt="mempelai-wanita">
+                        <img class="anm_mod left fast ring-wanita-img object-fit-cover"
+                            src="{{ asset('img/design-9/element-4.svg') }}" alt="mempelai-wanita">
                     </div>
                     <div class="anm_mod bottom fast detail-mempelai-wanita">
                         <div class="data-mempelai-wanita">
@@ -186,8 +184,7 @@
                             <p>Anak dari Bapak {{ $data->putri_dari_bpk }} dan Ibu {{ $data->putri_dari_ibu }}</p>
                         </div>
                         <a href="{{ $data->link_instagram1 }}" target="_blank" class="btn-link">
-                            <img style="width: 20px;" src="{{ asset('img/design-8/logo-instagram.svg') }}"
-                                alt="instagram">
+                            <img src="{{ asset('img/design-9/icon-instagram-black.svg') }}" alt="instagram">
                             <span>{{ $data->nama_instagram1 }}</span>
                         </a>
                     </div>
@@ -195,12 +192,10 @@
                 <h3 class="anm_mod bottom-bit fast">&</h3>
                 <div class="mempelai-pria">
                     <div class="container-image-pria">
-                        <img class="anm_mod left fast ring-pria-img object-fit-cover"
-                            src="{{ asset('img/design-8/element-7.svg') }}" alt="mempelai-pria">
                         <img class="anm_mod right fast mempelai-wanita-img object-fit-cover"
                             src="{{ Storage::url('' . $data->foto_mempelai_laki) }}" alt="mempelai-pria">
-                        <img class="anm_mod right fast ring-flower-right object-fit-cover"
-                            src="{{ asset('img/design-8/element-5.svg') }}" alt="mempelai-pria">
+                        <img class="anm_mod right fast ring-pria-img object-fit-cover"
+                            src="{{ asset('img/design-9/element-4.svg') }}" alt="mempelai-pria">
                     </div>
                     <div class="anm_mod bottom fast detail-mempelai-pria">
                         <div class="data-mempelai-pria">
@@ -208,8 +203,7 @@
                             <p>Anak dari Bapak {{ $data->putra_dari_bpk }} dan Ibu {{ $data->putra_dari_ibu }}</p>
                         </div>
                         <a href="{{ $data->link_instagram2 }}" target="_blank" class="btn-link">
-                            <img style="width: 20px;" src="{{ asset('img/design-8/logo-instagram.svg') }}"
-                                alt="instagram">
+                            <img src="{{ asset('img/design-9/icon-instagram-black.svg') }}" alt="instagram">
                             <span>{{ $data->nama_instagram2 }}</span>
                         </a>
                     </div>
@@ -253,21 +247,21 @@
                 <img src="{{ Storage::url('' . $data->akad_img) }}"
                     class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story" width="328"
                     height="328">
-                <img src="{{ asset('img/design-8/element-8.svg') }}" class="element-flower" alt="devider">
+                <img src="{{ asset('img/design-9/element-5.svg') }}" class="element-flower" alt="devider">
             </div>
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
                     <h3>Akad<h3>
                             <div class="detail">
                                 <div class="info">
-                                    <img src="{{ asset('img/design-8/calendar-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span
                                             class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                                     </div>
                                 </div>
                                 <div class="info">
-                                    <img src="{{ asset('img/design-8/clock-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-9/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">
                                             {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} -
@@ -275,7 +269,7 @@
                                     </div>
                                 </div>
                                 <div class="info">
-                                    <img src="{{ asset('img/design-8/location-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-9/location-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">{{ $data->lokasi_akad }}</span>
                                         <p>{{ $data->deskripsi_akad }}</p>
@@ -294,14 +288,14 @@
                     <h3>Resepsi<h3>
                             <div class="detail">
                                 <div class="info">
-                                    <img src="{{ asset('img/design-8/calendar-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span
                                             class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                                     </div>
                                 </div>
                                 <div class="info">
-                                    <img src="{{ asset('img/design-8/clock-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-9/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">
                                             {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
@@ -310,7 +304,7 @@
                                     </div>
                                 </div>
                                 <div class="info">
-                                    <img src="{{ asset('img/design-8/location-icon.svg') }}" alt="calendar">
+                                    <img src="{{ asset('img/design-9/location-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">{{ $data->lokasi_resepsi }}</span>
                                         <p>{{ $data->deskripsi_resepsi }}</p>
@@ -347,98 +341,80 @@
             <div class="container-inner anm_mod bottom-bit fast">
                 <div class="container-dashboard anm_mod bottom-bit fast">
                     <div class="card-dashboard-hadir">
-                        <h3>5</h3>
+                        <h3>{{ $hadirCount }}</h3> <!-- Menampilkan jumlah hadir -->
                         <p>Hadir</p>
                     </div>
                     <div class="card-dashboard-tidakhadir">
-                        <h3>5</h3>
+                        <h3>{{ $tidakHadirCount }}</h3> <!-- Menampilkan jumlah tidak hadir -->
                         <p>Tidak Hadir</p>
                     </div>
                 </div>
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
-                        <form id="algin-form">
+                        <form id="algin-form" class="rsvp-mobile3" method="POST"
+                            action="{{ route('wedding-design9-post', [
+                                'nama_mempelai_laki' => $nama_mempelai_laki,
+                                'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
+                                'nama_undangan' => $nama_undangan,
+                            ]) }}">
+                            @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
-                                <input placeholder="Masukkan nama lengkap" type="text" name="name"
+                                <input placeholder="Masukkan nama lengkap" type="text" name="nama"
                                     id="fullname" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="message">Ucapan</label>
-                                <textarea placeholder="Masukkan kalimat ucapan" name="msg" id=""msg cols="30" rows="5"
+                                <textarea placeholder="Masukkan kalimat ucapan" name="ucapan" id="msg" cols="30" rows="5"
                                     class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="name">Konfirmasi Kehadiran</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" name="kehadiran"
+                                        id="flexRadioDefault1" value="1">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Hadir
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault2" checked>
+                                    <input class="form-check-input" type="radio" name="kehadiran"
+                                        id="flexRadioDefault2" checked value="0">
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Tidak Hadir
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="button" id="post" class="btn-primary" disabled>Kirim</button>
+                                <button type="submit" id="post" class="btn-primary">Kirim</button>
                             </div>
                         </form>
                     </div>
                     <div class="comment-list">
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Jhon Doe</h4>
-                                    <img src="{{ asset('img/design-8/hadir-icon.svg') }}" alt="hadir">
+                        @foreach ($alt9models as $item)
+                            <div class="card-comment">
+                                <div class="title">
+                                    <div class="name">
+                                        <h4>{{ $item->nama }}</h4>
+                                        @if ($item->kehadiran == 1)
+                                            <img src="{{ asset('img/design-8/hadir-icon.svg') }}" alt="hadir">
+                                        @else
+                                            <img src="{{ asset('img/design-8/tidak-hadir-icon.svg') }}"
+                                                alt="tidak hadir">
+                                        @endif
+
+                                    </div>
+                                    <span class="label">
+                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }}
+                                        WIB</span>
                                 </div>
-                                <span class="label">20 October, 2018 | 20:00 WIB</span>
+                                <p>{!! $item->ucapan !!}</p>
                             </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Paul</h4>
-                                    <img src="{{ asset('img/design-8/tidak-hadir-icon.svg') }}" alt="hadir">
-                                </div>
-                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Paul</h4>
-                                    <img src="{{ asset('img/design-8/tidak-hadir-icon.svg') }}" alt="hadir">
-                                </div>
-                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
-                        <div class="card-comment">
-                            <div class="title">
-                                <div class="name">
-                                    <h4>Paul</h4>
-                                    <img src="{{ asset('img/design-8/tidak-hadir-icon.svg') }}" alt="hadir">
-                                </div>
-                                <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic
-                                aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
-            @if ($data->DirectTransferDesign8->isNotEmpty() || $data->KirimHadiahDesign8->isNotEmpty())
+            @if ($data->DirectTransferdesign9->isNotEmpty() || $data->KirimHadiahdesign9->isNotEmpty())
                 <div class="kirim-hadiah anm_mod bottom-bit fast">
                     <div class="info">
                         <h3>Kirim Hadiah</h3>
@@ -446,19 +422,19 @@
                     </div>
 
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        @if ($data->DirectTransferDesign8->isNotEmpty())
+                        @if ($data->DirectTransferdesign9->isNotEmpty())
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-home" type="button" role="tab"
                                     aria-controls="pills-home" aria-selected="true">Direct Transfer</button>
                             </li>
                         @endif
-                        @if ($data->KirimHadiahDesign8->isNotEmpty())
+                        @if ($data->KirimHadiahdesign9->isNotEmpty())
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link {{ $data->DirectTransferDesign8->isEmpty() ? 'active' : '' }}"
+                                <button class="nav-link {{ $data->DirectTransferdesign9->isEmpty() ? 'active' : '' }}"
                                     id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
                                     type="button" role="tab" aria-controls="pills-profile"
-                                    aria-selected="{{ $data->DirectTransferDesign8->isEmpty() ? 'true' : 'false' }}">
+                                    aria-selected="{{ $data->DirectTransferdesign9->isEmpty() ? 'true' : 'false' }}">
                                     Kirim Hadiah
                                 </button>
                             </li>
@@ -466,10 +442,10 @@
                     </ul>
 
                     <div class="tab-content" id="pills-tabContent">
-                        @if ($data->DirectTransferDesign8->isNotEmpty())
+                        @if ($data->DirectTransferdesign9->isNotEmpty())
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                 aria-labelledby="pills-home-tab">
-                                @foreach ($data->DirectTransferDesign8 as $index => $item)
+                                @foreach ($data->DirectTransferdesign9 as $index => $item)
                                     <div class="card">
                                         <div class="card-body">
                                             @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
@@ -496,10 +472,10 @@
                             </div>
                         @endif
 
-                        @if ($data->KirimHadiahDesign8->isNotEmpty())
-                            <div class="tab-pane fade {{ $data->DirectTransferDesign8->isEmpty() ? 'show active' : '' }}"
+                        @if ($data->KirimHadiahdesign9->isNotEmpty())
+                            <div class="tab-pane fade {{ $data->DirectTransferdesign9->isEmpty() ? 'show active' : '' }}"
                                 id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                @foreach ($data->KirimHadiahDesign8 as $item)
+                                @foreach ($data->KirimHadiahdesign9 as $item)
                                     <div class="card">
                                         <div class="card-body">
                                             @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
@@ -515,6 +491,7 @@
                 </div>
             @endif
         </div>
+        </div>
     </section>
     <!-- DOA & UCAPAN -->
 
@@ -525,7 +502,7 @@
             <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
                 {{ $data->nama_mempelai_laki }}</h3>
         </div>
-        <img class="ending-background object-fit-cover" src="{{ asset('img/design-8/element-9.svg') }}"
+        <img class="ending-background object-fit-cover" src="{{ asset('img/design-9/element-6.svg') }}"
             alt="background">
     </section>
     <!-- ENDING END -->
@@ -535,19 +512,19 @@
         <div class="follow-us">
             <p>Powered By</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:32px" src="{{ asset('img/design-8/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
+                <img style="height:32px" src="{{ asset('img/design-9/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
             </a>
         </div>
         <div class="follow-us">
             <p>Follow Us</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:24px" src="{{ asset('img/design-8/icon-facebook.svg') }}" alt="Facebook">
+                <img style="height:24px" src="{{ asset('img/design-9/icon-facebook.svg') }}" alt="Facebook">
             </a>
             <a href="https://www.instagram.com/jejakkebahagiaan/" target="_blank">
-                <img style="height:24px" src="{{ asset('img/design-8/icon-instagram.svg') }}" alt="Instagram">
+                <img style="height:24px" src="{{ asset('img/design-9/icon-instagram.svg') }}" alt="Instagram">
             </a>
             <a href="https://www.tiktok.com/@jejakkebahagiaan?_t=8pjtPh8o2JL&_r=1" target="_blank">
-                <img style="height:24px" src="{{ asset('img/design-8/icon-tiktok.svg') }}" alt="Tiktok">
+                <img style="height:24px" src="{{ asset('img/design-9/icon-tiktok.svg') }}" alt="Tiktok">
             </a>
         </div>
     </section>
@@ -555,11 +532,11 @@
 
     <!-- BOOTSTRAP 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN8N6jIeHz" crossorigin="anonymous">
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
     <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K8U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh28Xc0jk="
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         crossorigin="anonymous"></script>
 
     <!-- JS STYLE -->
@@ -698,16 +675,16 @@
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC8Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN8N6jIeHz" crossorigin="anonymous">
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I8E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
@@ -886,9 +863,17 @@
         })
         (jQuery);
     </script>
+
+    @if (session('hide_offcanvas'))
+        <script>
+            window.location.hash = '#doa-ucapan'; // Redirect with the hash
+            document.getElementById('doa-ucapan').scrollIntoView();
+        </script>
+    @endif
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="jquery.fancybox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.8.13/lottie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.13/lottie.min.js"></script>
 </body>
 
 </html>
