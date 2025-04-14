@@ -298,7 +298,8 @@
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
             <h3 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h3>
             <img src="{{ Storage::url('' . $data->akad_img) }}"
-                class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
+                class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story" width="328"
+                height="328">
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
                     <h3>Akad<h3>

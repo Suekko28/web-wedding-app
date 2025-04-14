@@ -10,6 +10,7 @@ use App\Models\InformasiDesign7;
 use App\Models\KirimHadiahDesign7;
 use App\Models\WeddingDesign7;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WeddingDesign7Controlller extends Controller
 {
@@ -264,7 +265,7 @@ class WeddingDesign7Controlller extends Controller
         return response()->json(['message' => 'Direct Transfer berhasil ditambahkan.']);
     }
 
-    public function updateDirectTransfer(DirectTransfterDesign7FormRequest $request, $id)
+    public function updateDirectTransfer(DirectTransferDesign7FormRequest $request, $id)
     {
         $directTransfer = DirectTransferDesign7::findOrFail($id);
         $data = $request->all();
