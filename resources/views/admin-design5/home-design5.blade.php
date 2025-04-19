@@ -203,10 +203,10 @@
     <!-- MEMPELAI END -->
 
     <!-- PERJALANAN CINTA -->
-    <section class="animation perjalanan-cinta" id="perjalanan-cinta">
-        <div class="anm_mod bottom-bit fast perjalanan-cinta-cover">
-            <h3 class="anm_mod bottom-bit fast">Perjalanan Cinta Kami</h3>
-            @if ($data->PerjalananCintaDesign5->isNotEmpty())
+    @if ($data->PerjalananCintaDesign5->isNotEmpty())
+        <section class="animation perjalanan-cinta" id="perjalanan-cinta">
+            <div class="anm_mod bottom-bit fast perjalanan-cinta-cover">
+                <h3 class="anm_mod bottom-bit fast">Perjalanan Cinta Kami</h3>
                 <div id="carouselExampleCaptions" class="carousel slide anm_mod bottom-bit delay"
                     data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -246,8 +246,8 @@
                         <span class="visually-hidden"></span>
                     </button>
                 </div>
-            @endif
-        </div>
+    @endif
+    </div>
     </section>
     <!-- PERJALANAN CINTA END -->
 
@@ -300,7 +300,8 @@
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
             <h3 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h3>
             <img src="{{ Storage::url('' . $data->akad_img) }}"
-                class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
+                class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story" width="328"
+                height="328">
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
                     <h3>Akad<h3>
@@ -486,67 +487,83 @@
 
                 </div>
             </div>
-            <div class="kirim-hadiah anm_mod bottom-bit fast">
-                <div class="info">
-                    <h3>Kirim Hadiah</h3>
-                    <p>Berikan hadiah kepada kedua mempelai</p>
-                </div>
-                <ul class="nav nav-pills id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                            aria-selected="true">Direct Transfer</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-profile" type="button" role="tab"
-                            aria-controls="pills-profile" aria-selected="false">Kirim Hadiah</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                        aria-labelledby="pills-home-tab">
-                        @foreach ($data->DirectTransferDesign5 as $index => $item)
-                            <div class="card">
-                                <div class="card-body">
-                                    @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
-                                        @if (!empty($item->bank))
-                                            <h4 class="card-title">{{ $item->bank }}</h4>
-                                        @endif
-                                        <div class="info-norek">
-                                            @if (!empty($item->no_rek))
-                                                <!-- Tambahkan indeks ke ID -->
-                                                <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
+            @if ($data->DirectTransferDesign5->isNotEmpty() || $data->KirimHadiahDesign5->isNotEmpty())
+                <div class="kirim-hadiah anm_mod bottom-bit fast">
+                    <div class="info">
+                        <h3>Kirim Hadiah</h3>
+                        <p>Berikan hadiah kepada kedua mempelai</p>
+                    </div>
+
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        @if ($data->DirectTransferDesign5->isNotEmpty())
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-home" type="button" role="tab"
+                                    aria-controls="pills-home" aria-selected="true">Direct Transfer</button>
+                            </li>
+                        @endif
+                        @if ($data->KirimHadiahDesign5->isNotEmpty())
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link {{ $data->DirectTransferDesign5->isEmpty() ? 'active' : '' }}"
+                                    id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                                    type="button" role="tab" aria-controls="pills-profile"
+                                    aria-selected="{{ $data->DirectTransferDesign5->isEmpty() ? 'true' : 'false' }}">
+                                    Kirim Hadiah
+                                </button>
+                            </li>
+                        @endif
+                    </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        @if ($data->DirectTransferDesign5->isNotEmpty())
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                aria-labelledby="pills-home-tab">
+                                @foreach ($data->DirectTransferDesign5 as $index => $item)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
+                                                @if (!empty($item->bank))
+                                                    <h4 class="card-title">{{ $item->bank }}</h4>
+                                                @endif
+                                                <div class="info-norek">
+                                                    @if (!empty($item->no_rek))
+                                                        <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
+                                                    @endif
+                                                    <a id="btn-copy-{{ $index }}"
+                                                        onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
+                                                        title="Copy Text" class="btn-ghost">
+                                                        Copy
+                                                    </a>
+                                                </div>
+                                                @if (!empty($item->nama_rek))
+                                                    <p class="card-text">A/N {{ $item->nama_rek }}</p>
+                                                @endif
                                             @endif
-                                            <!-- Tombol salin dengan ID unik -->
-                                            <a id="btn-copy-{{ $index }}"
-                                                onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
-                                                title="Copy Text" class="btn-ghost">
-                                                Copy
-                                            </a>
                                         </div>
-                                        @if (!empty($item->nama_rek))
-                                            <p class="card-text">A/N {{ $item->nama_rek }}</p>
-                                        @endif
-                                    @endif
-                                </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
+                        @endif
+
+                        @if ($data->KirimHadiahDesign5->isNotEmpty())
+                            <div class="tab-pane fade {{ $data->DirectTransferDesign5->isEmpty() ? 'show active' : '' }}"
+                                id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                @foreach ($data->KirimHadiahDesign5 as $item)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
+                                                <h4 class="card-title">{{ $item->alamat }}</h4>
+                                                <p class="card-text">{{ $item->deskripsi_alamat }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    @foreach ($data->KirimHadiahDesign5 as $item)
-                        <div class="card">
-                            <div class="card-body">
-                                @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
-                                    <h4 class="card-title">{{ $item->alamat }}</h4>
-                                    <p class="card-text">{{ $item->deskripsi_alamat }}</p>
-                                @endif
-                    @endforeach
-                </div>
-            </div>
+            @endif
         </div>
-
     </section>
     <!-- DOA & UCAPAN -->
 
@@ -702,7 +719,7 @@
         const tglAkad = "{{ $data->tgl_akad }}"; // Pastikan ini diisi dengan format tanggal yang valid
         setInterval(() => updateTimer(tglAkad), 1000);
     </script>
-       <script>
+    <script>
         function copyText(textElementId, buttonId) {
             var textElement = document.getElementById(textElementId);
             var button = document.getElementById(buttonId);

@@ -103,6 +103,9 @@ class WeddingDesign5FormRequest extends FormRequest
             'nama_instagram1.string' => 'Nama Instagram harus berupa teks.',
             'link_instagram1.url' => 'Link Instagram harus berupa URL yang valid.',
 
+            'nama_instagram2.string' => 'Nama Instagram harus berupa teks.',
+            'link_instagram2.url' => 'Link Instagram harus berupa URL yang valid.',
+
             'foto_mempelai_laki.required' => 'Foto mempelai laki-laki harus diunggah.',
             'foto_mempelai_laki.image' => 'Foto mempelai laki-laki harus berupa file gambar.',
             'foto_mempelai_laki.mimes' => 'Foto mempelai laki-laki hanya boleh berupa file dengan format jpeg, png, jpg.',

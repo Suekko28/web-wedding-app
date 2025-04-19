@@ -448,29 +448,29 @@
                         </div>
 
                     </form>
-                    <table class="table table-bordered">
-                        <h6>Daftar Tamu Undangan</h6>
-                        <thead>
-                            <tr class="text-nowrap text-center">
-                                <th>No</th>
-                                <th>Nama Undangan</th>
-                                {{-- <th>Template Message</th> --}}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i = 1; ?>
-                            @foreach ($nama_undangan as $item)
-                                <tr class="text-center">
-                                    <td scope="row">{{ $i }}</td>
-                                    <td scope="row">{{ $item->nama_undangan }}</td>
-                                    {{-- Other table cells --}}
+                    <div class="card-body container bg-white">
+                        <table class="table table-bordered">
+                            <div class="kirim-hadiah fw-bold fs-5 mb-4">Daftar Tamu Undangan</div>
+                            <thead>
+                                <tr class="text-nowrap text-center">
+                                    <th>No</th>
+                                    <th>Nama Undangan</th>
                                 </tr>
-                                <?php $i++; ?>
-                            @endforeach
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                @foreach ($nama_undangan as $item)
+                                    <tr class="text-center">
+                                        <td scope="row">{{ $i }}</td>
+                                        <td scope="row">{{ $item->nama_undangan }}</td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                @endforeach
 
-                        </tbody>
+                            </tbody>
 
-                    </table>
+                        </table>
+                    </div>
                     <!-- Small boxes (Stat box) -->
                     <!-- /.row (main row) -->
                     <div class="d-flex flex-row-reverse">

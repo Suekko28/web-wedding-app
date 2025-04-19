@@ -37,34 +37,34 @@ class WeddingDesign2Controller extends Controller
         $data = $request->all();
 
         if ($request->hasFile('background_img')) {
-            $data['background_img'] = $request->file('background_img')->storeAs('public/wedding-design2.index', $request->file('background_img')->getClientOriginalName());
+            $data['background_img'] = $request->file('background_img')->storeAs('public/wedding-design2.index', $request->file('background_img')->hashName());
         }
 
         if ($request->hasFile('banner_img')) {
-            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design2.index', $request->file('banner_img')->getClientOriginalName());
+            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design2.index', $request->file('banner_img')->hashName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design2.index', $request->file('foto_prewedding')->getClientOriginalName());
+            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design2.index', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
-            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design2.index', $request->file('foto_mempelai_laki')->getClientOriginalName());
+            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design2.index', $request->file('foto_mempelai_laki')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
-            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design2.index', $request->file('foto_mempelai_perempuan')->getClientOriginalName());
+            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design2.index', $request->file('foto_mempelai_perempuan')->hashName());
         }
 
         if ($request->hasFile('music')) {
-            $data['music'] = $request->file('music')->storeAs('public/wedding-design2.index-music', $request->file('music')->getClientOriginalName());
+            $data['music'] = $request->file('music')->storeAs('public/wedding-design2.index-music', $request->file('music')->hashName());
         }
 
         // Periksa apakah file galeri diunggah sebelum menyimpannya
         foreach (range(1, 6) as $index) {
             $galeri_field = 'galeri_img' . $index;
             if ($request->hasFile($galeri_field)) {
-                $data[$galeri_field] = $request->file($galeri_field)->storeAs('public/wedding-design2.index', $request->file($galeri_field)->getClientOriginalName());
+                $data[$galeri_field] = $request->file($galeri_field)->storeAs('public/wedding-design2.index', $request->file($galeri_field)->hashName());
             } else {
                 $data[$galeri_field] = NULL; // Atur default.jpg sesuai kebutuhan Anda
             }
@@ -134,35 +134,35 @@ class WeddingDesign2Controller extends Controller
             if ($weddingDesign2->banner_img) {
                 Storage::delete($weddingDesign2->banner_img);
             }
-            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design2.index', $request->file('banner_img')->getClientOriginalName());
+            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design2.index', $request->file('banner_img')->hashName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
             if ($weddingDesign2->foto_prewedding) {
                 Storage::delete($weddingDesign2->foto_prewedding);
             }
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design2.index', $request->file('foto_prewedding')->getClientOriginalName());
+            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design2.index', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
             if ($weddingDesign2->foto_mempelai_laki) {
                 Storage::delete($weddingDesign2->foto_mempelai_laki);
             }
-            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design2.index', $request->file('foto_mempelai_laki')->getClientOriginalName());
+            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design2.index', $request->file('foto_mempelai_laki')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
             if ($weddingDesign2->foto_mempelai_perempuan) {
                 Storage::delete($weddingDesign2->foto_mempelai_perempuan);
             }
-            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design2.index', $request->file('foto_mempelai_perempuan')->getClientOriginalName());
+            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design2.index', $request->file('foto_mempelai_perempuan')->hashName());
         }
 
         if ($request->hasFile('music')) {
             if ($weddingDesign2->music) {
                 Storage::delete($weddingDesign2->music);
             }
-            $data['music'] = $request->file('music')->storeAs('public/wedding-design2.index-music', $request->file('music')->getClientOriginalName());
+            $data['music'] = $request->file('music')->storeAs('public/wedding-design2.index-music', $request->file('music')->hashName());
         }
 
         // Periksa apakah file galeri diunggah sebelum menyimpannya
@@ -173,7 +173,7 @@ class WeddingDesign2Controller extends Controller
                 if ($weddingDesign2->$galeri_field) {
                     Storage::delete($weddingDesign2->$galeri_field);
                 }
-                $data[$galeri_field] = $request->file($galeri_field)->storeAs('public/wedding-design2.index', $request->file($galeri_field)->getClientOriginalName());
+                $data[$galeri_field] = $request->file($galeri_field)->storeAs('public/wedding-design2.index', $request->file($galeri_field)->hashName());
             } else {
                 // Jika file galeri tidak diunggah, tetap gunakan yang lama
                 $data[$galeri_field] = $weddingDesign2->$galeri_field;

@@ -16,7 +16,7 @@ class ImageUploadController extends Controller
 
         // Store the uploaded image
         $image = $request->file('upload');
-        $imageName = time() . '_' . $image->getClientOriginalName();
+        $imageName = time() . '_' . $image->hashName();
         $path = $image->storeAs('public/blog-img-child', $imageName);
 
         // Return the URL in JSON format for CKEditor

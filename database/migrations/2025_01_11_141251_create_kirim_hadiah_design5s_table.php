@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('kirim_hadiah_design5', function (Blueprint $table) {
             $table->id();
-            $table->string('alamat');
+            $table->string('alamat', length: 100);
             $table->text('deskripsi_alamat');
             $table->unsignedBigInteger('informasi_design5_id');
             $table->foreign('informasi_design5_id')

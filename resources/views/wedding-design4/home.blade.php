@@ -307,7 +307,8 @@
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
             <h3 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h3>
             <img src="{{ Storage::url('' . $data->akad_img) }}"
-                class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
+                class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story" width="328"
+                height="328">
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
                     <h3>Akad<h3>
@@ -478,9 +479,9 @@
                     <h3>Kirim Hadiah</h3>
                     <p>Berikan hadiah kepada kedua mempelai</p>
                 </div>
-                <ul class="nav nav-pills id="pills-tab" role="tablist">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill"
+                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                             aria-selected="true">Direct Transfer</button>
                     </li>
@@ -533,7 +534,6 @@
                 </div>
             </div>
         </div>
-
     </section>
     <!-- DOA & UCAPAN -->
 

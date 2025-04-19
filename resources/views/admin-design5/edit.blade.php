@@ -4,7 +4,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Wedding Design 4'])
+    @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Wedding Design 5'])
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
             <section class="content">
@@ -108,7 +108,6 @@
                                                     width="150">
                                             </div>
                                         @endif
-                                        <!-- Input file tidak memiliki value -->
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_mempelai_perempuan">Nama Mempelai Perempuan <span
@@ -291,7 +290,7 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="akad_img">Upload Foto <span class="mandatory">*</span></label>
+                                        <label for="akad_img">Upload Image <span class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="akad_img" name="akad_img"
                                             placeholder="" value="{{ old('akad_img') }}">
                                         @if ($data->akad_img)

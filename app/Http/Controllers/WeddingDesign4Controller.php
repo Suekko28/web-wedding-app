@@ -61,23 +61,23 @@ class WeddingDesign4Controller extends Controller
 
 
         if ($request->hasFile('banner_img')) {
-            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design4', $request->file('banner_img')->getClientOriginalName());
+            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design4', $request->file('banner_img')->hashName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design4', $request->file('foto_prewedding')->getClientOriginalName());
+            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design4', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
-            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design4', $request->file('foto_mempelai_laki')->getClientOriginalName());
+            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design4', $request->file('foto_mempelai_laki')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
-            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design4', $request->file('foto_mempelai_perempuan')->getClientOriginalName());
+            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design4', $request->file('foto_mempelai_perempuan')->hashName());
         }
 
         if ($request->hasFile('music')) {
-            $data['music'] = $request->file('music')->storeAs('public/wedding-design4-music', $request->file('music')->getClientOriginalName());
+            $data['music'] = $request->file('music')->storeAs('public/wedding-design4-music', $request->file('music')->hashName());
         }
 
         if ($request->hasFile('quote_img')) {
@@ -85,14 +85,14 @@ class WeddingDesign4Controller extends Controller
             $quoteImagePaths = [];
 
             foreach ($quoteImages as $quoteImage) {
-                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design4', $quoteImage->getClientOriginalName());
+                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design4', $quoteImage->hashName());
             }
 
             $data['quote_img'] = json_encode($quoteImagePaths); // Store paths as a JSON array or adjust according to your needs
         }
 
         if ($request->hasFile('akad_img')) {
-            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design4', $request->file(key: 'akad_img')->getClientOriginalName());
+            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design4', $request->file(key: 'akad_img')->hashName());
         }
 
         $data['informasi_design4_id'] = $informasiDesign4->id;
@@ -112,11 +112,11 @@ class WeddingDesign4Controller extends Controller
 
 
         if ($request->hasFile('image1')) {
-            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image1')->getClientOriginalName());
+            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image1')->hashName());
         }
 
         if ($request->hasFile('image2')) {
-            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image2')->getClientOriginalName());
+            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image2')->hashName());
         }
 
 
@@ -222,35 +222,35 @@ class WeddingDesign4Controller extends Controller
             if ($weddingDesign4->banner_img) {
                 Storage::delete($weddingDesign4->banner_img);
             }
-            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design4', $request->file('banner_img')->getClientOriginalName());
+            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design4', $request->file('banner_img')->hashName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
             if ($weddingDesign4->foto_prewedding) {
                 Storage::delete($weddingDesign4->foto_prewedding);
             }
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design4', $request->file('foto_prewedding')->getClientOriginalName());
+            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design4', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
             if ($weddingDesign4->foto_mempelai_laki) {
                 Storage::delete($weddingDesign4->foto_mempelai_laki);
             }
-            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design4', $request->file('foto_mempelai_laki')->getClientOriginalName());
+            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design4', $request->file('foto_mempelai_laki')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
             if ($weddingDesign4->foto_mempelai_perempuan) {
                 Storage::delete($weddingDesign4->foto_mempelai_perempuan);
             }
-            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design4', $request->file('foto_mempelai_perempuan')->getClientOriginalName());
+            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design4', $request->file('foto_mempelai_perempuan')->hashName());
         }
 
         if ($request->hasFile('music')) {
             if ($weddingDesign4->music) {
                 Storage::delete($weddingDesign4->music);
             }
-            $data['music'] = $request->file('music')->storeAs('public/wedding-design4-music', $request->file('music')->getClientOriginalName());
+            $data['music'] = $request->file('music')->storeAs('public/wedding-design4-music', $request->file('music')->hashName());
         }
 
         if ($request->hasFile('quote_img')) {
@@ -266,7 +266,7 @@ class WeddingDesign4Controller extends Controller
             $quoteImagePaths = [];
 
             foreach ($quoteImages as $quoteImage) {
-                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design4', $quoteImage->getClientOriginalName());
+                $quoteImagePaths[] = $quoteImage->storeAs('public/wedding-design4', $quoteImage->hashName());
             }
 
             $data['quote_img'] = json_encode($quoteImagePaths); // Store paths as a JSON array
@@ -276,7 +276,7 @@ class WeddingDesign4Controller extends Controller
             if ($weddingDesign4->akad_img) {
                 Storage::delete($weddingDesign4->akad_img);
             }
-            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design4', $request->file('akad_img')->getClientOriginalName());
+            $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design4', $request->file('akad_img')->hashName());
         }
 
         $weddingDesign4->update($data);
@@ -295,7 +295,7 @@ class WeddingDesign4Controller extends Controller
             if ($perjalananCinta->image1) {
                 Storage::delete($perjalananCinta->image1);
             }
-            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image1')->getClientOriginalName());
+            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image1')->hashName());
         }
 
         // Check and handle uploaded image2
@@ -303,7 +303,7 @@ class WeddingDesign4Controller extends Controller
             if ($perjalananCinta->image2) {
                 Storage::delete($perjalananCinta->image2);
             }
-            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image2')->getClientOriginalName());
+            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design4/perjalanan-cinta', $request->file('image2')->hashName());
         }
 
         $perjalananCinta->update($data); // Update model PerjalananCintaDesign4

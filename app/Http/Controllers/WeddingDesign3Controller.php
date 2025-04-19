@@ -38,37 +38,37 @@ class WeddingDesign3Controller extends Controller
 
         // Simpan jalur penyimpanan untuk gambar utama
         if ($request->hasFile('banner_img')) {
-            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design3', $request->file('banner_img')->getClientOriginalName());
+            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design3', $request->file('banner_img')->hashName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design3', $request->file('foto_prewedding')->getClientOriginalName());
+            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design3', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
-            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design3', $request->file('foto_mempelai_laki')->getClientOriginalName());
+            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design3', $request->file('foto_mempelai_laki')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
-            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design3', $request->file('foto_mempelai_perempuan')->getClientOriginalName());
+            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design3', $request->file('foto_mempelai_perempuan')->hashName());
         }
 
         if ($request->hasFile('music')) {
-            $data['music'] = $request->file('music')->storeAs('public/wedding-design3-music', $request->file('music')->getClientOriginalName());
+            $data['music'] = $request->file('music')->storeAs('public/wedding-design3-music', $request->file('music')->hashName());
         }
 
         if ($request->hasFile('gambar1')) {
-            $data['gambar1'] = $request->file('gambar1')->storeAs('public/wedding-design3', $request->file('gambar1')->getClientOriginalName());
+            $data['gambar1'] = $request->file('gambar1')->storeAs('public/wedding-design3', $request->file('gambar1')->hashName());
         }
 
         if ($request->hasFile('gambar2')) {
-            $data['gambar2'] = $request->file('gambar2')->storeAs('public/wedding-design3', $request->file('gambar2')->getClientOriginalName());
+            $data['gambar2'] = $request->file('gambar2')->storeAs('public/wedding-design3', $request->file('gambar2')->hashName());
         }
 
         foreach (range(1, 5) as $index) {
             $galeri_field = 'galeri_img' . $index;
             if ($request->hasFile($galeri_field)) {
-                $data[$galeri_field] = $request->file($galeri_field)->storeAs('public/wedding-design3', $request->file($galeri_field)->getClientOriginalName());
+                $data[$galeri_field] = $request->file($galeri_field)->storeAs('public/wedding-design3', $request->file($galeri_field)->hashName());
             } else {
                 $data[$galeri_field] = NULL; // Atur default.jpg sesuai kebutuhan Anda
             }
@@ -148,49 +148,49 @@ class WeddingDesign3Controller extends Controller
             if ($weddingDesign3->banner_img) {
                 Storage::delete($weddingDesign3->banner_img);
             }
-            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design3', $request->file('banner_img')->getClientOriginalName());
+            $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design3', $request->file('banner_img')->hashName());
         }
 
         if ($request->hasFile('foto_prewedding')) {
             if ($weddingDesign3->foto_prewedding) {
                 Storage::delete($weddingDesign3->foto_prewedding);
             }
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design3', $request->file('foto_prewedding')->getClientOriginalName());
+            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design3', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {
             if ($weddingDesign3->foto_mempelai_laki) {
                 Storage::delete($weddingDesign3->foto_mempelai_laki);
             }
-            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design3', $request->file('foto_mempelai_laki')->getClientOriginalName());
+            $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design3', $request->file('foto_mempelai_laki')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_perempuan')) {
             if ($weddingDesign3->foto_mempelai_perempuan) {
                 Storage::delete($weddingDesign3->foto_mempelai_perempuan);
             }
-            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design3', $request->file('foto_mempelai_perempuan')->getClientOriginalName());
+            $data['foto_mempelai_perempuan'] = $request->file('foto_mempelai_perempuan')->storeAs('public/wedding-design3', $request->file('foto_mempelai_perempuan')->hashName());
         }
 
         if ($request->hasFile('music')) {
             if ($weddingDesign3->music) {
                 Storage::delete($weddingDesign3->music);
             }
-            $data['music'] = $request->file('music')->storeAs('public/wedding-design3-music', $request->file('music')->getClientOriginalName());
+            $data['music'] = $request->file('music')->storeAs('public/wedding-design3-music', $request->file('music')->hashName());
         }
 
         if ($request->hasFile('gambar1')) {
             if ($weddingDesign3->gambar1) {
                 Storage::delete($weddingDesign3->gambar1);
             }
-            $data['gambar1'] = $request->file('gambar1')->storeAs('public/wedding-design3', $request->file('gambar1')->getClientOriginalName());
+            $data['gambar1'] = $request->file('gambar1')->storeAs('public/wedding-design3', $request->file('gambar1')->hashName());
         }
 
         if ($request->hasFile('gambar2')) {
             if ($weddingDesign3->gambar2) {
                 Storage::delete($weddingDesign3->gambar2);
             }
-            $data['gambar2'] = $request->file('gambar2')->storeAs('public/wedding-design3', $request->file('gambar2')->getClientOriginalName());
+            $data['gambar2'] = $request->file('gambar2')->storeAs('public/wedding-design3', $request->file('gambar2')->hashName());
         }
 
         // Periksa apakah file galeri diunggah sebelum menyimpannya
@@ -201,7 +201,7 @@ class WeddingDesign3Controller extends Controller
                 if ($weddingDesign3->$galeri_field) {
                     Storage::delete($weddingDesign3->$galeri_field);
                 }
-                $data[$galeri_field] = $request->file($galeri_field)->storeAs('public/wedding-design3', $request->file($galeri_field)->getClientOriginalName());
+                $data[$galeri_field] = $request->file($galeri_field)->storeAs('public/wedding-design3', $request->file($galeri_field)->hashName());
             } else {
                 // Jika file galeri tidak diunggah, tetap gunakan yang lama
                 $data[$galeri_field] = $weddingDesign3->$galeri_field;

@@ -20,18 +20,6 @@ class InformasiDesign5Controller extends Controller
         ]);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(InformasiDesign5FormRequest $request)
     {
         $data = $request->all();
@@ -56,22 +44,6 @@ class InformasiDesign5Controller extends Controller
         return redirect()->route('wedding-design5.index')->with('success', 'Berhasil menambahkan data');
 
 
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**

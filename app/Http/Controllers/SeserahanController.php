@@ -37,7 +37,7 @@ class SeserahanController extends Controller
         $data = $request->all();
         $userId = auth()->user()->id;
         $image = $request->file('image');
-        $nama_image = rand() . $image->getClientOriginalName();
+        $nama_image = rand() . $image->hashName();
         $image->storeAs('public/seserahan', $nama_image);
 
         // Buat ID Seserahan

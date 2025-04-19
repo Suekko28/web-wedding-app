@@ -6,6 +6,8 @@
     <title>@yield('title', 'JejakKebahagiaan')</title>
     @yield('css')
     <link rel="website icon" type="png" href="{{ 'img/small-logo.jpg' }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 </head>
@@ -34,7 +36,19 @@
                     'nama-undangan-edit4',
                     'nama-undangan-list5',
                     'nama-undangan-create5',
-                    'nama-undangan-edit5'))
+                    'nama-undangan-edit5',
+                    'nama-undangan-list6',
+                    'nama-undangan-create6',
+                    'nama-undangan-edit6',
+                    'nama-undangan-list7',
+                    'nama-undangan-create7',
+                    'nama-undangan-edit7',
+                    'nama-undangan-list8',
+                    'nama-undangan-create8',
+                    'nama-undangan-edit8',
+                    'nama-undangan-list9',
+                    'nama-undangan-create9',
+                    'nama-undangan-edit9',))
                 <!-- Sidebar will not be displayed for this route -->
                 <!-- Sidebar only for other routes -->
                 <aside class="left-sidebar with-vertical">
@@ -57,7 +71,19 @@
                     'nama-undangan-edit4',
                     'nama-undangan-list5',
                     'nama-undangan-create5',
-                    'nama-undangan-edit5'))
+                    'nama-undangan-edit5',
+                    'nama-undangan-list6',
+                    'nama-undangan-create6',
+                    'nama-undangan-edit6',
+                    'nama-undangan-list7',
+                    'nama-undangan-create7',
+                    'nama-undangan-edit7',
+                    'nama-undangan-list8',
+                    'nama-undangan-create8',
+                    'nama-undangan-edit8',
+                    'nama-undangan-list9',
+                    'nama-undangan-create9',
+                    'nama-undangan-edit9',))
                 <div class="page-wrapper">
                     <!-- Header Start -->
                     <header class="topbar">
@@ -84,7 +110,19 @@
                     'nama-undangan-edit4',
                     'nama-undangan-list5',
                     'nama-undangan-create5',
-                    'nama-undangan-edit5'))
+                    'nama-undangan-edit5',
+                    'nama-undangan-list6',
+                    'nama-undangan-create6',
+                    'nama-undangan-edit6',
+                    'nama-undangan-list7',
+                    'nama-undangan-create7',
+                    'nama-undangan-edit7',
+                    'nama-undangan-list8',
+                    'nama-undangan-create8',
+                    'nama-undangan-edit8',
+                    'nama-undangan-list9',
+                    'nama-undangan-create9',
+                    'nama-undangan-edit9',))
                 <!-- Horizontal Sidebar -->
                 <aside class="left-sidebar with-horizontal">
                     @include('layouts.horizontal-sidebar')
