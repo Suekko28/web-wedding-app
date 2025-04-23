@@ -52,6 +52,8 @@ class WeddingDesign9 extends Model
         'link_streaming',
         'judul_jadwal',
         'deskripsi_penutup',
+        'judul_akad',
+        'judul_resepsi',
         'informasi_design9_id'
 
     ];
@@ -74,7 +76,7 @@ class WeddingDesign9 extends Model
     {
         return $this->hasMany(KirimHadiahDesign9::class, 'informasi_design9_id', 'informasi_design9_id');
     }
-    
+
     public function alt9Models(): HasMany
     {
         return $this->hasMany(UcapanDesign9::class, 'wedding_design9_id', 'id');

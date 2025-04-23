@@ -55,6 +55,8 @@ class WeddingDesign8 extends Model
         'link_streaming',
         'judul_jadwal',
         'deskripsi_penutup',
+        'judul_akad',
+        'judul_resepsi',
         'informasi_design8_id'
 
     ];

@@ -59,6 +59,19 @@ class WeddingDesign5Controller extends Controller
         $informasiDesign5 = InformasiDesign5::findOrFail($informasiDesign5Id);
         $data = $request->all();
 
+        //Default Values
+        $defaultJudulJadwal = "Jadwal Pernikahan";
+        $defaultDeskripsiPenutup = 'Thank You';
+        $defaultJudulAkad = "Akad";
+        $defaultJudulResepsi = "Resepsi";
+
+        // Cek dan set default jika tidak ada input / sama
+        $data['judul_jadwal'] = $request->filled('judul_jadwal') ? $request->input('judul_jadwal') : $defaultJudulJadwal;
+        $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
+        $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
+        $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
+
+
 
         if ($request->hasFile('banner_img')) {
             $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design5', $request->file('banner_img')->hashName());
@@ -105,57 +118,7 @@ class WeddingDesign5Controller extends Controller
 
     }
 
-    public function storePerjalananCinta(PerjalananCintaDesign5FormRequest $request, $informasiDesign5Id)
-    {
-        $informasiDesign5 = InformasiDesign5::findOrFail($informasiDesign5Id);
-        $data = $request->all();
 
-
-        if ($request->hasFile('image1')) {
-            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design5/perjalanan-cinta', $request->file('image1')->hashName());
-        }
-
-        if ($request->hasFile('image2')) {
-            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design5/perjalanan-cinta', $request->file('image2')->hashName());
-        }
-
-
-        $data['informasi_design5_id'] = $informasiDesign5->id;
-
-
-        // Create the PerjalananCintaDesign5 record
-        PerjalananCintaDesign5::create($data);
-
-        return back()->with('success', 'Perjalanan Cinta berhasil ditambahkan.');
-    }
-
-    public function storeDirectTransfer(DirectTransferDesign5FormRequest $request, $informasiDesign5Id)
-    {
-        $informasiDesign5 = InformasiDesign5::findOrFail($informasiDesign5Id);
-        $data = $request->all();
-
-        $data['informasi_design5_id'] = $informasiDesign5->id;
-
-
-        // Create the PerjalananCintaDesign5 record
-        DirectTransferDesign5::create($data);
-
-        return back()->with('success', 'Kirim Hadiah berhasil ditambahkan.');
-    }
-
-    public function storeKirimHadiah(KirimHadiahDesign5FormRequest $request, $informasiDesign5Id)
-    {
-        $informasiDesign5 = InformasiDesign5::findOrFail($informasiDesign5Id);
-        $data = $request->all();
-
-        $data['informasi_design5_id'] = $informasiDesign5->id;
-
-
-        // Create the PerjalananCintaDesign5 record
-        KirimHadiahDesign5::create($data);
-
-        return back()->with('success', 'Kirim Hadiah berhasil ditambahkan.');
-    }
 
     public function show(string $id)
     {
@@ -216,6 +179,19 @@ class WeddingDesign5Controller extends Controller
     {
         $weddingDesign5 = WeddingDesign5::findOrFail($id);
         $data = $request->all();
+
+        //Default Values
+        $defaultJudulJadwal = "Jadwal Pernikahan";
+        $defaultDeskripsiPenutup = 'Thank You';
+        $defaultJudulAkad = "Akad";
+        $defaultJudulResepsi = "Resepsi";
+
+        // Cek dan set default jika tidak ada input / sama
+        $data['judul_jadwal'] = $request->filled('judul_jadwal') ? $request->input('judul_jadwal') : $defaultJudulJadwal;
+        $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
+        $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
+        $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
+
 
         // Check and handle uploaded files
         if ($request->hasFile('banner_img')) {
@@ -285,6 +261,30 @@ class WeddingDesign5Controller extends Controller
     }
 
 
+
+    // Function Controller Perjalanan Cinta
+
+    public function storePerjalananCinta(PerjalananCintaDesign5FormRequest $request, $informasiDesign5Id)
+    {
+        $informasiDesign5 = InformasiDesign5::findOrFail($informasiDesign5Id);
+        $data = $request->all();
+
+
+        if ($request->hasFile('image1')) {
+            $data['image1'] = $request->file('image1')->storeAs('public/wedding-design5/perjalanan-cinta', $request->file('image1')->hashName());
+        }
+
+
+        $data['informasi_design5_id'] = $informasiDesign5->id;
+
+
+        // Create the PerjalananCintaDesign5 record
+        PerjalananCintaDesign5::create($data);
+
+        return response()->json(['message' => 'Perjalanan Cinta berhasil ditambahkan.']);
+    }
+
+
     public function updatePerjalananCinta(PerjalananCintaDesign5FormRequest $request, $id)
     {
         $perjalananCinta = PerjalananCintaDesign5::findOrFail($id);
@@ -298,17 +298,34 @@ class WeddingDesign5Controller extends Controller
             $data['image1'] = $request->file('image1')->storeAs('public/wedding-design5/perjalanan-cinta', $request->file('image1')->hashName());
         }
 
-        // Check and handle uploaded image2
-        if ($request->hasFile('image2')) {
-            if ($perjalananCinta->image2) {
-                Storage::delete($perjalananCinta->image2);
-            }
-            $data['image2'] = $request->file('image2')->storeAs('public/wedding-design5/perjalanan-cinta', $request->file('image2')->hashName());
-        }
-
         $perjalananCinta->update($data); // Update model PerjalananCintaDesign5
 
-        return back()->with('success', 'Perjalanan Cinta berhasil diubah.');
+        return response()->json(['message' => 'Perjalanan Cinta berhasil diubah']);
+    }
+
+    public function destroyPerjalananCinta($id)
+    {
+        $directTransfer = PerjalananCintaDesign5::findOrFail($id);
+
+        $directTransfer->delete();
+
+        return response()->json(['message' => 'Perjalanan Cinta berhasil dihapus']);
+    }
+
+
+
+    // Function Controller Direct Transfer
+
+    public function storeDirectTransfer(DirectTransferDesign5FormRequest $request, $informasiDesign5Id)
+    {
+        $informasiDesign5 = InformasiDesign5::findOrFail($informasiDesign5Id);
+        $data = $request->all();
+
+        $data['informasi_design5_id'] = $informasiDesign5->id;
+
+        DirectTransferDesign5::create($data);
+
+        return response()->json(['message' => 'Direct Transfer berhasil ditambahkan.']);
     }
 
     public function updateDirectTransfer(DirectTransferDesign5FormRequest $request, $id)
@@ -316,47 +333,50 @@ class WeddingDesign5Controller extends Controller
         $directTransfer = DirectTransferDesign5::findOrFail($id);
         $data = $request->all();
 
-        $directTransfer->update($data); // Update model PerjalananCintaDesign5
+        $directTransfer->update($data);
 
-        return back()->with('success', 'Direct Transfer berhasil diubah.');
+        return response()->json(['message' => 'Direct Transfer berhasil diubah.']);
+    }
+
+    public function destroyDirectTransfer($id)
+    {
+        $directTransfer = DirectTransferDesign5::findOrFail($id);
+
+        $directTransfer->delete();
+
+        return response()->json(['message' => 'Direct Transfer berhasil dihapus']);
+    }
+
+
+    // Function Controller Kirim Hadiah
+
+    public function storeKirimHadiah(KirimHadiahDesign5FormRequest $request, $informasiDesign5Id)
+    {
+        $informasiDesign5 = InformasiDesign5::findOrFail($informasiDesign5Id);
+        $data = $request->all();
+        $data['informasi_design5_id'] = $informasiDesign5->id;
+
+        KirimHadiahDesign5::create($data);
+
+        return response()->json(['message' => 'Kirim Hadiah berhasil ditambahkan.']);
     }
 
     public function updateKirimHadiah(KirimHadiahDesign5FormRequest $request, $id)
     {
-        $directTransfer = KirimHadiahDesign5::findOrFail($id);
+        $kirimHadiah = KirimHadiahDesign5::findOrFail($id);
         $data = $request->all();
 
-        $directTransfer->update($data); // Update model PerjalananCintaDesign5
+        $kirimHadiah->update($data);
 
-        return back()->with('success', 'Direct Transfer berhasil diubah.');
+        return response()->json(['message' => 'Kirim Hadiah berhasil diubah.']);
     }
 
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id, string $type)
+    public function destroyKirimHadiah($id)
     {
-        switch ($type) {
-            case 'perjalanan-cinta':
-                $model = PerjalananCintaDesign5::find($id);
-                break;
-            case 'direct-transfer':
-                $model = DirectTransferDesign5::find($id);
-                break;
-            case 'kirim-hadiah':
-                $model = KirimHadiahDesign5::find($id);
-                break;
-            default:
-                return redirect()->back()->with('error', 'Data tidak ditemukan.');
-        }
+        $kirimHadiah = KirimHadiahDesign5::findOrFail($id);
 
-        if ($model) {
-            $model->delete();
-            return redirect()->back()->with('success', 'Data berhasil dihapus.');
-        } else {
-            return redirect()->back()->with('error', 'Data tidak ditemukan.');
-        }
+        $kirimHadiah->delete();
+
+        return response()->json(['message' => 'Kirim Hadiah berhasil dihapus']);
     }
 }

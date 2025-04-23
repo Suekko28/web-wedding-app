@@ -47,6 +47,10 @@ class WeddingDesign4 extends Model
         'link_resepsi',
         'simpan_tgl_resepsi',
         'link_streaming',
+        'judul_akad',
+        'judul_resepsi',
+        'judul_jadwal',
+        'deskripsi_penutup',
         'informasi_design4_id'
 
     ];
@@ -55,7 +59,7 @@ class WeddingDesign4 extends Model
     {
         return $this->belongsTo(InformasiDesign4::class, 'informasi_design4_id', 'id');
     }
-    
+
     public function namaUndangan(): HasMany
     {
         return $this->hasMany(NamaUndanganDesign4::class, 'wedding_design4_id', 'id');
@@ -79,7 +83,7 @@ class WeddingDesign4 extends Model
     {
         return $this->hasMany(UcapanDesign4::class, 'wedding_design4_id', 'id');
     }
-    
+
 
 
     // public function PerjalananCintaDesign4 () : HasMany 

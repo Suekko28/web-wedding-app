@@ -27,13 +27,13 @@ class WeddingDesign6FormRequest extends FormRequest
             'nama_mempelai_perempuan' => ['required', 'string', 'max:255'],
             'putri_dari_bpk' => ['required', 'string', 'max:255'],
             'putri_dari_ibu' => ['required', 'string', 'max:255'],
-            'nama_instagram1' => ['string', 'max:255'],
-            'link_instagram1' => ['url', 'max:255'],
+            'nama_instagram1' => ['string', 'max:255', 'nullable'],
+            'link_instagram1' => ['url', 'max:255', 'nullable'],
             'nama_mempelai_laki' => ['required', 'string', 'max:255'],
             'putra_dari_bpk' => ['required', 'string', 'max:255'],
             'putra_dari_ibu' => ['required', 'string', 'max:255'],
-            'nama_instagram2' => ['string', 'max:255'],
-            'link_instagram2' => ['url', 'max:255'],
+            'nama_instagram2' => ['string', 'max:255', 'nullable'],
+            'link_instagram2' => ['url', 'max:255', 'nullable'],
             'lokasi_akad' => ['required', 'string', 'max:255'],
             'deskripsi_akad' => ['string'],
             'simpan_tgl_akad' => ['required', 'string', 'max:255'],
@@ -42,16 +42,18 @@ class WeddingDesign6FormRequest extends FormRequest
             'simpan_tgl_resepsi' => ['required', 'string', 'max:255'],
             'link_streaming' => ['nullable', 'max:255'],
             'informasi_design6_id' => ['required', 'exists:informasi_design6,id'],
+            'judul_akad' => ['nullable', 'max:255'],
             'tgl_akad' => ['required', 'date'],
             'mulai_akad' => ['required', 'date_format:H:i'],
             'selesai_akad' => ['required', 'date_format:H:i'],
+            'judul_resepsi' => ['nullable', 'max:255'],
             'tgl_resepsi' => ['required', 'date'],
             'mulai_resepsi' => ['required', 'date_format:H:i'],
             'selesai_resepsi' => ['required', 'date_format:H:i'],
             'judul_pembuka' => ['required', 'max:255'],
             'deskripsi_pembuka' => ['required'],
-            'judul_cinta' => ['required', 'max:255'],
-            'deskripsi_cinta' => ['required'],
+            'judul_cinta' => ['nullable', 'max:255'],
+            'deskripsi_cinta' => ['nullable'],
             'judul_jadwal' => ['required', 'max:255'],
             'deskripsi_penutup' => ['required'],
         ];
@@ -61,11 +63,11 @@ class WeddingDesign6FormRequest extends FormRequest
             $rules['music'] = ['required'];
             $rules['banner_img'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_prewedding'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
-            $rules['foto_mempelai_perempuan'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
-            $rules['foto_mempelai_laki'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['foto_mempelai_perempuan'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['foto_mempelai_laki'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
             $rules['image_cinta'] = ['nullable', 'array']; // Change to array
             $rules['image_cinta.*'] = ['image', 'mimes:jpeg,png,jpg']; // Validate each image
-            $rules['akad_img'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
+            $rules['akad_img'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
         } else {
             // Jika ini adalah request untuk update, gambar bersifat opsional (nullable)
             $rules['music'] = ['nullable'];
@@ -169,7 +171,6 @@ class WeddingDesign6FormRequest extends FormRequest
             'deskripsi_pembuka.required' => 'Deskripsi ucapan pembuka harus diisi.',
             'judul_cinta.required' => 'Judul perjalanan cinta harus diisi.',
             'deskripsi_cinta.required' => 'Deskripsi perjalanan cinta harus diisi.',
-
 
             'informasi_design6_id.required' => 'Informasi design harus diisi.',
             'informasi_design6_id.exists' => 'Informasi design tidak valid.',

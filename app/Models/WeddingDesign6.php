@@ -54,6 +54,8 @@ class WeddingDesign6 extends Model
         'link_streaming',
         'judul_jadwal',
         'deskripsi_penutup',
+        'judul_akad',
+        'judul_resepsi',
         'informasi_design6_id'
 
     ];

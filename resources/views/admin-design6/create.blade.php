@@ -14,6 +14,9 @@
         $defaultDeskripsiPenutup =
             'Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami ucapkan terima kasih. Kami yang berbahagia';
         $defaultJudulJadwal = 'Jadwal Pernikahan';
+        $defaultJudulAkad = 'Akad';
+        $defaultJudulResepsi = 'Resepsi';
+
     @endphp
 
     <div class="card w-100 position-relative overflow-hidden">
@@ -103,7 +106,8 @@
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="foto_mempelai_perempuan">Foto Mempelai Perempuan <span
-                                                class="mandatory">*</span></label>
+                                                class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="file" accept="image/*" class="form-control"
                                             id="foto_mempelai_perempuan" name="foto_mempelai_perempuan" placeholder="">
                                     </div>
@@ -129,15 +133,15 @@
                                             value="{{ old('putri_dari_ibu') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="nama_instagram2">Nama Instagram <span
-                                                class="mandatory">*</span></label>
+                                        <label for="nama_instagram2">Nama Instagram <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="text" class="form-control" id="nama_instagram1"
                                             name="nama_instagram1" placeholder="Masukkan nama instagram"
                                             value="{{ old('nama_instagram1') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_instagram1">Link Instagram <span
-                                                class="mandatory">*</span></label>
+                                        <label for="link_instagram1">Link Instagram <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="text" class="form-control" id="link_instagram1"
                                             name="link_instagram1" placeholder="Masukkan link instagram"
                                             value="{{ old('link_instagram1') }}">
@@ -151,8 +155,8 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="foto_mempelai_laki">Foto Mempelai Laki <span
-                                                class="mandatory">*</span></label>
+                                        <label for="foto_mempelai_laki">Foto Mempelai Laki <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="file" accept="image/*" class="form-control"
                                             id="foto_mempelai_laki" name="foto_mempelai_laki" placeholder="">
                                     </div>
@@ -178,15 +182,15 @@
                                             value="{{ old('putra_dari_ibu') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="nama_instagram2">Nama Instagram <span
-                                                class="mandatory">*</span></label>
+                                        <label for="nama_instagram2">Nama Instagram <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="text" class="form-control" id="nama_instagram2"
                                             name="nama_instagram2" placeholder="Masukkan nama instagram"
                                             value="{{ old('nama_instagram2') }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_instagram2">Link Instagram <span
-                                                class="mandatory">*</span></label>
+                                        <label for="link_instagram2">Link Instagram <span class="fst-italic">
+                                                (Opsional)</span>></label>
                                         <input type="text" class="form-control" id="link_instagram2"
                                             name="link_instagram2" placeholder="Masukkan link instagram"
                                             value="{{ old('link_instagram2') }}">
@@ -200,21 +204,23 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="judul_cinta">Judul<span class="mandatory">*</span></label>
+                                        <label for="judul_cinta">Judul<span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="text" class="form-control" id="judul_cinta" name="judul_cinta"
                                             placeholder="Masukkan judul perjalanan cinta"
                                             value="{{ old('judul_cinta', $defaultJudulPerjalananCinta) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="deskripsi_cinta">Deskripsi<span class="mandatory">*</span></label>
+                                        <label for="deskripsi_cinta">Deskripsi<span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <textarea class="form-control" rows="5" id="deskripsi_cinta" name="deskripsi_cinta"
                                             placeholder="Masukan alamat">{{ old('deskripsi_cinta', $defaultDeskripsiPembuka) }}</textarea>
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="image_cinta">Upload Images<span class="fst-italic">
                                                 (Opsional)</span></label>
-                                        <input type="file" accept="image/*" class="form-control" id="image_cinta" name="image_cinta[]"
-                                            multiple>
+                                        <input type="file" accept="image/*" class="form-control" id="image_cinta"
+                                            name="image_cinta[]" multiple>
                                     </div>
                                 </div>
                             </div>
@@ -231,7 +237,8 @@
                                             value="{{ old('judul', $defaultJudulJadwal) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="akad_img">Upload Image <span class="mandatory">*</span></label>
+                                        <label for="akad_img">Upload Image <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="file" accept="image/*" class="form-control" id="akad_img"
                                             name="akad_img" placeholder="" value="{{ old('akad_img') }}">
                                     </div>
@@ -242,6 +249,13 @@
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Akad</div>
                             <div class="form-group fs-3">
                                 <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="judul_akad">Judul Akad <span class="fst-italic">
+                                                (Opsional)</span></label>
+                                        <input type="text" class="form-control" id="judul_akad" name="judul_akad"
+                                            value="{{ old('judul_akad', $defaultJudulAkad) }}"
+                                            placeholder="Masukkan judul akad">
+                                    </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_akad">Tanggal Akad <span class="mandatory">*</span></label>
                                         <input type="date" class="form-control" id="tgl_akad" name="tgl_akad"
@@ -286,6 +300,13 @@
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Resepsi</div>
                             <div class="form-group fs-3">
                                 <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="judul_resepsi">Judul Resepsi <span class="fst-italic">
+                                                (Opsional)</span></label>
+                                        <input type="text" class="form-control" id="judul_resepsi"
+                                            name="judul_resepsi" value="{{ old('judul_resepsi', $defaultJudulResepsi) }}"
+                                            placeholder="Masukkan judul resepsi">
+                                    </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_resepsi">Tanggal Resepsi<span class="mandatory">*</span></label>
                                         <input type="date" class="form-control" id="tgl_resepsi" name="tgl_resepsi"
@@ -344,100 +365,124 @@
                         </div>
                         <hr>
                         <div class="card-body container bg-white">
-                            <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnDirectTransfer"
-                                    data-bs-toggle="modal" data-bs-target="#modalDirectTransfer">
-                                    Tambah Data
-                                </button>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
+                                {{-- <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="switchCheckDirectTransfer">
+                                    <label class="form-check-label" for="switchCheckDirectTransfer">Tidak Aktif</label>
+                                </div> --}}
                             </div>
-                            <div class="table-responsive mb-4 border rounded-1">
-                                <table class="table text-nowrap mb-0 align-middle text-center" id="tableDirectTransfer">
-                                    <thead>
-                                        <tr class="text-nowrap">
-                                            <th>No</th>
-                                            <th>Bank</th>
-                                            <th>No.Rekening</th>
-                                            <th>Pemilik Rekening</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i = $dataDirectTransfer->firstItem(); ?>
-                                        @foreach ($dataDirectTransfer as $item)
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>{{ $item->bank }}</td>
-                                                <td>{{ $item->no_rek }}</td>
-                                                <td>{{ $item->nama_rek }}</td>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded edit-btn-direct-transfer"
-                                                        data-id="{{ $item->id }}" data-bank="{{ $item->bank }}"
-                                                        data-no_rek="{{ $item->no_rek }}"
-                                                        data-nama_rek="{{ $item->nama_rek }}">
-                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
-                                                    </a>
-                                                    <button type="button"
-                                                        class="btn btn-danger delete-btn-direct-transfer rounded mb-2"
-                                                        data-id="{{ $item->id }}">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </td>
+
+                            <div id="directTransferContent">
+                                <div class="d-flex">
+                                    <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnDirectTransfer"
+                                        data-bs-toggle="modal" data-bs-target="#modalDirectTransfer">
+                                        Tambah Data
+                                    </button>
+                                </div>
+
+                                <div class="table-responsive mb-4 border rounded-1">
+                                    <table class="table text-nowrap mb-0 align-middle text-center"
+                                        id="tableDirectTransfer">
+                                        <thead>
+                                            <tr class="text-nowrap">
+                                                <th>No</th>
+                                                <th>Bank</th>
+                                                <th>No.Rekening</th>
+                                                <th>Pemilik Rekening</th>
+                                                <th>Aksi</th>
                                             </tr>
-                                            <?php $i++; ?>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = $dataDirectTransfer->firstItem(); ?>
+                                            @foreach ($dataDirectTransfer as $item)
+                                                <tr>
+                                                    <td>{{ $i }}</td>
+                                                    <td>{{ $item->bank }}</td>
+                                                    <td>{{ $item->no_rek }}</td>
+                                                    <td>{{ $item->nama_rek }}</td>
+                                                    <td>
+                                                        <a href="javascript:void(0)"
+                                                            class="btn btn-warning mb-2 rounded edit-btn-direct-transfer"
+                                                            data-id="{{ $item->id }}"
+                                                            data-bank="{{ $item->bank }}"
+                                                            data-no_rek="{{ $item->no_rek }}"
+                                                            data-nama_rek="{{ $item->nama_rek }}">
+                                                            <i class="fa fa-pen-to-square" style="color:white;"></i>
+                                                        </a>
+                                                        <button type="button"
+                                                            class="btn btn-danger delete-btn-direct-transfer rounded mb-2"
+                                                            data-id="{{ $item->id }}">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="p-2">{{ $dataDirectTransfer->links() }}</div>
                             </div>
-                            <div class="p-2">{{ $dataDirectTransfer->links() }}</div>
                         </div>
                         <hr>
                         <div class="card-body container bg-white">
-                            <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnKirimHadiah"
-                                    data-bs-toggle="modal" data-bs-target="#modalKirimHadiah">
-                                    Tambah Data
-                                </button>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
+                                {{-- <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="switchCheckKirimHadiah">
+                                    <label class="form-check-label" for="switchCheckKirimHadiah">Tidak Aktif</label>
+                                </div> --}}
                             </div>
-                            <div class="table-responsive mb-4 border rounded-1">
-                                <table class="table text-nowrap mb-0 align-middle text-center" id="tableKirimHadiah">
-                                    <thead>
-                                        <tr class="text-nowrap">
-                                            <th>No</th>
-                                            <th>Alamat</th>
-                                            <th>Detail Alamat</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i = $dataKirimHadiah->firstItem(); ?>
-                                        @foreach ($dataKirimHadiah as $item)
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>{{ $item->alamat }}</td>
-                                                <td>{{ Str::limit($item->deskripsi_alamat, 100) }}</td>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded edit-btn-kirim-hadiah"
-                                                        data-id="{{ $item->id }}" data-alamat="{{ $item->alamat }}"
-                                                        data-deskripsi_alamat="{{ $item->deskripsi_alamat }}">
-                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
-                                                    </a>
-                                                    <button type="button"
-                                                        class="btn btn-danger delete-btn-kirim-hadiah rounded mb-2"
-                                                        data-id="{{ $item->id }}">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </td>
+
+                            <div id="kirimHadiahContent">
+                                <div class="d-flex">
+                                    <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnKirimHadiah"
+                                        data-bs-toggle="modal" data-bs-target="#modalKirimHadiah">
+                                        Tambah Data
+                                    </button>
+                                </div>
+                                <div class="table-responsive mb-4 border rounded-1">
+                                    <table class="table text-nowrap mb-0 align-middle text-center" id="tableKirimHadiah">
+                                        <thead>
+                                            <tr class="text-nowrap">
+                                                <th>No</th>
+                                                <th>Alamat</th>
+                                                <th>Detail Alamat</th>
+                                                <th>Aksi</th>
                                             </tr>
-                                            <?php $i++; ?>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = $dataKirimHadiah->firstItem(); ?>
+                                            @foreach ($dataKirimHadiah as $item)
+                                                <tr>
+                                                    <td>{{ $i }}</td>
+                                                    <td>{{ $item->alamat }}</td>
+                                                    <td>{{ Str::limit($item->deskripsi_alamat, 100) }}</td>
+                                                    <td>
+                                                        <a href="javascript:void(0)"
+                                                            class="btn btn-warning mb-2 rounded edit-btn-kirim-hadiah"
+                                                            data-id="{{ $item->id }}"
+                                                            data-alamat="{{ $item->alamat }}"
+                                                            data-deskripsi_alamat="{{ $item->deskripsi_alamat }}">
+                                                            <i class="fa fa-pen-to-square" style="color:white;"></i>
+                                                        </a>
+                                                        <button type="button"
+                                                            class="btn btn-danger delete-btn-kirim-hadiah rounded mb-2"
+                                                            data-id="{{ $item->id }}">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="p-2">{{ $dataKirimHadiah->links() }}</div>
                             </div>
-                            <div class="p-2">{{ $dataKirimHadiah->links() }}</div>
                         </div>
                         <hr>
                         <div class="card-body container bg-white">
@@ -511,6 +556,48 @@
             </div>
         </div>
     </div>
+
+    {{-- <!-- Button switches direct transfer !-->
+    <script>
+        $(document).ready(function() {
+            // Inisialisasi: konten disembunyikan jika switch awalnya off
+            if (!$('#switchCheckDirectTransfer').is(':checked')) {
+                $('#directTransferContent').hide();
+            }
+
+            // Event saat switch diubah
+            $('#switchCheckDirectTransfer').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('#directTransferContent').slideDown();
+                    $(this).next('label').text('Aktif');
+                } else {
+                    $('#directTransferContent').slideUp();
+                    $(this).next('label').text('Tidak Aktif');
+                }
+            });
+        });
+    </script>
+
+    <!-- Button switches kirim hadiah !-->
+    <script>
+        $(document).ready(function() {
+            // Inisialisasi: konten disembunyikan jika switch awalnya off
+            if (!$('#switchCheckKirimHadiah').is(':checked')) {
+                $('#kirimHadiahContent').hide();
+            }
+
+            // Event saat switch diubah
+            $('#switchCheckKirimHadiah').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('#kirimHadiahContent').slideDown();
+                    $(this).next('label').text('Aktif');
+                } else {
+                    $('#kirimHadiahContent').slideUp();
+                    $(this).next('label').text('Tidak Aktif');
+                }
+            });
+        });
+    </script> --}}
 
     <!-- Modal Buat dan Edit Kirim Hadiah -->
     <div class="modal fade" id="modalKirimHadiah" tabindex="-1" aria-labelledby="modalKirimHadiahLabel"
@@ -655,7 +742,7 @@
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
+                cancelButtonColor: '#3095d6',
                 confirmButtonText: 'Ya, hapus!'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -785,7 +872,7 @@
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
+                cancelButtonColor: '#3095d6',
                 confirmButtonText: 'Ya, hapus!'
             }).then((result) => {
                 if (result.isConfirmed) {

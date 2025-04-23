@@ -47,6 +47,10 @@ class WeddingDesign5 extends Model
         'link_resepsi',
         'simpan_tgl_resepsi',
         'link_streaming',
+        'judul_akad',
+        'judul_resepsi',
+        'judul_jadwal',
+        'deskripsi_penutup',
         'informasi_design5_id'
 
     ];
@@ -55,9 +59,9 @@ class WeddingDesign5 extends Model
     {
         return $this->belongsTo(InformasiDesign5::class, 'informasi_design5_id', 'id');
     }
-    
+
     public function namaUndangan(): HasMany
-    {   
+    {
         return $this->hasMany(NamaUndanganDesign5::class, 'wedding_design5_id', 'id');
     }
 
