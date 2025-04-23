@@ -172,40 +172,48 @@
             </div>
             <div class="anm_mod bottom-bit fast inner-mempelai">
                 <div class="mempelai-wanita">
-                    <div class="container-image-wanita">
-                        <img class="anm_mod left fast mempelai-wanita-img object-fit-cover"
-                            src="{{ Storage::url('' . $data->foto_mempelai_perempuan) }}" alt="mempelai-wanita">
-                        <img class="anm_mod left fast ring-wanita-img object-fit-cover"
-                            src="{{ asset('img/design-9/element-4.svg') }}" alt="mempelai-wanita">
-                    </div>
+                    @if (!empty($data->foto_mempelai_perempuan))
+                        <div class="container-image-wanita">
+                            <img class="anm_mod left fast mempelai-wanita-img object-fit-cover"
+                                src="{{ Storage::url('' . $data->foto_mempelai_perempuan) }}" alt="mempelai-wanita">
+                            <img class="anm_mod left fast ring-wanita-img object-fit-cover"
+                                src="{{ asset('img/design-9/element-4.svg') }}" alt="mempelai-wanita">
+                        </div>
+                    @endif
                     <div class="anm_mod bottom fast detail-mempelai-wanita">
                         <div class="data-mempelai-wanita">
                             <h3>{{ $data->nama_mempelai_perempuan }}</h3>
                             <p>Anak dari Bapak {{ $data->putri_dari_bpk }} dan Ibu {{ $data->putri_dari_ibu }}</p>
                         </div>
-                        <a href="{{ $data->link_instagram1 }}" target="_blank" class="btn-link">
-                            <img src="{{ asset('img/design-9/icon-instagram-black.svg') }}" alt="instagram">
-                            <span>{{ $data->nama_instagram1 }}</span>
-                        </a>
+                        @if (!empty($data->link_instagram1 && $data->nama_instagram1))
+                            <a href="{{ $data->link_instagram1 }}" target="_blank" class="btn-link">
+                                <img src="{{ asset('img/design-9/icon-instagram-black.svg') }}" alt="instagram">
+                                <span>{{ $data->nama_instagram1 }}</span>
+                            </a>
+                        @endif
                     </div>
                 </div>
                 <h3 class="anm_mod bottom-bit fast">&</h3>
                 <div class="mempelai-pria">
-                    <div class="container-image-pria">
-                        <img class="anm_mod right fast mempelai-wanita-img object-fit-cover"
-                            src="{{ Storage::url('' . $data->foto_mempelai_laki) }}" alt="mempelai-pria">
-                        <img class="anm_mod right fast ring-pria-img object-fit-cover"
-                            src="{{ asset('img/design-9/element-4.svg') }}" alt="mempelai-pria">
-                    </div>
+                    @if (!empty($data->foto_mempelai_laki))
+                        <div class="container-image-pria">
+                            <img class="anm_mod right fast mempelai-wanita-img object-fit-cover"
+                                src="{{ Storage::url('' . $data->foto_mempelai_laki) }}" alt="mempelai-pria">
+                            <img class="anm_mod right fast ring-pria-img object-fit-cover"
+                                src="{{ asset('img/design-9/element-4.svg') }}" alt="mempelai-pria">
+                        </div>
+                    @endif
                     <div class="anm_mod bottom fast detail-mempelai-pria">
                         <div class="data-mempelai-pria">
                             <h3>{{ $data->nama_mempelai_laki }}</h3>
                             <p>Anak dari Bapak {{ $data->putra_dari_bpk }} dan Ibu {{ $data->putra_dari_ibu }}</p>
                         </div>
-                        <a href="{{ $data->link_instagram2 }}" target="_blank" class="btn-link">
-                            <img src="{{ asset('img/design-9/icon-instagram-black.svg') }}" alt="instagram">
-                            <span>{{ $data->nama_instagram2 }}</span>
-                        </a>
+                        @if (!empty($data->link_instagram2 && $data->link_instagram2))
+                            <a href="{{ $data->link_instagram2 }}" target="_blank" class="btn-link">
+                                <img src="{{ asset('img/design-9/icon-instagram-black.svg') }}" alt="instagram">
+                                <span>{{ $data->nama_instagram2 }}</span>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -214,18 +222,18 @@
     <!-- MEMPELAI END -->
 
     <!-- Gallery -->
-    <section class="animation gallery" id="gallery">
-        <div class="anm_mod bottom-bit fast container-gallery">
-            <div class="title">
-                <h2>{{ $data->judul_cinta }}</h2>
-                <p>{{ $data->deskripsi_cinta }}</p>
-            </div>
-            @php
-                $images = is_array($data->image_cinta) ? $data->image_cinta : json_decode($data->image_cinta, true);
-            @endphp
-            <div class="container-card-gallery">
+    @if (!empty($data->image_cinta && $data->judul_cinta && $data->deskripsi_cinta))
+        <section class="animation gallery" id="gallery">
+            <div class="anm_mod bottom-bit fast container-gallery">
+                <div class="title">
+                    <h2>{{ $data->judul_cinta }}</h2>
+                    <p>{{ $data->deskripsi_cinta }}</p>
+                </div>
+                @php
+                    $images = is_array($data->image_cinta) ? $data->image_cinta : json_decode($data->image_cinta, true);
+                @endphp
+                <div class="container-card-gallery">
 
-                @if (!empty($images))
                     @foreach ($images as $image)
                         <div class="card-gallery">
                             <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
@@ -234,89 +242,95 @@
                             </a>
                         </div>
                     @endforeach
-                @endif
-            </div>
-    </section>
+                </div>
+        </section>
+    @endif
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->
     <section class="animation jadwal-pernikahan" id="jadwal-pernikahan">
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
             <h2 class="anm_mod bottom-bit fast">{{ $data->judul_jadwal }}</h2>
-            <div class="container-img-jadwal anm_mod bottom-bit fast">
-                <img src="{{ Storage::url('' . $data->akad_img) }}"
-                    class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story" width="328"
-                    height="328">
-                <img src="{{ asset('img/design-9/element-5.svg') }}" class="element-flower" alt="devider">
-            </div>
+            @if (!empty($data->akad_img))
+                <div class="container-img-jadwal anm_mod bottom-bit fast">
+                    <img src="{{ Storage::url('' . $data->akad_img) }}"
+                        class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story"
+                        width="328" height="328">
+                    <img src="{{ asset('img/design-9/element-5.svg') }}" class="element-flower" alt="devider">
+                </div>
+            @endif
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
-                    <h3>Akad<h3>
-                            <div class="detail">
-                                <div class="info">
-                                    <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="calendar">
-                                    <div class="detail-info">
-                                        <span
-                                            class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
-                                    </div>
-                                </div>
-                                <div class="info">
-                                    <img src="{{ asset('img/design-9/clock-icon.svg') }}" alt="calendar">
-                                    <div class="detail-info">
-                                        <span class="label">
-                                            {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} -
-                                            {{ \Carbon\Carbon::parse($data->selesai_akad)->format('H:i') }} WIB</span>
-                                    </div>
-                                </div>
-                                <div class="info">
-                                    <img src="{{ asset('img/design-9/location-icon.svg') }}" alt="calendar">
-                                    <div class="detail-info">
-                                        <span class="label">{{ $data->lokasi_akad }}</span>
-                                        <p>{{ $data->deskripsi_akad }}</p>
-                                    </div>
-                                </div>
+                    @if (!empty($data->judul_akad))
+                        <h3>{{ $data->judul_akad }}<h3>
+                    @endif
+                    <div class="detail">
+                        <div class="info">
+                            <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="calendar">
+                            <div class="detail-info">
+                                <span
+                                    class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                             </div>
-                            <div class="button-button">
-                                <a type="button" target="_blank" href="{{ $data->link_akad }}"
-                                    class="btn-secondary">Lihat Lokasi</a>
-                                <a type="button" target="_blank" href="{{ $data->simpan_tgl_akad }}"
-                                    class="btn-primary">Simpan Tanggal</a>
+                        </div>
+                        <div class="info">
+                            <img src="{{ asset('img/design-9/clock-icon.svg') }}" alt="calendar">
+                            <div class="detail-info">
+                                <span class="label">
+                                    {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} -
+                                    {{ \Carbon\Carbon::parse($data->selesai_akad)->format('H:i') }} WIB</span>
                             </div>
+                        </div>
+                        <div class="info">
+                            <img src="{{ asset('img/design-9/location-icon.svg') }}" alt="calendar">
+                            <div class="detail-info">
+                                <span class="label">{{ $data->lokasi_akad }}</span>
+                                <p>{{ $data->deskripsi_akad }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-button">
+                        <a type="button" target="_blank" href="{{ $data->link_akad }}" class="btn-secondary">Lihat
+                            Lokasi</a>
+                        <a type="button" target="_blank" href="{{ $data->simpan_tgl_akad }}"
+                            class="btn-primary">Simpan Tanggal</a>
+                    </div>
                 </div>
                 <span class="vertical-line"></span>
                 <div class="anm_mod right fast jadwal-detail">
-                    <h3>Resepsi<h3>
-                            <div class="detail">
-                                <div class="info">
-                                    <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="calendar">
-                                    <div class="detail-info">
-                                        <span
-                                            class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
-                                    </div>
-                                </div>
-                                <div class="info">
-                                    <img src="{{ asset('img/design-9/clock-icon.svg') }}" alt="calendar">
-                                    <div class="detail-info">
-                                        <span class="label">
-                                            {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
-                                            {{ \Carbon\Carbon::parse($data->selesai_resepsi)->format('H:i') }}
-                                            WIB</span>
-                                    </div>
-                                </div>
-                                <div class="info">
-                                    <img src="{{ asset('img/design-9/location-icon.svg') }}" alt="calendar">
-                                    <div class="detail-info">
-                                        <span class="label">{{ $data->lokasi_resepsi }}</span>
-                                        <p>{{ $data->deskripsi_resepsi }}</p>
-                                    </div>
-                                </div>
+                    @if (!empty($data->judul_resepsi))
+                        <h3>{{ $data->judul_resepsi }}<h3>
+                    @endif
+                    <div class="detail">
+                        <div class="info">
+                            <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="calendar">
+                            <div class="detail-info">
+                                <span
+                                    class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                             </div>
-                            <div class="button-button">
-                                <a type="button" target="_blank" href="{{ $data->link_resepsi }}"
-                                    class="btn-secondary">Lihat Lokasi</a>
-                                <a type="button" target="_blank" href="{{ $data->simpan_tgl_resepsi }}"
-                                    class="btn-primary">Simpan Tanggal</a>
+                        </div>
+                        <div class="info">
+                            <img src="{{ asset('img/design-9/clock-icon.svg') }}" alt="calendar">
+                            <div class="detail-info">
+                                <span class="label">
+                                    {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
+                                    {{ \Carbon\Carbon::parse($data->selesai_resepsi)->format('H:i') }}
+                                    WIB</span>
                             </div>
+                        </div>
+                        <div class="info">
+                            <img src="{{ asset('img/design-9/location-icon.svg') }}" alt="calendar">
+                            <div class="detail-info">
+                                <span class="label">{{ $data->lokasi_resepsi }}</span>
+                                <p>{{ $data->deskripsi_resepsi }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-button">
+                        <a type="button" target="_blank" href="{{ $data->link_resepsi }}"
+                            class="btn-secondary">Lihat Lokasi</a>
+                        <a type="button" target="_blank" href="{{ $data->simpan_tgl_resepsi }}"
+                            class="btn-primary">Simpan Tanggal</a>
+                    </div>
                 </div>
             </div>
             @if (!empty($data->link_streaming))
@@ -440,7 +454,6 @@
                             </li>
                         @endif
                     </ul>
-
                     <div class="tab-content" id="pills-tabContent">
                         @if ($data->DirectTransferdesign9->isNotEmpty())
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel"

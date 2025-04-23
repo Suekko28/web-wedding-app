@@ -44,7 +44,7 @@ class WeddingDesign6Controller extends Controller
 
 
         // Kirimkan data yang sesuai ke view
-        return view('admin-design6.create', compact('informasiDesign6Id', 'dataMempelaiPria', 'informasiDesign6', 'dataDirectTransfer', 'dataKirimHadiah',));
+        return view('admin-design6.create', compact('informasiDesign6Id', 'dataMempelaiPria', 'informasiDesign6', 'dataDirectTransfer', 'dataKirimHadiah', ));
     }
 
     /**
@@ -62,6 +62,8 @@ class WeddingDesign6Controller extends Controller
         $defaultJudulPerjalananCinta = 'Perjalanan Cinta Kami';
         $defaultDeskripsiPembuka = "Tanpa mengurangi rasa hormat\nkami mengundang Bapak/Ibu/Saudara/i\npada pernikahan kami:";
         $defaultDeskripsiPenutup = "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami ucapkan terima kasih. Kami yang berbahagia";
+        $defaultJudulAkad = "Akad";
+        $defaultJudulResepsi = "Resepsi";
 
         // Cek dan set default jika tidak ada input / sama
         $data['judul_pembuka'] = $request->filled('judul_pembuka') ? $request->input('judul_pembuka') : $defaultJudulPembuka;
@@ -70,6 +72,8 @@ class WeddingDesign6Controller extends Controller
         $data['judul_cinta'] = $request->filled('judul_cinta') ? $request->input('judul_cinta') : $defaultJudulPerjalananCinta;
         $data['deskripsi_cinta'] = $request->filled('deskripsi_cinta') ? $request->input('deskripsi_cinta') : $defaultDeskripsiPembuka;
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
+        $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
+        $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
 
         if ($request->hasFile('banner_img')) {
             $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design6', $request->file('banner_img')->hashName());
@@ -175,6 +179,8 @@ class WeddingDesign6Controller extends Controller
         $defaultJudulPerjalananCinta = 'Perjalanan Cinta Kami';
         $defaultDeskripsiPembuka = "Tanpa mengurangi rasa hormat\nkami mengundang Bapak/Ibu/Saudara/i\npada pernikahan kami:";
         $defaultDeskripsiPenutup = "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami ucapkan terima kasih. Kami yang berbahagia";
+        $defaultJudulAkad = "Akad";
+        $defaultJudulResepsi = "Resepsi";
 
         // Cek dan set default jika tidak ada input / sama
         $data['judul_pembuka'] = $request->filled('judul_pembuka') ? $request->input('judul_pembuka') : $defaultJudulPembuka;
@@ -183,6 +189,8 @@ class WeddingDesign6Controller extends Controller
         $data['judul_cinta'] = $request->filled('judul_cinta') ? $request->input('judul_cinta') : $defaultJudulPerjalananCinta;
         $data['deskripsi_cinta'] = $request->filled('deskripsi_cinta') ? $request->input('deskripsi_cinta') : $defaultDeskripsiPembuka;
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
+        $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
+        $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
 
         // Handle file uploads & delete old files
         if ($request->hasFile('banner_img')) {
@@ -272,7 +280,7 @@ class WeddingDesign6Controller extends Controller
         $directTransfer = DirectTransferDesign6::findOrFail($id);
         $data = $request->all();
 
-        $directTransfer->update($data); 
+        $directTransfer->update($data);
 
         return response()->json(['message' => 'Direct Transfer berhasil diubah.']);
     }
@@ -305,7 +313,7 @@ class WeddingDesign6Controller extends Controller
         $kirimHadiah = KirimHadiahDesign6::findOrFail($id);
         $data = $request->all();
 
-        $kirimHadiah->update($data); 
+        $kirimHadiah->update($data);
 
         return response()->json(['message' => 'Kirim Hadiah berhasil diubah.']);
     }

@@ -36,6 +36,19 @@ body {
     color: white;
 }
 
+
+.form-check-input:focus:checked {
+    box-shadow: 0 0 0 0.25rem rgba(255, 131, 201, 0.25);
+}
+.form-check-input:focus::after {
+    box-shadow: 0 0 0 0.25rem rgba(255, 131, 201, 0.25);
+}
+
+.form-check-input:checked {
+    background-color: #ff64a9 !important;
+    border-color: #ff64a9 !important;
+}
+
 /* Sidebar */
 .sidebar-nav ul .sidebar-item.selected > .sidebar-link.active,
 .sidebar-nav ul .sidebar-item.selected > .sidebar-link,

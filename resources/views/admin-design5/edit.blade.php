@@ -5,6 +5,15 @@
 @section('pageContent')
 
     @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Wedding Design 5'])
+
+    @php
+        $defaultDeskripsiPenutup = 'Thank You';
+        $defaultJudulJadwal = 'Jadwal Pernikahan';
+        $defaultJudulAkad = 'Akad';
+        $defaultJudulResepsi = 'Resepsi';
+
+    @endphp
+
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
             <section class="content">
@@ -97,7 +106,8 @@
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="foto_mempelai_perempuan">Foto Mempelai Perempuan <span
-                                                class="mandatory">*</span></label>
+                                                class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="file" class="form-control" id="foto_mempelai_perempuan"
                                             name="foto_mempelai_perempuan" placeholder="">
                                         @if ($data->foto_mempelai_perempuan)
@@ -131,15 +141,15 @@
                                             value="{{ $data->putri_dari_ibu }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="nama_instagram1">Nama Instagram <span
-                                                class="mandatory">*</span></label>
+                                        <label for="nama_instagram1">Nama Instagram <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="text" class="form-control" id="nama_instagram1"
                                             name="nama_instagram1" placeholder="Masukkan nama instagram"
                                             value="{{ $data->nama_instagram1 }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_instagram1">Link Instagram <span
-                                                class="mandatory">*</span></label>
+                                        <label for="link_instagram1">Link Instagram <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="text" class="form-control" id="link_instagram1"
                                             name="link_instagram1" placeholder="Masukkan link instagram"
                                             value="{{ $data->link_instagram1 }}">
@@ -153,8 +163,8 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="foto_mempelai_laki">Foto Mempelai Laki <span
-                                                class="mandatory">*</span></label>
+                                        <label for="foto_mempelai_laki">Foto Mempelai Laki <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="file" class="form-control" id="foto_mempelai_laki"
                                             name="foto_mempelai_laki" placeholder="">
                                         @if ($data->foto_mempelai_laki)
@@ -187,15 +197,15 @@
                                             value="{{ $data->putra_dari_ibu }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="nama_instagram2">Nama Instagram <span
-                                                class="mandatory">*</span></label>
+                                        <label for="nama_instagram2">Nama Instagram <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="text" class="form-control" id="nama_instagram2"
                                             name="nama_instagram2" placeholder="Masukkan nama instagram"
                                             value="{{ $data->nama_instagram2 }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_instagram2">Link Instagram <span
-                                                class="mandatory">*</span></label>
+                                        <label for="link_instagram2">Link Instagram <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="text" class="form-control" id="link_instagram2"
                                             name="link_instagram2" placeholder="Masukkan link instagram"
                                             value="{{ $data->link_instagram2 }}">
@@ -210,9 +220,10 @@
                                 <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnPerjalananCinta"
                                     data-bs-toggle="modal" data-bs-target="#modalPerjalananCinta">
                                     Tambah Cerita
+                                </button>
                             </div>
                             <div class="table-responsive mb-4 border rounded-1">
-                                <table class="table text-nowrap mb-0 align-middle text-center">
+                                <table class="table text-nowrap mb-0 align-middle text-center" id="tablePerjalananCinta">
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
@@ -245,11 +256,9 @@
                                                     </a>
 
                                                     <button class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
-                                                        data-id="{{ $item->id }}">
+                                                        data-id="{{ $item->id }}" type="button">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
-
-                                                    <!-- Add delete button if needed -->
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>
@@ -290,7 +299,14 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="akad_img">Upload Image <span class="mandatory">*</span></label>
+                                        <label for="judul_jadwal">Judul<span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="judul_jadwal" name="judul_jadwal"
+                                            placeholder="Judul ucapan pembuka"
+                                            value="{{ old('judul', $defaultJudulJadwal) }}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="akad_img">Upload Image <span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="file" class="form-control" id="akad_img" name="akad_img"
                                             placeholder="" value="{{ old('akad_img') }}">
                                         @if ($data->akad_img)
@@ -308,6 +324,13 @@
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Akad</div>
                             <div class="form-group fs-3">
                                 <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="judul_akad">Judul Akad <span class="fst-italic">
+                                                (Opsional)</span></label>
+                                        <input type="text" class="form-control" id="judul_akad" name="judul_akad"
+                                            value="{{ old('judul_akad', $defaultJudulAkad) }}"
+                                            placeholder="Masukkan judul akad">
+                                    </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_akad">Tanggal Akad <span class="mandatory">*</span></label>
                                         <input type="date" class="form-control" id="tgl_akad" name="tgl_akad"
@@ -353,6 +376,13 @@
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Resepsi</div>
                             <div class="form-group fs-3">
                                 <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="judul_resepsi">Judul Resepsi <span class="fst-italic">
+                                                (Opsional)</span></label>
+                                        <input type="text" class="form-control" id="judul_resepsi"
+                                            name="judul_resepsi" value="{{ old('judul_resepsi', $defaultJudulResepsi) }}"
+                                            placeholder="Masukkan judul resepsi">
+                                    </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_resepsi">Tanggal Resepsi<span class="mandatory">*</span></label>
                                         <input type="date" class="form-control" id="tgl_resepsi" name="tgl_resepsi"
@@ -404,7 +434,8 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_streaming">Link Streaming<span class="fst-italic"> (Opsional)</span></label>
+                                        <label for="link_streaming">Link Streaming<span class="fst-italic">
+                                                (Opsional)</span></label>
                                         <input type="text" class="form-control" id="link_streaming"
                                             name="link_streaming" placeholder="Masukkan link"
                                             value="{{ $data->link_streaming }}">
@@ -421,7 +452,7 @@
                                 </button>
                             </div>
                             <div class="table-responsive mb-4 border rounded-1">
-                                <table class="table text-nowrap mb-0 align-middle text-center">
+                                <table class="table text-nowrap mb-0 align-middle text-center" id="tableDirectTransfer">
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
@@ -447,7 +478,8 @@
                                                         data-nama_rek="{{ $item->nama_rek }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
-                                                    <button class="btn btn-danger delete-btn-direct-transfer rounded mb-2"
+                                                    <button type="button"
+                                                        class="btn btn-danger delete-btn-direct-transfer rounded mb-2"
                                                         data-id="{{ $item->id }}">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
@@ -469,7 +501,7 @@
                                 </button>
                             </div>
                             <div class="table-responsive mb-4 border rounded-1">
-                                <table class="table text-nowrap mb-0 align-middle text-center">
+                                <table class="table text-nowrap mb-0 align-middle text-center" id="tableKirimHadiah">
                                     <thead>
                                         <tr class="text-nowrap">
                                             <th>No</th>
@@ -484,7 +516,7 @@
                                             <tr>
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $item->alamat }}</td>
-                                                <td>{{ $item->deskripsi_alamat }}</td>
+                                                <td>{{ Str::limit($item->deskripsi_alamat, 100) }}</td>
                                                 <td>
                                                     <a href="javascript:void(0)"
                                                         class="btn btn-warning mb-2 rounded edit-btn-kirim-hadiah"
@@ -492,7 +524,8 @@
                                                         data-deskripsi_alamat="{{ $item->deskripsi_alamat }}">
                                                         <i class="fa fa-pen-to-square" style="color:white;"></i>
                                                     </a>
-                                                    <button class="btn btn-danger delete-btn-kirim-hadiah rounded mb-2"
+                                                    <button type="button"
+                                                        class="btn btn-danger delete-btn-kirim-hadiah rounded mb-2"
                                                         data-id="{{ $item->id }}">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
@@ -505,6 +538,20 @@
                             </div>
                             <div class="p-2">{{ $dataKirimHadiah->links() }}</div>
                         </div>
+
+                        <div class="card-body container bg-white">
+                            <div class="ucapan-pembuka fw-bold fs-5 mb-4">Ucapan Penutup</div>
+                            <div class="form-group form-group fs-3">
+                                <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="deskripsi_penutup">Deskripsi<span class="mandatory">*</span></label>
+                                        <textarea class="form-control" rows="5" id="deskripsi_penutup" name="deskripsi_penutup"
+                                            placeholder="Deskripsi">{{ old('deskripsi_penutup',  $data->deskripsi_penutup ?? $defaultDeskripsiPenutup) }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
@@ -525,7 +572,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat/Edit Perjalanan Cinta</h5>
+                    <!-- Judul yang bisa berubah -->
+                    <h5 class="modal-title" id="modalPerjalananCintaLabel">Buat Perjalanan Cinta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -533,7 +581,7 @@
                         action="{{ route('perjalanancinta-design5.store', ['id' => $informasiDesign5->id]) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="_method" id="formMethod" value="POST">
+                        <input type="hidden" name="_method" id="formMethodPerjalananCinta" value="POST">
                         <input type="hidden" name="perjalananCintaId" id="perjalananCintaId">
                         <input type="hidden" name="wedding_design5_id" value="{{ $informasiDesign5->id }}">
                         <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign5->nama_pasangan }}">
@@ -541,7 +589,7 @@
 
                         <div class="form-group mb-2">
                             <label for="image1">Foto<span class="mandatory">*</span></label>
-                            <input type="file" name="image1" id="image1" class="form-control">
+                            <input type="file" name="image1" id="image1" class="form-control" accept="image/*">
                             <!-- Current Image Preview -->
                             <img id="currentImage1" class="img-thumbnail mt-2" src="" alt="Current Image 1"
                                 width="120" style="display: none;">
@@ -566,7 +614,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        id="btnBatal">Batal</button>
                     <button type="submit" class="btn btn-primary" form="formPerjalananCinta">Simpan</button>
                 </div>
             </div>
@@ -664,178 +713,391 @@
             </div>
         </div>
     </div>
-    <!-- Hidden form for delete -->
-    <form id="deleteForm" method="POST" style="display:none;">
-        @csrf
-        @method('DELETE')
-    </form>
 
     <!-- Modal JS Perjalanan Cinta -->
     <script>
-        document.getElementById('btnPerjalananCinta').addEventListener('click', function() {
-            // Reset the form for new entries
-            document.getElementById('formPerjalananCinta').reset();
-            document.getElementById('perjalananCintaId').value = ''; // Reset hidden field for ID
-            document.getElementById('formMethod').value = 'POST'; // Set method for creating
+        function resetFormPerjalananCinta() {
+            $('#formPerjalananCinta')[0].reset();
+            $('#formMethodPerjalananCinta').val('POST');
+            $('#perjalananCintaId').val('');
+            $('#currentImage1').hide().attr('src', '');
+        }
 
-            // Set the action to the store route
-            document.getElementById('formPerjalananCinta').action =
-                "{{ route('perjalanancinta-design5.store', ['id' => $informasiDesign5->id]) }}";
-            document.getElementById('modalPerjalananCintaLabel').textContent = 'Tambah Cerita';
+        $('#btnPerjalananCinta').on('click', function() {
+            $('#modalPerjalananCintaLabel').text('Buat Perjalanan Cinta');
+            $('#formPerjalananCinta').attr('action',
+                '{{ route('perjalanancinta-design5.store', ['id' => $informasiDesign5->id]) }}');
+            resetFormPerjalananCinta();
         });
 
-        document.querySelectorAll('.edit-btn-perjalanan-cinta').forEach(function(button) {
-            button.addEventListener('click', function() {
-                var id = this.getAttribute('data-id');
-                var tanggal = this.getAttribute('data-tanggal');
-                var judul_cerita = this.getAttribute('data-judul');
-                var deskripsi = this.getAttribute('data-deskripsi');
-                var image1 = this.getAttribute('data-image1'); // Add this line
+        $(document).on('click', '.edit-btn-perjalanan-cinta', function() {
+            const id = $(this).data('id');
+            const tanggal = $(this).data('tanggal');
+            const judul = $(this).data('judul');
+            const deskripsi = $(this).data('deskripsi');
+            const imageUrl = $(this).data('image1');
 
-                // Populate form with existing data
-                document.getElementById('perjalananCintaId').value = id; // Set ID
-                document.getElementById('tanggal').value = tanggal;
-                document.getElementById('judul_cerita').value = judul_cerita;
-                document.getElementById('deskripsi').value = deskripsi;
+            $('#modalPerjalananCintaLabel').text('Edit Perjalanan Cinta');
+            $('#perjalananCintaId').val(id);
+            $('#formMethodPerjalananCinta').val('PUT');
+            $('#tanggal').val(tanggal);
+            $('#judul_cerita').val(judul);
+            $('#deskripsi').val(deskripsi);
 
-                // Set the image previews
-                var currentImage1 = document.getElementById('currentImage1');
+            if (imageUrl) {
+                $('#currentImage1').attr('src', imageUrl).show();
+            } else {
+                $('#currentImage1').hide();
+            }
 
-                currentImage1.src = image1; // Set current image src
-                currentImage1.style.display = image1 ? 'block' : 'none'; // Show if image exists
+            const updateUrl = `/wedding-design5/${id}/update-perjalanan-cinta`;
+            $('#formPerjalananCinta').attr('action', updateUrl);
 
-                // Set the form action to the update route
-                document.getElementById('formPerjalananCinta').action =
-                    `/wedding-design5/${id}/update-perjalanan-cinta`;
-                document.getElementById('formMethod').value = 'PUT'; // Set method for updating
-                document.getElementById('modalPerjalananCintaLabel').textContent = 'Edit Cerita';
+            new bootstrap.Modal(document.getElementById('modalPerjalananCinta')).show();
+        });
 
-                // Show the modal
-                var modal = new bootstrap.Modal(document.getElementById('modalPerjalananCinta'));
-                modal.show();
+        $('#formPerjalananCinta').on('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const id = $('#perjalananCintaId').val();
+            const isEdit = id !== '';
+
+            if (isEdit) {
+                formData.append('_method', 'PUT');
+            }
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(res) {
+                    Swal.fire('Sukses!', res.message, 'success');
+
+                    bootstrap.Modal.getInstance(document.getElementById('modalPerjalananCinta')).hide();
+                    resetFormPerjalananCinta();
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+
+                    $('#formDirectTransfer')[0].reset();
+                    $('#directTransferId').val('');
+                    $('#tablePerjalananCinta').load(location.href + " #tablePerjalananCinta>*", "");
+                },
+                error: function(xhr) {
+                    const errors = xhr.responseJSON?.errors;
+                    const errorMsg = errors ? Object.values(errors).join('<br>') : 'Terjadi kesalahan.';
+                    Swal.fire('Gagal!', errorMsg, 'error');
+                    console.error(xhr.responseText);
+                }
             });
+        });
+
+        $(document).on('click', '.delete-btn-perjalanan-cinta', function() {
+            const id = $(this).data('id');
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: 'Data ini akan dihapus secara permanen!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/wedding-design5/${id}/delete-perjalanan-cinta`,
+                        type: 'DELETE',
+                        data: {
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(res) {
+                            Swal.fire('Terhapus!', res.message, 'success');
+                            $('#tablePerjalananCinta').load(location.href +
+                                " #tablePerjalananCinta>*", "");
+                        },
+                        error: function(xhr) {
+                            Swal.fire('Gagal!', 'Terjadi kesalahan saat menghapus.', 'error');
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+
+        $('#btnBatal').on('click', function() {
+            resetFormPerjalananCinta();
         });
     </script>
 
     <!-- Modal JS Direct Transfer -->
     <script>
-        document.getElementById('btnDirectTransfer').addEventListener('click', function() {
-            // Reset the form for new entries
-            document.getElementById('formDirectTransfer').reset();
-            document.getElementById('directTransferId').value = ''; // Reset hidden field for ID
-            document.getElementById('formMethodDirectTransfer').value = 'POST'; // Set method for creating
+        // Function Reset Form
+        function resetFormDirectTransfer() {
+            $('#formDirectTransfer')[0].reset(); // reset semua input
+            $('#directTransferId').val('');
+        }
+        // Ketika tombol "Tambah Cerita" diklik
+        $('#btnDirectTransfer').on('click', function() {
+            $('#modalDirectTransferLabel').text('Buat Direct Transfer');
+            $('#formMethodDirectTransfer').val('POST');
+            $('#formDirectTransfer').attr('action',
+                '{{ route('directtransfer-design5.store', ['id' => $informasiDesign5->id]) }}');
+            $('#formDirectTransfer')[0].reset();
+            $('#directTransferId').val('');
 
-            // Set the action to the store route
-            document.getElementById('formDirectTransfer').action =
-                "{{ route('directtransfer-design5.store', ['id' => $informasiDesign5->id]) }}";
-            document.getElementById('modalDirectTransferLabel').textContent = 'Tambah Direct Transfer';
+            resetFormDirectTransfer();
         });
 
-        document.querySelectorAll('.edit-btn-direct-transfer').forEach(function(button) {
-            button.addEventListener('click', function() {
-                var id = this.getAttribute('data-id');
-                var bank = this.getAttribute('data-bank');
-                var no_rek = this.getAttribute('data-no_rek');
-                var nama_rek = this.getAttribute('data-nama_rek');
+        // Ketika tombol Edit diklik
+        $(document).on('click', '.edit-btn-direct-transfer', function() {
+            const id = $(this).data('id');
+            const bank = $(this).data('bank');
+            const no_rek = $(this).data('no_rek');
+            const nama_rek = $(this).data('nama_rek');
 
-                // Populate form with existing data
-                document.getElementById('directTransferId').value = id;
-                document.getElementById('bank').value = bank;
-                document.getElementById('no_rek').value = no_rek;
-                document.getElementById('nama_rek').value = nama_rek;
+            $('#modalDirectTransferLabel').text('Edit Direct Transfer');
+            $('#formMethodDirectTransferDirectTransfer').val('PUT'); // ini hidden input _method
+            $('#directTransferId').val(id);
 
-                // Set the form action to the update route
-                document.getElementById('formDirectTransfer').action =
-                    `/wedding-design5/${id}/update-direct-transfer`;
-                document.getElementById('formMethodDirectTransfer').value =
-                    'PUT'; // Set method for updating
-                document.getElementById('modalDirectTransferLabel').textContent = 'Edit Direct Transfer';
+            // Set nilai ke input form
+            $('#bank').val(bank);
+            $('#no_rek').val(no_rek);
+            $('#nama_rek').val(nama_rek);
 
-                // Show the modal
-                var modal = new bootstrap.Modal(document.getElementById('modalDirectTransfer'));
-                modal.show();
+            const updateUrl = `/wedding-design5/${id}/update-direct-transfer`;
+            $('#formDirectTransfer').attr('action', updateUrl);
+
+            const modalEdit = new bootstrap.Modal(document.getElementById('modalDirectTransfer'));
+            modalEdit.show();
+        });
+
+        // Submit form (tambah/edit)
+        $('#formDirectTransfer').on('submit', function(e) {
+            e.preventDefault();
+
+            const form = $(this);
+            const formData = new FormData(this);
+            const id = $('#directTransferId').val();
+            const isEdit = id !== '';
+
+            if (isEdit) {
+                formData.append('_method', 'PUT');
+            }
+
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST', // tetap POST meski update (karena kita override pakai _method)
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(res) {
+                    Swal.fire('Sukses!', res.message, 'success');
+                    const modal = bootstrap.Modal.getInstance(document.getElementById(
+                        'modalDirectTransfer'));
+                    modal.hide();
+
+                    resetFormDirectTransfer();
+
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+
+                    $('#formDirectTransfer')[0].reset();
+                    $('#directTransferId').val('');
+
+                    $('#tableDirectTransfer').load(location.href + " #tableDirectTransfer>*", "");
+                },
+                error: function(xhr) {
+                    let errors = xhr.responseJSON?.errors;
+                    let errorMsg = 'Terjadi kesalahan.';
+                    if (errors) {
+                        errorMsg = Object.values(errors).join('<br>');
+                    }
+                    Swal.fire('Gagal!', errorMsg, 'error');
+                    console.error(xhr.responseText);
+                }
             });
+        });
+
+        $(document).on('click', '.delete-btn-direct-transfer', function() {
+            const id = $(this).data('id');
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data ini akan dihapus secara permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ url('/wedding-design5') }}/" + id + "/delete-direct-transfer",
+                        type: 'DELETE',
+                        data: {
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(res) {
+                            Swal.fire('Terhapus!', res.message, 'success');
+                            $('#tableDirectTransfer').load(location.href +
+                                " #tableDirectTransfer>*", "");
+                        },
+                        error: function(xhr) {
+                            Swal.fire('Gagal!', 'Terjadi kesalahan saat menghapus.', 'error');
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+
+
+        $('#btnBatal').on('click', function() {
+            resetFormDirectTransfer();
         });
     </script>
 
 
     <!-- Modal JS Kirim Hadiah -->
     <script>
-        document.getElementById('btnKirimHadiah').addEventListener('click', function() {
-            // Reset the form for new entries
-            document.getElementById('formKirimHadiah').reset();
-            document.getElementById('kirimHadiahId').value = ''; // Reset hidden field for ID
-            document.getElementById('formMethod').value = 'POST'; // Set method for creating
+        // Function Reset Form
+        function resetFormKirimHadiah() {
+            $('#formKirimHadiah')[0].reset(); // reset semua input
+            $('#kirimHadiahId').val('');
+        }
+        // Ketika tombol "Tambah Cerita" diklik
+        $('#btnKirimHadiah').on('click', function() {
+            $('#modalKirimHadiahLabel').text('Buat Direct Transfer');
+            $('#formMethodKirimHadiah').val('POST');
+            $('#formKirimHadiah').attr('action',
+                '{{ route('kirimhadiah-design5.store', ['id' => $informasiDesign5->id]) }}');
+            $('#formKirimHadiah')[0].reset();
+            $('#kirimHadiahId').val('');
 
-            // Set the action to the store route
-            document.getElementById('formKirimHadiah').action =
-                "{{ route('kirimhadiah-design5.store', ['id' => $informasiDesign5->id]) }}";
-            document.getElementById('modalKirimHadiahLabel').textContent = 'Tambah Kirim Hadiah';
+            resetFormKirimHadiah();
         });
 
-        document.querySelectorAll('.edit-btn-kirim-hadiah').forEach(function(button) {
-            button.addEventListener('click', function() {
-                var id = this.getAttribute('data-id');
-                var alamat = this.getAttribute('data-alamat');
-                var deskripsi_alamat = this.getAttribute('data-deskripsi_alamat');
+        // Ketika tombol Edit diklik
+        $(document).on('click', '.edit-btn-kirim-hadiah', function() {
+            const id = $(this).data('id');
+            const alamat = $(this).data('alamat');
+            const deskripsi_alamat = $(this).data('deskripsi_alamat');
 
-                // Populate form with existing data
-                document.getElementById('kirimHadiahId').value = id; // Set ID
-                document.getElementById('alamat').value = alamat;
-                document.getElementById('deskripsi_alamat').value = deskripsi_alamat;
+            $('#modalKirimHadiahLabel').text('Edit Direct Transfer');
+            $('#formMethodKirimHadiahKirimHadiah').val('PUT'); // ini hidden input _method
+            $('#kirimHadiahId').val(id);
 
-                // Set the form action to the update route
-                document.getElementById('formKirimHadiah').action =
-                    `/wedding-design5/${id}/update-kirim-hadiah`;
-                document.getElementById('formMethodKirimHadiah').value = 'PUT'; // Set method for updating
-                document.getElementById('modalKirimHadiahLabel').textContent = 'Edit Kirim Hadiah';
+            // Set nilai ke input form
+            $('#alamat').val(alamat);
+            $('#deskripsi_alamat').val(deskripsi_alamat);
 
-                // Show the modal
-                var modal = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));
-                modal.show();
+            const updateUrl = `/wedding-design5/${id}/update-kirim-hadiah`;
+            $('#formKirimHadiah').attr('action', updateUrl);
+
+            const modalEdit = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));
+            modalEdit.show();
+        });
+
+        // Submit form (tambah/edit)
+        $('#formKirimHadiah').on('submit', function(e) {
+            e.preventDefault();
+
+            const form = $(this);
+            const formData = new FormData(this);
+            const id = $('#kirimHadiahId').val();
+            const isEdit = id !== '';
+
+            if (isEdit) {
+                formData.append('_method', 'PUT');
+            }
+
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST', // tetap POST meski update (karena kita override pakai _method)
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(res) {
+                    Swal.fire('Sukses!', res.message, 'success');
+                    const modal = bootstrap.Modal.getInstance(document.getElementById(
+                        'modalKirimHadiah'));
+                    modal.hide();
+
+                    resetFormKirimHadiah();
+
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+
+                    $('#formKirimHadiah')[0].reset();
+                    $('#KirimHadiahId').val('');
+
+                    $('#tableKirimHadiah').load(location.href + " #tableKirimHadiah>*", "");
+                },
+                error: function(xhr) {
+                    let errors = xhr.responseJSON?.errors;
+                    let errorMsg = 'Terjadi kesalahan.';
+                    if (errors) {
+                        errorMsg = Object.values(errors).join('<br>');
+                    }
+                    Swal.fire('Gagal!', errorMsg, 'error');
+                    console.error(xhr.responseText);
+                }
             });
         });
-    </script>
 
-
-    <script>
-        document.querySelectorAll('.delete-btn-perjalanan-cinta, .delete-btn-kirim-hadiah, .delete-btn-direct-transfer')
-            .forEach(function(button) {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    var itemId = this.getAttribute('data-id');
-                    var type;
-
-                    // Determine the type based on the button class
-                    if (this.classList.contains('delete-btn-perjalanan-cinta')) {
-                        type = "perjalanan-cinta";
-                    } else if (this.classList.contains('delete-btn-kirim-hadiah')) {
-                        type = "kirim-hadiah";
-                    } else if (this.classList.contains('delete-btn-direct-transfer')) {
-                        type = "direct-transfer";
-                    }
-
-                    Swal.fire({
-                        title: "Are you sure?",
-                        text: "You won't be able to revert this!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes, delete it!"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Set the form action to the delete URL
-                            var deleteForm = document.getElementById('deleteForm');
-                            deleteForm.action = "/wedding-design5/" + itemId + "/" + type + "/delete";
-
-                            // Submit the form
-                            deleteForm.submit();
+        $(document).on('click', '.delete-btn-kirim-hadiah', function() {
+            const id = $(this).data('id');
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data ini akan dihapus secara permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ url('/wedding-design5') }}/" + id + "/delete-kirim-hadiah",
+                        type: 'DELETE',
+                        data: {
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(res) {
+                            Swal.fire('Terhapus!', res.message, 'success');
+                            $('#tableKirimHadiah').load(location.href +
+                                " #tableKirimHadiah>*", "");
+                        },
+                        error: function(xhr) {
+                            Swal.fire('Gagal!', 'Terjadi kesalahan saat menghapus.', 'error');
+                            console.error(xhr.responseText);
                         }
                     });
-                });
+                }
             });
+        });
+
+
+        $('#btnBatal').on('click', function() {
+            resetFormKirimHadiah();
+        });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 @endsection
 @section('scripts')
 @endsection

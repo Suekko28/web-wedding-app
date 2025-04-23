@@ -97,18 +97,17 @@ Route::middleware(['auth'])->group(function () {
     // Routes for Perjalanan Cinta4
     Route::post('/wedding-design4/{id}/store-perjalanan-cinta', [WeddingDesign4Controller::class, 'storePerjalananCinta'])->name('perjalanancinta-design4.store');
     Route::put('/wedding-design4/{id}/update-perjalanan-cinta', [WeddingDesign4Controller::class, 'updatePerjalananCinta'])->name('perjalanancinta-design4.update');
-    Route::delete('/wedding-design4/{id}/delete', [WeddingDesign4Controller::class, 'destroyPerjalananCinta'])->name('perjalanancinta-design4.destroy');
+    Route::delete('/wedding-design4/{id}/delete-perjalanan-cinta', [WeddingDesign4Controller::class, 'destroyPerjalananCinta'])->name('perjalanancinta-design4.destroy');
 
     // Routes for Direct Transfer4
     Route::post('/wedding-design4/{id}/store-direct-transfer', [WeddingDesign4Controller::class, 'storeDirectTransfer'])->name('directtransfer-design4.store');
     Route::put('/wedding-design4/{id}/update-direct-transfer', [WeddingDesign4Controller::class, 'updateDirectTransfer'])->name('directtransfer-design4.update');
-    Route::delete('/wedding-design4/{id}/delete', [WeddingDesign4Controller::class, 'destroyDirectTransfer'])->name('directtransfer-design4.destroy');
+    Route::delete('/wedding-design4/{id}/delete-direct-transfer', [WeddingDesign4Controller::class, 'destroyDirectTransfer'])->name('directtransfer-design4.destroy');
 
-    // Routes for Kirim Hadiah4
+    // Routes for Kirim Hadiah5
     Route::post('/wedding-design4/{id}/store-kirim-hadiah', [WeddingDesign4Controller::class, 'storeKirimHadiah'])->name('kirimhadiah-design4.store');
     Route::put('/wedding-design4/{id}/update-kirim-hadiah', [WeddingDesign4Controller::class, 'updateKirimHadiah'])->name('kirimhadiah-design4.update');
-    Route::delete('/wedding-design4/{id}/delete', [WeddingDesign4Controller::class, 'destroyKirimHadiah'])->name('kirimhadiah-design4.destroy');
-    Route::delete('/wedding-design4/{id}/{type}/delete', [WeddingDesign4Controller::class, 'destroy'])->name('design4.destroy');
+    Route::delete('/wedding-design4/{id}/delete-kirim-hadiah', [WeddingDesign4Controller::class, 'destroyKirimHadiah'])->name('kirimhadiah-design4.destroy');
 
 
     // Routes for InformasiDesign5
@@ -126,17 +125,17 @@ Route::middleware(['auth'])->group(function () {
     // Routes for Perjalanan Cinta5
     Route::post('/wedding-design5/{id}/store-perjalanan-cinta', [WeddingDesign5Controller::class, 'storePerjalananCinta'])->name('perjalanancinta-design5.store');
     Route::put('/wedding-design5/{id}/update-perjalanan-cinta', [WeddingDesign5Controller::class, 'updatePerjalananCinta'])->name('perjalanancinta-design5.update');
-    Route::delete('/wedding-design5/{id}/delete', [WeddingDesign5Controller::class, 'destroyPerjalananCinta'])->name('perjalanancinta-design5.destroy');
+    Route::delete('/wedding-design5/{id}/delete-perjalanan-cinta', [WeddingDesign5Controller::class, 'destroyPerjalananCinta'])->name('perjalanancinta-design5.destroy');
 
     // Routes for Direct Transfer5
     Route::post('/wedding-design5/{id}/store-direct-transfer', [WeddingDesign5Controller::class, 'storeDirectTransfer'])->name('directtransfer-design5.store');
     Route::put('/wedding-design5/{id}/update-direct-transfer', [WeddingDesign5Controller::class, 'updateDirectTransfer'])->name('directtransfer-design5.update');
-    Route::delete('/wedding-design5/{id}/delete', [WeddingDesign5Controller::class, 'destroyDirectTransfer'])->name('directtransfer-design5.destroy');
+    Route::delete('/wedding-design5/{id}/delete-direct-transfer', [WeddingDesign5Controller::class, 'destroyDirectTransfer'])->name('directtransfer-design5.destroy');
 
-    // Routes for Kirim Hadiah5 
+    // Routes for Kirim Hadiah5
     Route::post('/wedding-design5/{id}/store-kirim-hadiah', [WeddingDesign5Controller::class, 'storeKirimHadiah'])->name('kirimhadiah-design5.store');
     Route::put('/wedding-design5/{id}/update-kirim-hadiah', [WeddingDesign5Controller::class, 'updateKirimHadiah'])->name('kirimhadiah-design5.update');
-    Route::delete('/wedding-design5/{id}/delete', [WeddingDesign5Controller::class, 'destroyKirimHadiah'])->name('kirimhadiah-design5.destroy');
+    Route::delete('/wedding-design5/{id}/delete-kirim-hadiah', [WeddingDesign5Controller::class, 'destroyKirimHadiah'])->name('kirimhadiah-design5.destroy');
     Route::delete('/wedding-design5/{id}/{type}/delete', [WeddingDesign5Controller::class, 'destroy'])->name('design5.destroy');
 
     // Routes for InformasiDesign6
