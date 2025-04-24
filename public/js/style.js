@@ -1,22 +1,36 @@
 $(document).ready(function () {
+    let ticking = false;
+
     // Function to set active class based on scroll position
     function setActiveOnScroll() {
         var scrollPos = $(document).scrollTop();
+
         $('.nav-link[href^="#"]').each(function () {
             var currLink = $(this);
             var refElement = $(currLink.attr("href"));
+
             if (refElement.length) {
-                var offsetTop = refElement.offset().top - 80; // Offset untuk menghindari tertutup navbar
-                if (scrollPos >= offsetTop && scrollPos < offsetTop + refElement.height()) {
-                    $('.nav-link').removeClass("active");
-                    currLink.addClass("active");
+                var offsetTop = refElement.offset().top - 80; // Offset agar tidak tertutup navbar
+
+                if (scrollPos >= offsetTop && scrollPos < offsetTop + refElement.outerHeight()) {
+                    if (!currLink.hasClass("active")) {
+                        $('.nav-link').removeClass("active");
+                        currLink.addClass("active");
+                    }
                 }
             }
         });
+
+        ticking = false;
     }
 
-    // On scroll
-    $(document).on("scroll", setActiveOnScroll);
+    // Gunakan requestAnimationFrame untuk throttle scroll
+    $(window).on("scroll", function () {
+        if (!ticking) {
+            window.requestAnimationFrame(setActiveOnScroll);
+            ticking = true;
+        }
+    });
 
     // On page load with hash
     function setActiveLinkOnLoad() {
@@ -27,17 +41,18 @@ $(document).ready(function () {
         }
     }
 
-    // On click
+    // Smooth scroll saat klik link
     $(".nav-link[href^='#']").on("click", function (e) {
         e.preventDefault();
         var target = this.hash;
         var $target = $(target);
 
         if ($target.length) {
-            $("html, body").animate({
-                scrollTop: $target.offset().top - 70 // Smooth scroll with offset
-            }, 600, function () {
+            $("html, body").stop().animate({
+                scrollTop: $target.offset().top - 70
+            }, 600, 'swing', function () {
                 window.location.hash = target;
+                setActiveOnScroll(); // pastikan update setelah scroll
             });
         }
 
@@ -45,6 +60,7 @@ $(document).ready(function () {
         $(this).addClass("active");
     });
 
-    // Init on page load
+    // Init saat halaman dimuat
     setActiveLinkOnLoad();
+    setActiveOnScroll(); // tambahkan ini untuk aktif langsung saat reload
 });

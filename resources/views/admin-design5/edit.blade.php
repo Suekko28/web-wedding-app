@@ -267,7 +267,7 @@
                                 </table>
                             </div>
                         </div>
-
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Moment</div>
                             <div class="form-group fs-3">
@@ -294,6 +294,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Akad & Resepsi</div>
                             <div class="form-group fs-3">
@@ -427,8 +428,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Live Streaming</div>
                             <div class="form-group fs-3">
@@ -443,6 +442,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
                             <div class="d-flex">
@@ -492,6 +492,7 @@
                             </div>
                             <div class="p-2">{{ $dataDirectTransfer->links() }}</div>
                         </div>
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
                             <div class="d-flex">
@@ -538,7 +539,7 @@
                             </div>
                             <div class="p-2">{{ $dataKirimHadiah->links() }}</div>
                         </div>
-
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="ucapan-pembuka fw-bold fs-5 mb-4">Ucapan Penutup</div>
                             <div class="form-group form-group fs-3">
@@ -546,7 +547,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="deskripsi_penutup">Deskripsi<span class="mandatory">*</span></label>
                                         <textarea class="form-control" rows="5" id="deskripsi_penutup" name="deskripsi_penutup"
-                                            placeholder="Deskripsi">{{ old('deskripsi_penutup',  $data->deskripsi_penutup ?? $defaultDeskripsiPenutup) }}</textarea>
+                                            placeholder="Deskripsi">{{ old('deskripsi_penutup', $data->deskripsi_penutup ?? $defaultDeskripsiPenutup) }}</textarea>
                                     </div>
                                 </div>
                             </div>

@@ -20,7 +20,7 @@
                     Data tidak ditemukan.
                 </div>
             </div>
-            <div class="table-responsive mb-5 border rounded-1">
+            <div class="table-responsive mb-6 border rounded-1">
                 <table class="table text-nowrap mb-0 align-middle">
                     <thead>
                         <tr class="text-nowrap text-center">
@@ -94,8 +94,6 @@
                                             <i class="fa fa-circle-info" style="color:white;"></i>
                                         </a>
 
-
-
                                         <a class="btn btn-primary mb-2 {{ !$item->KontenDesign5->first() || !$item->KontenDesign5->first()->nama_mempelai_laki || !$item->KontenDesign5->first()->nama_mempelai_perempuan ? 'disabled' : '' }}"
                                             href="{{ route('wedding-design5-home-preview', [
                                                 'nama_mempelai_laki' => $item->KontenDesign5->first()->nama_mempelai_laki ?? 'Unknown',
@@ -123,7 +121,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalBuatUndanganLabel">Buat/Edit Undangan</h5>
+                    <h6 class="modal-title" id="modalBuatUndanganLabel">Buat/Edit Undangan</h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -195,57 +193,59 @@
 
     <script>
         document.querySelectorAll('.delete-btn').forEach(function(button) {
-                    button.addEventListener('click', function(event) {
-                            event.preventDefault();
-                            var itemId = this.getAttribute('data-id');
-                            Swal.fire({
-                                title: 'Apakah kamu yakin?',
-                                text: "Data ini akan dihapus secara permanen!",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: "#3086d6",
-                                cancelButtonColor: "#d33",
-                                confirmButtonText: "Ya, Hapus!"
-                            }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        // Set the action URL for the delete form
-                                        document.getElementById('deleteForm').action =
-                                            "{{ url('wedding-design5') }}/" + itemId;
-                                        // Submit the form
-                                        document.getElementById('deleteForm').submit();
-                                        Swal.fire({
-                                                title: 'Terhapus',
-                                                text: "Data berhasil dihapus",
-                                                icon: 'success',
-                                                showConfirmButton: false,
-                                                timer: 1500
-                                            }
-                                        }
-                                    });
-                            });
-                    });
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                var itemId = this.getAttribute('data-id');
+                Swal.fire({
+                    title: 'Apakah kamu yakin?',
+                    text: "Data ini akan dihapus secara permanen!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: "#3086d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Set the action URL for the delete form
+                        document.getElementById('deleteForm').action =
+                            "{{ url('wedding-design5') }}/" + itemId;
+                        // Submit the form
+                        document.getElementById('deleteForm').submit();
+                        Swal.fire({
+                                title: 'Terhapus',
+                                text: "Data berhasil dihapus",
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }
 
-                // Search functionality
-                const searchInput = document.getElementById('searchInput');
-                const tableRows = document.querySelectorAll('.table tbody tr');
-                const noDataMessage = document.getElementById('noDataMessage');
-
-                searchInput.addEventListener('input', function() {
-                    const searchText = this.value.toLowerCase();
-                    let found = false;
-
-                    tableRows.forEach(function(row) {
-                        const rowData = row.innerText.toLowerCase();
-                        if (rowData.includes(searchText)) {
-                            row.style.display = '';
-                            found = true;
-                        } else {
-                            row.style.display = 'none';
-                        }
-                    });
-
-                    noDataMessage.style.display = found ? 'none' : 'block';
+                        );
+                    }
                 });
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const tableRows = document.querySelectorAll('.table tbody tr');
+        const noDataMessage = document.getElementById('noDataMessage');
+
+        searchInput.addEventListener('input', function() {
+            const searchText = this.value.toLowerCase();
+            let found = false;
+
+            tableRows.forEach(function(row) {
+                const rowData = row.innerText.toLowerCase();
+                if (rowData.includes(searchText)) {
+                    row.style.display = '';
+                    found = true;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            noDataMessage.style.display = found ? 'none' : 'block';
+        });
     </script>
 
 @endsection

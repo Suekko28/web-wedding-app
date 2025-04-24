@@ -233,6 +233,7 @@
                                     </table>
                                 </div>
                             </div>
+                            <hr>
                             <div class="card-body container bg-white">
                                 <div class="mempelai fw-bold fs-5 mb-4">Moment</div>
                                 <div class="form-group fs-3">
@@ -244,12 +245,13 @@
                                         </div>
                                         <div class="col-sm-4 mb-3">
                                             <label for="quote_img">Upload Images <span class="mandatory">*</span></label>
-                                            <input type="file" class="form-control" id="quote_img" name="quote_img[]"
+                                            <input type="file" accept="image/*" class="form-control" id="quote_img" name="quote_img[]"
                                                 multiple>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <hr>
                             <div class="card-body container bg-white">
                                 <div class="mempelai fw-bold fs-5 mb-4">Informasi Akad & Resepsi</div>
                                 <div class="form-group fs-3">
@@ -379,7 +381,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <hr>
                             <div class="card-body container bg-white">
                                 <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
                                 <div class="d-flex">
@@ -431,7 +433,7 @@
                                 </div>
                                 <div class="p-2">{{ $dataDirectTransfer->links() }}</div>
                             </div>
-
+                            <hr>
                             <div class="card-body container bg-white">
                                 <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
                                 <div class="d-flex">
@@ -479,7 +481,7 @@
                                 </div>
                                 <div class="p-2">{{ $dataKirimHadiah->links() }}</div>
                             </div>
-
+                            <hr>
                             <div class="card-body container bg-white">
                                 <div class="ucapan-pembuka fw-bold fs-5 mb-4">Ucapan Penutup</div>
                                 <div class="form-group form-group fs-3">

@@ -229,7 +229,6 @@
                                             <th>Tanggal</th>
                                             <th>Judul Cerita</th>
                                             <th>Detail</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -242,22 +241,6 @@
                                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
                                                 <td>{{ $item->judul_cerita }}</td>
                                                 <td>{{ $item->deskripsi }}</td>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded Show-btn-perjalanan-cinta"
-                                                        data-id="{{ $item->id }}"
-                                                        data-tanggal="{{ $item->tanggal }}"
-                                                        data-judul="{{ $item->judul_cerita }}"
-                                                        data-deskripsi="{{ $item->deskripsi }}"
-                                                        data-image1="{{ Storage::url($item->image1) }}">
-                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
-                                                    </a>
-
-                                                    <button class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
-                                                        data-id="{{ $item->id }}" type="button">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </td>
                                             </tr>
                                             <?php $i++; ?>
                                         @endforeach
@@ -265,7 +248,7 @@
                                 </table>
                             </div>
                         </div>
-
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Moment</div>
                             <div class="form-group fs-3">
@@ -292,6 +275,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Akad & Resepsi</div>
                             <div class="form-group fs-3">
@@ -443,6 +427,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
                             <div class="card-body container bg-white">
                                 <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
                                 <div class="table-responsive mb-4 border rounded-1">
@@ -471,6 +456,7 @@
                                 </div>
                                 <div class="p-2">{{ $dataDirectTransfer->links() }}</div>
                             </div>
+                            <hr>
                             <div class="card-body container bg-white">
                                 <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
                                 <div class="table-responsive mb-4 border rounded-1">
@@ -497,7 +483,7 @@
                                 </div>
                                 <div class="p-2">{{ $dataKirimHadiah->links() }}</div>
                             </div>
-
+                            <hr>
                             <div class="card-body container bg-white">
                                 <div class="ucapan-pembuka fw-bold fs-5 mb-4">Ucapan Penutup</div>
                                 <div class="form-group form-group fs-3">
@@ -510,7 +496,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <hr>
 
                             <div class="card-body container bg-white">
                                 <table class="table table-bordered">

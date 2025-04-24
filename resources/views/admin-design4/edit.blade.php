@@ -267,7 +267,7 @@
                                 </table>
                             </div>
                         </div>
-
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Moment</div>
                             <div class="form-group fs-3">
@@ -294,6 +294,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Informasi Akad & Resepsi</div>
                             <div class="form-group fs-3">
@@ -427,8 +428,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Live Streaming</div>
                             <div class="form-group fs-3">
@@ -443,6 +442,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
                             <div class="d-flex">
@@ -492,6 +492,7 @@
                             </div>
                             <div class="p-2">{{ $dataDirectTransfer->links() }}</div>
                         </div>
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
                             <div class="d-flex">
@@ -538,7 +539,7 @@
                             </div>
                             <div class="p-2">{{ $dataKirimHadiah->links() }}</div>
                         </div>
-
+                        <hr>
                         <div class="card-body container bg-white">
                             <div class="ucapan-pembuka fw-bold fs-5 mb-4">Ucapan Penutup</div>
                             <div class="form-group form-group fs-3">
@@ -551,7 +552,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
