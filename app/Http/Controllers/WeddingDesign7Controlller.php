@@ -41,8 +41,14 @@ class WeddingDesign7Controlller extends Controller
         $dataMempelaiPria = WeddingDesign7::where('informasi_design7_id', $informasiDesign7Id)->first();
 
 
+        $zonaWaktuOptions = [
+            1 => 'WIB',
+            2 => 'WIT',
+            3 => 'WITA',
+        ];
+
         // Kirimkan data yang sesuai ke view
-        return view('admin-design7.create', compact('informasiDesign7Id', 'dataMempelaiPria', 'informasiDesign7', 'dataDirectTransfer', 'dataKirimHadiah', ));
+        return view('admin-design7.create', compact('informasiDesign7Id', 'dataMempelaiPria', 'informasiDesign7', 'dataDirectTransfer', 'dataKirimHadiah', 'zonaWaktuOptions'));
     }
 
     /**
@@ -77,9 +83,6 @@ class WeddingDesign7Controlller extends Controller
             $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design7', $request->file('banner_img')->hashName());
         }
 
-        if ($request->hasFile('foto_prewedding')) {
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design7', $request->file('foto_prewedding')->hashName());
-        }
 
         if ($request->hasFile('foto_mempelai_laki')) {
             $data['foto_mempelai_laki'] = $request->file('foto_mempelai_laki')->storeAs('public/wedding-design7', $request->file('foto_mempelai_laki')->hashName());
@@ -160,7 +163,13 @@ class WeddingDesign7Controlller extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        return view('admin-design7.edit', compact('data', 'informasiDesign7', 'dataDirectTransfer', 'dataKirimHadiah'));
+        $zonaWaktuOptions = [
+            1 => 'WIB',
+            2 => 'WIT',
+            3 => 'WITA',
+        ];
+
+        return view('admin-design7.edit', compact('data', 'informasiDesign7', 'dataDirectTransfer', 'dataKirimHadiah', 'zonaWaktuOptions'));
     }
 
     /**
@@ -196,13 +205,6 @@ class WeddingDesign7Controlller extends Controller
                 Storage::delete($weddingDesign7->banner_img);
             }
             $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design7', $request->file('banner_img')->hashName());
-        }
-
-        if ($request->hasFile('foto_prewedding')) {
-            if ($weddingDesign7->foto_prewedding) {
-                Storage::delete($weddingDesign7->foto_prewedding);
-            }
-            $data['foto_prewedding'] = $request->file('foto_prewedding')->storeAs('public/wedding-design7', $request->file('foto_prewedding')->hashName());
         }
 
         if ($request->hasFile('foto_mempelai_laki')) {

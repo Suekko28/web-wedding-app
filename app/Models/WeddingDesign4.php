@@ -51,6 +51,8 @@ class WeddingDesign4 extends Model
         'judul_resepsi',
         'judul_jadwal',
         'deskripsi_penutup',
+        'zona_waktu_akad',
+        'zona_waktu_resepsi',
         'informasi_design4_id'
 
     ];

@@ -36,10 +36,10 @@ class WeddingDesign6FormRequest extends FormRequest
             'link_instagram2' => ['url', 'max:255', 'nullable'],
             'lokasi_akad' => ['required', 'string', 'max:255'],
             'deskripsi_akad' => ['string'],
-            'simpan_tgl_akad' => ['required', 'string', 'max:255'],
-            'lokasi_resepsi' => ['required', 'string', 'max:255'],
+            'simpan_tgl_akad' => ['required', 'string',],
+            'lokasi_resepsi' => ['required', 'string',],
             'deskripsi_resepsi' => ['string'],
-            'simpan_tgl_resepsi' => ['required', 'string', 'max:255'],
+            'simpan_tgl_resepsi' => ['required', 'string',],
             'link_streaming' => ['nullable', 'max:255'],
             'informasi_design6_id' => ['required', 'exists:informasi_design6,id'],
             'judul_akad' => ['nullable', 'max:255'],
@@ -62,7 +62,6 @@ class WeddingDesign6FormRequest extends FormRequest
         if ($method === 'POST') {
             $rules['music'] = ['required'];
             $rules['banner_img'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
-            $rules['foto_prewedding'] = ['required', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_mempelai_perempuan'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_mempelai_laki'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
             $rules['image_cinta'] = ['nullable', 'array']; // Change to array
@@ -72,7 +71,6 @@ class WeddingDesign6FormRequest extends FormRequest
             // Jika ini adalah request untuk update, gambar bersifat opsional (nullable)
             $rules['music'] = ['nullable'];
             $rules['banner_img'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
-            $rules['foto_prewedding'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_mempelai_perempuan'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
             $rules['foto_mempelai_laki'] = ['nullable', 'image', 'mimes:jpeg,png,jpg'];
             $rules['image_cinta'] = ['nullable', 'array'];
@@ -89,10 +87,6 @@ class WeddingDesign6FormRequest extends FormRequest
             'banner_img.required' => 'Banner harus diunggah.',
             'banner_img.image' => 'Banner harus berupa file gambar.',
             'banner_img.mimes' => 'Banner hanya boleh berupa file dengan format jpeg, png, jpg.',
-
-            'foto_prewedding.required' => 'Foto prewedding harus diunggah.',
-            'foto_prewedding.image' => 'Foto prewedding harus berupa file gambar.',
-            'foto_prewedding.mimes' => 'Foto prewedding hanya boleh berupa file dengan format jpeg, png, jpg.',
 
             'music.required' => 'Musik harus diisi.',
 
@@ -147,7 +141,6 @@ class WeddingDesign6FormRequest extends FormRequest
 
             'simpan_tgl_akad.required' => 'Tanggal akad harus diisi.',
             'simpan_tgl_akad.string' => 'Tanggal akad harus berupa teks.',
-            'simpan_tgl_akad.max' => 'Tanggal akad tidak boleh lebih dari 255 karakter.',
 
             'tgl_resepsi.required' => 'Tanggal resepsi harus diisi.',
             'tgl_resepsi.date' => 'Tanggal resepsi harus berupa format tanggal yang valid.',
@@ -165,12 +158,14 @@ class WeddingDesign6FormRequest extends FormRequest
 
             'simpan_tgl_resepsi.required' => 'Tanggal resepsi harus diisi.',
             'simpan_tgl_resepsi.string' => 'Tanggal resepsi harus berupa teks.',
-            'simpan_tgl_resepsi.max' => 'Tanggal resepsi tidak boleh lebih dari 255 karakter.',
 
             'judul_pembuka.required' => 'Judul ucapan pembuka harus diisi.',
             'deskripsi_pembuka.required' => 'Deskripsi ucapan pembuka harus diisi.',
             'judul_cinta.required' => 'Judul perjalanan cinta harus diisi.',
             'deskripsi_cinta.required' => 'Deskripsi perjalanan cinta harus diisi.',
+
+            'zona_waktu_akad' => 'Zona waktu akad wajib dipilih',
+            'zona_waktu_resepsi' => 'Zona waktu resepsi wajib dipilih',
 
             'informasi_design6_id.required' => 'Informasi design harus diisi.',
             'informasi_design6_id.exists' => 'Informasi design tidak valid.',

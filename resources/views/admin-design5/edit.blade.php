@@ -338,6 +338,20 @@
                                             value="{{ $data->tgl_akad }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
+                                        <label for="zona_waktu_akad">Zona Waktu <span class="mandatory">*</span></label>
+                                        <select class="form-control" name="zona_waktu_akad" id="zona_waktu_akad">
+                                            <option value="0" disabled
+                                                {{ $data->zona_waktu_akad == 0 ? 'selected' : '' }}>--Pilih Zona Waktu--
+                                            </option>
+                                            @foreach ($zonaWaktuOptions as $key => $label)
+                                                <option value="{{ $key }}"
+                                                    {{ $data->zona_waktu_akad == $key ? 'selected' : '' }}>
+                                                    {{ $label }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
                                         <label for="mulai_akad">Mulai Akad <span class="mandatory">*</span></label>
                                         <input type="time" class="form-control" id="mulai_akad" name="mulai_akad"
                                             value="{{ date('H:i', strtotime($data->mulai_akad)) }}">
@@ -388,6 +402,21 @@
                                         <label for="tgl_resepsi">Tanggal Resepsi<span class="mandatory">*</span></label>
                                         <input type="date" class="form-control" id="tgl_resepsi" name="tgl_resepsi"
                                             value="{{ $data->tgl_resepsi }}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="zona_waktu_resepsi">Zona Waktu <span
+                                                class="mandatory">*</span></label>
+                                        <select class="form-control" name="zona_waktu_resepsi" id="zona_waktu_resepsi">
+                                            <option value="0" disabled
+                                                {{ $data->zona_waktu_resepsi == 0 ? 'selected' : '' }}>--Pilih Zona Waktu--
+                                            </option>
+                                            @foreach ($zonaWaktuOptions as $key => $label)
+                                                <option value="{{ $key }}"
+                                                    {{ $data->zona_waktu_resepsi == $key ? 'selected' : '' }}>
+                                                    {{ $label }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="mulai_resepsi">Mulai Resepsi <span class="mandatory">*</span></label>
@@ -684,8 +713,8 @@
                 </div>
                 <div class="modal-body">
                     <form id="formKirimHadiah"
-                        action="{{ route('kirimhadiah-design5.store', ['id' => $informasiDesign5->id]) }}" method="POST"
-                        enctype="multipart/form-data">
+                        action="{{ route('kirimhadiah-design5.store', ['id' => $informasiDesign5->id]) }}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
                         {{-- This will be updated dynamically in JS --}}
                         <input type="hidden" name="_method" id="formMethodKirimHadiah" value="POST">

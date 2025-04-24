@@ -79,7 +79,7 @@
                 <button type="button" onclick="playAudio()" style="display:none" class="btn-primary" id="buttonPage"
                     data-bs-dismiss="offcanvas">Buka Undangan</button>
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
+            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/design-9/background.jpg') }}"
                 alt="background">
         </div>
     </div>
@@ -104,9 +104,11 @@
                 <!-- <a href="#perjalanan-cinta">
                         <img src="{{ asset('img/design-9/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
                     </a> -->
-                <a href="#gallery">
-                    <img src="{{ asset('img/design-9/gallery-icon.svg') }}" alt="gallery">
-                </a>
+                @if (!empty($data->judul_cinta) && !empty($data->deskripsi_cinta) && !empty($data->image_cinta))
+                    <a href="#gallery">
+                        <img src="{{ asset('img/design-9/gallery-icon.svg') }}" alt="gallery">
+                    </a>
+                @endif
                 <a href="#jadwal-pernikahan">
                     <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="jadwal-pernikahan">
                 </a>
@@ -116,8 +118,9 @@
             </li>
         </ul>
     </nav>
-    <img class="background-template object-fit-cover" src="{{ Storage::url('' . $data->foto_prewedding) }}"
-        alt="background"> <!-- HERO -->
+    <img class="background-template object-fit-cover" src="{{ asset('img/design-9/background.jpg') }}"
+        alt="background">
+    <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
         <div class="title">
@@ -274,7 +277,17 @@
                             <div class="detail-info">
                                 <span class="label">
                                     {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} -
-                                    {{ \Carbon\Carbon::parse($data->selesai_akad)->format('H:i') }} WIB</span>
+                                    {{ \Carbon\Carbon::parse($data->selesai_akad)->format('H:i') }}
+                                    @if ($data->zona_waktu_akad == 1)
+                                        WIB
+                                    @elseif ($data->zona_waktu_akad == 2)
+                                        WIT
+                                    @elseif ($data->zona_waktu_akad == 3)
+                                        WITA
+                                    @else
+                                        -
+                                    @endif
+                                </span>
                             </div>
                         </div>
                         <div class="info">
@@ -311,7 +324,16 @@
                                 <span class="label">
                                     {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
                                     {{ \Carbon\Carbon::parse($data->selesai_resepsi)->format('H:i') }}
-                                    WIB</span>
+                                    @if ($data->zona_waktu_resepsi == 1)
+                                        WIB
+                                    @elseif ($data->zona_waktu_resepsi == 2)
+                                        WIT
+                                    @elseif ($data->zona_waktu_resepsi == 3)
+                                        WITA
+                                    @else
+                                        -
+                                    @endif
+                                </span>
                             </div>
                         </div>
                         <div class="info">

@@ -315,8 +315,18 @@
                                     <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">
-                                            {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} WIB -
-                                            {{ \Carbon\Carbon::parse($data->selesai_akad)->format('H:i') }} WIB</span>
+                                            {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} -
+                                            {{ \Carbon\Carbon::parse($data->selesai_akad)->format('H:i') }}
+                                            @if ($data->zona_waktu_akad == 1)
+                                                WIB
+                                            @elseif ($data->zona_waktu_akad == 2)
+                                                WIT
+                                            @elseif ($data->zona_waktu_akad == 3)
+                                                WITA
+                                            @else
+                                                -
+                                            @endif
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="info">
@@ -349,9 +359,18 @@
                                     <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
                                     <div class="detail-info">
                                         <span class="label">
-                                            {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} WIB -
+                                            {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
                                             {{ \Carbon\Carbon::parse($data->selesai_resepsi)->format('H:i') }}
-                                            WIB</span>
+                                            @if ($data->zona_waktu_resepsi == 1)
+                                                WIB
+                                            @elseif ($data->zona_waktu_resepsi == 2)
+                                                WIT
+                                            @elseif ($data->zona_waktu_resepsi == 3)
+                                                WITA
+                                            @else
+                                                -
+                                            @endif
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="info">

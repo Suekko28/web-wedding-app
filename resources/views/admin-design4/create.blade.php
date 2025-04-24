@@ -245,8 +245,8 @@
                                         </div>
                                         <div class="col-sm-4 mb-3">
                                             <label for="quote_img">Upload Images <span class="mandatory">*</span></label>
-                                            <input type="file" accept="image/*" class="form-control" id="quote_img" name="quote_img[]"
-                                                multiple>
+                                            <input type="file" accept="image/*" class="form-control" id="quote_img"
+                                                name="quote_img[]" multiple>
                                         </div>
                                     </div>
                                 </div>
@@ -286,6 +286,22 @@
                                             <label for="tgl_akad">Tanggal Akad <span class="mandatory">*</span></label>
                                             <input type="date" class="form-control" id="tgl_akad" name="tgl_akad"
                                                 value="{{ old('tgl_akad') }}">
+                                        </div>
+                                        <div class="col-sm-4 mb-3">
+                                            <label for="zona_waktu_akad">Zona Waktu <span
+                                                    class="mandatory">*</span></label>
+                                            <select class="form-control" name="zona_waktu_akad" id="zona_waktu_akad">
+                                                <option value="0" selected>--Pilih Zona Waktu--</option>
+                                                <option value="1"
+                                                    {{ old('zona_waktu_akad') == '1' ? 'selected' : '' }}>
+                                                    WIB</option>
+                                                <option value="2"
+                                                    {{ old('zona_waktu_akad') == '2' ? 'selected' : '' }}>
+                                                    WIT</option>
+                                                <option value="3"
+                                                    {{ old('zona_waktu_akad') == '3' ? 'selected' : '' }}>
+                                                    WITA</option>
+                                            </select>
                                         </div>
                                         <div class="col-sm-4 mb-3">
                                             <label for="mulai_akad">Mulai Akad <span class="mandatory">*</span></label>
@@ -341,6 +357,23 @@
                                                     class="mandatory">*</span></label>
                                             <input type="date" class="form-control" id="tgl_resepsi"
                                                 name="tgl_resepsi" value="{{ old('tgl_resepsi') }}">
+                                        </div>
+                                        <div class="col-sm-4 mb-3">
+                                            <label for="zona_waktu_resepsi">Zona Waktu <span
+                                                    class="mandatory">*</span></label>
+                                            <select class="form-control" name="zona_waktu_resepsi"
+                                                id="zona_waktu_resepsi">
+                                                <option value="0" selected>--Pilih Zona Waktu--</option>
+                                                <option value="1"
+                                                    {{ old('zona_waktu_resepsi') == '1' ? 'selected' : '' }}>
+                                                    WIB</option>
+                                                <option value="2"
+                                                    {{ old('zona_waktu_resepsi') == '2' ? 'selected' : '' }}>
+                                                    WIT</option>
+                                                <option value="3"
+                                                    {{ old('zona_waktu_resepsi') == '3' ? 'selected' : '' }}>
+                                                    WITA</option>
+                                            </select>
                                         </div>
                                         <div class="col-sm-4 mb-3">
                                             <label for="mulai_resepsi">Mulai Resepsi <span
@@ -487,7 +520,8 @@
                                 <div class="form-group form-group fs-3">
                                     <div class="row">
                                         <div class="col-sm-4 mb-3">
-                                            <label for="deskripsi_penutup">Deskripsi<span class="mandatory">*</span></label>
+                                            <label for="deskripsi_penutup">Deskripsi<span
+                                                    class="mandatory">*</span></label>
                                             <textarea class="form-control" rows="5" id="deskripsi_penutup" name="deskripsi_penutup"
                                                 placeholder="Deskripsi">{{ old('deskripsi_penutup', $defaultDeskripsiPenutup) }}</textarea>
                                         </div>

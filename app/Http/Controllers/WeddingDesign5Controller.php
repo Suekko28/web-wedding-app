@@ -46,8 +46,14 @@ class WeddingDesign5Controller extends Controller
         // Mengambil data mempelai pria
         $dataMempelaiPria = WeddingDesign5::where('informasi_design5_id', $informasiDesign5Id)->first();
 
+        $zonaWaktuOptions = [
+            1 => 'WIB',
+            2 => 'WIT',
+            3 => 'WITA',
+        ];
+
         // Kirimkan data yang sesuai ke view
-        return view('admin-design5.create', compact('informasiDesign5Id', 'dataMempelaiPria', 'informasiDesign5', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah'));
+        return view('admin-design5.create', compact('informasiDesign5Id', 'dataMempelaiPria', 'informasiDesign5', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah', 'zonaWaktuOptions'));
     }
 
     /**
@@ -169,7 +175,13 @@ class WeddingDesign5Controller extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        return view('admin-design5.edit', compact('data', 'informasiDesign5', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah'));
+        $zonaWaktuOptions = [
+            1 => 'WIB',
+            2 => 'WIT',
+            3 => 'WITA',
+        ];
+
+        return view('admin-design5.edit', compact('data', 'informasiDesign5', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah', 'zonaWaktuOptions'));
     }
 
     /**

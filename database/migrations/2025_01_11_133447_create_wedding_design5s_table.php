@@ -49,6 +49,8 @@ return new class extends Migration {
             $table->string('link_streaming')->nullable();
             $table->string('judul_jadwal');
             $table->text('deskripsi_penutup');
+            $table->integer('zona_waktu_akad');
+            $table->integer('zona_waktu_resepsi');
             $table->unsignedBigInteger('informasi_design5_id');
             $table->foreign('informasi_design5_id')
                 ->references('id')

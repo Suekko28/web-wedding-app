@@ -46,8 +46,14 @@ class WeddingDesign4Controller extends Controller
         // Mengambil data mempelai pria
         $dataMempelaiPria = WeddingDesign4::where('informasi_design4_id', $informasiDesign4Id)->first();
 
+        $zonaWaktuOptions = [
+            1 => 'WIB',
+            2 => 'WIT',
+            3 => 'WITA',
+        ];
+
         // Kirimkan data yang sesuai ke view
-        return view('admin-design4.create', compact('informasiDesign4Id', 'dataMempelaiPria', 'informasiDesign4', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah'));
+        return view('admin-design4.create', compact('informasiDesign4Id', 'dataMempelaiPria', 'informasiDesign4', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah', 'zonaWaktuOptions'));
     }
 
     /**
@@ -167,7 +173,13 @@ class WeddingDesign4Controller extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        return view('admin-design4.edit', compact('data', 'informasiDesign4', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah'));
+        $zonaWaktuOptions = [
+            1 => 'WIB',
+            2 => 'WIT',
+            3 => 'WITA',
+        ];
+
+        return view('admin-design4.edit', compact('data', 'informasiDesign4', 'dataPerjalananCinta', 'dataDirectTransfer', 'dataKirimHadiah', 'zonaWaktuOptions'));
     }
 
     /**
@@ -178,18 +190,18 @@ class WeddingDesign4Controller extends Controller
         $weddingDesign4 = WeddingDesign4::findOrFail($id);
         $data = $request->all();
 
-         //Default Values
-         $defaultJudulJadwal = "Jadwal Pernikahan";
-         $defaultDeskripsiPenutup = 'Thank You';
-         $defaultJudulAkad = "Akad";
-         $defaultJudulResepsi = "Resepsi";
- 
-         // Cek dan set default jika tidak ada input / sama
-         $data['judul_jadwal'] = $request->filled('judul_jadwal') ? $request->input('judul_jadwal') : $defaultJudulJadwal;
-         $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
-         $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
-         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
- 
+        //Default Values
+        $defaultJudulJadwal = "Jadwal Pernikahan";
+        $defaultDeskripsiPenutup = 'Thank You';
+        $defaultJudulAkad = "Akad";
+        $defaultJudulResepsi = "Resepsi";
+
+        // Cek dan set default jika tidak ada input / sama
+        $data['judul_jadwal'] = $request->filled('judul_jadwal') ? $request->input('judul_jadwal') : $defaultJudulJadwal;
+        $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
+        $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
+        $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
+
 
         // Check and handle uploaded files
         if ($request->hasFile('banner_img')) {

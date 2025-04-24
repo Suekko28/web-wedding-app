@@ -38,11 +38,11 @@ class WeddingDesign4FormRequest extends FormRequest
             'judul_akad' => ['nullable', 'max:255'],
             'lokasi_akad' => ['required', 'string', 'max:255'],
             'deskripsi_akad' => ['string'],
-            'simpan_tgl_akad' => ['required', 'string', 'max:255'],
+            'simpan_tgl_akad' => ['required', 'string',],
             'judul_resepsi' => ['nullable', 'max:255'],
             'lokasi_resepsi' => ['required', 'string', 'max:255'],
             'deskripsi_resepsi' => ['string'],
-            'simpan_tgl_resepsi' => ['required', 'string', 'max:255'],
+            'simpan_tgl_resepsi' => ['required', 'string'],
             'link_streaming' => ['nullable', 'max:255'],
             'informasi_design4_id' => ['required', 'exists:informasi_design4,id'],
             'tgl_akad' => ['required', 'date'],
@@ -146,7 +146,6 @@ class WeddingDesign4FormRequest extends FormRequest
 
             'simpan_tgl_akad.required' => 'Tanggal akad harus diisi.',
             'simpan_tgl_akad.string' => 'Tanggal akad harus berupa teks.',
-            'simpan_tgl_akad.max' => 'Tanggal akad tidak boleh lebih dari 255 karakter.',
 
             'tgl_resepsi.required' => 'Tanggal resepsi harus diisi.',
             'tgl_resepsi.date' => 'Tanggal resepsi harus berupa format tanggal yang valid.',
@@ -164,9 +163,11 @@ class WeddingDesign4FormRequest extends FormRequest
 
             'simpan_tgl_resepsi.required' => 'Tanggal resepsi harus diisi.',
             'simpan_tgl_resepsi.string' => 'Tanggal resepsi harus berupa teks.',
-            'simpan_tgl_resepsi.max' => 'Tanggal resepsi tidak boleh lebih dari 255 karakter.',
 
             'link_streaming.required' => 'Link streaming harus diisi.',
+
+            'zona_waktu_akad' => 'Zona waktu akad wajib dipilih',
+            'zona_waktu_resepsi' => 'Zona waktu resepsi wajib dipilih',
 
             'informasi_design4_id.required' => 'Informasi design harus diisi.',
             'informasi_design4_id.exists' => 'Informasi design tidak valid.',

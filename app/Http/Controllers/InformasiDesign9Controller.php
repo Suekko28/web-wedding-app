@@ -81,10 +81,6 @@ class InformasiDesign9Controller extends Controller
                 Storage::delete($weddingDesign->banner_img);
             }
 
-            if ($weddingDesign->foto_prewedding) {
-                Storage::delete($weddingDesign->foto_prewedding);
-            }
-
             if ($weddingDesign->foto_mempelai_laki) {
                 Storage::delete($weddingDesign->foto_mempelai_laki);
             }

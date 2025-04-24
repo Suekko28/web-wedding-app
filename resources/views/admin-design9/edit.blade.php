@@ -33,7 +33,7 @@
                         <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign9->nama_pasangan }}">
                         <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign9->tgl_pernikahan }}">
                         <div class="card-body container bg-white">
-                            <div class="mempelai fw-bold fs-5 mb-4">Cover Undangan</div>
+                            <div class="mempelai fw-bold fs-5 mb-4">Cover Undangan Share</div>
                             <div class="form-group form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
@@ -61,19 +61,6 @@
                             <div class="mempelai fw-bold fs-5 mb-4">Cover Undangan</div>
                             <div class="form-group form-group fs-3">
                                 <div class="row">
-                                    <div class="col-sm-4 mb-3">
-                                        <label for="foto_prewedding">Upload Image<span class="mandatory">*</span></label>
-                                        <input type="file" accept="image/*" class="form-control" id="foto_prewedding"
-                                            name="foto_prewedding" placeholder="Rhoma Irama"
-                                            value="{{ old('foto_prewedding') }}">
-                                        @if ($data->foto_prewedding)
-                                            <div class="d-flex flex-column mt-2">
-                                                <span>Gambar saat ini:</span>
-                                                <img src="{{ Storage::url($data->foto_prewedding) }}" alt="Foto Prewedding"
-                                                    class="img-thumbnail mt-2" width="150">
-                                            </div>
-                                        @endif
-                                    </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
@@ -307,13 +294,28 @@
                                         <label for="judul_akad">Judul Akad <span class="fst-italic">
                                                 (Opsional)</span></label>
                                         <input type="text" class="form-control" id="judul_akad" name="judul_akad"
-                                            value="{{ old('judul_akad', $data->judul_akad?? $defaultJudulAkad ) }}"
+                                            value="{{ old('judul_akad', $data->judul_akad ?? $defaultJudulAkad) }}"
                                             placeholder="Masukkan judul akad">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_akad">Tanggal Akad <span class="mandatory">*</span></label>
                                         <input type="date" class="form-control" id="tgl_akad" name="tgl_akad"
                                             value="{{ $data->tgl_akad }}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="zona_waktu_akad">Zona Waktu <span
+                                                class="mandatory">*</span></label>
+                                        <select class="form-control" name="zona_waktu_akad" id="zona_waktu_akad">
+                                            <option value="0" disabled
+                                                {{ $data->zona_waktu_akad == 0 ? 'selected' : '' }}>--Pilih Zona Waktu--
+                                            </option>
+                                            @foreach ($zonaWaktuOptions as $key => $label)
+                                                <option value="{{ $key }}"
+                                                    {{ $data->zona_waktu_akad == $key ? 'selected' : '' }}>
+                                                    {{ $label }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="mulai_akad">Mulai Akad <span class="mandatory">*</span></label>
@@ -359,13 +361,28 @@
                                                 (Opsional)</span></label>
                                         <input type="text" class="form-control" id="judul_resepsi"
                                             name="judul_resepsi"
-                                            value="{{ old('judul_resepsi', $data->judul_resepsi ?? $defaultJudulResepsi ) }}"
+                                            value="{{ old('judul_resepsi', $data->judul_resepsi ?? $defaultJudulResepsi) }}"
                                             placeholder="Masukkan judul resepsi">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_resepsi">Tanggal Resepsi<span class="mandatory">*</span></label>
                                         <input type="date" class="form-control" id="tgl_resepsi" name="tgl_resepsi"
                                             value="{{ $data->tgl_resepsi }}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="zona_waktu_resepsi">Zona Waktu <span
+                                                class="mandatory">*</span></label>
+                                        <select class="form-control" name="zona_waktu_resepsi" id="zona_waktu_resepsi">
+                                            <option value="0" disabled
+                                                {{ $data->zona_waktu_resepsi == 0 ? 'selected' : '' }}>--Pilih Zona Waktu--
+                                            </option>
+                                            @foreach ($zonaWaktuOptions as $key => $label)
+                                                <option value="{{ $key }}"
+                                                    {{ $data->zona_waktu_resepsi == $key ? 'selected' : '' }}>
+                                                    {{ $label }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="mulai_resepsi">Mulai Resepsi <span class="mandatory">*</span></label>
@@ -660,7 +677,7 @@
         </div>
     </div>
 
-{{-- 
+    {{-- 
     <!-- Button switches direct transfer !-->
     <script>
         $(document).ready(function() {

@@ -17,7 +17,6 @@ class WeddingDesign6 extends Model
 
     protected $fillable = [
         'banner_img',
-        'foto_prewedding',
         'music',
         'foto_mempelai_perempuan',
         'nama_mempelai_perempuan',
@@ -56,6 +55,8 @@ class WeddingDesign6 extends Model
         'deskripsi_penutup',
         'judul_akad',
         'judul_resepsi',
+        'zona_waktu_akad',
+        'zona_waktu_resepsi',
         'informasi_design6_id'
 
     ];

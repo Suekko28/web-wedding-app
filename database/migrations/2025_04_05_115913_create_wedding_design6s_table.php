@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create('wedding_design6', function (Blueprint $table) {
             $table->id();
             $table->string('banner_img');
-            $table->string('foto_prewedding');
             $table->string('music');
             $table->string('foto_mempelai_perempuan')->nullable();
             $table->string('nama_mempelai_perempuan');
@@ -52,6 +51,8 @@ return new class extends Migration {
             $table->string('link_streaming')->nullable();
             $table->string('judul_jadwal');
             $table->text('deskripsi_penutup');
+            $table->integer('zona_waktu_akad');
+            $table->integer('zona_waktu_resepsi');
             $table->unsignedBigInteger('informasi_design6_id');
             $table->foreign('informasi_design6_id')
                 ->references('id')
