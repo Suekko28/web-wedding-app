@@ -71,7 +71,7 @@
                         <p>Kepada Yth</p>
                         <p>Bapak/Ibu/Saudara/i</p>
                     </div>
-                    <h3>{{ $nama_undangan }}</h3>
+                    <h3>{{ $namaUndangan->nama_undangan }}</h3>
                     <button type="button" onclick="playAudio()" class="btn-primary" data-bs-dismiss="offcanvas">Buka
                         Undangan</button>
                 </div>
@@ -99,12 +99,16 @@
                 <a href="#kedua-mempelai">
                     <img src="{{ asset('img/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
-                <a href="#perjalanan-cinta">
-                    <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
-                </a>
-                <a href="#gallery">
-                    <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
-                </a>
+                @if ($data->PerjalananCintaDesign4->isNotEmpty())
+                    <a href="#perjalanan-cinta">
+                        <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
+                    </a>
+                @endif
+                @if (!empty($data) && !empty($data->quote_img))
+                    <a href="#gallery">
+                        <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
+                    </a>
+                @endif
                 <a href="#jadwal-pernikahan">
                     <img src="{{ asset('img/calendar-icon.svg') }}" alt="jadwal-pernikahan">
                 </a>
@@ -266,11 +270,11 @@
     @endif
     <!-- PERJALANAN CINTA END -->
 
-    <!-- Gallery -->
-    <section class="animation gallery" id="gallery">
-        <div class="anm_mod bottom-bit fast container-gallery">
-            <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
-            @if (!empty($data) && !empty($data->quote_img))
+    @if (!empty($data) && !empty($data->quote_img))
+        <!-- Gallery -->
+        <section class="animation gallery" id="gallery">
+            <div class="anm_mod bottom-bit fast container-gallery">
+                <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
                 <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
                     data-bs-ride="carousel">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -305,9 +309,9 @@
                         </div>
                     </div>
                 </div>
-            @endif
-        </div>
-    </section>
+            </div>
+        </section>
+    @endif
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->
@@ -444,11 +448,7 @@
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
                         <form id="algin-form" class="rsvp-mobile3" method="POST"
-                            action="{{ route('wedding-design4-post', [
-                                'nama_mempelai_laki' => $nama_mempelai_laki,
-                                'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
-                                'nama_undangan' => $nama_undangan,
-                            ]) }}">
+                            action="{{ route('wedding-design4-post', ['slug_nama_mempelai_laki' => $slug_nama_mempelai_laki, 'slug_nama_mempelai_perempuan' => $slug_nama_mempelai_perempuan, 'slug_nama_undangan' => $slug_nama_undangan]) }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
@@ -465,16 +465,12 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="kehadiran"
                                         id="flexRadioDefault1" value="1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Hadir
-                                    </label>
+                                    <label class="form-check-label" for="flexRadioDefault1">Hadir</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="kehadiran"
                                         id="flexRadioDefault2" checked value="0">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Tidak Hadir
-                                    </label>
+                                    <label class="form-check-label" for="flexRadioDefault2">Tidak Hadir</label>
                                 </div>
                             </div>
                             <div class="form-group">

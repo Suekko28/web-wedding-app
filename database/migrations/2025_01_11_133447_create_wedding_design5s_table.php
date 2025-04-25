@@ -27,8 +27,8 @@ return new class extends Migration {
             $table->string('putra_dari_ibu');
             $table->string('nama_instagram2')->nullable();
             $table->string('link_instagram2')->nullable();
-            $table->text('quote');
-            $table->text('quote_img');
+            $table->text('quote')->nullable();
+            $table->text('quote_img')->nullable();
             $table->string('akad_img')->nullable();
             $table->string('judul_akad')->nullable();
             $table->date('tgl_akad');

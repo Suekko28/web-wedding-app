@@ -99,12 +99,16 @@
                 <a href="#kedua-mempelai">
                     <img src="{{ asset('img/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
-                <a href="#perjalanan-cinta">
-                    <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
-                </a>
-                <a href="#gallery">
-                    <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
-                </a>
+                @if ($data->PerjalananCintaDesign4->isNotEmpty())
+                    <a href="#perjalanan-cinta">
+                        <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
+                    </a>
+                @endif
+                @if (!empty($data) && !empty($data->quote_img))
+                    <a href="#gallery">
+                        <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
+                    </a>
+                @endif
                 <a href="#jadwal-pernikahan">
                     <img src="{{ asset('img/calendar-icon.svg') }}" alt="jadwal-pernikahan">
                 </a>
@@ -266,11 +270,11 @@
     @endif
     <!-- PERJALANAN CINTA END -->
 
-    <!-- Gallery -->
-    <section class="animation gallery" id="gallery">
-        <div class="anm_mod bottom-bit fast container-gallery">
-            <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
-            @if (!empty($data) && !empty($data->quote_img))
+    @if (!empty($data) && !empty($data->quote_img))
+        <!-- Gallery -->
+        <section class="animation gallery" id="gallery">
+            <div class="anm_mod bottom-bit fast container-gallery">
+                <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
                 <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
                     data-bs-ride="carousel">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -305,9 +309,9 @@
                         </div>
                     </div>
                 </div>
-            @endif
-        </div>
-    </section>
+            </div>
+        </section>
+    @endif
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->

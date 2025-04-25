@@ -239,12 +239,14 @@
                                 <div class="form-group fs-3">
                                     <div class="row">
                                         <div class="col-sm-4 mb-3">
-                                            <label for="quote">Quoted <span class="mandatory">*</span></label>
+                                            <label for="quote">Quoted <span class="fst-italic">
+                                                    (Opsional)</span></label>
                                             <input type="text" class="form-control" id="quote" name="quote"
                                                 placeholder="Masukkan Quote" value="{{ old('quote') }}">
                                         </div>
                                         <div class="col-sm-4 mb-3">
-                                            <label for="quote_img">Upload Images <span class="mandatory">*</span></label>
+                                            <label for="quote_img">Upload Images <span class="fst-italic">
+                                                    (Opsional)</span></label>
                                             <input type="file" accept="image/*" class="form-control" id="quote_img"
                                                 name="quote_img[]" multiple>
                                         </div>
@@ -414,6 +416,21 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-body container bg-white">
+                                <div class="mempelai fw-bold fs-5 mb-4">Live Streaming</div>
+                                <div class="form-group fs-3">
+                                    <div class="row">
+                                        <div class="col-sm-4 mb-3">
+                                            <label for="link_streaming">Link Streaming<span class="fst-italic">
+                                                    (Opsional)</span></label>
+                                            <input type="text" class="form-control" id="link_streaming"
+                                                name="link_streaming" placeholder="Masukkan link"
+                                                value="{{ old('link_streaming') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <hr>
                             <div class="card-body container bg-white">
                                 <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>

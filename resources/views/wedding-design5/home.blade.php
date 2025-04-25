@@ -90,9 +90,11 @@
                 <a href="#kedua-mempelai">
                     <img src="{{ asset('img/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
-                <a href="#perjalanan-cinta">
-                    <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
-                </a>
+                @if ($data->PerjalananCintaDesign4->isNotEmpty())
+                    <a href="#perjalanan-cinta">
+                        <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
+                    </a>
+                @endif
                 <a href="#gallery">
                     <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
                 </a>

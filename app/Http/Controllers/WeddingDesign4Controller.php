@@ -13,6 +13,7 @@ use App\Models\PerjalananCintaDesign4;
 use App\Models\WeddingDesign4;
 use Illuminate\Http\Request;
 use Storage;
+use Str;
 
 class WeddingDesign4Controller extends Controller
 {
@@ -111,8 +112,12 @@ class WeddingDesign4Controller extends Controller
 
         if ($request->hasFile('akad_img')) {
             $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design4', $request->file(key: 'akad_img')->hashName());
+
         }
 
+        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
+        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
+            
         $data['informasi_design4_id'] = $informasiDesign4->id;
 
         WeddingDesign4::create($data);
@@ -264,6 +269,9 @@ class WeddingDesign4Controller extends Controller
             }
             $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design4', $request->file('akad_img')->hashName());
         }
+
+        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
+        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
 
         $weddingDesign4->update($data);
 
