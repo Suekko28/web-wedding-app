@@ -35,7 +35,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- CSS STYLE -->
-    <link href="{{ asset('css/wedding-Design7.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/wedding-esign7.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
@@ -431,8 +431,8 @@
                             </div>
                         </form>
                     </div>
-                    <div class="comment-list">
-                        @foreach ($alt7models as $item)
+                    @foreach ($alt7models as $item)
+                        <div class="comment-list">
                             <div class="card-comment">
                                 <div class="title">
                                     <div class="name">
@@ -451,86 +451,86 @@
                                 </div>
                                 <p>{!! $item->ucapan !!}</p>
                             </div>
-                        @endforeach
-                    </div>
+                    @endforeach
                 </div>
             </div>
-            @if ($data->DirectTransferDesign7->isNotEmpty() || $data->KirimHadiahDesign7->isNotEmpty())
-                <div class="kirim-hadiah anm_mod bottom-bit fast">
-                    <div class="info">
-                        <h3>Kirim Hadiah</h3>
-                        <p>Berikan hadiah kepada kedua mempelai</p>
-                    </div>
-
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        @if ($data->DirectTransferDesign7->isNotEmpty())
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-home" type="button" role="tab"
-                                    aria-controls="pills-home" aria-selected="true">Direct Transfer</button>
-                            </li>
-                        @endif
-                        @if ($data->KirimHadiahDesign7->isNotEmpty())
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link {{ $data->DirectTransferDesign7->isEmpty() ? 'active' : '' }}"
-                                    id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                                    type="button" role="tab" aria-controls="pills-profile"
-                                    aria-selected="{{ $data->DirectTransferDesign7->isEmpty() ? 'true' : 'false' }}">
-                                    Kirim Hadiah
-                                </button>
-                            </li>
-                        @endif
-                    </ul>
-
-                    <div class="tab-content" id="pills-tabContent">
-                        @if ($data->DirectTransferDesign7->isNotEmpty())
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                aria-labelledby="pills-home-tab">
-                                @foreach ($data->DirectTransferDesign7 as $index => $item)
-                                    <div class="card">
-                                        <div class="card-body">
-                                            @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
-                                                @if (!empty($item->bank))
-                                                    <h4 class="card-title">{{ $item->bank }}</h4>
-                                                @endif
-                                                <div class="info-norek">
-                                                    @if (!empty($item->no_rek))
-                                                        <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
-                                                    @endif
-                                                    <a id="btn-copy-{{ $index }}"
-                                                        onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
-                                                        title="Copy Text" class="btn-ghost">
-                                                        Copy
-                                                    </a>
-                                                </div>
-                                                @if (!empty($item->nama_rek))
-                                                    <p class="card-text">A/N {{ $item->nama_rek }}</p>
-                                                @endif
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-
-                        @if ($data->KirimHadiahDesign7->isNotEmpty())
-                            <div class="tab-pane fade {{ $data->DirectTransferDesign7->isEmpty() ? 'show active' : '' }}"
-                                id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                @foreach ($data->KirimHadiahDesign7 as $item)
-                                    <div class="card">
-                                        <div class="card-body">
-                                            @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
-                                                <h4 class="card-title">{{ $item->alamat }}</h4>
-                                                <p class="card-text">{{ $item->deskripsi_alamat }}</p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
+        </div>
+        @if ($data->DirectTransferDesign7->isNotEmpty() || $data->KirimHadiahDesign7->isNotEmpty())
+            <div class="kirim-hadiah anm_mod bottom-bit fast">
+                <div class="info">
+                    <h3>Kirim Hadiah</h3>
+                    <p>Berikan hadiah kepada kedua mempelai</p>
                 </div>
-            @endif
+
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    @if ($data->DirectTransferDesign7->isNotEmpty())
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-home" type="button" role="tab"
+                                aria-controls="pills-home" aria-selected="true">Direct Transfer</button>
+                        </li>
+                    @endif
+                    @if ($data->KirimHadiahDesign7->isNotEmpty())
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {{ $data->DirectTransferDesign7->isEmpty() ? 'active' : '' }}"
+                                id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                                type="button" role="tab" aria-controls="pills-profile"
+                                aria-selected="{{ $data->DirectTransferDesign7->isEmpty() ? 'true' : 'false' }}">
+                                Kirim Hadiah
+                            </button>
+                        </li>
+                    @endif
+                </ul>
+
+                <div class="tab-content" id="pills-tabContent">
+                    @if ($data->DirectTransferDesign7->isNotEmpty())
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                            aria-labelledby="pills-home-tab">
+                            @foreach ($data->DirectTransferDesign7 as $index => $item)
+                                <div class="card">
+                                    <div class="card-body">
+                                        @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
+                                            @if (!empty($item->bank))
+                                                <h4 class="card-title">{{ $item->bank }}</h4>
+                                            @endif
+                                            <div class="info-norek">
+                                                @if (!empty($item->no_rek))
+                                                    <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
+                                                @endif
+                                                <a id="btn-copy-{{ $index }}"
+                                                    onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
+                                                    title="Copy Text" class="btn-ghost">
+                                                    Copy
+                                                </a>
+                                            </div>
+                                            @if (!empty($item->nama_rek))
+                                                <p class="card-text">A/N {{ $item->nama_rek }}</p>
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if ($data->KirimHadiahDesign7->isNotEmpty())
+                        <div class="tab-pane fade {{ $data->DirectTransferDesign7->isEmpty() ? 'show active' : '' }}"
+                            id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            @foreach ($data->KirimHadiahDesign7 as $item)
+                                <div class="card">
+                                    <div class="card-body">
+                                        @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
+                                            <h4 class="card-title">{{ $item->alamat }}</h4>
+                                            <p class="card-text">{{ $item->deskripsi_alamat }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            </div>
+        @endif
         </div>
         </div>
     </section>

@@ -125,7 +125,6 @@
 
                 </div>
             </div>
-
             @foreach ($nama_undangan as $item)
                 <div class="modal fade manual-backdrop" id="exampleModalToggle{{ $item->id }}" tabindex="-1"
                     aria-labelledby="exampleModalToggleLabel{{ $item->id }}" aria-hidden="true">
@@ -142,19 +141,19 @@
                                 <div class="radio_group">
                                     <input type="radio" name="kehadiran" value="1" id="radio1{{ $item->id }}"
                                         data-nama-undangan="{{ $item->nama_undangan }}"
-                                        data-slug-nama-undangan ="{{$item->slug_nama_undangan}}"
+                                        data-slug-nama-undangan ="{{ $item->slug_nama_undangan }}"
                                         data-item-id="{{ $item->id }}">
                                     <label for="radio1{{ $item->id }}" class="radio_label">1</label>
 
                                     <input type="radio" name="kehadiran" value="2" id="radio2{{ $item->id }}"
                                         data-nama-undangan="{{ $item->nama_undangan }}"
-                                        data-slug-nama-undangan ="{{$item->slug_nama_undangan}}"
+                                        data-slug-nama-undangan ="{{ $item->slug_nama_undangan }}"
                                         data-item-id="{{ $item->id }}">
                                     <label for="radio2{{ $item->id }}" class="radio_label">2</label>
 
                                     <input type="radio" name="kehadiran" value="3" id="radio3{{ $item->id }}"
                                         data-nama-undangan="{{ $item->nama_undangan }}"
-                                        data-slug-nama-undangan ="{{$item->slug_nama_undangan}}"
+                                        data-slug-nama-undangan ="{{ $item->slug_nama_undangan }}"
                                         data-item-id="{{ $item->id }}">
                                     <label for="radio3{{ $item->id }}" class="radio_label">3</label>
                                 </div>
@@ -283,13 +282,13 @@
                 var itemId = this.getAttribute(
                     'nama_undangan-id'); // Corrected the attribute to 'nama_undangan-id'
                 Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
+                    title: 'Apakah kamu yakin?',
+                    text: "Data ini akan dihapus secara permanen!",
+                    icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
+                    confirmButtonColor: "#3086d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
+                    confirmButtonText: "Ya, Hapus!"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Replace the delete form action with the correct route and ID
@@ -297,10 +296,14 @@
                             "{{ route('nama-undangan.destroy4', ['id' => ':id']) }}".replace(':id',
                                 itemId);
                         document.getElementById('deleteForm').submit();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
+                        Swal.fire({
+                                title: 'Terhapus',
+                                text: "Data berhasil dihapus",
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }
+
                         );
                     }
                 });

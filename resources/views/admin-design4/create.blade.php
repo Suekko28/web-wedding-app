@@ -293,16 +293,13 @@
                                             <label for="zona_waktu_akad">Zona Waktu <span
                                                     class="mandatory">*</span></label>
                                             <select class="form-control" name="zona_waktu_akad" id="zona_waktu_akad">
-                                                <option value="0" selected>--Pilih Zona Waktu--</option>
-                                                <option value="1"
-                                                    {{ old('zona_waktu_akad') == '1' ? 'selected' : '' }}>
-                                                    WIB</option>
-                                                <option value="2"
-                                                    {{ old('zona_waktu_akad') == '2' ? 'selected' : '' }}>
-                                                    WIT</option>
-                                                <option value="3"
-                                                    {{ old('zona_waktu_akad') == '3' ? 'selected' : '' }}>
-                                                    WITA</option>
+                                                <option value="" disabled selected>--Pilih Zona Waktu--</option>
+                                                @foreach ($zonaWaktuOptions as $key => $label)
+                                                    <option value="{{ $key }}"
+                                                        {{ old('zona_waktu_akad') == $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-sm-4 mb-3">
@@ -365,16 +362,13 @@
                                                     class="mandatory">*</span></label>
                                             <select class="form-control" name="zona_waktu_resepsi"
                                                 id="zona_waktu_resepsi">
-                                                <option value="0" selected>--Pilih Zona Waktu--</option>
-                                                <option value="1"
-                                                    {{ old('zona_waktu_resepsi') == '1' ? 'selected' : '' }}>
-                                                    WIB</option>
-                                                <option value="2"
-                                                    {{ old('zona_waktu_resepsi') == '2' ? 'selected' : '' }}>
-                                                    WIT</option>
-                                                <option value="3"
-                                                    {{ old('zona_waktu_resepsi') == '3' ? 'selected' : '' }}>
-                                                    WITA</option>
+                                                <option value="" disabled selected>--Pilih Zona Waktu--</option>
+                                                @foreach ($zonaWaktuOptions as $key => $label)
+                                                    <option value="{{ $key }}"
+                                                        {{ old('zona_waktu_resepsi') == $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-sm-4 mb-3">

@@ -15,7 +15,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
         </script>
         <title>Undangan Digital Pernikahan & Hias Seserahan, Konsultasi Gratis!</title>
-        <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+        <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/design-5/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
         <!-- BOOTSTRAP 5 CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -30,7 +30,7 @@
 	<div class="overlayDoor"></div>
 	<div class="overlayContent">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-            <lottie-player class="animation-loading" src="{{ asset('img/loading.json') }}" background="transparent" speed="1" style="width: 96px; height: 96px" direction="1" mode="normal" loop autoplay></lottie-player>
+            <lottie-player class="animation-loading" src="{{ asset('img/design-5/loading.json') }}" background="transparent" speed="1" style="width: 96px; height: 96px" direction="1" mode="normal" loop autoplay></lottie-player>
 	</div>
 </div>
     <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
@@ -51,41 +51,41 @@
                 <h3>Nama Tamu</h3>
                 <button type="button" onclick="playAudio()" style="display:none" class="btn-primary" id="buttonPage" data-bs-dismiss="offcanvas">Buka Undangan</button>
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/cover-image.jpg') }}" alt="background">
+            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/design-5/cover-image.jpg') }}" alt="background">
         </div>
     </div>
     <audio loop id="track">
-        <source src="{{ asset('img/sweet.mp3') }}" type="audio/mpeg" />
+        <source src="{{ asset('img/design-5/sweet.mp3') }}" type="audio/mpeg" />
     </audio>
     <button class="btn-float">
-        <img id="play" onclick="toggleAudio()" src="{{ asset('img/sound-on.svg') }}" class="img-fluid" alt="Responsive image">
-        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/sound-off.svg') }}" class="img-fluid" alt="Responsive image">
+        <img id="play" onclick="toggleAudio()" src="{{ asset('img/design-5/sound-on.svg') }}" class="img-fluid" alt="Responsive image">
+        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/design-5/sound-off.svg') }}" class="img-fluid" alt="Responsive image">
     </button>
         <nav class="navigation">
             <ul>
                 <li>
                     <a href="#hero">
-                        <img src="{{ asset('img/home-icon.svg') }}" alt="hero">
+                        <img src="{{ asset('img/design-5/home-icon.svg') }}" alt="hero">
                     </a>
                     <a href="#kedua-mempelai">
-                        <img src="{{ asset('img/ring-icon.svg') }}" alt="kedua-mempelai">
+                        <img src="{{ asset('img/design-5/ring-icon.svg') }}" alt="kedua-mempelai">
                     </a>
                     <a href="#perjalanan-cinta">
-                        <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
+                        <img src="{{ asset('img/design-5/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
                     </a>
                     <a href="#gallery">
-                        <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
+                        <img src="{{ asset('img/design-5/gallery-icon.svg') }}" alt="gallery">
                     </a>
                     <a href="#jadwal-pernikahan">
-                        <img src="{{ asset('img/calendar-icon.svg') }}" alt="jadwal-pernikahan">
+                        <img src="{{ asset('img/design-5/calendar-icon.svg') }}" alt="jadwal-pernikahan">
                     </a>
                     <a href="#doa-ucapan">
-                        <img src="{{ asset('img/chat-icon.svg') }}" alt="doa-ucapan">
+                        <img src="{{ asset('img/design-5/chat-icon.svg') }}" alt="doa-ucapan">
                     </a>
                 </li>
             </ul>
         </nav>
-        <img class="background-template object-fit-cover" src="{{ asset('img/Sample-BG.jpg') }}" alt="background">
+        <img class="background-template object-fit-cover" src="{{ asset('img/design-5/Sample-BG.jpg') }}" alt="background">
     <!-- HERO -->
      <section class="hero mw-100" id="hero">
         </div>
@@ -132,7 +132,7 @@
     <section class="animation kedua-mempelai" id="kedua-mempelai">
         <div class="anm_mod bottom-bit fast mempelai-cover">
             <div class="mempelai-wanita">
-                <img class="anm_mod left fast mempelai-wanita-img" src="{{ asset('img/mempelai-wanita.jpg') }}" alt="Seserahan"> 
+                <img class="anm_mod left fast mempelai-wanita-img" src="{{ asset('img/design-5/mempelai-wanita.jpg') }}" alt="Seserahan"> 
                 <div class="anm_mod bottom fast detail-mempelai-wanita">
                     <div class="data-mempelai-wanita">
                         <span class="label">PENGANTIN WANITA</span>
@@ -140,7 +140,7 @@
                         <p>Anak dari Bapak Rudi dan Ibu Risma</p>
                     </div>
                     <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
-                        <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
+                        <img src="{{ asset('img/design-5/icon-instagram-black.svg') }}" alt="instagram">
                         <span>lili</span>
                     </a>
                 </div>
@@ -154,11 +154,11 @@
                         <p>Anak dari Bapak Budi dan Ibu Irma</p>
                     </div>
                     <a href="https://www.tokopedia.com/jejakkebahagiaan" target="_blank" class="btn-link">
-                        <img src="{{ asset('img/icon-instagram-black.svg') }}" alt="instagram">
+                        <img src="{{ asset('img/design-5/icon-instagram-black.svg') }}" alt="instagram">
                         <span>Ndaru</span>
                     </a>
                 </div>
-                <img class="anm_mod right fast mempelai-wanita-img" src="{{ asset('img/mempelai-pria.jpg') }}" alt="Seserahan">
+                <img class="anm_mod right fast mempelai-wanita-img" src="{{ asset('img/design-5/mempelai-pria.jpg') }}" alt="Seserahan">
             </div>
         </div>
     </section>
@@ -176,7 +176,7 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('img/mempelai-pria.jpg') }}" class="d-block story-img object-fit-cover" alt="story">
+                        <img src="{{ asset('img/design-5/mempelai-pria.jpg') }}" class="d-block story-img object-fit-cover" alt="story">
                         <div class="carousel-caption d-md-block">
                             <div class="story-detail">
                                 <span class="vertical-line"></span>
@@ -188,7 +188,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('img/mempelai-wanita.jpg') }}" class="d-block story-img object-fit-cover" alt="story">
+                        <img src="{{ asset('img/design-5/mempelai-wanita.jpg') }}" class="d-block story-img object-fit-cover" alt="story">
                         <div class="carousel-caption d-md-block">
                             <div class="story-detail">
                                 <span class="vertical-line"></span>
@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('img/mempelai-pria.jpg') }}" class="d-block story-img object-fit-cover" alt="story">
+                        <img src="{{ asset('img/design-5/mempelai-pria.jpg') }}" class="d-block story-img object-fit-cover" alt="story">
                         <div class="carousel-caption d-md-block">
                             <div class="story-detail">
                                 <span class="vertical-line"></span>
@@ -234,8 +234,8 @@
                     <div class="anm_mod bottom-bit fast quotes">
                         <div class="carousel-inner carousel-gallery">
                             <div class="carousel-item active">
-                                <a href="{{ asset('img/Sample-BG.jpg') }}" data-fancybox="gallery">
-                                    <img src="{{ asset('img/Sample-BG.jpg') }}" class="d-block w-100 h-100 object-fit-cover img-fluid" alt="Image Gallery">
+                                <a href="{{ asset('img/design-5/Sample-BG.jpg') }}" data-fancybox="gallery">
+                                    <img src="{{ asset('img/design-5/Sample-BG.jpg') }}" class="d-block w-100 h-100 object-fit-cover img-fluid" alt="Image Gallery">
                                 </a>
                             </div>
                             <div class="carousel-item">
@@ -271,25 +271,25 @@
      <section class="animation jadwal-pernikahan" id="jadwal-pernikahan">
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
             <h3 class="anm_mod bottom-bit fast">Jadwal Pernikahan</h3>
-            <img src="{{ asset('img/mempelai-wanita.jpg') }}" class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
+            <img src="{{ asset('img/design-5/mempelai-wanita.jpg') }}" class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
                     <h3>Akad<h3>
                     <div class="detail">
                         <div class="info">
-                            <img src="{{ asset('img/calendar-icon-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/calendar-icon-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">Sabtu, 4 Mei 2024</span>
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/clock-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">10.00 - 12.00 WIB</span>
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/location-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/location-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">Masjid Salman Al-Farisi</span>
                                 <p>Jl. Komp. Bulog Jl. H. Ten Raya No.14 7 14, RT.14/RW.7, Kayu Putih,Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta</p>
@@ -306,19 +306,19 @@
                     <h3>Resepsi<h3>
                     <div class="detail">
                         <div class="info">
-                            <img src="{{ asset('img/calendar-icon-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/calendar-icon-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">Sabtu, 4 Mei 2024</span>
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/clock-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">10.00 - 12.00 WIB</span>
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/location-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/location-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">Masjid Salman Al-Farisi</span>
                                 <p>Jl. Komp. Bulog Jl. H. Ten Raya No.14 7 14, RT.14/RW.7, Kayu Putih,Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta</p>
@@ -393,7 +393,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Jhon Doe</h4>
-                                    <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-5/hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 October, 2018 | 20:00 WIB</span>
                             </div>
@@ -403,7 +403,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-5/tidak-hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
@@ -413,7 +413,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-5/tidak-hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
@@ -423,7 +423,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-5/tidak-hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
@@ -501,19 +501,19 @@
         <div class="follow-us">
             <p>Powered By</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:32px" src="{{ asset('img/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
+                <img style="height:32px" src="{{ asset('img/design-5/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
             </a>
         </div>
         <div class="follow-us">
             <p>Follow Us</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:24px" src="{{ asset('img/icon-facebook.svg') }}" alt="Facebook">
+                <img style="height:24px" src="{{ asset('img/design-5/icon-facebook.svg') }}" alt="Facebook">
             </a>
             <a href="https://www.instagram.com/jejakkebahagiaan/" target="_blank">
-                <img style="height:24px" src="{{ asset('img/icon-instagram.svg') }}" alt="Instagram">
+                <img style="height:24px" src="{{ asset('img/design-5/icon-instagram.svg') }}" alt="Instagram">
             </a>
             <a href="https://www.tiktok.com/@jejakkebahagiaan?_t=8pjtPh8o2JL&_r=1" target="_blank">
-                <img style="height:24px" src="{{ asset('img/icon-tiktok.svg') }}" alt="Tiktok">
+                <img style="height:24px" src="{{ asset('img/design-5/icon-tiktok.svg') }}" alt="Tiktok">
             </a>
         </div>
      </section>

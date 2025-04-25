@@ -38,11 +38,11 @@ class WeddingDesign4FormRequest extends FormRequest
             'judul_akad' => ['nullable', 'max:255'],
             'lokasi_akad' => ['required', 'string', 'max:255'],
             'deskripsi_akad' => ['string'],
-            'simpan_tgl_akad' => ['required', 'string',],
+            'simpan_tgl_akad' => ['required', 'string','max:350'],
             'judul_resepsi' => ['nullable', 'max:255'],
             'lokasi_resepsi' => ['required', 'string', 'max:255'],
             'deskripsi_resepsi' => ['string'],
-            'simpan_tgl_resepsi' => ['required', 'string'],
+            'simpan_tgl_resepsi' => ['required', 'string','max:350'],
             'link_streaming' => ['nullable', 'max:255'],
             'informasi_design4_id' => ['required', 'exists:informasi_design4,id'],
             'tgl_akad' => ['required', 'date'],
@@ -52,6 +52,8 @@ class WeddingDesign4FormRequest extends FormRequest
             'mulai_resepsi' => ['required', 'date_format:H:i'],
             'selesai_resepsi' => ['required', 'date_format:H:i'],
             'judul_jadwal' => ['required', 'max:255'],
+            'zona_waktu_akad' => ['required'],
+            'zona_waktu_resepsi' => ['required'],
 
         ];
 

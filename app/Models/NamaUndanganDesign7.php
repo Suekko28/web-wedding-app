@@ -14,6 +14,7 @@ class NamaUndanganDesign7 extends Model
 
     protected $fillable = [
         'nama_undangan',
+        'slug_nama_undangan',
         'wedding_design7_id',
     ];
     public function weddingDesign7(): BelongsTo

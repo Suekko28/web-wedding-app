@@ -37,8 +37,7 @@
     <!-- CSS STYLE -->
     <link href="{{ asset('css/wedding-design6.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
-    <link rel="shortcut icon" type="image/svg+xml"
-        href="{{ asset('img/design-6/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
 </head>
 
@@ -76,7 +75,7 @@
                         <p>Kepada Yth</p>
                         <p>Bapak/Ibu/Saudara/i</p>
                     </div>
-                    <h3>{{ $nama_undangan }}</h3>
+                    <h3>{{ $namaUndangan->nama_undangan }}</h3>
                     <button type="button" onclick="playAudio()" style="display:none" class="btn-primary"
                         id="buttonPage" data-bs-dismiss="offcanvas">Buka Undangan</button>
                 </div>
@@ -269,8 +268,8 @@
             @endif
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
-                    @if (!empty($data->judul_resepsi))
-                        <h3>{{ $data->judul_resepsi }}<h3>
+                    @if (!empty($data->judul_akad))
+                        <h3>{{ $data->judul_akad }}<h3>
                     @endif
                     <div class="detail">
                         <div class="info">
@@ -315,47 +314,49 @@
                 </div>
                 <span class="vertical-line"></span>
                 <div class="anm_mod right fast jadwal-detail">
-                    <h3>Resepsi<h3>
-                            <div class="detail">
-                                <div class="info">
-                                    <img src="{{ asset('img/design-6/calendar-icon.svg') }}" alt="calendar">
-                                    <div class="detail-info">
-                                        <span
-                                            class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
-                                    </div>
-                                </div>
-                                <div class="info">
-                                    <img src="{{ asset('img/design-6/clock-icon.svg') }}" alt="calendar">
-                                    <div class="detail-info">
-                                        <span class="label">
-                                            {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
-                                            {{ \Carbon\Carbon::parse($data->selesai_resepsi)->format('H:i') }}
-                                            @if ($data->zona_waktu_resepsi == 1)
-                                                WIB
-                                            @elseif ($data->zona_waktu_resepsi == 2)
-                                                WIT
-                                            @elseif ($data->zona_waktu_resepsi == 3)
-                                                WITA
-                                            @else
-                                                -
-                                            @endif
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="info">
-                                    <img src="{{ asset('img/design-6/location-icon.svg') }}" alt="calendar">
-                                    <div class="detail-info">
-                                        <span class="label">{{ $data->lokasi_resepsi }}</span>
-                                        <p>{{ $data->deskripsi_resepsi }}</p>
-                                    </div>
-                                </div>
+                    @if (!empty($data->judul_resepsi))
+                        <h3>{{ $data->judul_resepsi }}<h3>
+                    @endif
+                    <div class="detail">
+                        <div class="info">
+                            <img src="{{ asset('img/design-6/calendar-icon.svg') }}" alt="calendar">
+                            <div class="detail-info">
+                                <span
+                                    class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                             </div>
-                            <div class="button-button">
-                                <a type="button" target="_blank" href="{{ $data->link_resepsi }}"
-                                    class="btn-secondary">Lihat Lokasi</a>
-                                <a type="button" target="_blank" href="{{ $data->simpan_tgl_resepsi }}"
-                                    class="btn-primary">Simpan Tanggal</a>
+                        </div>
+                        <div class="info">
+                            <img src="{{ asset('img/design-6/clock-icon.svg') }}" alt="calendar">
+                            <div class="detail-info">
+                                <span class="label">
+                                    {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
+                                    {{ \Carbon\Carbon::parse($data->selesai_resepsi)->format('H:i') }}
+                                    @if ($data->zona_waktu_resepsi == 1)
+                                        WIB
+                                    @elseif ($data->zona_waktu_resepsi == 2)
+                                        WIT
+                                    @elseif ($data->zona_waktu_resepsi == 3)
+                                        WITA
+                                    @else
+                                        -
+                                    @endif
+                                </span>
                             </div>
+                        </div>
+                        <div class="info">
+                            <img src="{{ asset('img/design-6/location-icon.svg') }}" alt="calendar">
+                            <div class="detail-info">
+                                <span class="label">{{ $data->lokasi_resepsi }}</span>
+                                <p>{{ $data->deskripsi_resepsi }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-button">
+                        <a type="button" target="_blank" href="{{ $data->link_resepsi }}"
+                            class="btn-secondary">Lihat Lokasi</a>
+                        <a type="button" target="_blank" href="{{ $data->simpan_tgl_resepsi }}"
+                            class="btn-primary">Simpan Tanggal</a>
+                    </div>
                 </div>
             </div>
             @if (!empty($data->link_streaming))
@@ -392,11 +393,7 @@
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
                         <form id="algin-form" class="rsvp-mobile3" method="POST"
-                            action="{{ route('wedding-design6-post', [
-                                'nama_mempelai_laki' => $nama_mempelai_laki,
-                                'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
-                                'nama_undangan' => $nama_undangan,
-                            ]) }}">
+                            action="{{ route('wedding-design6-post', ['slug_nama_mempelai_laki' => $slug_nama_mempelai_laki, 'slug_nama_mempelai_perempuan' => $slug_nama_mempelai_perempuan, 'slug_nama_undangan' => $slug_nama_undangan]) }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
@@ -413,16 +410,12 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="kehadiran"
                                         id="flexRadioDefault1" value="1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Hadir
-                                    </label>
+                                    <label class="form-check-label" for="flexRadioDefault1">Hadir</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="kehadiran"
                                         id="flexRadioDefault2" checked value="0">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Tidak Hadir
-                                    </label>
+                                    <label class="form-check-label" for="flexRadioDefault2">Tidak Hadir</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -430,8 +423,8 @@
                             </div>
                         </form>
                     </div>
-                    <div class="comment-list">
-                        @foreach ($alt6models as $item)
+                    @foreach ($alt6models as $item)
+                        <div class="comment-list">
                             <div class="card-comment">
                                 <div class="title">
                                     <div class="name">
@@ -450,86 +443,86 @@
                                 </div>
                                 <p>{!! $item->ucapan !!}</p>
                             </div>
-                        @endforeach
-                    </div>
+                    @endforeach
                 </div>
             </div>
-            @if ($data->DirectTransferDesign6->isNotEmpty() || $data->KirimHadiahDesign6->isNotEmpty())
-                <div class="kirim-hadiah anm_mod bottom-bit fast">
-                    <div class="info">
-                        <h3>Kirim Hadiah</h3>
-                        <p>Berikan hadiah kepada kedua mempelai</p>
-                    </div>
-
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        @if ($data->DirectTransferDesign6->isNotEmpty())
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-home" type="button" role="tab"
-                                    aria-controls="pills-home" aria-selected="true">Direct Transfer</button>
-                            </li>
-                        @endif
-                        @if ($data->KirimHadiahDesign6->isNotEmpty())
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link {{ $data->DirectTransferDesign6->isEmpty() ? 'active' : '' }}"
-                                    id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                                    type="button" role="tab" aria-controls="pills-profile"
-                                    aria-selected="{{ $data->DirectTransferDesign6->isEmpty() ? 'true' : 'false' }}">
-                                    Kirim Hadiah
-                                </button>
-                            </li>
-                        @endif
-                    </ul>
-
-                    <div class="tab-content" id="pills-tabContent">
-                        @if ($data->DirectTransferDesign6->isNotEmpty())
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                aria-labelledby="pills-home-tab">
-                                @foreach ($data->DirectTransferDesign6 as $index => $item)
-                                    <div class="card">
-                                        <div class="card-body">
-                                            @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
-                                                @if (!empty($item->bank))
-                                                    <h4 class="card-title">{{ $item->bank }}</h4>
-                                                @endif
-                                                <div class="info-norek">
-                                                    @if (!empty($item->no_rek))
-                                                        <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
-                                                    @endif
-                                                    <a id="btn-copy-{{ $index }}"
-                                                        onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
-                                                        title="Copy Text" class="btn-ghost">
-                                                        Copy
-                                                    </a>
-                                                </div>
-                                                @if (!empty($item->nama_rek))
-                                                    <p class="card-text">A/N {{ $item->nama_rek }}</p>
-                                                @endif
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-
-                        @if ($data->KirimHadiahDesign6->isNotEmpty())
-                            <div class="tab-pane fade {{ $data->DirectTransferDesign6->isEmpty() ? 'show active' : '' }}"
-                                id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                @foreach ($data->KirimHadiahDesign6 as $item)
-                                    <div class="card">
-                                        <div class="card-body">
-                                            @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
-                                                <h4 class="card-title">{{ $item->alamat }}</h4>
-                                                <p class="card-text">{{ $item->deskripsi_alamat }}</p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
+        </div>
+        @if ($data->DirectTransferDesign6->isNotEmpty() || $data->KirimHadiahDesign6->isNotEmpty())
+            <div class="kirim-hadiah anm_mod bottom-bit fast">
+                <div class="info">
+                    <h3>Kirim Hadiah</h3>
+                    <p>Berikan hadiah kepada kedua mempelai</p>
                 </div>
-            @endif
+
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    @if ($data->DirectTransferDesign6->isNotEmpty())
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-home" type="button" role="tab"
+                                aria-controls="pills-home" aria-selected="true">Direct Transfer</button>
+                        </li>
+                    @endif
+                    @if ($data->KirimHadiahDesign6->isNotEmpty())
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {{ $data->DirectTransferDesign6->isEmpty() ? 'active' : '' }}"
+                                id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                                type="button" role="tab" aria-controls="pills-profile"
+                                aria-selected="{{ $data->DirectTransferDesign6->isEmpty() ? 'true' : 'false' }}">
+                                Kirim Hadiah
+                            </button>
+                        </li>
+                    @endif
+                </ul>
+
+                <div class="tab-content" id="pills-tabContent">
+                    @if ($data->DirectTransferDesign6->isNotEmpty())
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                            aria-labelledby="pills-home-tab">
+                            @foreach ($data->DirectTransferDesign6 as $index => $item)
+                                <div class="card">
+                                    <div class="card-body">
+                                        @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
+                                            @if (!empty($item->bank))
+                                                <h4 class="card-title">{{ $item->bank }}</h4>
+                                            @endif
+                                            <div class="info-norek">
+                                                @if (!empty($item->no_rek))
+                                                    <p id="norek-{{ $index }}">{{ $item->no_rek }}</p>
+                                                @endif
+                                                <a id="btn-copy-{{ $index }}"
+                                                    onclick="copyText('norek-{{ $index }}', 'btn-copy-{{ $index }}');"
+                                                    title="Copy Text" class="btn-ghost">
+                                                    Copy
+                                                </a>
+                                            </div>
+                                            @if (!empty($item->nama_rek))
+                                                <p class="card-text">A/N {{ $item->nama_rek }}</p>
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if ($data->KirimHadiahDesign6->isNotEmpty())
+                        <div class="tab-pane fade {{ $data->DirectTransferDesign6->isEmpty() ? 'show active' : '' }}"
+                            id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            @foreach ($data->KirimHadiahDesign6 as $item)
+                                <div class="card">
+                                    <div class="card-body">
+                                        @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
+                                            <h4 class="card-title">{{ $item->alamat }}</h4>
+                                            <p class="card-text">{{ $item->deskripsi_alamat }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            </div>
+        @endif
         </div>
         </div>
     </section>
@@ -542,7 +535,7 @@
             <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
                 {{ $data->nama_mempelai_laki }}</h3>
         </div>
-        <img class="ending-background object-fit-cover" src="{{ asset('img/design-6/element-7.svg') }}"
+        <img class="ending-background object-fit-cover" src="{{ asset('img/design-6/element-4.svg') }}"
             alt="background">
     </section>
     <!-- ENDING END -->

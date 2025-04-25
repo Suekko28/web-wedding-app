@@ -13,6 +13,7 @@ use App\Models\PerjalananCintaDesign6;
 use App\Models\WeddingDesign6;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Str;
 
 class WeddingDesign6Controller extends Controller
 {
@@ -114,6 +115,8 @@ class WeddingDesign6Controller extends Controller
             $data['image_cinta'] = json_encode($cintaImagesPaths); // Store paths as a JSON array or adjust according to your needs
         }
 
+        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
+        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
         $data['informasi_design6_id'] = $informasiDesign6->id;
 
         WeddingDesign6::create($data);
@@ -256,6 +259,9 @@ class WeddingDesign6Controller extends Controller
 
             $data['image_cinta'] = json_encode($cintaImagesPaths);
         }
+
+        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
+        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
 
         $weddingDesign6->update($data);
 

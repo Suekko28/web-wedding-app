@@ -6,6 +6,7 @@ use App\Models\NamaUndanganDesign6;
 use App\Models\WeddingDesign6;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Str;
 
 class NamaUndanganDesign6Controller extends Controller
 {
@@ -66,8 +67,11 @@ class NamaUndanganDesign6Controller extends Controller
         foreach ($nama_undangans as $nama_undangan) {
             $nama_undangan = trim($nama_undangan);
 
+            $slug_nama_undangan = Str::slug($nama_undangan);
+
             $data = [
                 'nama_undangan' => $nama_undangan,
+                'slug_nama_undangan' => $slug_nama_undangan,
             ];
 
             // Buat instance NamaUndangan
@@ -117,16 +121,24 @@ class NamaUndanganDesign6Controller extends Controller
      */
     public function update(Request $request, string $weddingDesign6Id, string $id)
     {
-        // Mendapatkan instance NamaUndangan berdasarkan ID
+        $messages = [
+            'required' => 'Kolom :attribute harus diisi.',
+            'string' => 'Kolom :attribute harus berupa teks.',
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'nama_undangan' => 'required|string',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $nama_undangan = NamaUndanganDesign6::findOrFail($id);
-
-        // Update nama undangan
         $nama_undangan->nama_undangan = $request->nama_undangan;
-
-        // Simpan perubahan
+        $nama_undangan->slug_nama_undangan = Str::slug($request->nama_undangan);
         $nama_undangan->save();
 
-        // Redirect ke halaman list dengan pesan sukses
         return redirect()->route('nama-undangan-list6', $weddingDesign6Id)->with('success', 'Berhasil memperbarui data');
     }
     /**

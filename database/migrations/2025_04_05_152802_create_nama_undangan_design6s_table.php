@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('nama_undangan_design6', function (Blueprint $table) {
             $table->id();
             $table->text('nama_undangan');
+            $table->string('slug_nama_undangan');
             $table->unsignedBigInteger('wedding_design6_id');
             $table->foreign('wedding_design6_id')
             ->references('id')

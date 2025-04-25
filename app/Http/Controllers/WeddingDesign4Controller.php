@@ -117,7 +117,7 @@ class WeddingDesign4Controller extends Controller
 
         $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
         $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
-            
+
         $data['informasi_design4_id'] = $informasiDesign4->id;
 
         WeddingDesign4::create($data);
@@ -149,6 +149,12 @@ class WeddingDesign4Controller extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
+        $zonaWaktuOptions = [
+            1 => 'WIB',
+            2 => 'WIT',
+            3 => 'WITA',
+        ];
+
         // Pass all the necessary data to the view
         return view('admin-design4.show', [
             'data' => $data,
@@ -156,7 +162,9 @@ class WeddingDesign4Controller extends Controller
             'dataPerjalananCinta' => $dataPerjalananCinta,
             'dataDirectTransfer' => $dataDirectTransfer,
             'dataKirimHadiah' => $dataKirimHadiah,
-            'nama_undangan' => $nama_undangan
+            'nama_undangan' => $nama_undangan,
+            'zonaWaktuOptions' => $zonaWaktuOptions
+
         ]);
     }
 

@@ -46,7 +46,7 @@
         <div class="overlayDoor"></div>
         <div class="overlayContent">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-            <lottie-player class="animation-loading" src="{{ asset('img/loading.json') }}" background="transparent"
+            <lottie-player class="animation-loading" src="{{ asset('img/design-5/loading.json') }}" background="transparent"
                 speed="1" style="width: 96px; height: 96px" direction="1" mode="normal" loop
                 autoplay></lottie-player>
         </div>
@@ -78,33 +78,35 @@
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
     <button class="btn-float">
-        <img id="play" onclick="toggleAudio()" src="{{ asset('img/sound-on.svg') }}" class="img-fluid"
+        <img id="play" onclick="toggleAudio()" src="{{ asset('img/design-5/sound-on.svg') }}" class="img-fluid"
             alt="Responsive image">
-        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/sound-off.svg') }}" class="img-fluid"
+        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/design-5/sound-off.svg') }}" class="img-fluid"
             alt="Responsive image">
     </button>
     <nav class="navigation">
         <ul>
             <li>
                 <a href="#hero">
-                    <img src="{{ asset('img/home-icon.svg') }}" alt="hero">
+                    <img src="{{ asset('img/design-5/home-icon.svg') }}" alt="hero">
                 </a>
                 <a href="#kedua-mempelai">
-                    <img src="{{ asset('img/ring-icon.svg') }}" alt="kedua-mempelai">
+                    <img src="{{ asset('img/design-5/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
-                @if ($data->PerjalananCintaDesign4->isNotEmpty())
+                @if ($data->PerjalananCintaDesign5->isNotEmpty())
                     <a href="#perjalanan-cinta">
-                        <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
+                        <img src="{{ asset('img/design-5/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
                     </a>
                 @endif
-                <a href="#gallery">
-                    <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
-                </a>
+                @if (!empty($data->quote) && !empty($data->quote_img))
+                    <a href="#gallery">
+                        <img src="{{ asset('img/design-5/gallery-icon.svg') }}" alt="gallery">
+                    </a>
+                @endif
                 <a href="#jadwal-pernikahan">
-                    <img src="{{ asset('img/calendar-icon.svg') }}" alt="jadwal-pernikahan">
+                    <img src="{{ asset('img/design-5/calendar-icon.svg') }}" alt="jadwal-pernikahan">
                 </a>
                 <a href="#doa-ucapan">
-                    <img src="{{ asset('img/chat-icon.svg') }}" alt="doa-ucapan">
+                    <img src="{{ asset('img/design-5/chat-icon.svg') }}" alt="doa-ucapan">
                 </a>
             </li>
         </ul>
@@ -182,7 +184,7 @@
                     </div>
                     @if (!empty($data->link_instagram1 && $data->nama_instagram1))
                         <a href="{{ $data->link_instagram1 }}" target="_blank" class="btn-link">
-                            <img src="{{ asset('img/instagram-logo.svg') }}" alt="instagram">
+                            <img src="{{ asset('img/design-5/instagram-logo.svg') }}" alt="instagram">
                             <span>{{ $data->nama_instagram1 }}</span>
                         </a>
                     @endif
@@ -198,7 +200,7 @@
                     </div>
                     @if (!empty($data->link_instagram2 && $data->link_instagram2))
                         <a href="{{ $data->link_instagram2 }}" target="_blank" class="btn-link">
-                            <img src="{{ asset('img/instagram-logo.svg') }}" alt="instagram">
+                            <img src="{{ asset('img/design-5/instagram-logo.svg') }}" alt="instagram">
                             <span>{{ $data->nama_instagram2 }}</span>
                         </a>
                     @endif
@@ -262,10 +264,10 @@
     <!-- PERJALANAN CINTA END -->
 
     <!-- Gallery -->
-    <section class="animation gallery" id="gallery">
-        <div class="anm_mod bottom-bit fast container-gallery">
-            <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
-            @if (!empty($data) && !empty($data->quote_img))
+    @if (!empty($data->quote) && !empty($data->quote_img))
+        <section class="animation gallery" id="gallery">
+            <div class="anm_mod bottom-bit fast container-gallery">
+                <h3 class="anm_mod bottom-bit fast">Moment Kami</h3>
                 <div id="anm_mod bottom-bit fast carouselExampleIndicators" class="carousel slide"
                     data-bs-ride="carousel">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -300,9 +302,9 @@
                         </div>
                     </div>
                 </div>
-            @endif
-        </div>
-    </section>
+            </div>
+        </section>
+    @endif
     <!-- GALLERY END -->
 
     <!-- JADWAL PERNIKAHAN -->
@@ -321,14 +323,14 @@
                     @endif
                     <div class="detail">
                         <div class="info">
-                            <img src="{{ asset('img/calendar-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/calendar-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span
                                     class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/clock-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">
                                     {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} -
@@ -346,7 +348,7 @@
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/location-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/location-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">{{ $data->lokasi_akad }}</span>
                                 <p>{{ $data->deskripsi_akad }}</p>
@@ -367,14 +369,14 @@
                     @endif
                     <div class="detail">
                         <div class="info">
-                            <img src="{{ asset('img/calendar-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/calendar-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span
                                     class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/clock-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/clock-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">
                                     {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
@@ -392,7 +394,7 @@
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/location-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/location-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">{{ $data->lokasi_resepsi }}</span>
                                 <p>{{ $data->deskripsi_resepsi }}</p>
@@ -478,7 +480,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Jhon Doe</h4>
-                                    <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-5/hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 October, 2018 | 20:00 WIB</span>
                             </div>
@@ -489,7 +491,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-5/tidak-hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
@@ -500,7 +502,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-5/tidak-hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
@@ -511,7 +513,7 @@
                             <div class="title">
                                 <div class="name">
                                     <h4>Paul</h4>
-                                    <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="hadir">
+                                    <img src="{{ asset('img/design-5/tidak-hadir-icon.svg') }}" alt="hadir">
                                 </div>
                                 <span class="label">20 Oktober, 2018 | 20:00 WIB</span>
                             </div>
@@ -617,19 +619,19 @@
         <div class="follow-us">
             <p>Powered By</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:32px" src="{{ asset('img/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
+                <img style="height:32px" src="{{ asset('img/design-5/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
             </a>
         </div>
         <div class="follow-us">
             <p>Follow Us</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:25px" src="{{ asset('img/icon-facebook.svg') }}" alt="Facebook">
+                <img style="height:25px" src="{{ asset('img/design-5/icon-facebook.svg') }}" alt="Facebook">
             </a>
             <a href="https://www.instagram.com/jejakkebahagiaan/" target="_blank">
-                <img style="height:25px" src="{{ asset('img/icon-instagram.svg') }}" alt="Instagram">
+                <img style="height:25px" src="{{ asset('img/design-5/icon-instagram.svg') }}" alt="Instagram">
             </a>
             <a href="https://www.tiktok.com/@jejakkebahagiaan?_t=8pjtPh8o2JL&_r=1" target="_blank">
-                <img style="height:25px" src="{{ asset('img/icon-tiktok.svg') }}" alt="Tiktok">
+                <img style="height:25px" src="{{ asset('img/design-5/icon-tiktok.svg') }}" alt="Tiktok">
             </a>
         </div>
     </section>

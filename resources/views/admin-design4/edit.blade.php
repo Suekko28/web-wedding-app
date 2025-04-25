@@ -305,7 +305,7 @@
                                         <label for="judul_jadwal">Judul<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul_jadwal" name="judul_jadwal"
                                             placeholder="Judul ucapan pembuka"
-                                            value="{{ old('judul', $defaultJudulJadwal) }}">
+                                            value="{{ old('judul', $data->judul_jadwal ?? $defaultJudulJadwal) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="akad_img">Upload Image <span class="fst-italic">
@@ -331,7 +331,7 @@
                                         <label for="judul_akad">Judul Akad <span class="fst-italic">
                                                 (Opsional)</span></label>
                                         <input type="text" class="form-control" id="judul_akad" name="judul_akad"
-                                            value="{{ old('judul_akad', $defaultJudulAkad) }}"
+                                            value="{{ old('judul_akad', $data->judul_akad ?? $defaultJudulAkad) }}"
                                             placeholder="Masukkan judul akad">
                                     </div>
                                     <div class="col-sm-4 mb-3">
@@ -397,7 +397,8 @@
                                         <label for="judul_resepsi">Judul Resepsi <span class="fst-italic">
                                                 (Opsional)</span></label>
                                         <input type="text" class="form-control" id="judul_resepsi"
-                                            name="judul_resepsi" value="{{ old('judul_resepsi', $defaultJudulResepsi) }}"
+                                            name="judul_resepsi"
+                                            value="{{ old('judul_resepsi', $data->judul_resepsi ?? $defaultJudulResepsi) }}"
                                             placeholder="Masukkan judul resepsi">
                                     </div>
                                     <div class="col-sm-4 mb-3">

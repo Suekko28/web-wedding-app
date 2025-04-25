@@ -9,60 +9,67 @@ use Illuminate\Http\Request;
 
 class HomeDesign7Controller extends Controller
 {
-    public function store(UcapanDesign7FormRequest $request, $nama_mempelai_laki, $nama_mempelai_perempuan, $nama_undangan)
+    public function store(UcapanDesign7FormRequest $request, $slug_nama_mempelai_laki, $slug_nama_mempelai_perempuan, $slug_nama_undangan)
     {
-        // Temukan undangan berdasarkan nama_mempelai_laki, nama_mempelai_perempuan, dan nama_undangan
-        $undanganAlt7 = WeddingDesign7::where('nama_mempelai_laki', $nama_mempelai_laki)
-            ->where('nama_mempelai_perempuan', $nama_mempelai_perempuan)
-            ->whereHas('namaUndangan', function ($query) use ($nama_undangan) {
-                $query->where('nama_undangan', $nama_undangan);
+        $undanganAlt7 = WeddingDesign7::where('slug_nama_mempelai_laki', $slug_nama_mempelai_laki)
+            ->where('slug_nama_mempelai_perempuan', $slug_nama_mempelai_perempuan)
+            ->whereHas('namaUndangan', function ($query) use ($slug_nama_undangan) {
+                $query->where('slug_nama_undangan', $slug_nama_undangan);
             })
             ->firstOrFail();
 
-        // Buat instance baru dari alt7Model dan isi dengan data yang diberikan
+        // Create and save the new UcapanDesign7 model
         $alt7Model = new UcapanDesign7();
         $alt7Model->fill($request->validated());
-
-        // Simpan alt7Model ke dalam relasi undanganAlt7$undanganAlt7RSVP pada undanganAlt7$undanganAlt7 yang sesuai
         $undanganAlt7->alt7Models()->save($alt7Model);
 
+        // For normal redirect
         return redirect()->route('wedding-design7-home', [
-            'nama_mempelai_laki' => $nama_mempelai_laki,
-            'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
-            'nama_undangan' => $nama_undangan,
+            'slug_nama_mempelai_laki' => $slug_nama_mempelai_laki,
+            'slug_nama_mempelai_perempuan' => $slug_nama_mempelai_perempuan,
+            'slug_nama_undangan' => $slug_nama_undangan,
         ])->with('success', 'Berhasil menambahkan doa ucapan')
             ->with('hide_offcanvas', true)
-            ->with('activeTab', 'pills-home'); // Menyimpan tab yang aktif (misalnya pills-home)
-
+            ->with('activeTab', 'pills-home');
     }
-    public function show($nama_mempelai_laki, $nama_mempelai_perempuan)
+
+    public function show($slug_nama_mempelai_laki, $slug_nama_mempelai_perempuan)
     {
-        $data = WeddingDesign7::where('nama_mempelai_laki', $nama_mempelai_laki)
-            ->where('nama_mempelai_perempuan', $nama_mempelai_perempuan)
+        $data = WeddingDesign7::where('slug_nama_mempelai_laki', $slug_nama_mempelai_laki)
+            ->where('slug_nama_mempelai_perempuan', $slug_nama_mempelai_perempuan)
             ->firstOrFail();
 
         return view('admin-design7.home-design7', compact('data'));
-
     }
 
-    public function showDetail(string $nama_mempelai_laki, string $nama_mempelai_perempuan, string $nama_undangan)
+    public function showDetail(string $slug_nama_mempelai_laki, string $slug_nama_mempelai_perempuan, string $slug_nama_undangan)
     {
-        $data = WeddingDesign7::where('nama_mempelai_laki', $nama_mempelai_laki)
-            ->where('nama_mempelai_perempuan', $nama_mempelai_perempuan)
-            ->whereHas('namaUndangan', function ($query) use ($nama_undangan) {
-                $query->where('nama_undangan', $nama_undangan);
+        $data = WeddingDesign7::where('slug_nama_mempelai_laki', $slug_nama_mempelai_laki)
+            ->where('slug_nama_mempelai_perempuan', $slug_nama_mempelai_perempuan)
+            ->whereHas('namaUndangan', function ($query) use ($slug_nama_undangan) {
+                $query->where('slug_nama_undangan', $slug_nama_undangan);
             })
-            ->with('DirectTransferDesign7')
-            ->with('KirimHadiahDesign7')
+            ->with(['namaUndangan', 'PerjalananCintaDesign7', 'DirectTransferDesign7', 'KirimHadiahDesign7'])
             ->firstOrFail();
+
+        // Find the specific NamaUndangan by the slug in the relationship
+        $namaUndangan = $data->namaUndangan->where('slug_nama_undangan', $slug_nama_undangan)->first();
 
         $alt7models = $data->alt7Models()->orderBy('created_at', 'desc')->get();
 
         $hadirCount = $alt7models->where('kehadiran', 1)->count();
         $tidakHadirCount = $alt7models->where('kehadiran', 0)->count();
 
-        return view('wedding-design7.home', compact('data', 'alt7models', 'nama_mempelai_laki', 'nama_mempelai_perempuan', 'nama_undangan', 'hadirCount', 'tidakHadirCount'));
-
+        return view('wedding-design7.home', compact(
+            'data',
+            'alt7models',
+            'slug_nama_mempelai_laki',
+            'slug_nama_mempelai_perempuan',
+            'slug_nama_undangan',
+            'namaUndangan', // Pass the specific NamaUndangan based on the slug
+            'hadirCount',
+            'tidakHadirCount'
+        ));
     }
 
 }

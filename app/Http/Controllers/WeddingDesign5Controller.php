@@ -13,6 +13,7 @@ use App\Models\PerjalananCintaDesign5;
 use App\Models\WeddingDesign5;
 use Illuminate\Http\Request;
 use Storage;
+use Str;
 
 class WeddingDesign5Controller extends Controller
 {
@@ -113,6 +114,9 @@ class WeddingDesign5Controller extends Controller
         if ($request->hasFile('akad_img')) {
             $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design5', $request->file(key: 'akad_img')->hashName());
         }
+
+        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
+        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
 
         $data['informasi_design5_id'] = $informasiDesign5->id;
 
@@ -266,6 +270,11 @@ class WeddingDesign5Controller extends Controller
             }
             $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design5', $request->file('akad_img')->hashName());
         }
+
+        
+        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
+        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
+
 
         $weddingDesign5->update($data);
 

@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css?family=Playwrite PE");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import "node_modules/font-awesome/scss/font-awesome.scss";
+@import url("https://fonts.googleapis.com/css?family=DM Sans");
 @import "icons";
 
 /* ALL */
@@ -1393,14 +1394,18 @@ ul li .descr::before {
         height: 100%;
     }
     .opening-undangan {
-        top: 50%;
+        top: 40%;
     }
     .tujuan-undangan {
-        bottom: -96px;
+        bottom: 0px;
     }
     .wedding-timer {
         bottom: 32px;
     }
+    .wedding-timer .date p  {
+        color: #4d7056 !important;
+    }
+
     .perjalanan-cinta-cover {
         padding: 48px 24px;
         background-color: transparent;
@@ -1573,6 +1578,27 @@ ul li .descr::before {
     }
     .ending-background {
         bottom: -80px;
+    }
+
+    .data-mempelai-wanita p  {
+        color: #656565 !important;
+        text-align: center;
+    }
+
+    .data-mempelai-pria p  {
+        color: #656565 !important;
+        text-align: center;
+    }
+
+    .form-input  {
+        width: 100%;
+        border-bottom: none;
+        border-right: none;
+    }
+
+    .comment-list  {
+        width: 100%;
+        border-radius: 24px;
     }
 }
 

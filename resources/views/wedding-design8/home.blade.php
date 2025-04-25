@@ -25,9 +25,9 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.8/jquery.fancybox.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
         type="text/css" media="screen" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.8/jquery.fancybox.min.js">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
     <title>The Wedding Of {{ $data->InformasiDesign8->nama_pasangan }}</title>
 
@@ -77,7 +77,7 @@
                             <p>Kepada Yth</p>
                             <p>Bapak/Ibu/Saudara/i</p>
                         </div>
-                        <h3>Nama Tamu</h3>
+                        <h3>{{ $namaUndangan->nama_undangan }}</h3>
                         <button type="button" onclick="playAudio()" style="display:none" class="btn-primary"
                             id="buttonPage" data-bs-dismiss="offcanvas">Buka Undangan</button>
                     </div>
@@ -434,8 +434,8 @@
                             </div>
                         </form>
                     </div>
+                    @foreach ($alt8models as $item)
                     <div class="comment-list">
-                        @foreach ($alt8models as $item)
                             <div class="card-comment">
                                 <div class="title">
                                     <div class="name">

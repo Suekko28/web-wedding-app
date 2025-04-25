@@ -104,7 +104,7 @@
                         <img src="{{ asset('img/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
                     </a>
                 @endif
-                @if (!empty($data) && !empty($data->quote_img))
+                @if (!empty($data->quote) && !empty($data->quote_img))
                     <a href="#gallery">
                         <img src="{{ asset('img/gallery-icon.svg') }}" alt="gallery">
                     </a>
@@ -270,7 +270,7 @@
     @endif
     <!-- PERJALANAN CINTA END -->
 
-    @if (!empty($data) && !empty($data->quote_img))
+    @if (!empty($data->quote) && !empty($data->quote_img))
         <!-- Gallery -->
         <section class="animation gallery" id="gallery">
             <div class="anm_mod bottom-bit fast container-gallery">

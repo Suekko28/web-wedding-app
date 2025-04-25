@@ -56,6 +56,9 @@ class WeddingDesign7FormRequest extends FormRequest
             'deskripsi_cinta' => ['nullable'],
             'judul_jadwal' => ['required', 'max:255'],
             'deskripsi_penutup' => ['required'],
+            'zona_waktu_akad' => ['required'],
+            'zona_waktu_resepsi' => ['required'],
+
         ];
 
         // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib di-upload

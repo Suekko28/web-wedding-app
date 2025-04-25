@@ -305,7 +305,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="zona_waktu_akad">Zona Waktu <span
                                                 class="mandatory">*</span></label>
-                                        <select class="form-control" name="zona_waktu_akad" id="zona_waktu_akad">
+                                        <select disabled class="form-control" name="zona_waktu_akad" id="zona_waktu_akad">
                                             <option value="0" disabled
                                                 {{ $data->zona_waktu_akad == 0 ? 'selected' : '' }}>--Pilih Zona Waktu--
                                             </option>
@@ -372,7 +372,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="zona_waktu_resepsi">Zona Waktu <span
                                                 class="mandatory">*</span></label>
-                                        <select class="form-control" name="zona_waktu_resepsi" id="zona_waktu_resepsi">
+                                        <select disabled class="form-control" name="zona_waktu_resepsi" id="zona_waktu_resepsi">
                                             <option value="0" disabled
                                                 {{ $data->zona_waktu_resepsi == 0 ? 'selected' : '' }}>--Pilih Zona Waktu--
                                             </option>

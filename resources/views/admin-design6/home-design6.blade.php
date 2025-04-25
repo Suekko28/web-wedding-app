@@ -556,7 +556,7 @@
             <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
                 {{ $data->nama_mempelai_laki }}</h3>
         </div>
-        <img class="ending-background object-fit-cover" src="{{ asset('img/design-6/element-7.svg') }}"
+        <img class="ending-background object-fit-cover" src="{{ asset('img/design-6/element-4.svg') }}"
             alt="background">
     </section>
     <!-- ENDING END -->
