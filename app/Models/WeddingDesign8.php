@@ -58,6 +58,8 @@ class WeddingDesign8 extends Model
         'judul_resepsi',
         'zona_waktu_akad',
         'zona_waktu_resepsi',
+        'slug_nama_mempelai_laki',
+        'slug_nama_mempelai_perempuan',
         'informasi_design8_id'
 
     ];

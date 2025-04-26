@@ -294,7 +294,7 @@
                     if (result.isConfirmed) {
                         // Replace the delete form action with the correct route and ID
                         document.getElementById('deleteForm').action =
-                            "{{ route('nama-undangan.destroy4', ['id' => ':id']) }}".replace(':id',
+                            "{{ route('nama-undangan.destroy7', ['id' => ':id']) }}".replace(':id',
                                 itemId);
                         document.getElementById('deleteForm').submit();
                         Swal.fire({

@@ -11,6 +11,7 @@ use App\Models\KirimHadiahDesign8;
 use App\Models\WeddingDesign8;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Str;
 
 class WeddingDesign8Controller extends Controller
 {
@@ -110,6 +111,9 @@ class WeddingDesign8Controller extends Controller
             $data['image_cinta'] = json_encode($cintaImagesPaths); // Store paths as a JSON array or adjust according to your needs
         }
 
+        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
+        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
+
         $data['informasi_design8_id'] = $informasiDesign8->id;
 
         WeddingDesign8::create($data);
@@ -136,13 +140,21 @@ class WeddingDesign8Controller extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
+
+        $zonaWaktuOptions = [
+            1 => 'WIB',
+            2 => 'WIT',
+            3 => 'WITA',
+        ];
+
         // Pass all the necessary data to the view
         return view('admin-design8.show', [
             'data' => $data,
             'informasiDesign8' => $informasiDesign8,
             'dataDirectTransfer' => $dataDirectTransfer,
             'dataKirimHadiah' => $dataKirimHadiah,
-            'nama_undangan' => $nama_undangan
+            'nama_undangan' => $nama_undangan,
+            'zonaWaktuOptions' => $zonaWaktuOptions
         ]);
     }
 
@@ -254,6 +266,9 @@ class WeddingDesign8Controller extends Controller
 
             $data['image_cinta'] = json_encode($cintaImagesPaths);
         }
+
+        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
+        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
 
         $weddingDesign8->update($data);
 

@@ -320,11 +320,11 @@
                                         <label for="zona_waktu_akad">Zona Waktu <span class="mandatory">*</span></label>
                                         <select disabled class="form-control" name="zona_waktu_akad" id="zona_waktu_akad">
                                             <option value="0" disabled
-                                                {{ $data->zona_waktu_akad == 0 ? 'select disableded' : '' }}>--Pilih Zona Waktu--
+                                                {{ $data->zona_waktu_akad == 0 ? 'selected' : '' }}>--Pilih Zona Waktu--
                                             </option>
                                             @foreach ($zonaWaktuOptions as $key => $label)
                                                 <option value="{{ $key }}"
-                                                    {{ $data->zona_waktu_akad == $key ? 'select disableded' : '' }}>
+                                                    {{ $data->zona_waktu_akad == $key ? 'selected' : '' }}>
                                                     {{ $label }}
                                                 </option>
                                             @endforeach
@@ -388,11 +388,11 @@
                                                 class="mandatory">*</span></label>
                                         <select disabled class="form-control" name="zona_waktu_resepsi" id="zona_waktu_resepsi">
                                             <option value="0" disabled
-                                                {{ $data->zona_waktu_resepsi == 0 ? 'select disableded' : '' }}>--Pilih Zona Waktu--
+                                                {{ $data->zona_waktu_resepsi == 0 ? 'selected' : '' }}>--Pilih Zona Waktu--
                                             </option>
                                             @foreach ($zonaWaktuOptions as $key => $label)
                                                 <option value="{{ $key }}"
-                                                    {{ $data->zona_waktu_resepsi == $key ? 'select disableded' : '' }}>
+                                                    {{ $data->zona_waktu_resepsi == $key ? 'selected' : '' }}>
                                                     {{ $label }}
                                                 </option>
                                             @endforeach
@@ -455,12 +455,6 @@
                         <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnDirectTransfer"
-                                    data-bs-toggle="modal" data-bs-target="#modalDirectTransfer">
-                                    Tambah Data
-                                </button>
-                            </div>
                             <div class="table-responsive mb-4 border rounded-1">
                                 <table class="table text-nowrap mb-0 align-middle text-center" id="tableDirectTransfer">
                                     <thead>
@@ -469,7 +463,6 @@
                                             <th>Bank</th>
                                             <th>No.Rekening</th>
                                             <th>Pemilik Rekening</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -480,20 +473,6 @@
                                                 <td>{{ $item->bank }}</td>
                                                 <td>{{ $item->no_rek }}</td>
                                                 <td>{{ $item->nama_rek }}</td>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded Show-btn-direct-transfer"
-                                                        data-id="{{ $item->id }}" data-bank="{{ $item->bank }}"
-                                                        data-no_rek="{{ $item->no_rek }}"
-                                                        data-nama_rek="{{ $item->nama_rek }}">
-                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
-                                                    </a>
-                                                    <button type="button"
-                                                        class="btn btn-danger delete-btn-direct-transfer rounded mb-2"
-                                                        data-id="{{ $item->id }}">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </td>
                                             </tr>
                                             <?php $i++; ?>
                                         @endforeach
@@ -505,12 +484,6 @@
                         <hr>
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Kirim Hadiah</div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnKirimHadiah"
-                                    data-bs-toggle="modal" data-bs-target="#modalKirimHadiah">
-                                    Tambah Data
-                                </button>
-                            </div>
                             <div class="table-responsive mb-4 border rounded-1">
                                 <table class="table text-nowrap mb-0 align-middle text-center" id="tableKirimHadiah">
                                     <thead>
@@ -518,7 +491,6 @@
                                             <th>No</th>
                                             <th>Alamat</th>
                                             <th>Detail Alamat</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -528,19 +500,6 @@
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $item->alamat }}</td>
                                                 <td>{{ Str::limit($item->deskripsi_alamat, 100) }}</td>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="btn btn-warning mb-2 rounded Show-btn-kirim-hadiah"
-                                                        data-id="{{ $item->id }}" data-alamat="{{ $item->alamat }}"
-                                                        data-deskripsi_alamat="{{ $item->deskripsi_alamat }}">
-                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
-                                                    </a>
-                                                    <button type="button"
-                                                        class="btn btn-danger delete-btn-kirim-hadiah rounded mb-2"
-                                                        data-id="{{ $item->id }}">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </td>
                                             </tr>
                                             <?php $i++; ?>
                                         @endforeach
@@ -562,13 +521,32 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="d-flex flex-row-reverse">
-                            <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                            <a href="{{ route('wedding-design4.index') }}" class="btn btn-secondary">Batal</a>
-                        </div>
-
+                        <hr>
+                        <div class="container">
+                        <div class="kirim-hadiah fw-bold fs-5 mb-4">Daftar Tamu Undangan</div>
+                            <div class="table-responsive mb-4 border rounded-1">
+                                <table class="table text-nowrap mb-0 align-middle text-center" id="tableKirimHadiah">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th>No</th>
+                                            <th>Nama Undangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($nama_undangan as $item)
+                                            <tr>
+                                                <td scope="row">{{ $loop->iteration }}</td>
+                                                <td scope="row">{{ $item->nama_undangan }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>   
+                        </div>                           
                     </form>
+                     <div class="d-flex flex-row-reverse">
+                        <a href="{{ route('wedding-design4.index') }}" class="btn btn-secondary">Kembali</a>
+                    </div>
                     <!-- Small boxes (Stat box) -->
                     <!-- /.row (main row) -->
                 </div><!-- /.container-fluid -->

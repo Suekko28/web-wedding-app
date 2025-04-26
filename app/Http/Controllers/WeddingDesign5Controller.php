@@ -150,6 +150,12 @@ class WeddingDesign5Controller extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
+        $zonaWaktuOptions = [
+            1 => 'WIB',
+            2 => 'WIT',
+            3 => 'WITA',
+        ];
+
         // Pass all the necessary data to the view
         return view('admin-design5.show', [
             'data' => $data,
@@ -157,7 +163,9 @@ class WeddingDesign5Controller extends Controller
             'dataPerjalananCinta' => $dataPerjalananCinta,
             'dataDirectTransfer' => $dataDirectTransfer,
             'dataKirimHadiah' => $dataKirimHadiah,
-            'nama_undangan' => $nama_undangan
+            'nama_undangan' => $nama_undangan,
+            'zonaWaktuOptions' => $zonaWaktuOptions
+
         ]);
     }
 
@@ -271,7 +279,7 @@ class WeddingDesign5Controller extends Controller
             $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design5', $request->file('akad_img')->hashName());
         }
 
-        
+
         $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
         $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
 

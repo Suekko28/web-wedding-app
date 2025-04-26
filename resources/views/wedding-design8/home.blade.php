@@ -396,11 +396,7 @@
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
                         <form id="algin-form" class="rsvp-mobile3" method="POST"
-                            action="{{ route('wedding-design8-post', [
-                                'nama_mempelai_laki' => $nama_mempelai_laki,
-                                'nama_mempelai_perempuan' => $nama_mempelai_perempuan,
-                                'nama_undangan' => $nama_undangan,
-                            ]) }}">
+                            action="{{ route('wedding-design8-post', ['slug_nama_mempelai_laki' => $slug_nama_mempelai_laki, 'slug_nama_mempelai_perempuan' => $slug_nama_mempelai_perempuan, 'slug_nama_undangan' => $slug_nama_undangan]) }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
@@ -417,16 +413,12 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="kehadiran"
                                         id="flexRadioDefault1" value="1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Hadir
-                                    </label>
+                                    <label class="form-check-label" for="flexRadioDefault1">Hadir</label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="kehadiran"
                                         id="flexRadioDefault2" checked value="0">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Tidak Hadir
-                                    </label>
+                                    <label class="form-check-label" for="flexRadioDefault2">Tidak Hadir</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -434,28 +426,30 @@
                             </div>
                         </form>
                     </div>
-                    @foreach ($alt8models as $item)
-                    <div class="comment-list">
-                            <div class="card-comment">
-                                <div class="title">
-                                    <div class="name">
-                                        <h4>{{ $item->nama }}</h4>
-                                        @if ($item->kehadiran == 1)
-                                            <img src="{{ asset('img/design-8/hadir-icon.svg') }}" alt="hadir">
-                                        @else
-                                            <img src="{{ asset('img/design-8/tidak-hadir-icon.svg') }}"
-                                                alt="tidak hadir">
-                                        @endif
-
+                    @if ($alt8models->isNotEmpty())
+                        <div class="comment-list">
+                            @foreach ($alt8models as $item)
+                                <div class="card-comment">
+                                    <div class="title">
+                                        <div class="name">
+                                            <h4>{{ $item->nama }}</h4>
+                                            @if ($item->kehadiran == 1)
+                                                <img src="{{ asset('img/design-8/hadir-icon.svg') }}" alt="hadir">
+                                            @else
+                                                <img src="{{ asset('img/design-8/tidak-hadir-icon.svg') }}"
+                                                    alt="tidak hadir">
+                                            @endif
+                                        </div>
+                                        <span class="label">
+                                            {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }}
+                                            WIB
+                                        </span>
                                     </div>
-                                    <span class="label">
-                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }}
-                                        WIB</span>
+                                    <p>{!! $item->ucapan !!}</p>
                                 </div>
-                                <p>{!! $item->ucapan !!}</p>
-                            </div>
-                        @endforeach
-                    </div>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
             @if ($data->DirectTransferDesign8->isNotEmpty() || $data->KirimHadiahDesign8->isNotEmpty())
@@ -538,7 +532,6 @@
         </div>
     </section>
     <!-- DOA & UCAPAN -->
-
 
     <!-- ENDING -->
     <section class="animation akhir-undangan" id="akhir-undangan">

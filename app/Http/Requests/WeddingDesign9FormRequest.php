@@ -57,8 +57,8 @@ class WeddingDesign9FormRequest extends FormRequest
             'deskripsi_cinta' => ['nullable'],
             'judul_jadwal' => ['required', 'max:255'],
             'deskripsi_penutup' => ['required'],
-            'zona_waktu_akad' => ['required'],
-            'zona_waktu_resepsi' => ['required'],
+            'zona_waktu_akad' => ['required', 'integer', 'in:1,2,3'],
+            'zona_waktu_resepsi' => ['required', 'integer', 'in:1,2,3'],
         ];
 
         // Jika ini adalah request untuk membuat data baru (store), maka gambar wajib di-upload
@@ -172,7 +172,6 @@ class WeddingDesign9FormRequest extends FormRequest
 
             'zona_waktu_akad' => 'Zona waktu akad wajib dipilih',
             'zona_waktu_resepsi' => 'Zona waktu resepsi wajib dipilih',
-
 
             'informasi_design9_id.required' => 'Informasi design harus diisi.',
             'informasi_design9_id.exists' => 'Informasi design tidak valid.',

@@ -478,28 +478,29 @@
                             </div>
                         </form>
                     </div>
-                    @foreach ($alt4models as $item)
-                    <div class="comment-list">
-                            <div class="card-comment">
-                                <div class="title">
-                                    <div class="name">
-                                        <h4>{{ $item->nama }}</h4>
-                                        @if ($item->kehadiran == 1)
-                                            <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
-                                        @else
-                                            <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="tidak hadir">
-                                        @endif
+                    @if ($alt4models->isNotEmpty())
+                        <div class="comment-list">
+                            @foreach ($alt4models as $item)
+                                <div class="card-comment">
+                                    <div class="title">
+                                        <div class="name">
+                                            <h4>{{ $item->nama }}</h4>
+                                            @if ($item->kehadiran == 1)
+                                                <img src="{{ asset('img/hadir-icon.svg') }}" alt="hadir">
+                                            @else
+                                                <img src="{{ asset('img/tidak-hadir-icon.svg') }}" alt="tidak hadir">
+                                            @endif
 
+                                        </div>
+                                        <span class="label">
+                                            {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }}
+                                            WIB</span>
                                     </div>
-                                    <span class="label">
-                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }}
-                                        WIB</span>
+                                    <p>{!! $item->ucapan !!}</p>
                                 </div>
-                                <p>{!! $item->ucapan !!}</p>
-                            </div>
-                        @endforeach
-                    </div>
-
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
             @if ($data->DirectTransferDesign4->isNotEmpty() || $data->KirimHadiahDesign4->isNotEmpty())

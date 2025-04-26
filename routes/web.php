@@ -380,12 +380,12 @@ Route::delete('/nama-undangan/platinum-gold/{id}', [NamaUndanganDesign7Controlle
 
 
 // Route undangan design 8
-Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/untukmu=')->group(function () {
+Route::prefix('/{slug_nama_mempelai_laki}&{slug_nama_mempelai_perempuan}/untukmu=')->group(function () {
     Route::get('/preview', [HomeDesign8Controller::class, 'show'])->name('wedding-design8-home-preview');
 });
 
-Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/untukmu={nama_undangan}', [HomeDesign8Controller::class, 'showDetail'])->name('wedding-design8-home');
-Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/untukmu={nama_undangan}', [HomeDesign8Controller::class, 'store'])->name('wedding-design8-post');
+Route::get('/{slug_nama_mempelai_laki}&{slug_nama_mempelai_perempuan}/untukmu={slug_nama_undangan}', [HomeDesign8Controller::class, 'showDetail'])->name('wedding-design8-home');
+Route::post('/{slug_nama_mempelai_laki}&{slug_nama_mempelai_perempuan}/untukmu={slug_nama_undangan}', [HomeDesign8Controller::class, 'store'])->name('wedding-design8-post');
 
 Route::resource('/nama-undangan', NamaUndanganDesign8Controller::class);
 Route::get('nama-undangan/premium-green/{weddingDesign8Id}/list', [NamaUndanganDesign8Controller::class, 'index'])->name('nama-undangan-list8');
@@ -397,12 +397,12 @@ Route::delete('/nama-undangan/premium-green/{id}', [NamaUndanganDesign8Controlle
 
 
 // Route undangan design 9
-Route::prefix('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/bagi=')->group(function () {
+Route::prefix('/{slug_nama_mempelai_laki}&{slug_nama_mempelai_perempuan}/bagi=')->group(function () {
     Route::get('/preview', [HomeDesign9Controller::class, 'show'])->name('wedding-design9-home-preview');
 });
 
-Route::get('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/bagi={nama_undangan}', [HomeDesign9Controller::class, 'showDetail'])->name('wedding-design9-home');
-Route::post('/{nama_mempelai_laki}&{nama_mempelai_perempuan}/bagi={nama_undangan}', [HomeDesign9Controller::class, 'store'])->name('wedding-design9-post');
+Route::get('/{slug_nama_mempelai_laki}&{slug_nama_mempelai_perempuan}/bagi={slug_nama_undangan}', [HomeDesign9Controller::class, 'showDetail'])->name('wedding-design9-home');
+Route::post('/{slug_nama_mempelai_laki}&{slug_nama_mempelai_perempuan}/bagi={slug_nama_undangan}', [HomeDesign9Controller::class, 'store'])->name('wedding-design9-post');
 
 Route::resource('/nama-undangan', NamaUndanganDesign9Controller::class);
 Route::get('nama-undangan/premium-flower/{weddingDesign9Id}/list', action: [NamaUndanganDesign9Controller::class, 'index'])->name('nama-undangan-list9');

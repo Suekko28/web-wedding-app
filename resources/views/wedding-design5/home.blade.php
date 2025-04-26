@@ -309,9 +309,11 @@
     <section class="animation jadwal-pernikahan" id="jadwal-pernikahan">
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
             <h3 class="anm_mod bottom-bit fast">{{ $data->judul_jadwal }}</h3>
-            <img src="{{ Storage::url('' . $data->akad_img) }}"
-                class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story" width="328"
-                height="328">
+            @if (!empty($data->akad_img))
+                <img src="{{ Storage::url('' . $data->akad_img) }}"
+                    class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story" width="328"
+                    height="328">
+            @endif
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
                     @if (!empty($data->judul_akad))
@@ -319,7 +321,7 @@
                     @endif
                     <div class="detail">
                         <div class="info">
-                            <img src="{{ asset('img/design-5/calendar-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/calendar-icon-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span
                                     class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
@@ -365,7 +367,7 @@
                     @endif
                     <div class="detail">
                         <div class="info">
-                            <img src="{{ asset('img/design-5/calendar-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/calendar-icon-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span
                                     class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
@@ -468,30 +470,32 @@
                             </div>
                         </form>
                     </div>
-                    @foreach ($alt5models as $item)
+                    @if ($alt5models->isNotEmpty())
                         <div class="comment-list">
-                            <div class="card-comment">
-                                <div class="title">
-                                    <div class="name">
-                                        <h4>{{ $item->nama }}</h4>
-                                        @if ($item->kehadiran == 1)
-                                            <img src="{{ asset('img/design-5/hadir-icon.svg') }}" alt="hadir">
-                                        @else
-                                            <img src="{{ asset('img/design-5/tidak-hadir-icon.svg') }}"
-                                                alt="tidak hadir">
-                                        @endif
+                            @foreach ($alt5models as $item)
+                                <div class="card-comment">
+                                    <div class="title">
+                                        <div class="name">
+                                            <h4>{{ $item->nama }}</h4>
+                                            @if ($item->kehadiran == 1)
+                                                <img src="{{ asset('img/design-5/hadir-icon.svg') }}" alt="hadir">
+                                            @else
+                                                <img src="{{ asset('img/design-5/tidak-hadir-icon.svg') }}"
+                                                    alt="tidak hadir">
+                                            @endif
 
+                                        </div>
+                                        <span class="label">
+                                            {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }}
+                                            WIB</span>
                                     </div>
-                                    <span class="label">
-                                        {{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('D MMMM, YYYY | H:mm') }}
-                                        WIB</span>
+                                    <p>{!! $item->ucapan !!}</p>
                                 </div>
-                                <p>{!! $item->ucapan !!}</p>
-                            </div>
-                    @endforeach
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
-        </div>
         </div>
         @if ($data->DirectTransferDesign5->isNotEmpty() || $data->KirimHadiahDesign5->isNotEmpty())
             <div class="kirim-hadiah anm_mod bottom-bit fast">

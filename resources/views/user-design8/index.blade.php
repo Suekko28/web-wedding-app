@@ -142,16 +142,19 @@
                                 <div class="radio_group">
                                     <input type="radio" name="kehadiran" value="1" id="radio1{{ $item->id }}"
                                         data-nama-undangan="{{ $item->nama_undangan }}"
+                                        data-slug-nama-undangan ="{{ $item->slug_nama_undangan }}"
                                         data-item-id="{{ $item->id }}">
                                     <label for="radio1{{ $item->id }}" class="radio_label">1</label>
 
                                     <input type="radio" name="kehadiran" value="2" id="radio2{{ $item->id }}"
                                         data-nama-undangan="{{ $item->nama_undangan }}"
+                                        data-slug-nama-undangan ="{{ $item->slug_nama_undangan }}"
                                         data-item-id="{{ $item->id }}">
                                     <label for="radio2{{ $item->id }}" class="radio_label">2</label>
 
                                     <input type="radio" name="kehadiran" value="3" id="radio3{{ $item->id }}"
                                         data-nama-undangan="{{ $item->nama_undangan }}"
+                                        data-slug-nama-undangan ="{{ $item->slug_nama_undangan }}"
                                         data-item-id="{{ $item->id }}">
                                     <label for="radio3{{ $item->id }}" class="radio_label">3</label>
                                 </div>
@@ -203,9 +206,10 @@
             radio.addEventListener('change', function() {
                 var radioButton = this.value;
                 var namaUndangan = this.getAttribute('data-nama-undangan');
+                var slugNamaUndangan = this.getAttribute('data-slug-nama-undangan');
                 var itemId = this.getAttribute('data-item-id');
 
-                updateMessage(radioButton, namaUndangan, itemId);
+                updateMessage(radioButton, namaUndangan, slugNamaUndangan, itemId);
                 toggleShareButton(itemId); // Panggil fungsi untuk menyesuaikan status tombol "Share"
             });
         });
@@ -220,7 +224,7 @@
             }
         }
 
-        function updateMessage(radioButton, namaUndangan, itemId) {
+        function updateMessage(radioButton, namaUndangan, slugNamaUndangan, itemId) {
             var message = '';
             if (radioButton === '1') {
                 message = "Assalamu'alaikum Wr. Wb\n" +
@@ -229,8 +233,8 @@
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:\n\n" +
                     namaUndangan + "\n\n" +
                     "Berikut link undangan kami untuk informasi lengkap tentang acara dapat dilihat di sini:\n\n" +
-                    "jejakkebahagiaan.com/{{ $weddingDesign8->nama_mempelai_laki }}&{{ $weddingDesign8->nama_mempelai_perempuan }}/untukmu=" +
-                    namaUndangan + "\n\n" +
+                    "jejakkebahagiaan.com/{{ $weddingDesign8->slug_nama_mempelai_laki }}&{{ $weddingDesign8->slug_nama_mempelai_perempuan }}/untukmu=" +
+                    slugNamaUndangan + "\n\n" +
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n" +
                     "Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.\n\n" +
                     "\n\n" +
@@ -241,8 +245,8 @@
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:\n\n" +
                     namaUndangan + "\n\n" +
                     "Berikut link undangan kami untuk informasi lengkap tentang acara dapat dilihat di sini:\n\n" +
-                    "jejakkebahagiaan.com/{{ $weddingDesign8->nama_mempelai_laki }}&{{ $weddingDesign8->nama_mempelai_perempuan }}/untukmu=" +
-                    namaUndangan + "\n\n" +
+                    "jejakkebahagiaan.com/{{ $weddingDesign8->slug_nama_mempelai_laki }}&{{ $weddingDesign8->slug_nama_mempelai_perempuan }}/untukmu=" +
+                    slugNamaUndangan + "\n\n" +
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n" +
                     "Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.\n\n" +
                     "\n\n" +
@@ -251,8 +255,8 @@
                 message =
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i Aldi untuk menghadiri acara kami.\n\n" +
                     "Berikut link undangan kami, untuk info lengkap dari acara bisa kunjungi :\n\n" +
-                    "jejakkebahagiaan.com/{{ $weddingDesign8->nama_mempelai_laki }}&{{ $weddingDesign8->nama_mempelai_perempuan }}/untukmu=" +
-                    namaUndangan + "\n\n" +
+                    "jejakkebahagiaan.com/{{ $weddingDesign8->slug_nama_mempelai_laki }}&{{ $weddingDesign8->slug_nama_mempelai_perempuan }}/untukmu=" +
+                    slugNamaUndangan + "\n\n" +
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n" +
                     "Mohon maaf perihal undangan hanya di bagikan melalui pesan ini.\n\n" +
                     "Dan agar selalu menjaga kesehatan bersama serta datang pada waktu yang telah ditentukan.*\n\n" +
@@ -283,9 +287,9 @@
                     text: "Data ini akan dihapus secara permanen!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: "#3088d8",
+                    confirmButtonColor: "#3086d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: 'Ya, hapus!'
+                    confirmButtonText: "Ya, Hapus!"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Replace the delete form action with the correct route and ID
@@ -293,16 +297,19 @@
                             "{{ route('nama-undangan.destroy8', ['id' => ':id']) }}".replace(':id',
                                 itemId);
                         document.getElementById('deleteForm').submit();
-                        Swal.fire(
-                            'Terhapus!',
-                            'Data berhasil dihapus.',
-                            'success'
+                        Swal.fire({
+                                title: 'Terhapus',
+                                text: "Data berhasil dihapus",
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }
+
                         );
                     }
                 });
             });
         });
-
 
         // Fitur Search
         const searchInput = document.getElementById('searchInput');

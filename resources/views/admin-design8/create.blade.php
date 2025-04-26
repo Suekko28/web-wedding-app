@@ -83,12 +83,11 @@
                                         <label for="judul_pembuka">Judul<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul_pembuka" name="judul_pembuka"
                                             placeholder="Judul ucapan pembuka"
-                                            value="{{ old('judul', $defaultJudulPembuka) }}">
+                                            value="{{ old('judul_pembuka', $defaultJudulPembuka) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="deskripsi_pembuka">Deskripsi<span class="mandatory">*</span></label>
-                                        <textarea class="form-control" rows="5" id="deskripsi_pembuka" name="deskripsi_pembuka"
-                                            placeholder="Deskripsi">{{ old('deskripsi_pembuka', $defaultDeskripsiPembuka) }}</textarea>
+                                        <textarea class="form-control" rows="5" id="deskripsi_pembuka" name="deskripsi_pembuka" placeholder="Deskripsi">{{ old('deskripsi_pembuka', $defaultDeskripsiPembuka) }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -228,7 +227,7 @@
                                         <label for="judul_jadwal">Judul<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul_jadwal" name="judul_jadwal"
                                             placeholder="Judul ucapan pembuka"
-                                            value="{{ old('judul', $defaultJudulJadwal) }}">
+                                            value="{{ old('judul_jadwal', $defaultJudulJadwal) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="akad_img">Upload Image <span class="fst-italic">
@@ -258,13 +257,13 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="zona_waktu_akad">Zona Waktu <span class="mandatory">*</span></label>
                                         <select class="form-control" name="zona_waktu_akad" id="zona_waktu_akad">
+                                            <option value="" disabled selected>--Pilih Zona Waktu--</option>
                                             @foreach ($zonaWaktuOptions as $key => $label)
                                                 <option value="{{ $key }}"
-                                                    {{ old('zona_waktu_resepsi') == $key ? 'selected' : '' }}>
+                                                    {{ old('zona_waktu_akad') == $key ? 'selected' : '' }}>
                                                     {{ $label }}
                                                 </option>
                                             @endforeach
-
                                         </select>
                                     </div>
                                     <div class="col-sm-4 mb-3">

@@ -49,7 +49,7 @@ class HomeDesign7Controller extends Controller
             ->whereHas('namaUndangan', function ($query) use ($slug_nama_undangan) {
                 $query->where('slug_nama_undangan', $slug_nama_undangan);
             })
-            ->with(['namaUndangan', 'PerjalananCintaDesign7', 'DirectTransferDesign7', 'KirimHadiahDesign7'])
+            ->with(['namaUndangan',  'DirectTransferDesign7', 'KirimHadiahDesign7'])
             ->firstOrFail();
 
         // Find the specific NamaUndangan by the slug in the relationship

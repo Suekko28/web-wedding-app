@@ -34,7 +34,7 @@ return new class extends Migration {
             $table->string('lokasi_akad');
             $table->text('deskripsi_akad');
             $table->string('link_akad');
-            $table->text('simpcolumn: an_tgl_akad');
+            $table->text('simpan_tgl_akad');
             $table->string('judul_resepsi')->nullable();
             $table->date('tgl_resepsi');
             $table->time('mulai_resepsi');
@@ -53,6 +53,8 @@ return new class extends Migration {
             $table->text('deskripsi_penutup');
             $table->integer('zona_waktu_akad');
             $table->integer('zona_waktu_resepsi');
+            $table->string('slug_nama_mempelai_laki');
+            $table->string('slug_nama_mempelai_perempuan');
             $table->unsignedBigInteger('informasi_design8_id');
             $table->foreign('informasi_design8_id')
                 ->references('id')

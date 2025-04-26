@@ -143,13 +143,21 @@ class WeddingDesign6Controller extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
+        $zonaWaktuOptions = [
+            1 => 'WIB',
+            2 => 'WIT',
+            3 => 'WITA',
+        ];
+
+
         // Pass all the necessary data to the view
         return view('admin-design6.show', [
             'data' => $data,
             'informasiDesign6' => $informasiDesign6,
             'dataDirectTransfer' => $dataDirectTransfer,
             'dataKirimHadiah' => $dataKirimHadiah,
-            'nama_undangan' => $nama_undangan
+            'nama_undangan' => $nama_undangan,
+            'zonaWaktuOptions' => $zonaWaktuOptions
         ]);
     }
 

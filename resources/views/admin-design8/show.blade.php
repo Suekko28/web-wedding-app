@@ -4,7 +4,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Wedding Design 8'])
+    @include('layouts.breadcrumb', ['title' => 'Show', 'subtitle' => 'Wedding Design 8'])
 
     @php
         $defaultJudulPembuka = 'Assalamu’alaikum Wr. Wb.';
@@ -305,7 +305,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="zona_waktu_akad">Zona Waktu <span
                                                 class="mandatory">*</span></label>
-                                        <select class="form-control" name="zona_waktu_akad" id="zona_waktu_akad">
+                                        <select class="form-control" name="zona_waktu_akad" id="zona_waktu_akad" disabled>
                                             <option value="0" disabled
                                                 {{ $data->zona_waktu_akad == 0 ? 'selected' : '' }}>--Pilih Zona Waktu--
                                             </option>
@@ -372,7 +372,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="zona_waktu_resepsi">Zona Waktu <span
                                                 class="mandatory">*</span></label>
-                                        <select class="form-control" name="zona_waktu_resepsi" id="zona_waktu_resepsi">
+                                        <select class="form-control" name="zona_waktu_resepsi" id="zona_waktu_resepsi" disabled>
                                             <option value="0" disabled
                                                 {{ $data->zona_waktu_resepsi == 0 ? 'selected' : '' }}>--Pilih Zona Waktu--
                                             </option>
@@ -458,7 +458,6 @@
                                                 <th>Bank</th>
                                                 <th>No.Rekening</th>
                                                 <th>Pemilik Rekening</th>
-                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -498,7 +497,6 @@
                                                 <th>No</th>
                                                 <th>Alamat</th>
                                                 <th>Detail Alamat</th>
-                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -530,31 +528,29 @@
                                 </div>
                             </div>
                         </div>
-
                         <hr>
-
-                        <div class="table-responsive mb-4 border rounded-1">
-                            <table class="table text-nowrap mb-0 align-middle text-center" id="tableKirimHadiah">
-                                <div class="kirim-hadiah fw-bold fs-5 mb-4">Daftar Tamu Undangan</div>
-                                <thead>
-                                    <tr class="text-nowrap">
-                                        <th>No</th>
-                                        <th>Nama Undangan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $i = $dataKirimHadiah->firstItem(); ?>
-                                    @foreach ($dataKirimHadiah as $item)
-                                        <tr>
-                                            <td scope="row">{{ $i }}</td>
-                                            <td scope="row">{{ $item->nama_undangan }}</td>
-                                        </tr>
-                                        <?php $i++; ?>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>  
-                    </form>
+                        <div class="container">
+                            <div class="kirim-hadiah fw-bold fs-5 mb-4">Daftar Tamu Undangan</div>
+                                <div class="table-responsive mb-4 border rounded-1">
+                                    <table class="table text-nowrap mb-0 align-middle text-center" id="tableKirimHadiah">
+                                        <thead>
+                                            <tr class="text-nowrap">
+                                                <th>No</th>
+                                                <th>Nama Undangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($nama_undangan as $item)
+                                                <tr>
+                                                    <td scope="row">{{ $loop->iteration }}</td>
+                                                    <td scope="row">{{ $item->nama_undangan }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>   
+                            </div>                           
+                        </form>
                     <div class="d-flex flex-row-reverse">
                         <a href="{{ route('wedding-design8.index') }}" class="btn btn-secondary">Kembali</a>
                     </div>
@@ -567,13 +563,13 @@
 
 
 
-    <!-- Modal Buat dan Edit DirectTransfer -->
+    <!-- Modal Buat dan Show DirectTransfer -->
     <div class="modal fade" id="modalDirectTransfer" tabindex="-1" aria-labelledby="modalDirectTransferLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalDirectTransferLabel">Buat/Edit Direct Transfer</h5>
+                    <h5 class="modal-title" id="modalDirectTransferLabel">Buat/Show Direct Transfer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -616,13 +612,13 @@
         </div>
     </div>
 
-    <!-- Modal Buat dan Edit Kirim Hadiah -->
+    <!-- Modal Buat dan Show Kirim Hadiah -->
     <div class="modal fade" id="modalKirimHadiah" tabindex="-1" aria-labelledby="modalKirimHadiahLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Edit Kirim Hadiah</h5>
+                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Show Kirim Hadiah</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -721,14 +717,14 @@
             resetFormDirectTransfer();
         });
 
-        // Ketika tombol Edit diklik
-        $(document).on('click', '.edit-btn-direct-transfer', function() {
+        // Ketika tombol Show diklik
+        $(document).on('click', '.Show-btn-direct-transfer', function() {
             const id = $(this).data('id');
             const bank = $(this).data('bank');
             const no_rek = $(this).data('no_rek');
             const nama_rek = $(this).data('nama_rek');
 
-            $('#modalDirectTransferLabel').text('Edit Direct Transfer');
+            $('#modalDirectTransferLabel').text('Show Direct Transfer');
             $('#formMethodDirectTransferDirectTransfer').val('PUT'); // ini hidden input disabled _method
             $('#directTransferId').val(id);
 
@@ -740,20 +736,20 @@
             const updateUrl = `/wedding-design8/${id}/update-direct-transfer`;
             $('#formDirectTransfer').attr('action', updateUrl);
 
-            const modalEdit = new bootstrap.Modal(document.getElementById('modalDirectTransfer'));
-            modalEdit.show();
+            const modalShow = new bootstrap.Modal(document.getElementById('modalDirectTransfer'));
+            modalShow.show();
         });
 
-        // Submit form (tambah/edit)
+        // Submit form (tambah/Show)
         $('#formDirectTransfer').on('submit', function(e) {
             e.preventDefault();
 
             const form = $(this);
             const formData = new FormData(this);
             const id = $('#directTransferId').val();
-            const isEdit = id !== '';
+            const isShow = id !== '';
 
-            if (isEdit) {
+            if (isShow) {
                 formData.append('_method', 'PUT');
             }
 
@@ -854,13 +850,13 @@
             resetFormKirimHadiah();
         });
 
-        // Ketika tombol Edit diklik
-        $(document).on('click', '.edit-btn-kirim-hadiah', function() {
+        // Ketika tombol Show diklik
+        $(document).on('click', '.Show-btn-kirim-hadiah', function() {
             const id = $(this).data('id');
             const alamat = $(this).data('alamat');
             const deskripsi_alamat = $(this).data('deskripsi_alamat');
 
-            $('#modalKirimHadiahLabel').text('Edit Direct Transfer');
+            $('#modalKirimHadiahLabel').text('Show Direct Transfer');
             $('#formMethodKirimHadiahKirimHadiah').val('PUT'); // ini hidden input disabled _method
             $('#kirimHadiahId').val(id);
 
@@ -871,20 +867,20 @@
             const updateUrl = `/wedding-design8/${id}/update-kirim-hadiah`;
             $('#formKirimHadiah').attr('action', updateUrl);
 
-            const modalEdit = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));
-            modalEdit.show();
+            const modalShow = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));
+            modalShow.show();
         });
 
-        // Submit form (tambah/edit)
+        // Submit form (tambah/Show)
         $('#formKirimHadiah').on('submit', function(e) {
             e.preventDefault();
 
             const form = $(this);
             const formData = new FormData(this);
             const id = $('#kirimHadiahId').val();
-            const isEdit = id !== '';
+            const isShow = id !== '';
 
-            if (isEdit) {
+            if (isShow) {
                 formData.append('_method', 'PUT');
             }
 

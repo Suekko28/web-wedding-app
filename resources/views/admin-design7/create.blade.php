@@ -83,7 +83,7 @@
                                         <label for="judul_pembuka">Judul<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul_pembuka" name="judul_pembuka"
                                             placeholder="Judul ucapan pembuka"
-                                            value="{{ old('judul', $defaultJudulPembuka) }}">
+                                            value="{{ old('judul_pembuka', $defaultJudulPembuka) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="deskripsi_pembuka">Deskripsi<span class="mandatory">*</span></label>
@@ -227,7 +227,7 @@
                                         <label for="judul_jadwal">Judul<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul_jadwal" name="judul_jadwal"
                                             placeholder="Judul ucapan pembuka"
-                                            value="{{ old('judul', $defaultJudulJadwal) }}">
+                                            value="{{ old('judul_jadwal', $defaultJudulJadwal) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="akad_img">Upload Image <span class="fst-italic">

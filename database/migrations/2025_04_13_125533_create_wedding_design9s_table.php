@@ -53,6 +53,8 @@ return new class extends Migration {
             $table->text('deskripsi_penutup');
             $table->integer('zona_waktu_akad');
             $table->integer('zona_waktu_resepsi');
+            $table->string('slug_nama_mempelai_laki');
+            $table->string('slug_nama_mempelai_perempuan');
             $table->unsignedBigInteger('informasi_design9_id');
             $table->foreign('informasi_design9_id')
                 ->references('id')

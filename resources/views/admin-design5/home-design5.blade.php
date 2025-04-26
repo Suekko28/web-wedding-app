@@ -323,7 +323,7 @@
                     @endif
                     <div class="detail">
                         <div class="info">
-                            <img src="{{ asset('img/design-5/calendar-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/calendar-icon-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span
                                     class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
@@ -369,7 +369,7 @@
                     @endif
                     <div class="detail">
                         <div class="info">
-                            <img src="{{ asset('img/design-5/calendar-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-5/calendar-icon-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span
                                     class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
