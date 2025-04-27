@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css?family=Vidaloka");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import "node_modules/font-awesome/scss/font-awesome.scss";
+@import url("https://fonts.googleapis.com/css?family=DM Sans");
 @import "icons";
 
 /* ALL */
@@ -1327,7 +1328,7 @@ ul li .descr::before {
 
 /* ENDING */
 .akhir-undangan {
-    height: 480px;
+    height: 100vh;
     padding: 64px 120px;
     background-color: transparent;
     z-index: 9996;
@@ -1345,14 +1346,21 @@ ul li .descr::before {
     right: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
+    padding: 24px;
 }
 .akhir-undangan .info p {
     font-size: 20px;
     max-width: 640px;
 }
-
 .akhir-undangan .info h3 {
     text-align: center;
+}
+.ending-background {
+    width: 100vw;
+    height: 560px;
+    position: absolute;
+    left: 0;
+    bottom: -64px;
 }
 .overlay-bottom {
     width: 100%;
@@ -1406,8 +1414,7 @@ ul li .descr::before {
     .wedding-timer {
         bottom: 32px;
     }
-
-    .wedding-timer .date p  {
+    .wedding-timer .date p {
         color: #c36443 !important;
     }
     .perjalanan-cinta-cover {
@@ -1526,12 +1533,12 @@ ul li .descr::before {
     }
     .form-input {
         width: 100%;
-        border-bottom: 1px solid #e9e9e9;
+        border-bottom: none;
         border-right: none;
     }
     .comment-list {
         width: 100%;
-        border-radius: 0px 0px 24px 24px;
+        border-radius: 4px;
     }
     .form-input .btn-primary {
         width: 100%;
@@ -1599,15 +1606,6 @@ ul li .descr::before {
     .data-mempelai-pria p {
         color: #656565 !important;
         text-align: center;
-    }
-    .form-input {
-        width: 100%;
-        border-bottom: none;
-        border-right: none;
-    }
-    .comment-list {
-        width: 100%;
-        border-radius: 4px;
     }
 }
 

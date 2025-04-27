@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css?family=Grand Hotel");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import "node_modules/font-awesome/scss/font-awesome.scss";
+@import url("https://fonts.googleapis.com/css?family=DM Sans");
 @import "icons";
 
 /* ALL */
@@ -1320,7 +1321,7 @@ ul li .descr::before {
 
 /* ENDING */
 .akhir-undangan {
-    height: 480px;
+    height: 100vh;
     padding: 64px 120px;
     background-color: transparent;
     z-index: 9996;
@@ -1338,10 +1339,15 @@ ul li .descr::before {
     right: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
+    padding: 24px;
 }
 .akhir-undangan .info p {
     font-size: 20px;
     max-width: 640px;
+}
+
+.akhir-undangan .info h3{
+    text-align: center;
 }
 .ending-background {
     width: 100vw;
@@ -1519,14 +1525,14 @@ ul li .descr::before {
     .container-doa-ucapan {
         flex-direction: column;
     }
-    .form-input {
+    .form-input  {
         width: 100%;
-        border-bottom: 1px solid #e9e9e9;
+        border-bottom: none;
         border-right: none;
     }
     .comment-list {
         width: 100%;
-        border-radius: 0px 0px 24px 24px;
+        border-radius: 24px;
     }
     .form-input .btn-primary {
         width: 100%;

@@ -274,6 +274,7 @@ label {
     font-size: 14px !important;
     font-weight: 600 !important;
     text-decoration: none !important;
+    font-family: "Handlee";
 }
 .button-button {
     display: flex;
@@ -673,8 +674,12 @@ label {
 .data-mempelai-wanita h2 {
     width: 100% !important;
 }
+.data-mempelai-wanita h3{
+    text-align: center;
+}
 .data-mempelai-wanita p {
     color: #656565 !important;
+    text-align: center;
 }
 .kedua-mempelai .mempelai-wanita h2 {
     color: #292929 !important;
@@ -757,8 +762,13 @@ label {
 .data-mempelai-pria h2 {
     width: 100%;
 }
+
+.data-mempelai-pria h3 {
+    text-align: center;
+}
 .data-mempelai-pria p {
     color: #656565 !important;
+    text-align: center;
 }
 .kedua-mempelai .mempelai-pria h2 {
     color: #292929 !important;
@@ -1244,6 +1254,7 @@ ul li .descr::before {
 }
 .card-comment p {
     color: #656565 !important;
+    font-family: "Handlee";
 }
 .title .name {
     display: flex;
@@ -1324,7 +1335,7 @@ ul li .descr::before {
 
 /* ENDING */
 .akhir-undangan {
-    height: 480px;
+    height: 100vh;
     padding: 64px 120px;
     background-color: transparent;
     z-index: 9995;
@@ -1343,9 +1354,15 @@ ul li .descr::before {
     transform: translate(-50%, -50%);
     z-index: 5;
     max-width: 328px;
+    padding: 24px;
 }
 .akhir-undangan .info p {
     font-size: 20px;
+    max-width: 640px;
+}
+
+.akhir-undangan .info h3{
+    text-align: center;
 }
 .ending-background {
     width: 100vw;
