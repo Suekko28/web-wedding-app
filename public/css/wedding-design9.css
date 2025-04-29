@@ -674,7 +674,7 @@ label {
 .data-mempelai-wanita h2 {
     width: 100% !important;
 }
-.data-mempelai-wanita h3{
+.data-mempelai-wanita h3 {
     text-align: center;
 }
 .data-mempelai-wanita p {
@@ -1355,14 +1355,15 @@ ul li .descr::before {
     z-index: 5;
     max-width: 328px;
     padding: 24px;
+    justify-content: center;
 }
 .akhir-undangan .info p {
     font-size: 20px;
     max-width: 640px;
 }
 
-.akhir-undangan .info h3{
-    text-align: center;
+.akhir-undangan .info h3 {
+    text-align: center !important;
 }
 .ending-background {
     width: 100vw;
