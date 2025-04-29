@@ -35,7 +35,7 @@
         integrity="sha385-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- CSS STYLE -->
-    <link href="{{ asset('css/wedding-design5.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/wedding-design5.css') }}?v={{ filemtime(public_path('css/wedding-design5.css')) }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 

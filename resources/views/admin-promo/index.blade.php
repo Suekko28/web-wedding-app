@@ -103,12 +103,12 @@
                         // Submit the form
                         document.getElementById('deleteForm').submit();
                         Swal.fire({
-                                title: 'Terhapus',
-                                text: "Data berhasil dihapus",
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            }
+                            title: 'Terhapus',
+                            text: "Data berhasil dihapus",
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
                 });
             });

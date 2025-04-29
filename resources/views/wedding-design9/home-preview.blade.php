@@ -22,7 +22,8 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- CSS STYLE -->
-    <link href="{{ asset('css/wedding-design9.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/wedding-design9.css') }}?v={{ filemtime(public_path('css/wedding-design9.css')) }}"
+        rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
@@ -33,9 +34,9 @@
         <div class="overlayDoor"></div>
         <div class="overlayContent">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-            <lottie-player class="animation-loading" src="{{ asset('img/design-9/loading.json') }}" background="transparent"
-                speed="1" style="width: 96px; height: 96px" direction="1" mode="normal" loop
-                autoplay></lottie-player>
+            <lottie-player class="animation-loading" src="{{ asset('img/design-9/loading.json') }}"
+                background="transparent" speed="1" style="width: 96px; height: 96px" direction="1" mode="normal"
+                loop autoplay></lottie-player>
         </div>
     </div>
     <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
@@ -45,10 +46,12 @@
         </div> -->
         <div class="offcanvas-body">
             <div class="flower-left-cover">
-                <img class="flower-left object-fit-cover" src="{{ asset('img/design-9/element-1.svg') }}" alt="background">
+                <img class="flower-left object-fit-cover" src="{{ asset('img/design-9/element-1.svg') }}"
+                    alt="background">
             </div>
             <div class="flower-right-cover">
-                <img class="flower-right object-fit-cover" src="{{ asset('img/design-9/element-2.svg') }}" alt="background">
+                <img class="flower-right object-fit-cover" src="{{ asset('img/design-9/element-2.svg') }}"
+                    alt="background">
             </div>
             <div class="opening-undangan">
                 <p>Undangan Pernikahan</p>
@@ -63,7 +66,8 @@
                 <button type="button" onclick="playAudio()" style="display:none" class="btn-primary" id="buttonPage"
                     data-bs-dismiss="offcanvas">Buka Undangan</button>
             </div>
-            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/design-9/background.jpg') }}" alt="background">
+            <img class="background-offcanvas object-fit-cover" src="{{ asset('img/design-9/background.jpg') }}"
+                alt="background">
         </div>
     </div>
     <audio loop id="track">
@@ -99,7 +103,8 @@
             </li>
         </ul>
     </nav>
-    <img class="background-template object-fit-cover" src="{{ asset('img/design-9/background.jpg') }}" alt="background">
+    <img class="background-template object-fit-cover" src="{{ asset('img/design-9/background.jpg') }}"
+        alt="background">
     <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
@@ -475,7 +480,8 @@
                 ucapkan terima kasih. Kami yang berbahagia</p>
             <h3 class="anm_mod bottom-bit fast">Lily & Ndaru</h3>
         </div>
-        <img class="ending-background object-fit-cover" src="{{ asset('img/design-9/element-6.svg') }}" alt="background">
+        <img class="ending-background object-fit-cover" src="{{ asset('img/design-9/element-6.svg') }}"
+            alt="background">
     </section>
     <!-- ENDING END -->
 

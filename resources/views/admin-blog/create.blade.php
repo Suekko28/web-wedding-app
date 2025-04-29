@@ -29,7 +29,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 mb-3">
                                         <label for="image">Gambar <span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="image" name="image"
+                                        <input type="file" accept="image/*" class="form-control" id="image" name="image"
                                             placeholder="" value="{{ old('image') }}">
                                     </div>
                                     <div class="col-sm-6 mb-3">

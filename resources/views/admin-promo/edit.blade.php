@@ -20,7 +20,7 @@
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="image">Gambar <span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="image" name="image">
+                                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
 
                                         <!-- Tampilkan gambar lama jika ada -->
                                         @if ($data->image)

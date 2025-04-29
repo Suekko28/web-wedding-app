@@ -18,7 +18,7 @@
                             <div class="fs-3">
                                 <div class="form-group col-sm-4 mb-3">
                                     <label for="image">Gambar <span class="mandatory">*</span></label>
-                                    <input type="file" class="form-control" id="image" name="image"
+                                    <input type="file" accept="image/*" class="form-control" id="image" name="image"
                                         placeholder="" value="{{old('image')}}">
                                 </div>
                             </div>
