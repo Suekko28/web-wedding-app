@@ -311,9 +311,9 @@ Route::delete('/nama-undangan/design3/{id}', [NamaUndanganDesign3Controller::cla
 
 
 // Route undangan design 4
-Route::prefix('/{slug_nama_mempelai_laki}&{slug_nama_mempelai_perempuan}/for=')->group(function () {
-    Route::get('/preview', [HomeDesign4Controller::class, 'show'])->name('wedding-design4-home-preview');
-});
+// routes/web.php
+Route::get('/{id_weddingdesign4}/{slug_nama_pasangan}/for=/preview', [HomeDesign4Controller::class, 'show'])
+    ->name('wedding-design4-home-preview');
 
 
 Route::get('/{slug_nama_mempelai_laki}&{slug_nama_mempelai_perempuan}/for={slug_nama_undangan}', [HomeDesign4Controller::class, 'showDetail'])->name('wedding-design4-home');

@@ -15,6 +15,7 @@ class InformasiDesign4 extends Model
     protected $fillable = [
         'id_weddingdesign4',
         'nama_pasangan',
+        'slug_nama_pasangan',
         'tgl_pernikahan',
 
     ];

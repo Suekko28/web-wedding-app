@@ -6,6 +6,7 @@ use App\Http\Requests\InformasiDesign4FormRequest;
 use App\Models\InformasiDesign4;
 use Illuminate\Http\Request;
 use Storage;
+use Str;
 
 class InformasiDesign4Controller extends Controller
 {
@@ -49,6 +50,7 @@ class InformasiDesign4Controller extends Controller
 
         $idWeddingDesign4 = 'PDT-WDDS4-' . $currentDate . '-' . sprintf('%04d', $newIdNumber); // Format PDT-SSH-Ymd0001
 
+        $data['slug_nama_pasangan'] = Str::slug($data['nama_pasangan']);
         $data['id_weddingdesign4'] = $idWeddingDesign4;
 
         InformasiDesign4::create($data);

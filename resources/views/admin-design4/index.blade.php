@@ -93,14 +93,14 @@
                                           {{ !$item->KontenDesign4->first() || !$item->KontenDesign4->first()->nama_mempelai_laki || !$item->KontenDesign4->first()->nama_mempelai_perempuan ? 'disabled' : '' }}">
                                             <i class="fa fa-circle-info" style="color:white;"></i>
                                         </a>
-                                        <a class="btn btn-primary mb-2 {{ !$item->KontenDesign4->first() || !$item->KontenDesign4->first()->nama_mempelai_laki || !$item->KontenDesign4->first()->nama_mempelai_perempuan ? 'disabled' : '' }}"
+                                        <a class="btn btn-primary mb-2 {{ !$item->KontenDesign4->first() || !$item->slug_nama_pasangan ? 'disabled' : '' }}"
                                             href="{{ route('wedding-design4-home-preview', [
-                                                 'slug_nama_mempelai_laki' => Str::slug($item->KontenDesign4->first()->nama_mempelai_laki ?? 'Unknown'),
-                                                 'slug_nama_mempelai_perempuan' => Str::slug($item->KontenDesign4->first()->nama_mempelai_perempuan ?? 'Unknown'),
-                                             ]) }}"
+                                                'slug_nama_pasangan' => $item->slug_nama_pasangan,
+                                                'id_weddingdesign4' => $item->id_weddingdesign4,
+                                            ]) }}"
                                             target="_blank">
                                             <i class="fa fa-eye" style="color:white;"></i>
-                                         </a>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

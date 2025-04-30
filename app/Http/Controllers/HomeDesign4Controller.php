@@ -36,14 +36,18 @@ class HomeDesign4Controller extends Controller
             ->with('activeTab', 'pills-home');
     }
 
-    public function show($slug_nama_mempelai_laki, $slug_nama_mempelai_perempuan)
+    // app/Http/Controllers/HomeDesign4Controller.php
+    public function show($slug_nama_pasangan, $id_weddingdesign4)
     {
-        $data = WeddingDesign4::where('slug_nama_mempelai_laki', $slug_nama_mempelai_laki)
-            ->where('slug_nama_mempelai_perempuan', $slug_nama_mempelai_perempuan)
+        $informasi = InformasiDesign4::where('slug_nama_pasangan', $slug_nama_pasangan)
+            ->where('id_weddingdesign4', $id_weddingdesign4)
             ->firstOrFail();
+
+        $data = $informasi->KontenDesign4->first();
 
         return view('admin-design4.home-design4', compact('data'));
     }
+
 
     public function showDetail(string $slug_nama_mempelai_laki, string $slug_nama_mempelai_perempuan, string $slug_nama_undangan)
     {
