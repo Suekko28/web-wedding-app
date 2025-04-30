@@ -36,7 +36,6 @@ class HomeDesign4Controller extends Controller
             ->with('activeTab', 'pills-home');
     }
 
-    // app/Http/Controllers/HomeDesign4Controller.php
     public function show($slug_nama_pasangan, $id_weddingdesign4)
     {
         $informasi = InformasiDesign4::where('slug_nama_pasangan', $slug_nama_pasangan)
