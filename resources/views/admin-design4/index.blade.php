@@ -98,6 +98,9 @@
                                                 !$item->KontenDesign4->first() ||
                                                 !$item->slug_nama_pasangan ||
                                                 !$item->id_weddingdesign4;
+
+                                            // Format slug: hanya spasi diganti "-", "&" tetap
+                                            $slug_nama_pasangan = str_replace(' ', '-', $item->slug_nama_pasangan);
                                         @endphp
 
                                         <a class="btn btn-primary mb-2 {{ $isDisabled ? 'disabled' : '' }}"
@@ -105,7 +108,7 @@
                                                 ? '#'
                                                 : route('wedding-design4-home-preview', [
                                                     'id_weddingdesign4' => $item->id_weddingdesign4,
-                                                    'slug_nama_pasangan' => $item->slug_nama_pasangan,
+                                                    'slug_nama_pasangan' => $slug_nama_pasangan,
                                                 ]) }}"
                                             target="_blank">
                                             <i class="fa fa-eye" style="color:white;"></i>

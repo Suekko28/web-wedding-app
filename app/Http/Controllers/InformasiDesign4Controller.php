@@ -50,7 +50,7 @@ class InformasiDesign4Controller extends Controller
 
         $idWeddingDesign4 = 'PDT-WDDS4-' . $currentDate . '-' . sprintf('%04d', $newIdNumber); // Format PDT-SSH-Ymd0001
 
-        $data['slug_nama_pasangan'] = Str::slug($data['nama_pasangan']);
+        $data['slug_nama_pasangan'] = strtolower(str_replace(' ', '-', $data['nama_pasangan']));
         $data['id_weddingdesign4'] = $idWeddingDesign4;
 
         InformasiDesign4::create($data);
@@ -87,7 +87,10 @@ class InformasiDesign4Controller extends Controller
             return redirect()->route('wedding-design4.index')->with('error', 'Data undangan tidak ditemukan.');
         }
 
-        $undangan->update($request->all());
+        $data = $request->all();
+        $data['slug_nama_pasangan'] = strtolower(str_replace(' ', '-', $request->nama_pasangan));
+
+        $undangan->update($data);
 
         return redirect()->route('wedding-design4.index')->with('success', 'Data undangan berhasil diperbarui.');
     }

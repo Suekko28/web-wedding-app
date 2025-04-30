@@ -38,6 +38,7 @@ class HomeDesign4Controller extends Controller
 
     public function show($id_weddingdesign4, $slug_nama_pasangan)
     {
+        // Jangan ubah slug, langsung pakai apa adanya
         $informasi = InformasiDesign4::where('slug_nama_pasangan', $slug_nama_pasangan)
             ->where('id_weddingdesign4', $id_weddingdesign4)
             ->firstOrFail();
@@ -46,8 +47,6 @@ class HomeDesign4Controller extends Controller
 
         return view('admin-design4.home-design4', compact('data'));
     }
-
-
     public function showDetail(string $slug_nama_mempelai_laki, string $slug_nama_mempelai_perempuan, string $slug_nama_undangan)
     {
         $data = WeddingDesign4::where('slug_nama_mempelai_laki', $slug_nama_mempelai_laki)

@@ -311,7 +311,6 @@ Route::delete('/nama-undangan/design3/{id}', [NamaUndanganDesign3Controller::cla
 
 
 // Route undangan design 4
-// routes/web.php
 Route::get('/{id_weddingdesign4}/{slug_nama_pasangan}/for=/preview', [HomeDesign4Controller::class, 'show'])
     ->name('wedding-design4-home-preview');
 
