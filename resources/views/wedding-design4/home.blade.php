@@ -449,7 +449,11 @@
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
                         <form id="algin-form" class="rsvp-mobile3" method="POST"
-                            action="{{ route('wedding-design4-post', ['slug_nama_mempelai_laki' => $slug_nama_mempelai_laki, 'slug_nama_mempelai_perempuan' => $slug_nama_mempelai_perempuan, 'slug_nama_undangan' => $slug_nama_undangan]) }}">
+                            action="{{ route('wedding-design4-post', [
+                                'id_weddingdesign4' => $id_weddingdesign4,
+                                'slug_nama_pasangan' => $slug_nama_pasangan,
+                                'slug_nama_undangan' => $slug_nama_undangan,
+                            ]) }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
@@ -588,7 +592,7 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">{{ $data->deskripsi_penutup }}</p>
-            <h4 class="anm_mod bottom-bit fast">{{ $data->InformasiDesign4->nama_pasangan }}</h4>
+            <h4 class="anm_mod bottom-bit fast">{{ $data->nama_penutup }}</h4>
         </div>
         <div class="overlay-bottom"></div>
     </section>

@@ -51,8 +51,7 @@ return new class extends Migration {
             $table->text('deskripsi_penutup');
             $table->integer('zona_waktu_akad');
             $table->integer('zona_waktu_resepsi');
-            $table->string('slug_nama_mempelai_laki');
-            $table->string('slug_nama_mempelai_perempuan');
+            $table->string('nama_penutup');
             $table->unsignedBigInteger('informasi_design4_id');
             $table->foreign('informasi_design4_id')
                 ->references('id')

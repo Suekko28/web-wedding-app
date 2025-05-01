@@ -71,12 +71,14 @@ class WeddingDesign4Controller extends Controller
         $defaultDeskripsiPenutup = 'Thank You';
         $defaultJudulAkad = "Akad";
         $defaultJudulResepsi = "Resepsi";
+        $defaultNamaPenutup = $informasiDesign4->nama_pasangan;
 
         // Cek dan set default jika tidak ada input / sama
         $data['judul_jadwal'] = $request->filled('judul_jadwal') ? $request->input('judul_jadwal') : $defaultJudulJadwal;
         $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
         $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
+        $data['nama_penutup'] = $request->filled('nama_penutup') ? $request->input('nama_penutup') : $defaultNamaPenutup;
 
 
         if ($request->hasFile('banner_img')) {
@@ -114,9 +116,6 @@ class WeddingDesign4Controller extends Controller
             $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design4', $request->file(key: 'akad_img')->hashName());
 
         }
-
-        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
-        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
 
         $data['informasi_design4_id'] = $informasiDesign4->id;
 
@@ -201,6 +200,8 @@ class WeddingDesign4Controller extends Controller
     public function update(WeddingDesign4FormRequest $request, $informasiDesign4Id, $id)
     {
         $weddingDesign4 = WeddingDesign4::findOrFail($id);
+        $informasiDesign4 = InformasiDesign4::findOrFail($informasiDesign4Id);
+
         $data = $request->all();
 
         //Default Values
@@ -208,12 +209,15 @@ class WeddingDesign4Controller extends Controller
         $defaultDeskripsiPenutup = 'Thank You';
         $defaultJudulAkad = "Akad";
         $defaultJudulResepsi = "Resepsi";
+        $defaultNamaPenutup = $informasiDesign4->nama_pasangan;
+
 
         // Cek dan set default jika tidak ada input / sama
         $data['judul_jadwal'] = $request->filled('judul_jadwal') ? $request->input('judul_jadwal') : $defaultJudulJadwal;
         $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
         $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
+        $data['nama_penutup'] = $request->filled('nama_penutup') ? $request->input('nama_penutup') : $defaultNamaPenutup;
 
 
         // Check and handle uploaded files
@@ -277,9 +281,6 @@ class WeddingDesign4Controller extends Controller
             }
             $data['akad_img'] = $request->file('akad_img')->storeAs('public/wedding-design4', $request->file('akad_img')->hashName());
         }
-
-        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
-        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
 
         $weddingDesign4->update($data);
 

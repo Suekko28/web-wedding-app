@@ -21,4 +21,8 @@ class NamaUndanganDesign4 extends Model
     {
         return $this->belongsTo(WeddingDesign4::class, 'wedding_design4_id', 'id');
     }
+    public function informasiDesign4(): BelongsTo
+    {
+        return $this->belongsTo(InformasiDesign4::class, 'wedding_design4_id', 'id');
+    }
 }

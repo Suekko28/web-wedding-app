@@ -54,6 +54,8 @@ class WeddingDesign4FormRequest extends FormRequest
             'judul_jadwal' => ['required', 'max:255'],
             'zona_waktu_akad' => ['required'],
             'zona_waktu_resepsi' => ['required'],
+            'nama_penutup' => ['required', 'max:255'],
+
 
         ];
 
@@ -171,6 +173,10 @@ class WeddingDesign4FormRequest extends FormRequest
 
             'zona_waktu_akad' => 'Zona waktu akad wajib dipilih',
             'zona_waktu_resepsi' => 'Zona waktu resepsi wajib dipilih',
+
+            'nama_penutup.required' => 'Nama penutup wajib diisi',
+            'nama_penutup.max' => 'Nama penutup tidak boleh lebih dari 255 karakter.',
+
 
             'informasi_design4_id.required' => 'Informasi design harus diisi.',
             'informasi_design4_id.exists' => 'Informasi design tidak valid.',

@@ -53,8 +53,7 @@ class WeddingDesign4 extends Model
         'deskripsi_penutup',
         'zona_waktu_akad',
         'zona_waktu_resepsi',
-        'slug_nama_mempelai_laki',
-        'slug_nama_mempelai_perempuan',
+        'nama_penutup',
         'informasi_design4_id'
 
     ];

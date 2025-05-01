@@ -99,7 +99,11 @@
                                                 !$item->slug_nama_pasangan ||
                                                 !$item->id_weddingdesign4;
 
-                                            // Format slug: hanya spasi diganti "-", "&" tetap
+                                            // Contoh: PDT-WDDS4-30042025-0001 → WDDS40001
+                                            $matches = [];
+                                            preg_match('/WDDS4-\d{8}-(\d+)/', $item->id_weddingdesign4, $matches);
+                                            $id_url = 'WDDS4' . ($matches[1] ?? '0000'); // Hasilkan WDDS40001
+
                                             $slug_nama_pasangan = str_replace(' ', '-', $item->slug_nama_pasangan);
                                         @endphp
 
@@ -107,7 +111,7 @@
                                             href="{{ $isDisabled
                                                 ? '#'
                                                 : route('wedding-design4-home-preview', [
-                                                    'id_weddingdesign4' => $item->id_weddingdesign4,
+                                                    'id_weddingdesign4' => $id_url,
                                                     'slug_nama_pasangan' => $slug_nama_pasangan,
                                                 ]) }}"
                                             target="_blank">

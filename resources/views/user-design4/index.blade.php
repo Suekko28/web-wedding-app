@@ -140,7 +140,7 @@
                             <div class="modal-body">
                                 <div class="radio_group">
                                     <input type="radio" name="kehadiran" value="1" id="radio1{{ $item->id }}"
-                                        data-nama-undangan="{{ $item->nama_undangan }}"
+                                        data-nama-undangan="{{ $item->z }}"
                                         data-slug-nama-undangan ="{{ $item->slug_nama_undangan }}"
                                         data-item-id="{{ $item->id }}">
                                     <label for="radio1{{ $item->id }}" class="radio_label">1</label>
@@ -232,7 +232,7 @@
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:\n\n" +
                     namaUndangan + "\n\n" +
                     "Berikut link undangan kami untuk informasi lengkap tentang acara dapat dilihat di sini:\n\n" +
-                    "jejakkebahagiaan.com/{{ $weddingDesign4->slug_nama_mempelai_laki }}&{{ $weddingDesign4->slug_nama_mempelai_perempuan }}/for=" +
+                    "jejakkebahagiaan.com/{{ $nomor }}/{!! $slug_nama_pasangan !!}/for=" +
                     slugNamaUndangan + "\n\n" +
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n" +
                     "Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.\n\n" +
@@ -244,7 +244,7 @@
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:\n\n" +
                     namaUndangan + "\n\n" +
                     "Berikut link undangan kami untuk informasi lengkap tentang acara dapat dilihat di sini:\n\n" +
-                    "jejakkebahagiaan.com/{{ $weddingDesign4->slug_nama_mempelai_laki }}&{{ $weddingDesign4->slug_nama_mempelai_perempuan }}/for=" +
+                    "jejakkebahagiaan.com/{{ $nomor }}/{!! $slug_nama_pasangan !!}/for=" +
                     slugNamaUndangan + "\n\n" +
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n" +
                     "Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.\n\n" +
@@ -254,7 +254,7 @@
                 message =
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i Aldi untuk menghadiri acara kami.\n\n" +
                     "Berikut link undangan kami, untuk info lengkap dari acara bisa kunjungi :\n\n" +
-                    "jejakkebahagiaan.com/{{ $weddingDesign4->slug_nama_mempelai_laki }}&{{ $weddingDesign4->slug_nama_mempelai_perempuan }}/for=" +
+                    "jejakkebahagiaan.com/{{ $nomor }}/{!! $slug_nama_pasangan !!}/for=" +
                     slugNamaUndangan + "\n\n" +
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n" +
                     "Mohon maaf perihal undangan hanya di bagikan melalui pesan ini.\n\n" +

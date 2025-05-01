@@ -311,12 +311,12 @@ Route::delete('/nama-undangan/design3/{id}', [NamaUndanganDesign3Controller::cla
 
 
 // Route undangan design 4
-Route::get('/{id_weddingdesign4}/{slug_nama_pasangan}/for=/preview', [HomeDesign4Controller::class, 'show'])
+Route::get('/{id_weddingdesign4}/{slug_nama_pasangan}/for=preview', [HomeDesign4Controller::class, 'show'])
     ->name('wedding-design4-home-preview');
 
 
-Route::get('/{slug_nama_mempelai_laki}&{slug_nama_mempelai_perempuan}/for={slug_nama_undangan}', [HomeDesign4Controller::class, 'showDetail'])->name('wedding-design4-home');
-Route::post('/{slug_nama_mempelai_laki}&{slug_nama_mempelai_perempuan}/for={slug_nama_undangan}', [HomeDesign4Controller::class, 'store'])->name('wedding-design4-post');
+Route::get('/{id_weddingdesign4}/{slug_nama_pasangan}/for={slug_nama_undangan}', [HomeDesign4Controller::class, 'showDetail'])->name('wedding-design4-home');
+Route::post('/{id_weddingdesign4}/{slug_nama_pasangan}/for={slug_nama_undangan}', [HomeDesign4Controller::class, 'store'])->name('wedding-design4-post');
 
 Route::resource('/nama-undangan', NamaUndanganDesign4Controller::class);
 Route::get('nama-undangan/premium-gold/{weddingDesign4Id}/list', [NamaUndanganDesign4Controller::class, 'index'])->name('nama-undangan-list4');
