@@ -45,11 +45,13 @@ class WeddingDesign6FormRequest extends FormRequest
             'judul_akad' => ['nullable', 'max:255'],
             'tgl_akad' => ['required', 'date'],
             'mulai_akad' => ['required', 'date_format:H:i'],
+            'link_akad' => ['required', 'string','max:255'],
             'selesai_akad' => ['required', 'date_format:H:i'],
             'judul_resepsi' => ['nullable', 'max:255'],
             'tgl_resepsi' => ['required', 'date'],
             'mulai_resepsi' => ['required', 'date_format:H:i'],
             'selesai_resepsi' => ['required', 'date_format:H:i'],
+            'link_resepsi' => ['required', 'string','max:255'],
             'judul_pembuka' => ['required', 'max:255'],
             'deskripsi_pembuka' => ['required'],
             'judul_cinta' => ['nullable', 'max:255'],
@@ -58,6 +60,8 @@ class WeddingDesign6FormRequest extends FormRequest
             'deskripsi_penutup' => ['required'],
             'zona_waktu_akad' => ['required', 'integer', 'in:1,2,3'],
             'zona_waktu_resepsi' => ['required', 'integer', 'in:1,2,3'],
+            'nama_penutup' => ['required', 'max:255'],
+
 
         ];
 
@@ -142,6 +146,9 @@ class WeddingDesign6FormRequest extends FormRequest
 
             'deskripsi_akad.string' => 'Deskripsi akad harus berupa teks.',
 
+            'link_akad.required' => 'Link akad  wajib diisi',
+            'link_akad.max' => 'Link akad tidak boleh lebih dari 255 karakter.',
+
             'simpan_tgl_akad.required' => 'Tanggal akad harus diisi.',
             'simpan_tgl_akad.string' => 'Tanggal akad harus berupa teks.',
             'simpan_tgl_akad.max' => 'Simpan tanggal akad tidak boleh lebih dari 350 karakter.',
@@ -160,6 +167,10 @@ class WeddingDesign6FormRequest extends FormRequest
 
             'deskripsi_resepsi.string' => 'Deskripsi resepsi harus berupa teks.',
 
+            'link_resepsi.required' => 'Link akad  wajib diisi',
+            'link_resepsi.max' => 'Link akad tidak boleh lebih dari 255 karakter.',
+
+
             'simpan_tgl_resepsi.required' => 'Tanggal resepsi harus diisi.',
             'simpan_tgl_resepsi.string' => 'Tanggal resepsi harus berupa teks.',
             'simpan_tgl_resepsi.max' => 'Simpan tanggal resepsi tidak boleh lebih dari 350 karakter.',
@@ -171,6 +182,10 @@ class WeddingDesign6FormRequest extends FormRequest
 
             'zona_waktu_akad' => 'Zona waktu akad wajib dipilih',
             'zona_waktu_resepsi' => 'Zona waktu resepsi wajib dipilih',
+
+            'nama_penutup.required' => 'Nama penutup wajib diisi',
+            'nama_penutup.max' => 'Nama penutup tidak boleh lebih dari 255 karakter.',
+
 
             'informasi_design6_id.required' => 'Informasi design harus diisi.',
             'informasi_design6_id.exists' => 'Informasi design tidak valid.',

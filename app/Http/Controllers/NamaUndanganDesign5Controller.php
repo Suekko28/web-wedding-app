@@ -12,12 +12,29 @@ class NamaUndanganDesign5Controller extends Controller
 {
     public function index($weddingDesign5Id)
     {
-        $weddingDesign5 = WeddingDesign5::findOrFail($weddingDesign5Id);
+        // Ambil data WeddingDesign5 beserta relasi InformasiDesign5
+        $weddingDesign5 = WeddingDesign5::with('InformasiDesign5')->findOrFail($weddingDesign5Id);
+
+        // Ambil data nama undangan dengan pagination
         $nama_undangan = $weddingDesign5->namaUndangan()->paginate(10);
 
+        // Ambil slug_nama_pasangan
+        $slug_nama_pasangan = $weddingDesign5->informasiDesign5->slug_nama_pasangan;
+
+        // Ambil id_weddingdesign5
+        $id_weddingdesign5 = $weddingDesign5->informasiDesign5->id_weddingdesign5;
+
+        // Menggunakan regex untuk mendapatkan nomor urut dari id_weddingdesign5 (misalnya: PDT-WDDS5-30052025-0001)
+        $matches = [];
+        preg_match('/WDDS5-\d{8}-(\d+)/', $id_weddingdesign5, $matches);
+        $nomor = $matches[1] ?? '0000'; // hasil akhir: 0001
+
+        // Kirim data ke view
         return view('user-design5.index', [
             'weddingDesign5' => $weddingDesign5,
             'nama_undangan' => $nama_undangan,
+            'slug_nama_pasangan' => $slug_nama_pasangan,
+            'nomor' => $nomor // Menyertakan nomor yang diformat
         ]);
     }
 

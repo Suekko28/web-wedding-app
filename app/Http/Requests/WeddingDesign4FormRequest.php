@@ -39,10 +39,12 @@ class WeddingDesign4FormRequest extends FormRequest
             'lokasi_akad' => ['required', 'string', 'max:255'],
             'deskripsi_akad' => ['string'],
             'simpan_tgl_akad' => ['required', 'string','max:350'],
+            'link_akad' => ['required', 'string','max:255'],
             'judul_resepsi' => ['nullable', 'max:255'],
             'lokasi_resepsi' => ['required', 'string', 'max:255'],
             'deskripsi_resepsi' => ['string'],
             'simpan_tgl_resepsi' => ['required', 'string','max:350'],
+            'link_resepsi' => ['required', 'string','max:255'],
             'link_streaming' => ['nullable', 'max:255'],
             'informasi_design4_id' => ['required', 'exists:informasi_design4,id'],
             'tgl_akad' => ['required', 'date'],
@@ -147,6 +149,9 @@ class WeddingDesign4FormRequest extends FormRequest
 
             'deskripsi_akad.string' => 'Deskripsi akad harus berupa teks.',
 
+            'link_akad.required' => 'Link akad  wajib diisi',
+            'link_akad.max' => 'Link akad tidak boleh lebih dari 255 karakter.',
+
             'simpan_tgl_akad.required' => 'Tanggal akad harus diisi.',
             'simpan_tgl_akad.string' => 'Tanggal akad harus berupa teks.',
             'simpan_tgl_akad.max' => 'Simpan tanggal akad tidak boleh lebih dari 350 karakter.',
@@ -164,6 +169,10 @@ class WeddingDesign4FormRequest extends FormRequest
             'lokasi_resepsi.max' => 'Lokasi resepsi tidak boleh lebih dari 255 karakter.',
 
             'deskripsi_resepsi.string' => 'Deskripsi resepsi harus berupa teks.',
+
+            'link_resepsi.required' => 'Link akad  wajib diisi',
+            'link_resepsi.max' => 'Link akad tidak boleh lebih dari 255 karakter.',
+
 
             'simpan_tgl_resepsi.required' => 'Tanggal resepsi harus diisi.',
             'simpan_tgl_resepsi.string' => 'Tanggal resepsi harus berupa teks.',

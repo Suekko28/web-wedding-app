@@ -11,7 +11,7 @@
         $defaultJudulJadwal = 'Jadwal Pernikahan';
         $defaultJudulAkad = 'Akad';
         $defaultJudulResepsi = 'Resepsi';
-
+        $defaultNamaPenutup = $informasiDesign5->nama_pasangan;
     @endphp
 
     <div class="card w-100 position-relative overflow-hidden">
@@ -517,6 +517,12 @@
                                         <label for="deskripsi_penutup">Deskripsi<span class="mandatory">*</span></label>
                                         <textarea disabled class="form-control" rows="5" id="deskripsi_penutup" name="deskripsi_penutup"
                                             placeholder="Deskripsi">{{ old('deskripsi_penutup', $data->deskripsi_penutup ?? $defaultDeskripsiPenutup) }}</textarea disabled>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="nama_penutup">Nama Pasangan<span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="nama_penutup" name="nama_penutup"
+                                            placeholder="Masukkan nama pasangan"
+                                            value="{{ old('nama_penutup', $data->nama_penutup ?? $defaultNamaPenutup) }}" disabled>
                                     </div>
                                 </div>
                             </div>

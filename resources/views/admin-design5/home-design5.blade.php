@@ -608,7 +608,7 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">{{ $data->deskripsi_penutup }}</p>
-            <h4 class="anm_mod bottom-bit fast">{{ $data->InformasiDesign5->nama_pasangan }}</h4>
+            <h4 class="anm_mod bottom-bit fast">{{ $data->nama_penutup }}</h4>
         </div>
         <div class="overlay-bottom"></div>
     </section>

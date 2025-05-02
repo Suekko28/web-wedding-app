@@ -99,19 +99,18 @@
                                                 !$item->slug_nama_pasangan ||
                                                 !$item->id_weddingdesign4;
 
-                                            // Contoh: PDT-WDDS4-30042025-0001 → WDDS40001
+                                            // Ambil hanya angka belakang dari ID, misal: 0001
                                             $matches = [];
                                             preg_match('/WDDS4-\d{8}-(\d+)/', $item->id_weddingdesign4, $matches);
-                                            $id_url = 'WDDS4' . ($matches[1] ?? '0000'); // Hasilkan WDDS40001
+                                            $id_angka = $matches[1] ?? '0000'; // hanya 0001, tanpa WDDS4 prefix
 
                                             $slug_nama_pasangan = str_replace(' ', '-', $item->slug_nama_pasangan);
                                         @endphp
-
                                         <a class="btn btn-primary mb-2 {{ $isDisabled ? 'disabled' : '' }}"
                                             href="{{ $isDisabled
                                                 ? '#'
                                                 : route('wedding-design4-home-preview', [
-                                                    'id_weddingdesign4' => $id_url,
+                                                    'id_weddingdesign4' => $id_angka,
                                                     'slug_nama_pasangan' => $slug_nama_pasangan,
                                                 ]) }}"
                                             target="_blank">

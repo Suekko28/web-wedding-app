@@ -14,11 +14,10 @@ class HomeDesign4Controller extends Controller
 
     public function store(UcapanDesign4FormRequest $request, string $id_weddingdesign4, string $slug_nama_pasangan, string $slug_nama_undangan)
     {
-        $nomor = substr($id_weddingdesign4, 5); // Misalnya: WDDS40001 → 0001
 
         // Cari informasi dari InformasiDesign4 berdasarkan slug nama pasangan
         $informasi = InformasiDesign4::where('slug_nama_pasangan', $slug_nama_pasangan)
-            ->where('id_weddingdesign4', 'like', 'PDT-WDDS4-%-' . $nomor)
+            ->where('id_weddingdesign4', 'like', 'PDT-WDDS4-%-' . $id_weddingdesign4)
             ->firstOrFail();
 
         // Ambil WeddingDesign4 yang terkait
@@ -45,12 +44,9 @@ class HomeDesign4Controller extends Controller
 
     public function show($id_weddingdesign4, $slug_nama_pasangan)
     {
-        // Ambil nomor urut dari ID URL: WDDS40001 → 0001
-        $nomor = substr($id_weddingdesign4, 5); // hasil: 0001
-
-        // Ambil entri pertama yang sesuai dengan format (tanpa slug untuk sementara)
+        // Ambil entri berdasarkan nomor urut
         $informasi = InformasiDesign4::where('slug_nama_pasangan', $slug_nama_pasangan)
-            ->where('id_weddingdesign4', 'like', 'PDT-WDDS4-%-' . $nomor)
+            ->where('id_weddingdesign4', 'like', 'PDT-WDDS4-%-' . $id_weddingdesign4)
             ->firstOrFail();
 
         $data = $informasi->KontenDesign4->first();
@@ -60,11 +56,9 @@ class HomeDesign4Controller extends Controller
 
     public function showDetail(string $id_weddingdesign4, string $slug_nama_pasangan, string $slug_nama_undangan)
     {
-        $nomor = substr($id_weddingdesign4, 5); // WDDS40001 → 0001
-
         // Ambil informasi berdasarkan kode unik
         $informasi = InformasiDesign4::where('slug_nama_pasangan', $slug_nama_pasangan)
-            ->where('id_weddingdesign4', 'like', 'PDT-WDDS4-%-' . $nomor)
+            ->where('id_weddingdesign4', 'like', 'PDT-WDDS4-%-' . $id_weddingdesign4)
             ->firstOrFail();
 
         // Ambil entri WeddingDesign4 (konten) pertama

@@ -29,14 +29,15 @@ class InformasiDesign5Controller extends Controller
 
         // Menentukan urutan ID Seserahan
         if ($latestWeddingDesign5) {
-            $lastId = intval(substr($latestWeddingDesign5->id_weddingdesign5, -5)); // Mengambil 5 digit terakhir dari id_weddingdesign5
+            $lastId = intval(substr($latestWeddingDesign5->id_weddingdesign5, -4)); // Mengambil 5 digit terakhir dari id_weddingdesign5
             $newIdNumber = $lastId + 1; // Menambah 1 dari id terakhir
         } else {
             $newIdNumber = 1; // Jika belum ada data, mulai dari 1
         }
 
-        $idWeddingDesign5 = 'PDT-WDDS5-' . $currentDate . '-' . sprintf('%05d', $newIdNumber); // Format PDT-SSH-Ymd0001
+        $idWeddingDesign5 = 'PDT-WDDS5-' . $currentDate . '-' . sprintf('%04d', $newIdNumber); // Format PDT-SSH-Ymd0001
 
+        $data['slug_nama_pasangan'] = strtolower(str_replace(' ', '-', $data['nama_pasangan']));
         $data['id_weddingdesign5'] = $idWeddingDesign5;
 
         InformasiDesign5::create($data);
@@ -57,7 +58,10 @@ class InformasiDesign5Controller extends Controller
             return redirect()->route('wedding-design5.index')->with('error', 'Data undangan tidak ditemukan.');
         }
 
-        $undangan->update($request->all());
+        $data = $request->all();
+        $data['slug_nama_pasangan'] = strtolower(str_replace(' ', '-', $request->nama_pasangan));
+
+        $undangan->update($data);
 
         return redirect()->route('wedding-design5.index')->with('success', 'Data undangan berhasil diperbarui.');
     }

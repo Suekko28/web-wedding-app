@@ -15,12 +15,29 @@ class NamaUndanganDesign6Controller extends Controller
      */
     public function index($weddingDesign6Id)
     {
-        $weddingDesign6 = WeddingDesign6::findOrFail($weddingDesign6Id);
+        // Ambil data WeddingDesign6 beserta relasi InformasiDesign6
+        $weddingDesign6 = WeddingDesign6::with('InformasiDesign6')->findOrFail($weddingDesign6Id);
+
+        // Ambil data nama undangan dengan pagination
         $nama_undangan = $weddingDesign6->namaUndangan()->paginate(10);
 
+        // Ambil slug_nama_pasangan
+        $slug_nama_pasangan = $weddingDesign6->informasiDesign6->slug_nama_pasangan;
+
+        // Ambil id_weddingdesign6
+        $id_weddingdesign6 = $weddingDesign6->informasiDesign6->id_weddingdesign6;
+
+        // Menggunakan regex untuk mendapatkan nomor urut dari id_weddingdesign6 (misalnya: PDT-WDDS6-30062025-0001)
+        $matches = [];
+        preg_match('/WDDS6-\d{8}-(\d+)/', $id_weddingdesign6, $matches);
+        $nomor = $matches[1] ?? '0000'; // hasil akhir: 0001
+
+        // Kirim data ke view
         return view('user-design6.index', [
             'weddingDesign6' => $weddingDesign6,
             'nama_undangan' => $nama_undangan,
+            'slug_nama_pasangan' => $slug_nama_pasangan,
+            'nomor' => $nomor // Menyertakan nomor yang diformat
         ]);
     }
 

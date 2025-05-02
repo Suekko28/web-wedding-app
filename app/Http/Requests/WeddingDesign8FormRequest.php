@@ -37,6 +37,7 @@ class WeddingDesign8FormRequest extends FormRequest
             'lokasi_akad' => ['required', 'string', 'max:255'],
             'deskripsi_akad' => ['string'],
             'simpan_tgl_akad' => ['required', 'string','max:350'],
+            'link_akad' => ['required', 'string','max:255'],
             'lokasi_resepsi' => ['required', 'string',],
             'deskripsi_resepsi' => ['string'],
             'simpan_tgl_resepsi' => ['required', 'string','max:350'],
@@ -50,6 +51,7 @@ class WeddingDesign8FormRequest extends FormRequest
             'tgl_resepsi' => ['required', 'date'],
             'mulai_resepsi' => ['required', 'date_format:H:i'],
             'selesai_resepsi' => ['required', 'date_format:H:i'],
+            'link_resepsi' => ['required', 'string','max:255'],
             'judul_pembuka' => ['required', 'max:255'],
             'deskripsi_pembuka' => ['required'],
             'judul_cinta' => ['nullable', 'max:255'],
@@ -142,6 +144,9 @@ class WeddingDesign8FormRequest extends FormRequest
 
             'deskripsi_akad.string' => 'Deskripsi akad harus berupa teks.',
 
+            'link_akad.required' => 'Link akad  wajib diisi',
+            'link_akad.max' => 'Link akad tidak boleh lebih dari 255 karakter.',
+
             'simpan_tgl_akad.required' => 'Tanggal akad harus diisi.',
             'simpan_tgl_akad.string' => 'Tanggal akad harus berupa teks.',
             'simpan_tgl_akad.max' => 'Simpan tanggal akad tidak boleh lebih dari 350 karakter.',
@@ -160,6 +165,9 @@ class WeddingDesign8FormRequest extends FormRequest
             'lokasi_resepsi.max' => 'Lokasi resepsi tidak boleh lebih dari 255 karakter.',
 
             'deskripsi_resepsi.string' => 'Deskripsi resepsi harus berupa teks.',
+
+            'link_resepsi.required' => 'Link akad  wajib diisi',
+            'link_resepsi.max' => 'Link akad tidak boleh lebih dari 255 karakter.',
 
             'simpan_tgl_resepsi.required' => 'Tanggal resepsi harus diisi.',
             'simpan_tgl_resepsi.string' => 'Tanggal resepsi harus berupa teks.',

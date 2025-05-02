@@ -16,6 +16,7 @@
         $defaultJudulJadwal = 'Jadwal Pernikahan';
         $defaultJudulAkad = 'Akad';
         $defaultJudulResepsi = 'Resepsi';
+        $defaultNamaPenutup = $informasiDesign6->nama_pasangan;
 
     @endphp
 
@@ -60,7 +61,7 @@
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Cover Undangan</div>
                             <div class="form-group form-group fs-3">
-                                <div class="row">   
+                                <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
@@ -97,14 +98,13 @@
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
                                         <label for="judul_pembuka">Judul<span class="mandatory">*</span></label>
-                                        <input type="text" class="form-control" id="judul_pembuka"
-                                            name="judul_pembuka" placeholder="Judul ucapan pembuka"
+                                        <input type="text" class="form-control" id="judul_pembuka" name="judul_pembuka"
+                                            placeholder="Judul ucapan pembuka"
                                             value="{{ old('judul_pembuka', $data->judul_pembuka ?? $defaultJudulPembuka) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="deskripsi_pembuka">Deskripsi<span class="mandatory">*</span></label>
-                                        <textarea class="form-control" rows="5" id="deskripsi_pembuka" name="deskripsi_pembuka"
-                                            placeholder="Deskripsi">{{ old('deskripsi_pembuka', $data->deskripsi_pembuka ?? $defaultDeskripsiPembuka) }}</textarea>
+                                        <textarea class="form-control" rows="5" id="deskripsi_pembuka" name="deskripsi_pembuka" placeholder="Deskripsi">{{ old('deskripsi_pembuka', $data->deskripsi_pembuka ?? $defaultDeskripsiPembuka) }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -565,6 +565,12 @@
                                         <label for="deskripsi_penutup">Deskripsi<span class="mandatory">*</span></label>
                                         <textarea class="form-control" rows="5" id="deskripsi_penutup" name="deskripsi_penutup"
                                             placeholder="Deskripsi">{{ old('deskripsi_penutup', $data->deskripsi_penutup ?? $defaultDeskripsiPenutup) }}</textarea>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="nama_penutup">Nama Pasangan<span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="nama_penutup" name="nama_penutup"
+                                            placeholder="Masukkan nama pasangan"
+                                            value="{{ old('nama_penutup', $defaultNamaPenutup) }}">
                                     </div>
                                 </div>
                             </div>

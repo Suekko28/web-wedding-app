@@ -17,32 +17,30 @@ class NamaUndanganDesign4Controller extends Controller
     {
         // Ambil data WeddingDesign4 beserta relasi InformasiDesign4
         $weddingDesign4 = WeddingDesign4::with('InformasiDesign4')->findOrFail($weddingDesign4Id);
-
+    
         // Ambil data nama undangan dengan pagination
         $nama_undangan = $weddingDesign4->namaUndangan()->paginate(10);
-
+    
         // Ambil slug_nama_pasangan
         $slug_nama_pasangan = $weddingDesign4->informasiDesign4->slug_nama_pasangan;
-
-        // Ambil id_weddingdesign4
+    
+        // Ambil id_weddingdesign4 (contoh: PDT-WDDS4-30042025-0001)
         $id_weddingdesign4 = $weddingDesign4->informasiDesign4->id_weddingdesign4;
-
-        // Menggunakan regex untuk mendapatkan nomor urut dari id_weddingdesign4 (misalnya: PDT-WDDS4-30042025-0001)
+    
+        // Ambil hanya angka 0001 dari bagian akhir id_weddingdesign4
         $matches = [];
-        preg_match('/WDDS4-\d{8}-(\d+)/', $id_weddingdesign4, $matches);
-        $nomor = 'WDDS4' . str_pad($matches[1] ?? '0000', 4, '0', STR_PAD_LEFT); // Formatkan nomor menjadi WDDS0001
-
+        preg_match('/PDT-WDDS4-\d{8}-(\d+)/', $id_weddingdesign4, $matches);
+        $nomor = $matches[1] ?? '0000'; // hasil akhir: 0001
+    
         // Kirim data ke view
         return view('user-design4.index', [
             'weddingDesign4' => $weddingDesign4,
             'nama_undangan' => $nama_undangan,
             'slug_nama_pasangan' => $slug_nama_pasangan,
-            'nomor' => $nomor // Menyertakan nomor yang diformat
+            'nomor' => $nomor
         ]);
     }
-
-
-
+    
     /**
      * Show the form for creating a new resource.
      */

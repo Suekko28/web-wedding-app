@@ -71,12 +71,15 @@ class WeddingDesign5Controller extends Controller
         $defaultDeskripsiPenutup = 'Thank You';
         $defaultJudulAkad = "Akad";
         $defaultJudulResepsi = "Resepsi";
+        $defaultNamaPenutup = $informasiDesign5->nama_pasangan;
+
 
         // Cek dan set default jika tidak ada input / sama
         $data['judul_jadwal'] = $request->filled('judul_jadwal') ? $request->input('judul_jadwal') : $defaultJudulJadwal;
         $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
         $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
+        $data['nama_penutup'] = $request->filled('nama_penutup') ? $request->input('nama_penutup') : $defaultNamaPenutup;
 
 
 
@@ -202,6 +205,8 @@ class WeddingDesign5Controller extends Controller
     public function update(WeddingDesign5FormRequest $request, $informasiDesign5Id, $id)
     {
         $weddingDesign5 = WeddingDesign5::findOrFail($id);
+        $informasiDesign5 = InformasiDesign5::findOrFail($informasiDesign5Id);
+
         $data = $request->all();
 
         //Default Values
@@ -209,12 +214,15 @@ class WeddingDesign5Controller extends Controller
         $defaultDeskripsiPenutup = 'Thank You';
         $defaultJudulAkad = "Akad";
         $defaultJudulResepsi = "Resepsi";
+        $defaultNamaPenutup = $informasiDesign5->nama_pasangan;
+
 
         // Cek dan set default jika tidak ada input / sama
         $data['judul_jadwal'] = $request->filled('judul_jadwal') ? $request->input('judul_jadwal') : $defaultJudulJadwal;
         $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
         $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
+        $data['nama_penutup'] = $request->filled('nama_penutup') ? $request->input('nama_penutup') : $defaultNamaPenutup;
 
 
         // Check and handle uploaded files
