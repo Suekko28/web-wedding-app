@@ -15,12 +15,29 @@ class NamaUndanganDesign8Controller extends Controller
      */
     public function index($weddingDesign8Id)
     {
-        $weddingDesign8 = WeddingDesign8::findOrFail($weddingDesign8Id);
+        // Ambil data WeddingDesign8 beserta relasi InformasiDesign8
+        $weddingDesign8 = WeddingDesign8::with('InformasiDesign8')->findOrFail($weddingDesign8Id);
+    
+        // Ambil data nama undangan dengan pagination
         $nama_undangan = $weddingDesign8->namaUndangan()->paginate(10);
-
+    
+        // Ambil slug_nama_pasangan
+        $slug_nama_pasangan = $weddingDesign8->informasiDesign8->slug_nama_pasangan;
+    
+        // Ambil id_weddingdesign8 (contoh: PDT-WDDS8-30082025-0001)
+        $id_weddingdesign8 = $weddingDesign8->informasiDesign8->id_weddingdesign8;
+    
+        // Ambil hanya angka 0001 dari bagian akhir id_weddingdesign8
+        $matches = [];
+        preg_match('/PDT-WDDS8-\d{8}-(\d+)/', $id_weddingdesign8, $matches);
+        $nomor = $matches[1] ?? '0000'; // hasil akhir: 0001
+    
+        // Kirim data ke view
         return view('user-design8.index', [
             'weddingDesign8' => $weddingDesign8,
             'nama_undangan' => $nama_undangan,
+            'slug_nama_pasangan' => $slug_nama_pasangan,
+            'nomor' => $nomor
         ]);
     }
 

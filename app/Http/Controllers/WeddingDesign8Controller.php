@@ -67,6 +67,8 @@ class WeddingDesign8Controller extends Controller
         $defaultDeskripsiPenutup = "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami ucapkan terima kasih. Kami yang berbahagia";
         $defaultJudulAkad = "Akad";
         $defaultJudulResepsi = "Resepsi";
+        $defaultNamaPenutup = $informasiDesign8->nama_pasangan;
+
 
         // Cek dan set default jika tidak ada input / sama
         $data['judul_pembuka'] = $request->filled('judul_pembuka') ? $request->input('judul_pembuka') : $defaultJudulPembuka;
@@ -77,6 +79,8 @@ class WeddingDesign8Controller extends Controller
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
         $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
         $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
+        $data['nama_penutup'] = $request->filled('nama_penutup') ? $request->input('nama_penutup') : $defaultNamaPenutup;
+
 
         if ($request->hasFile('banner_img')) {
             $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design8', $request->file('banner_img')->hashName());
@@ -110,9 +114,6 @@ class WeddingDesign8Controller extends Controller
 
             $data['image_cinta'] = json_encode($cintaImagesPaths); // Store paths as a JSON array or adjust according to your needs
         }
-
-        $data['slug_nama_mempelai_laki'] = Str::slug($data['nama_mempelai_laki']);
-        $data['slug_nama_mempelai_perempuan'] = Str::slug($data['nama_mempelai_perempuan']);
 
         $data['informasi_design8_id'] = $informasiDesign8->id;
 
@@ -189,6 +190,8 @@ class WeddingDesign8Controller extends Controller
     public function update(WeddingDesign8FormRequest $request, $informasiDesign8Id, $id)
     {
         $weddingDesign8 = WeddingDesign8::findOrFail($id);
+        $informasiDesign8 = InformasiDesign8::findOrFail($informasiDesign8Id);
+
         $data = $request->all();
 
         // Default values
@@ -199,6 +202,7 @@ class WeddingDesign8Controller extends Controller
         $defaultDeskripsiPenutup = "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami ucapkan terima kasih. Kami yang berbahagia";
         $defaultJudulAkad = "Akad";
         $defaultJudulResepsi = "Resepsi";
+        $defaultNamaPenutup = $informasiDesign8->nama_pasangan;
 
         // Cek dan set default jika tidak ada input / sama
         $data['judul_pembuka'] = $request->filled('judul_pembuka') ? $request->input('judul_pembuka') : $defaultJudulPembuka;
@@ -209,6 +213,7 @@ class WeddingDesign8Controller extends Controller
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
         $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
         $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
+        $data['nama_penutup'] = $request->filled('nama_penutup') ? $request->input('nama_penutup') : $defaultNamaPenutup;
 
         // Handle file uploads & delete old files
         if ($request->hasFile('banner_img')) {

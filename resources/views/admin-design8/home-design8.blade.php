@@ -36,7 +36,8 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- CSS STYLE -->
-    <link href="{{ asset('css/wedding-design8.css') }}?v={{ filemtime(public_path('css/wedding-design8.css')) }}" rel="stylesheet" />
+    <link href="{{ asset('css/wedding-design8.css') }}?v={{ filemtime(public_path('css/wedding-design8.css')) }}"
+        rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
 
@@ -557,8 +558,7 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">{{ $data->deskripsi_penutup }}</p>
-            <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
-                {{ $data->nama_mempelai_laki }}</h3>
+            <h3 class="anm_mod bottom-bit fast">{{ $data->nama_penutup }}</h3>
         </div>
         <img class="ending-background object-fit-cover" src="{{ asset('img/design-8/element-9.svg') }}"
             alt="background">

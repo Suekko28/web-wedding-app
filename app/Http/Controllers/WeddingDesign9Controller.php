@@ -69,6 +69,8 @@ class WeddingDesign9Controller extends Controller
         $defaultDeskripsiPenutup = "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami ucapkan terima kasih. Kami yang berbahagia";
         $defaultJudulAkad = "Akad";
         $defaultJudulResepsi = "Resepsi";
+        $defaultNamaPenutup = $informasiDesign9->nama_pasangan;
+
 
         // Cek dan set default jika tidak ada input / sama
         $data['judul_pembuka'] = $request->filled('judul_pembuka') ? $request->input('judul_pembuka') : $defaultJudulPembuka;
@@ -79,6 +81,8 @@ class WeddingDesign9Controller extends Controller
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
         $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
         $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
+        $data['nama_penutup'] = $request->filled('nama_penutup') ? $request->input('nama_penutup') : $defaultNamaPenutup;
+
 
         if ($request->hasFile('banner_img')) {
             $data['banner_img'] = $request->file('banner_img')->storeAs('public/wedding-design9', $request->file('banner_img')->hashName());
@@ -191,6 +195,8 @@ class WeddingDesign9Controller extends Controller
     public function update(WeddingDesign9FormRequest $request, $informasiDesign9Id, $id)
     {
         $weddingDesign9 = WeddingDesign9::findOrFail($id);
+        $informasiDesign9 = InformasiDesign9::findOrFail($informasiDesign9Id);
+
         $data = $request->all();
 
         // Default values
@@ -201,6 +207,8 @@ class WeddingDesign9Controller extends Controller
         $defaultDeskripsiPenutup = "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami ucapkan terima kasih. Kami yang berbahagia";
         $defaultJudulAkad = "Akad";
         $defaultJudulResepsi = "Resepsi";
+        $defaultNamaPenutup = $informasiDesign9->nama_pasangan;
+
 
         // Cek dan set default jika tidak ada input / sama
         $data['judul_pembuka'] = $request->filled('judul_pembuka') ? $request->input('judul_pembuka') : $defaultJudulPembuka;
@@ -211,6 +219,8 @@ class WeddingDesign9Controller extends Controller
         $data['deskripsi_penutup'] = $request->filled('deskripsi_penutup') ? $request->input('deskripsi_penutup') : $defaultDeskripsiPenutup;
         $data['judul_akad'] = $request->filled('judul_akad') ? $request->input('judul_akad') : $defaultJudulAkad;
         $data['judul_resepsi'] = $request->filled('judul_resepsi') ? $request->input('judul_resepsi') : $defaultJudulResepsi;
+        $data['nama_penutup'] = $request->filled('nama_penutup') ? $request->input('nama_penutup') : $defaultNamaPenutup;
+
 
         // Handle file uploads & delete old files
         if ($request->hasFile('banner_img')) {

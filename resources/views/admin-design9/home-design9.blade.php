@@ -550,8 +550,7 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">{{ $data->deskripsi_penutup }}</p>
-            <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
-                {{ $data->nama_mempelai_laki }}</h3>
+            <h3 class="anm_mod bottom-bit fast">{{ $data->nama_penutup }}</h3>
         </div>
         <img class="ending-background object-fit-cover" src="{{ asset('img/design-9/element-6.svg') }}"
             alt="background">

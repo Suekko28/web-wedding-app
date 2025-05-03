@@ -392,7 +392,11 @@
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
                         <form id="algin-form" class="rsvp-mobile3" method="POST"
-                            action="{{ route('wedding-design9-post', ['slug_nama_mempelai_laki' => $slug_nama_mempelai_laki, 'slug_nama_mempelai_perempuan' => $slug_nama_mempelai_perempuan, 'slug_nama_undangan' => $slug_nama_undangan]) }}">
+                        action="{{ route('wedding-design9-post', [
+                            'id_weddingdesign9' => $id_weddingdesign9,
+                            'slug_nama_pasangan' => $slug_nama_pasangan,
+                            'slug_nama_undangan' => $slug_nama_undangan,
+                        ]) }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
@@ -533,8 +537,7 @@
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
             <p class="anm_mod bottom-bit fast">{{ $data->deskripsi_penutup }}</p>
-            <h3 class="anm_mod bottom-bit fast">{{ $data->nama_mempelai_perempuan }} &
-                {{ $data->nama_mempelai_laki }}</h3>
+            <h3 class="anm_mod bottom-bit fast">{{ $data->nama_penutup }}</h3>
         </div>
         <img class="ending-background object-fit-cover" src="{{ asset('img/design-9/element-6.svg') }}"
             alt="background">
@@ -546,8 +549,7 @@
         <div class="follow-us">
             <p>Powered By</p>
             <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:32px" src="{{ asset('img/design-9/logo-jejakkebahagiaan.svg') }}"
-                    alt="Facebook">
+                <img style="height:32px" src="{{ asset('img/design-9/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
             </a>
         </div>
         <div class="follow-us">

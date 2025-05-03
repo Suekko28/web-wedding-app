@@ -37,14 +37,15 @@ class InformasiDesign9Controller extends Controller
 
         // Menentukan urutan ID Seserahan
         if ($latestWeddingDesign9) {
-            $lastId = intval(substr($latestWeddingDesign9->id_weddingdesign9, -9)); // Mengambil 9 digit terakhir dari id_weddingdesign9
+            $lastId = intval(substr($latestWeddingDesign9->id_weddingdesign9, -4)); // Mengambil 9 digit terakhir dari id_weddingdesign9
             $newIdNumber = $lastId + 1; // Menambah 1 dari id terakhir
         } else {
             $newIdNumber = 1; // Jika belum ada data, mulai dari 1
         }
 
-        $idWeddingDesign9 = 'PDT-WDDS9-' . $currentDate . '-' . sprintf('%09d', $newIdNumber); // Format PDT-SSH-Ymd0001
+        $idWeddingDesign9 = 'PDT-WDDS9-' . $currentDate . '-' . sprintf('%04d', $newIdNumber); // Format PDT-SSH-Ymd0001
 
+        $data['slug_nama_pasangan'] = strtolower(str_replace(' ', '-', $data['nama_pasangan']));
         $data['id_weddingdesign9'] = $idWeddingDesign9;
 
         InformasiDesign9::create($data);
@@ -55,7 +56,7 @@ class InformasiDesign9Controller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(InformasiDesign9FormRequest $request, string $id)
+    public function update(InformasiDesign9FormRequest $request, $id)
     {
         $undangan = InformasiDesign9::find($id);
 
@@ -63,7 +64,10 @@ class InformasiDesign9Controller extends Controller
             return redirect()->route('wedding-design9.index')->with('error', 'Data undangan tidak ditemukan.');
         }
 
-        $undangan->update($request->all());
+        $data = $request->all();
+        $data['slug_nama_pasangan'] = strtolower(str_replace(' ', '-', $request->nama_pasangan));
+
+        $undangan->update($data);
 
         return redirect()->route('wedding-design9.index')->with('success', 'Data undangan berhasil diperbarui.');
     }

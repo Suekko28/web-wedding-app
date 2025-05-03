@@ -93,14 +93,29 @@
                                           {{ !$item->KontenDesign8->first() || !$item->KontenDesign8->first()->nama_mempelai_laki || !$item->KontenDesign8->first()->nama_mempelai_perempuan ? 'disabled' : '' }}">
                                             <i class="fa fa-circle-info" style="color:white;"></i>
                                         </a>
-                                        <a class="btn btn-primary mb-2 {{ !$item->KontenDesign8->first() || !$item->KontenDesign8->first()->nama_mempelai_laki || !$item->KontenDesign8->first()->nama_mempelai_perempuan ? 'disabled' : '' }}"
-                                            href="{{ route('wedding-design8-home-preview', [
-                                                 'slug_nama_mempelai_laki' => Str::slug($item->KontenDesign8->first()->nama_mempelai_laki ?? 'Unknown'),
-                                                 'slug_nama_mempelai_perempuan' => Str::slug($item->KontenDesign8->first()->nama_mempelai_perempuan ?? 'Unknown'),
-                                             ]) }}"
+                                        @php
+                                            $isDisabled =
+                                                !$item->KontenDesign8->first() ||
+                                                !$item->slug_nama_pasangan ||
+                                                !$item->id_weddingdesign8;
+
+                                            // Ambil hanya angka belakang dari ID, misal: 0001
+                                            $matches = [];
+                                            preg_match('/WDDS8-\d{8}-(\d+)/', $item->id_weddingdesign8, $matches);
+                                            $id_angka = $matches[1] ?? '0000'; // hanya 0001, tanpa WDDS8 prefix
+
+                                            $slug_nama_pasangan = str_replace(' ', '-', $item->slug_nama_pasangan);
+                                        @endphp
+                                        <a class="btn btn-primary mb-2 {{ $isDisabled ? 'disabled' : '' }}"
+                                            href="{{ $isDisabled
+                                                ? '#'
+                                                : route('wedding-design8-home-preview', [
+                                                    'id_weddingdesign8' => $id_angka,
+                                                    'slug_nama_pasangan' => $slug_nama_pasangan,
+                                                ]) }}"
                                             target="_blank">
                                             <i class="fa fa-eye" style="color:white;"></i>
-                                         </a>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

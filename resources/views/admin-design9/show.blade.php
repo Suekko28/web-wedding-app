@@ -4,7 +4,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Edit', 'subtitle' => 'Wedding Design 9'])
+    @include('layouts.breadcrumb', ['title' => 'Show', 'subtitle' => 'Wedding Design 9'])
 
     @php
         $defaultJudulPembuka = 'Assalamu’alaikum Wr. Wb.';
@@ -16,6 +16,8 @@
         $defaultJudulJadwal = 'Jadwal Pernikahan';
         $defaultJudulAkad = 'Akad';
         $defaultJudulResepsi = 'Resepsi';
+        $defaultNamaPenutup = $informasiDesign9->nama_pasangan;
+
 
     @endphp
 
@@ -525,6 +527,12 @@
                                         <textarea disabled class="form-control" rows="5" id="deskripsi_penutup" name="deskripsi_penutup"
                                             placeholder="Deskripsi">{{ old('deskripsi_penutup', $data->deskripsi_penutup ?? $defaultDeskripsiPenutup) }}</textarea disabled>
                                     </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="nama_penutup">Nama Pasangan<span class="mandatory">*</span></label>
+                                        <input type="text" class="form-control" id="nama_penutup" name="nama_penutup"
+                                            placeholder="Masukkan nama pasangan"
+                                            value="{{ old('nama_penutup', $data->nama_penutup ?? $defaultNamaPenutup) }}" disabled>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -563,13 +571,13 @@
 
 
 
-    <!-- Modal Buat dan Edit DirectTransfer -->
+    <!-- Modal Buat dan Show DirectTransfer -->
     <div class="modal fade" id="modalDirectTransfer" tabindex="-1" aria-labelledby="modalDirectTransferLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalDirectTransferLabel">Buat/Edit Direct Transfer</h5>
+                    <h5 class="modal-title" id="modalDirectTransferLabel">Buat/Show Direct Transfer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -612,13 +620,13 @@
         </div>
     </div>
 
-    <!-- Modal Buat dan Edit Kirim Hadiah -->
+    <!-- Modal Buat dan Show Kirim Hadiah -->
     <div class="modal fade" id="modalKirimHadiah" tabindex="-1" aria-labelledby="modalKirimHadiahLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Edit Kirim Hadiah</h5>
+                    <h5 class="modal-title" id="modalKirimHadiahLabel">Buat/Show Kirim Hadiah</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -717,14 +725,14 @@
             resetFormDirectTransfer();
         });
 
-        // Ketika tombol Edit diklik
-        $(document).on('click', '.edit-btn-direct-transfer', function() {
+        // Ketika tombol Show diklik
+        $(document).on('click', '.Show-btn-direct-transfer', function() {
             const id = $(this).data('id');
             const bank = $(this).data('bank');
             const no_rek = $(this).data('no_rek');
             const nama_rek = $(this).data('nama_rek');
 
-            $('#modalDirectTransferLabel').text('Edit Direct Transfer');
+            $('#modalDirectTransferLabel').text('Show Direct Transfer');
             $('#formMethodDirectTransferDirectTransfer').val('PUT'); // ini hidden input disabled _method
             $('#directTransferId').val(id);
 
@@ -736,20 +744,20 @@
             const updateUrl = `/wedding-design9/${id}/update-direct-transfer`;
             $('#formDirectTransfer').attr('action', updateUrl);
 
-            const modalEdit = new bootstrap.Modal(document.getElementById('modalDirectTransfer'));
-            modalEdit.show();
+            const modalShow = new bootstrap.Modal(document.getElementById('modalDirectTransfer'));
+            modalShow.show();
         });
 
-        // Submit form (tambah/edit)
+        // Submit form (tambah/Show)
         $('#formDirectTransfer').on('submit', function(e) {
             e.preventDefault();
 
             const form = $(this);
             const formData = new FormData(this);
             const id = $('#directTransferId').val();
-            const isEdit = id !== '';
+            const isShow = id !== '';
 
-            if (isEdit) {
+            if (isShow) {
                 formData.append('_method', 'PUT');
             }
 
@@ -850,13 +858,13 @@
             resetFormKirimHadiah();
         });
 
-        // Ketika tombol Edit diklik
-        $(document).on('click', '.edit-btn-kirim-hadiah', function() {
+        // Ketika tombol Show diklik
+        $(document).on('click', '.Show-btn-kirim-hadiah', function() {
             const id = $(this).data('id');
             const alamat = $(this).data('alamat');
             const deskripsi_alamat = $(this).data('deskripsi_alamat');
 
-            $('#modalKirimHadiahLabel').text('Edit Direct Transfer');
+            $('#modalKirimHadiahLabel').text('Show Direct Transfer');
             $('#formMethodKirimHadiahKirimHadiah').val('PUT'); // ini hidden input disabled _method
             $('#kirimHadiahId').val(id);
 
@@ -867,20 +875,20 @@
             const updateUrl = `/wedding-design9/${id}/update-kirim-hadiah`;
             $('#formKirimHadiah').attr('action', updateUrl);
 
-            const modalEdit = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));
-            modalEdit.show();
+            const modalShow = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));
+            modalShow.show();
         });
 
-        // Submit form (tambah/edit)
+        // Submit form (tambah/Show)
         $('#formKirimHadiah').on('submit', function(e) {
             e.preventDefault();
 
             const form = $(this);
             const formData = new FormData(this);
             const id = $('#kirimHadiahId').val();
-            const isEdit = id !== '';
+            const isShow = id !== '';
 
-            if (isEdit) {
+            if (isShow) {
                 formData.append('_method', 'PUT');
             }
 

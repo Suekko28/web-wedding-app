@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('informasi_design9', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pasangan', length: 100);
+            $table->string('slug_nama_pasangan', length: 100);
             $table->string('id_weddingdesign9', length: 100);
             $table->date('tgl_pernikahan');
             $table->timestamps();
