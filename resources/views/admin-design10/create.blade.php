@@ -4,7 +4,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 9'])
+    @include('layouts.breadcrumb', ['title' => 'Create', 'subtitle' => 'Wedding Design 10'])
 
     @php
         $defaultJudulPembuka = 'Assalamu’alaikum Wr. Wb.';
@@ -16,7 +16,7 @@
         $defaultJudulJadwal = 'Jadwal Pernikahan';
         $defaultJudulAkad = 'Akad';
         $defaultJudulResepsi = 'Resepsi';
-        $defaultNamaPenutup = $informasiDesign9->nama_pasangan;
+        $defaultNamaPenutup = $informasiDesign10->nama_pasangan;
 
 
     @endphp
@@ -27,12 +27,12 @@
                 <div class="container-fluid">
                     @include('layouts.message')
                     <!-- Small boxes (Stat box) -->
-                    <form action="{{ route('form-design9.store', ['id' => $informasiDesign9Id]) }}" method="post"
+                    <form action="{{ route('form-design10.store', ['id' => $informasiDesign10Id]) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="informasi_design9_id" value="{{ $informasiDesign9->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign9->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign9->tgl_pernikahan }}">
+                        <input type="hidden" name="informasi_design10_id" value="{{ $informasiDesign10->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign10->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign10->tgl_pernikahan }}">
                         <input type="hidden" name="id" id="perjalananCintaId">
                         <div class="card-body container bg-white">
                             <div class="mempelai fw-bold fs-5 mb-4">Cover Undangan Share</div>
@@ -46,7 +46,7 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
-                                            placeholder="" disabled value="{{ $informasiDesign9->nama_pasangan }}">
+                                            placeholder="" disabled value="{{ $informasiDesign10->nama_pasangan }}">
                                     </div>
                                 </div>
                             </div>
@@ -59,14 +59,14 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
-                                            placeholder="" disabled value="{{ $informasiDesign9->nama_pasangan }}">
+                                            placeholder="" disabled value="{{ $informasiDesign10->nama_pasangan }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="tgl_pernikahan">Tanggal Pernikahan<span
                                                 class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="tgl_pernikahan" name="tgl_pernikahan"
                                             placeholder="" disabled
-                                            value="{{ \Carbon\Carbon::parse($informasiDesign9->tgl_pernikahan)->format('d-m-Y') }}">
+                                            value="{{ \Carbon\Carbon::parse($informasiDesign10->tgl_pernikahan)->format('d-m-Y') }}">
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="music">Music <span class="mandatory">*</span></label>
@@ -525,7 +525,7 @@
                         </div>
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                            <a href="{{ route('wedding-design9.index') }}" class="btn btn-secondary">Batal</a>
+                            <a href="{{ route('wedding-design10.index') }}" class="btn btn-secondary">Batal</a>
                         </div>
 
                     </form>
@@ -545,14 +545,14 @@
                 </div>
                 <div class="modal-body">
                     <form id="formDirectTransfer"
-                        action="{{ route('directtransfer-design9.store', ['id' => $informasiDesign9->id]) }}"
+                        action="{{ route('directtransfer-design10.store', ['id' => $informasiDesign10->id]) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="_method" id="formMethodDirectTransfer" value="POST">
                         <input type="hidden" name="directTransferId" id="directTransferId">
-                        <input type="hidden" name="wedding_design9_id" value="{{ $informasiDesign9->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign9->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign9->tgl_pernikahan }}">
+                        <input type="hidden" name="wedding_design10_id" value="{{ $informasiDesign10->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign10->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign10->tgl_pernikahan }}">
 
                         <!-- Form Fields -->
                         <div class="form-group mb-2">
@@ -636,15 +636,15 @@
                 </div>
                 <div class="modal-body">
                     <form id="formKirimHadiah"
-                        action="{{ route('kirimhadiah-design9.store', ['id' => $informasiDesign9->id]) }}" method="POST"
+                        action="{{ route('kirimhadiah-design10.store', ['id' => $informasiDesign10->id]) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         {{-- This will be updated dynamically in JS --}}
                         <input type="hidden" name="_method" id="formMethodKirimHadiah" value="POST">
                         <input type="hidden" name="kirimHadiahId" id="kirimHadiahId">
-                        <input type="hidden" name="wedding_design9_id" value="{{ $informasiDesign9->id }}">
-                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign9->nama_pasangan }}">
-                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign9->tgl_pernikahan }}">
+                        <input type="hidden" name="wedding_design10_id" value="{{ $informasiDesign10->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign10->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign10->tgl_pernikahan }}">
 
                         <div class="form-group mb-2">
                             <label for="alamat">Alamat<span class="mandatory">*</span></label>
@@ -679,7 +679,7 @@
             $('#modalDirectTransferLabel').text('Buat Direct Transfer');
             $('#formMethodDirectTransfer').val('POST');
             $('#formDirectTransfer').attr('action',
-                '{{ route('directtransfer-design9.store', ['id' => $informasiDesign9->id]) }}');
+                '{{ route('directtransfer-design10.store', ['id' => $informasiDesign10->id]) }}');
             $('#formDirectTransfer')[0].reset();
             $('#directTransferId').val('');
 
@@ -702,7 +702,7 @@
             $('#no_rek').val(no_rek);
             $('#nama_rek').val(nama_rek);
 
-            const updateUrl = `/wedding-design9/${id}/update-direct-transfer`;
+            const updateUrl = `/wedding-design10/${id}/update-direct-transfer`;
             $('#formDirectTransfer').attr('action', updateUrl);
 
             const modalEdit = new bootstrap.Modal(document.getElementById('modalDirectTransfer'));
@@ -773,7 +773,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ url('/wedding-design9') }}/" + id + "/delete-direct-transfer",
+                        url: "{{ url('/wedding-design10') }}/" + id + "/delete-direct-transfer",
                         type: 'DELETE',
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content')
@@ -811,7 +811,7 @@
             $('#modalKirimHadiahLabel').text('Buat Direct Transfer');
             $('#formMethodKirimHadiah').val('POST');
             $('#formKirimHadiah').attr('action',
-                '{{ route('kirimhadiah-design9.store', ['id' => $informasiDesign9->id]) }}');
+                '{{ route('kirimhadiah-design10.store', ['id' => $informasiDesign10->id]) }}');
             $('#formKirimHadiah')[0].reset();
             $('#kirimHadiahId').val('');
 
@@ -832,7 +832,7 @@
             $('#alamat').val(alamat);
             $('#deskripsi_alamat').val(deskripsi_alamat);
 
-            const updateUrl = `/wedding-design9/${id}/update-kirim-hadiah`;
+            const updateUrl = `/wedding-design10/${id}/update-kirim-hadiah`;
             $('#formKirimHadiah').attr('action', updateUrl);
 
             const modalEdit = new bootstrap.Modal(document.getElementById('modalKirimHadiah'));
@@ -903,7 +903,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ url('/wedding-design9') }}/" + id + "/delete-kirim-hadiah",
+                        url: "{{ url('/wedding-design10') }}/" + id + "/delete-kirim-hadiah",
                         type: 'DELETE',
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content')

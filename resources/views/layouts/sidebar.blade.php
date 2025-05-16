@@ -146,8 +146,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('wedding-design9.index') }}"
-                        class="sidebar-link {{ request()->is('wedding-design9') ? 'active' : '' }}">
+                    <a href="{{ route('wedding-design10.index') }}"
+                        class="sidebar-link {{ request()->is('wedding-design10') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>

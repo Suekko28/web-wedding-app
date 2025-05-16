@@ -4,7 +4,7 @@
 
 @section('pageContent')
 
-    @include('layouts.breadcrumb', ['title' => 'Wedding Design 9', 'subtitle' => 'Dashboard'])
+    @include('layouts.breadcrumb', ['title' => 'Wedding Design 10', 'subtitle' => 'Dashboard'])
     <div class="card w-100 position-relative overflow-hidden">
         <div class="card-body">
             <button type="button" class="btn btn-primary mb-3" id="btnBuatUndangan" data-bs-toggle="modal"
@@ -39,7 +39,7 @@
                         @foreach ($data as $item)
                             <tr class="text-center">
                                 <td scope="row">{{ $i }}</td>
-                                <td>{{ $item->id_weddingdesign9 }}</td>
+                                <td>{{ $item->id_weddingdesign10 }}</td>
                                 <td>
                                     {{ $item->nama_pasangan }}
                                 </td>
@@ -47,21 +47,21 @@
                                     {{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->tgl_pernikahan)->format('d-m-Y') }}
                                 </td>
                                 <td>
-                                    @if ($item->KontenDesign9->isEmpty())
+                                    @if ($item->KontenDesign10->isEmpty())
                                         <a class="btn btn-primary"
-                                            href="{{ route('form-design9.create', ['id' => $item->id]) }}">Buat
+                                            href="{{ route('form-design10.create', ['id' => $item->id]) }}">Buat
                                             Konten</a>
                                     @else
                                         <a class="btn btn-secondary"
-                                            href="{{ route('form-design9.edit', ['informasiDesign9Id' => $item->KontenDesign9->first()->informasi_design9_id, 'id' => $item->KontenDesign9->first()->id]) }}">
+                                            href="{{ route('form-design10.edit', ['informasiDesign10Id' => $item->KontenDesign10->first()->informasi_design10_id, 'id' => $item->KontenDesign10->first()->id]) }}">
                                             Edit Konten
                                         </a>
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($item->KontenDesign9->isNotEmpty())
+                                    @if ($item->KontenDesign10->isNotEmpty())
                                         <a class="btn btn-primary"
-                                            href="{{ route('nama-undangan-list9', ['weddingDesign9Id' => $item->KontenDesign9->first()->id]) }}"
+                                            href="{{ route('nama-undangan-list9', ['weddingDesign10Id' => $item->KontenDesign10->first()->id]) }}"
                                             target="_blank">
                                             Buat Tamu
                                         </a>
@@ -86,31 +86,31 @@
                                             data-id="{{ $item->id }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                        <a href="{{ $item->KontenDesign9->first() && $item->KontenDesign9->first()->id
-                                            ? route('wedding-design9.show', ['wedding_design9' => $item->KontenDesign9->first()->id])
+                                        <a href="{{ $item->KontenDesign10->first() && $item->KontenDesign10->first()->id
+                                            ? route('wedding-design10.show', ['wedding_design10' => $item->KontenDesign10->first()->id])
                                             : '#' }}"
                                             class="btn btn-info rounded mb-2 
-                                          {{ !$item->KontenDesign9->first() || !$item->KontenDesign9->first()->nama_mempelai_laki || !$item->KontenDesign9->first()->nama_mempelai_perempuan ? 'disabled' : '' }}">
+                                          {{ !$item->KontenDesign10->first() || !$item->KontenDesign10->first()->nama_mempelai_laki || !$item->KontenDesign10->first()->nama_mempelai_perempuan ? 'disabled' : '' }}">
                                             <i class="fa fa-circle-info" style="color:white;"></i>
                                         </a>
                                         @php
                                             $isDisabled =
-                                                !$item->KontenDesign9->first() ||
+                                                !$item->KontenDesign10->first() ||
                                                 !$item->slug_nama_pasangan ||
-                                                !$item->id_weddingdesign9;
+                                                !$item->id_weddingdesign10;
 
                                             // Ambil hanya angka belakang dari ID, misal: 0001
                                             $matches = [];
-                                            preg_match('/WDDS9-\d{8}-(\d+)/', $item->id_weddingdesign9, $matches);
-                                            $id_angka = $matches[1] ?? '0000'; // hanya 0001, tanpa WDDS9 prefix
+                                            preg_match('/WDDS10-\d{8}-(\d+)/', $item->id_weddingdesign10, $matches);
+                                            $id_angka = $matches[1] ?? '0000'; // hanya 0001, tanpa WDDS10 prefix
 
                                             $slug_nama_pasangan = str_replace(' ', '-', $item->slug_nama_pasangan);
                                         @endphp
                                         <a class="btn btn-primary mb-2 {{ $isDisabled ? 'disabled' : '' }}"
                                             href="{{ $isDisabled
                                                 ? '#'
-                                                : route('wedding-design9-home-preview', [
-                                                    'id_weddingdesign9' => $id_angka,
+                                                : route('wedding-design10-home-preview', [
+                                                    'id_weddingdesign10' => $id_angka,
                                                     'slug_nama_pasangan' => $slug_nama_pasangan,
                                                 ]) }}"
                                             target="_blank">
@@ -139,7 +139,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formBuatUndangan" action="{{ route('wedding-design9.store') }}" method="POST">
+                    <form id="formBuatUndangan" action="{{ route('wedding-design10.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" id="undanganId">
                         <div class="form-group">
@@ -172,7 +172,7 @@
         document.getElementById('btnBuatUndangan').addEventListener('click', function() {
             // Reset form action ke route store dan kosongkan field input
             document.getElementById('formBuatUndangan').reset();
-            document.getElementById('formBuatUndangan').action = "{{ route('wedding-design9.store') }}";
+            document.getElementById('formBuatUndangan').action = "{{ route('wedding-design10.store') }}";
 
             // Ubah title modal jadi "Buat Undangan Baru"
             document.getElementById('modalBuatUndanganLabel').textContent = 'Buat Undangan Baru';
@@ -186,7 +186,7 @@
                 var tgl_pernikahan = this.getAttribute('data-tgl-pernikahan');
 
                 // Set form action untuk update
-                document.getElementById('formBuatUndangan').action = '/wedding-design9/' + id + '/update';
+                document.getElementById('formBuatUndangan').action = '/wedding-design10/' + id + '/update';
 
                 // Isi form dengan data dari tombol edit
                 document.getElementById('undanganId').value = id;
@@ -222,7 +222,7 @@
                     if (result.isConfirmed) {
                         // Set the action URL for the delete form
                         document.getElementById('deleteForm').action =
-                            "{{ url('wedding-design9') }}/" + itemId;
+                            "{{ url('wedding-design10') }}/" + itemId;
                         // Submit the form
                         document.getElementById('deleteForm').submit();
                         Swal.fire({

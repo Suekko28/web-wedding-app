@@ -16,6 +16,7 @@ use App\Http\Controllers\HomeDesign9Controller;
 use App\Http\Controllers\IndexDesign1Controller;
 use App\Http\Controllers\IndexDesign2Controller;
 use App\Http\Controllers\IndexDesign3Controller;
+use App\Http\Controllers\InformasiDesign10Controller;
 use App\Http\Controllers\InformasiDesign4Controller;
 use App\Http\Controllers\InformasiDesign5Controller;
 use App\Http\Controllers\InformasiDesign6Controller;
@@ -227,6 +228,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/wedding-design9/{id}/store-kirim-hadiah', [WeddingDesign9Controller::class, 'storeKirimHadiah'])->name('kirimhadiah-design9.store');
     Route::put('/wedding-design9/{id}/update-kirim-hadiah', [WeddingDesign9Controller::class, 'updateKirimHadiah'])->name('kirimhadiah-design9.update');
     Route::delete('/wedding-design9/{id}/delete-kirim-hadiah', [WeddingDesign9Controller::class, 'destroyKirimHadiah'])->name('kirimhadiah-design9.destroy');
+
+
+    // Routes for InformasiDesign10
+    Route::resource('/wedding-design10', InformasiDesign10Controller::class);
+    Route::get('/wedding-design10/{wedding_design10}', [WeddingDesign8Controller::class, 'show'])->name('wedding-design10.show');
+    Route::post('/wedding-design10/{id}/update', [InformasiDesign10Controller::class, 'update']);
+
 
     // Routes for Blog
     Route::resource('/blog', BlogController::class);
@@ -472,6 +480,9 @@ Route::get('/wedding-8', function () {
 
 Route::get('/wedding-9', function () {
     return view('wedding-design9.home-preview');
+});
+Route::get('/wedding-10', function () {
+    return view('wedding-design10.home-preview');
 });
 
 
