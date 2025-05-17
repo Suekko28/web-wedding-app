@@ -4,15 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('wedding_design9', function (Blueprint $table) {
+        Schema::create('wedding_design10', function (Blueprint $table) {
             $table->id();
             $table->string('banner_img');
+            $table->string('foto_prewedding');
+            $table->text('image_hero');
             $table->string('music');
             $table->string('foto_mempelai_perempuan')->nullable();
             $table->string('nama_mempelai_perempuan');
@@ -42,22 +45,27 @@ return new class extends Migration {
             $table->string('lokasi_resepsi');
             $table->text('deskripsi_resepsi');
             $table->string('link_resepsi');
-        $table->text('simpan_tgl_resepsi');
+            $table->text('simpan_tgl_resepsi');
             $table->string('judul_pembuka');
             $table->text('deskripsi_pembuka');
             $table->string('judul_cinta')->nullable();
             $table->text('deskripsi_cinta')->nullable();
+            $table->string('link_cinta')->nullable();
             $table->text('image_cinta')->nullable();
-            $table->string('link_streaming')->nullable();
+            $table->string('instagram_streaming')->nullable();
+            $table->string('youtube_streaming')->nullable();
+            $table->string('zoom_streaming')->nullable();
             $table->string('judul_jadwal');
             $table->text('deskripsi_penutup');
             $table->integer('zona_waktu_akad');
             $table->integer('zona_waktu_resepsi');
             $table->string('nama_penutup');
-            $table->unsignedBigInteger('informasi_design9_id');
-            $table->foreign('informasi_design9_id')
+            $table->text('deskripsi_quote')->nullable();
+            $table->string('judul_quote')->nullable();
+            $table->unsignedBigInteger('informasi_design10_id');
+            $table->foreign('informasi_design10_id')
                 ->references('id')
-                ->on('informasi_design9')
+                ->on('informasi_design10')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -68,6 +76,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('wedding_design9');
+        Schema::dropIfExists('wedding_design10');
     }
 };

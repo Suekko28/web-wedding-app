@@ -234,7 +234,6 @@
                     $images = is_array($data->image_cinta) ? $data->image_cinta : json_decode($data->image_cinta, true);
                 @endphp
                 <div class="container-card-gallery">
-
                     @foreach ($images as $image)
                         <div class="card-gallery">
                             <a href="{{ Storage::url($image) }}" data-fancybox="gallery">

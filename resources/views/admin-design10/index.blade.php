@@ -61,7 +61,7 @@
                                 <td>
                                     @if ($item->KontenDesign10->isNotEmpty())
                                         <a class="btn btn-primary"
-                                            href="{{ route('nama-undangan-list9', ['weddingDesign10Id' => $item->KontenDesign10->first()->id]) }}"
+                                            href="{{ route('nama-undangan-list10', ['weddingDesign10Id' => $item->KontenDesign10->first()->id]) }}"
                                             target="_blank">
                                             Buat Tamu
                                         </a>

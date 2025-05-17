@@ -342,9 +342,9 @@ class WeddingDesign5Controller extends Controller
 
     public function destroyPerjalananCinta($id)
     {
-        $directTransfer = PerjalananCintaDesign5::findOrFail($id);
+        $perjalananCinta = PerjalananCintaDesign5::findOrFail($id);
 
-        $directTransfer->delete();
+        $perjalananCinta->delete();
 
         return response()->json(['message' => 'Perjalanan Cinta berhasil dihapus']);
     }

@@ -13,7 +13,7 @@
             "Tanpa mengurangi rasa hormat\nkami mengundang Bapak/Ibu/Saudara/i\npada pernikahan kami:";
         $defaultDeskripsiPenutup =
             'Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do’a restu. Atas kehadiran dan do’a restunya kami ucapkan terima kasih. Kami yang berbahagia';
-        $defaultJudulJadwal = 'Jadwal Pernikahan';
+        $defaultJudulJadwal = 'Hari Bahagia Kami';
         $defaultJudulAkad = 'Akad';
         $defaultJudulResepsi = 'Resepsi';
         $defaultNamaPenutup = $informasiDesign10->nama_pasangan;
@@ -50,6 +50,19 @@
                                         @endif
                                     </div>
                                     <div class="col-sm-4 mb-3">
+                                        <label for="foto_prewedding">Upload Image<span class="mandatory">*</span></label>
+                                        <input type="file" accept="image/*" class="form-control" id="foto_prewedding"
+                                            name="foto_prewedding" placeholder="Rhoma Irama"
+                                            value="{{ old('foto_prewedding') }}">
+                                        @if ($data->foto_prewedding)
+                                            <div class="d-flex flex-column mt-2">
+                                                <span>Gambar saat ini:</span>
+                                                <img src="{{ Storage::url($data->foto_prewedding) }}"
+                                                    alt="Foto Banner Image" class="img-thumbnail mt-2" width="150">
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
                                             placeholder="" disabled value="{{ $informasiDesign10->nama_pasangan }}">
@@ -59,9 +72,23 @@
                         </div>
                         <hr>
                         <div class="card-body container bg-white">
-                            <div class="mempelai fw-bold fs-5 mb-4">Cover Undangan</div>
+                            <div class="mempelai fw-bold fs-5 mb-4">Hero Undangan</div>
                             <div class="form-group form-group fs-3">
                                 <div class="row">
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="image_hero">Upload Images <span class="mandatory">*</span></label>
+                                        <input type="file" class="form-control" id="image_hero" name="image_hero[]"
+                                            multiple>
+                                        @if ($data->image_hero)
+                                            <div class="d-flex flex-column">
+                                                <span>Gambar kutipan saat ini:</span>
+                                                @foreach (json_decode($data->image_hero) as $image)
+                                                    <img src="{{ Storage::url($image) }}" alt="Quote Image"
+                                                        class="img-thumbnail mt-2" width="150">
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="nama_pasangan">Nama Couple<span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="nama_pasangan" name="nama_pasangan"
@@ -97,14 +124,26 @@
                             <div class="form-group form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
+                                        <label for="judul_quote">Judul Quote <span class="fst-italic">
+                                                (Opsional)</span></label>
+                                        <input type="text" class="form-control" id="judul_quote" name="judul_quote"
+                                            placeholder="Masukkan Quote" value="{{ $data->judul_quote }}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="deskripsi_quote">Deskripsi Quote<span class="fst-italic">
+                                                (Opsional)</span></label>
+                                        <textarea class="form-control" rows="5" id="deskripsi_quote" name="deskripsi_quote" placeholder="Deskripsi">{{ $data->deskripsi_quote }}</textarea>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
                                         <label for="judul_pembuka">Judul<span class="mandatory">*</span></label>
-                                        <input type="text" class="form-control" id="judul_pembuka" name="judul_pembuka"
-                                            placeholder="Judul ucapan pembuka"
+                                        <input type="text" class="form-control" id="judul_pembuka"
+                                            name="judul_pembuka" placeholder="Judul ucapan pembuka"
                                             value="{{ old('judul_pembuka', $data->judul_pembuka ?? $defaultJudulPembuka) }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="deskripsi_pembuka">Deskripsi<span class="mandatory">*</span></label>
-                                        <textarea class="form-control" rows="5" id="deskripsi_pembuka" name="deskripsi_pembuka" placeholder="Deskripsi">{{ old('deskripsi_pembuka', $data->deskripsi_pembuka ?? $defaultDeskripsiPembuka) }}</textarea>
+                                        <textarea class="form-control" rows="5" id="deskripsi_pembuka" name="deskripsi_pembuka"
+                                            placeholder="Deskripsi">{{ old('deskripsi_pembuka', $data->deskripsi_pembuka ?? $defaultDeskripsiPembuka) }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -240,6 +279,12 @@
                                                 (Opsional)</span></label>
                                         <textarea class="form-control" rows="5" id="deskripsi_cinta" name="deskripsi_cinta"
                                             placeholder="Masukkan deskripsi perjalanan cinta">{{ old('deskripsi_cinta', $data->deskripsi_cinta ?? $defaultDeskripsi) }}</textarea>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="link_cinta">Link Video<span class="fst-italic">
+                                                (Opsional)</span></label>
+                                        <input type="text" class="form-control" id="link_cinta" name="link_cinta"
+                                            placeholder="Masukkan link video" value="{{ $data->link_cinta }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="image_cinta">Upload Images<span class="fst-italic">
@@ -427,26 +472,83 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="link_streaming">Link Streaming<span class="fst-italic">
+                                        <label for="instagram_streaming">Streaming Instagram<span class="fst-italic">
                                                 (Opsional)</span></label>
-                                        <input type="text" class="form-control" id="link_streaming"
-                                            name="link_streaming" placeholder="Masukkan link"
-                                            value="{{ $data->link_streaming }}">
+                                        <input type="text" class="form-control" id="instagram_streaming"
+                                            name="instagram_streaming" placeholder="Masukkan link"
+                                            value="{{ $data->instagram_streaming }}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="youtube_streaming">Streaming Youtube<span class="fst-italic">
+                                                (Opsional)</span></label>
+                                        <input type="text" class="form-control" id="youtube_streaming" name="youtube_streaming"
+                                            placeholder="Masukkan link" value="{{ $data->youtube_streaming }}">
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label for="zoom_streaming">Streaming Zoom<span class="fst-italic">
+                                                (Opsional)</span></label>
+                                        <input type="text" class="form-control" id="zoom_streaming" name="zoom_streaming"
+                                            placeholder="Masukkan link" value="{{ $data->zoom_streaming }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr>
                         <div class="card-body container bg-white">
+                            <div class="mempelai fw-bold fs-5 mb-4">Dresscode</div>
+                            <div class="d-flex">
+                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnDresscode"
+                                    data-bs-toggle="modal" data-bs-target="#modalDresscode">
+                                    Tambah Cerita
+                                </button>
+                            </div>
+                            <div class="table-responsive mb-4 border rounded-1">
+                                <table class="table text-nowrap mb-0 align-middle text-center" id="tableDresscode">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th>No</th>
+                                            <th>Foto</th>
+                                            <th>Judul</th>
+                                            <th>Deskripsi</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $i = $dataDresscode->firstItem(); ?>
+                                        @foreach ($dataDresscode as $item)
+                                            <tr>
+                                                <td>{{ $i }}</td>
+                                                <td><img class="img-thumbnail" src="{{ Storage::url($item->image) }}"
+                                                        alt="Image" width="120"></td>
+                                                <td>{{ $item->judul_dresscode }}</td>
+                                                <td>{{ $item->deskripsi_dresscode }}</td>
+                                                <td>
+                                                    <a href="javascript:void(0)"
+                                                        class="btn btn-warning mb-2 rounded edit-btn-dresscode"
+                                                        data-id="{{ $item->id }}"
+                                                        data-judul_dresscode="{{ $item->judul_dresscode }}"
+                                                        data-deskripsi_dresscode="{{ $item->deskripsi_dresscode }}"
+                                                        data-image="{{ Storage::url($item->image) }}">
+                                                        <i class="fa fa-pen-to-square" style="color:white;"></i>
+                                                    </a>
+
+                                                    <button class="btn btn-danger delete-btn-dresscode rounded mb-2"
+                                                        data-id="{{ $item->id }}" type="button">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <?php $i++; ?>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-body container bg-white">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="mempelai fw-bold fs-5 mb-4">Direct Transfer</div>
-                                {{-- <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch"
-                                        id="switchCheckDirectTransfer">
-                                    <label class="form-check-label" for="switchCheckDirectTransfer">Tidak Aktif</label>
-                                </div> --}}
                             </div>
-
                             <div id="directTransferContent">
                                 <div class="d-flex">
                                     <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnDirectTransfer"
@@ -651,8 +753,8 @@
                 </div>
                 <div class="modal-body">
                     <form id="formKirimHadiah"
-                        action="{{ route('kirimhadiah-design10.store', ['id' => $informasiDesign10->id]) }}" method="POST"
-                        enctype="multipart/form-data">
+                        action="{{ route('kirimhadiah-design10.store', ['id' => $informasiDesign10->id]) }}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
                         {{-- This will be updated dynamically in JS --}}
                         <input type="hidden" name="_method" id="formMethodKirimHadiah" value="POST">
@@ -682,48 +784,57 @@
         </div>
     </div>
 
-    {{-- 
-    <!-- Button switches direct transfer !-->
-    <script>
-        $(document).ready(function() {
-            // Inisialisasi: konten disembunyikan jika switch awalnya off
-            if (!$('#switchCheckDirectTransfer').is(':checked')) {
-                $('#directTransferContent').hide();
-            }
+    <!-- Modal Buat dan Edit Dresscode -->
+    <div class="modal fade" id="modalDresscode" tabindex="-1" aria-labelledby="modalDresscodeLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- Judul yang bisa berubah -->
+                    <h5 class="modal-title" id="modalDresscodeLabel">Buat Dresscode</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formDresscode"
+                        action="{{ route('dresscode-design10.store', ['id' => $informasiDesign10->id]) }}"
+                        method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="_method" id="formMethodDresscode" value="POST">
+                        <input type="hidden" name="DresscodeId" id="DresscodeId">
+                        <input type="hidden" name="wedding_design10_id" value="{{ $informasiDesign10->id }}">
+                        <input type="hidden" name="nama_pasangan" value="{{ $informasiDesign10->nama_pasangan }}">
+                        <input type="hidden" name="tgl_pernikahan" value="{{ $informasiDesign10->tgl_pernikahan }}">
 
-            // Event saat switch diubah
-            $('#switchCheckDirectTransfer').on('change', function() {
-                if ($(this).is(':checked')) {
-                    $('#directTransferContent').slideDown();
-                    $(this).next('label').text('Aktif');
-                } else {
-                    $('#directTransferContent').slideUp();
-                    $(this).next('label').text('Tidak Aktif');
-                }
-            });
-        });
-    </script>
+                        <div class="form-group mb-2">
+                            <label for="image">Foto<span class="mandatory">*</span></label>
+                            <input type="file" name="image" id="image" class="form-control" accept="image/*">
+                            <!-- Current Image Preview -->
+                            <img id="currentImage" class="img-thumbnail mt-2" src="" alt="Current Image 1"
+                                width="120" style="display: none;">
+                        </div>
 
-    <!-- Button switches kirim hadiah !-->
-    <script>
-        $(document).ready(function() {
-            // Inisialisasi: konten disembunyikan jika switch awalnya off
-            if (!$('#switchCheckKirimHadiah').is(':checked')) {
-                $('#kirimHadiahContent').hide();
-            }
 
-            // Event saat switch diubah
-            $('#switchCheckKirimHadiah').on('change', function() {
-                if ($(this).is(':checked')) {
-                    $('#kirimHadiahContent').slideDown();
-                    $(this).next('label').text('Aktif');
-                } else {
-                    $('#kirimHadiahContent').slideUp();
-                    $(this).next('label').text('Tidak Aktif');
-                }
-            });
-        });
-    </script> --}}
+                        <div class="form-group mb-2">
+                            <label for="judul_dresscode">Judul<span class="mandatory">*</span></label>
+                            <input type="text" name="judul_dresscode" id="judul_dresscode" class="form-control"
+                                value="{{ old('judul_dresscode') }}" placeholder="Masukkan judul cerita">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="deskripsi_dresscode">Deskripsi<span class="mandatory">*</span></label>
+                            <textarea class="form-control" rows="10" id="deskripsi_dresscode" name="deskripsi_dresscode"
+                                placeholder="Masukkan isi deskripsi">{{ old('deskripsi_dresscode') }}</textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        id="btnBatal">Batal</button>
+                    <button type="submit" class="btn btn-primary" form="formDresscode">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Modal JS Direct Transfer -->
@@ -987,6 +1098,126 @@
             resetFormKirimHadiah();
         });
     </script>
+
+    <!-- Modal JS Dresscode -->
+    <script>
+        function resetFormDresscode() {
+            $('#formDresscode')[0].reset();
+            $('#formMethodDresscode').val('POST');
+            $('#DresscodeId').val('');
+            $('#currentImage').hide().attr('src', '');
+        }
+
+        $('#btnDresscode').on('click', function() {
+            $('#modalDresscodeLabel').text('Buat Dresscode');
+            $('#formDresscode').attr('action',
+                '{{ route('dresscode-design10.store', ['id' => $informasiDesign10->id]) }}');
+            resetFormDresscode();
+        });
+
+        $(document).on('click', '.edit-btn-dresscode', function() {
+            const id = $(this).data('id');
+            const judul_dresscode = $(this).data('judul_dresscode');
+            const deskripsi_dresscode = $(this).data('deskripsi_dresscode');
+            const imageUrl = $(this).data('image');
+
+            $('#modalDresscodeLabel').text('Edit Dresscode');
+            $('#DresscodeId').val(id);
+            $('#formMethodDresscode').val('PUT');
+            $('#judul_dresscode').val(judul_dresscode);
+            $('#deskripsi_dresscode').val(deskripsi_dresscode);
+
+            if (imageUrl) {
+                $('#currentImage').attr('src', imageUrl).show();
+            } else {
+                $('#currentImage').hide();
+            }
+
+            const updateUrl = `/wedding-design10/${id}/update-dresscode`;
+            $('#formDresscode').attr('action', updateUrl);
+
+            new bootstrap.Modal(document.getElementById('modalDresscode')).show();
+        });
+
+        $('#formDresscode').on('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const id = $('#DresscodeId').val();
+            const isEdit = id !== '';
+
+            if (isEdit) {
+                formData.append('_method', 'PUT');
+            }
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(res) {
+                    Swal.fire('Sukses!', res.message, 'success');
+
+                    bootstrap.Modal.getInstance(document.getElementById('modalDresscode')).hide();
+                    resetFormDresscode();
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+
+                    $('#formDirectTransfer')[0].reset();
+                    $('#directTransferId').val('');
+                    $('#tableDresscode').load(location.href + " #tableDresscode>*", "");
+                },
+                error: function(xhr) {
+                    const errors = xhr.responseJSON?.errors;
+                    const errorMsg = errors ? Object.values(errors).join('<br>') : 'Terjadi kesalahan.';
+                    Swal.fire('Gagal!', errorMsg, 'error');
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+
+        $(document).on('click', '.delete-btn-dresscode', function() {
+            const id = $(this).data('id');
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data ini akan dihapus secara permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3095d6',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ url('/wedding-design10') }}/" + id + "/delete-dresscode",
+                        type: 'DELETE',
+                        data: {
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(res) {
+                            Swal.fire('Terhapus!', res.message, 'success');
+                            $('#tableDresscode').load(location.href +
+                                " #tableDresscode>*", "");
+                        },
+                        error: function(xhr) {
+                            Swal.fire('Gagal!', 'Terjadi kesalahan saat menghapus.', 'error');
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+
+        $('#btnBatal').on('click', function() {
+            resetFormDresscode();
+        });
+    </script>
+
 
 @endsection
 @section('scripts')

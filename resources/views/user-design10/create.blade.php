@@ -14,10 +14,10 @@
                 @include('layouts.message')
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('nama-undangan-store9', ['id' => $weddingDesign9->id]) }}" method="post"
+                        <form action="{{ route('nama-undangan-store10', ['id' => $weddingDesign10->id]) }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="wedding_design9_id" value="{{ $weddingDesign9->id }}">
+                            <input type="hidden" name="wedding_design10_id" value="{{ $weddingDesign10->id }}">
                             <div class="card-body container bg-white mt-5">
                                 <div class="mempelai text-center fw-bold fs-5">Nama Undangan</div>
                                 <div class="fs-3">
@@ -30,7 +30,7 @@
 
                                 <div class="d-flex flex-row-reverse mt-5">
                                     <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                    <a href="{{ route('nama-undangan-list9', ['weddingDesign9Id' => $weddingDesign9->id]) }}"
+                                    <a href="{{ route('nama-undangan-list10', ['weddingDesign10Id' => $weddingDesign10->id]) }}"
                                         class="btn btn-secondary">Batal</a>
                                 </div>
                             </div>

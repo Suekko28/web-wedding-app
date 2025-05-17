@@ -51,8 +51,8 @@
     <main>
         <div class="container-xxl flex-grow-1 container-p-y">
             <a class="btn btn-primary mb-3"
-                href="{{ route('nama-undangan-create9', [
-                    'id' => $weddingDesign9->id, // This is the weddingDesign9 ID (e.g., 2)
+                href="{{ route('nama-undangan-create10', [
+                    'id' => $weddingDesign10->id, // This is the weddingDesign10 ID (e.g., 2)
                 ]) }}">
                 + Nama Undangan
             </a>
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="table-responsive text-nowrap p-3">
-                        <form id="deleteForm" action="{{ route('nama-undangan.destroy9', ['id' => $weddingDesign9->id]) }}"
+                        <form id="deleteForm" action="{{ route('nama-undangan.destroy9', ['id' => $weddingDesign10->id]) }}"
                             method="POST">
                             @csrf
                             @method('DELETE')
@@ -233,7 +233,7 @@
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:\n\n" +
                     namaUndangan + "\n\n" +
                     "Berikut link undangan kami untuk informasi lengkap tentang acara dapat dilihat di sini:\n\n" +
-                    "jejakkebahagiaan.com/WDDS9{{ $nomor }}/{!! $slug_nama_pasangan !!}/untuk=" +
+                    "jejakkebahagiaan.com/WDDS10{{ $nomor }}/{!! $slug_nama_pasangan !!}/untuk=" +
                     slugNamaUndangan + "\n\n" +
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n" +
                     "Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.\n\n" +
@@ -245,7 +245,7 @@
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:\n\n" +
                     namaUndangan + "\n\n" +
                     "Berikut link undangan kami untuk informasi lengkap tentang acara dapat dilihat di sini:\n\n" +
-                    "jejakkebahagiaan.com/WDDS9{{ $nomor }}/{!! $slug_nama_pasangan !!}/untuk=" +
+                    "jejakkebahagiaan.com/WDDS10{{ $nomor }}/{!! $slug_nama_pasangan !!}/untuk=" +
                     slugNamaUndangan + "\n\n" +
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n" +
                     "Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.\n\n" +
@@ -255,7 +255,7 @@
                 message =
                     "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i Aldi untuk menghadiri acara kami.\n\n" +
                     "Berikut link undangan kami, untuk info lengkap dari acara bisa kunjungi :\n\n" +
-                    "jejakkebahagiaan.com/WDDS9{{ $nomor }}/{!! $slug_nama_pasangan !!}/untuk=" +
+                    "jejakkebahagiaan.com/WDDS10{{ $nomor }}/{!! $slug_nama_pasangan !!}/untuk=" +
                     slugNamaUndangan + "\n\n" +
                     "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n" +
                     "Mohon maaf perihal undangan hanya di bagikan melalui pesan ini.\n\n" +
