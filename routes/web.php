@@ -235,7 +235,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Routes for InformasiDesign10
     Route::resource('/wedding-design10', InformasiDesign10Controller::class);
-    Route::get('/wedding-design10/{wedding_design10}', [WeddingDesign8Controller::class, 'show'])->name('wedding-design10.show');
+    Route::get('/wedding-design10/{wedding_design10}', [WeddignDesign10Controller::class, 'show'])->name('wedding-design10.show');
     Route::post('/wedding-design10/{id}/update', [InformasiDesign10Controller::class, 'update']);
 
     // // Routes for WeddingDesign9

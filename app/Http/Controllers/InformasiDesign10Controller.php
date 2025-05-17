@@ -97,7 +97,7 @@ class InformasiDesign10Controller extends Controller
      */
     public function destroy(string $id)
     {
-        $data = InformasiDesign10::with(['KontenDesign10', 'PerjalananCintaDesign10'])->find($id);
+        $data = InformasiDesign10::with(['KontenDesign10', 'DresscodeDesign10'])->find($id);
 
 
         foreach ($data->KontenDesign10 as $weddingDesign) {
@@ -135,15 +135,12 @@ class InformasiDesign10Controller extends Controller
             $weddingDesign->delete();
         }
 
-        foreach ($data->PerjalananCintaDesign10 as $PerjalananCinta) {
-            if ($PerjalananCinta->image1) {
-                Storage::delete($PerjalananCinta->image1);
-            }
-            if ($PerjalananCinta->image2) {
-                Storage::delete($PerjalananCinta->image2);
+        foreach ($data->DresscodeDesign10 as $Dresscode) {
+            if ($Dresscode->image) {
+                Storage::delete($Dresscode->image);
             }
 
-            $PerjalananCinta->delete();
+            $Dresscode->delete();
         }
 
         $data->delete();

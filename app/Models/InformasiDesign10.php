@@ -24,9 +24,9 @@ class InformasiDesign10 extends Model
     {
         return $this->hasMany(WeddingDesign10::class, 'informasi_design10_id', 'id');
     }
-    public function PerjalananCintaDesign10(): HasMany
+    public function DresscodeDesign10(): HasMany
     {
-        return $this->hasMany(PerjalananCintaDesign10::class, 'informasi_design10_id', 'id');
+        return $this->hasMany(DresscodeDesign10::class, 'informasi_design10_id', 'informasi_design10_id');
     }
     public function DirectTransferesign4(): HasMany
     {

@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="table-responsive text-nowrap p-3">
-                        <form id="deleteForm" action="{{ route('nama-undangan.destroy9', ['id' => $weddingDesign10->id]) }}"
+                        <form id="deleteForm" action="{{ route('nama-undangan.destroy10', ['id' => $weddingDesign10->id]) }}"
                             method="POST">
                             @csrf
                             @method('DELETE')
@@ -97,7 +97,7 @@
                                             <td scope="row">{{ $item->nama_undangan }}</td>
                                             <td>
                                                 <div class="btn-group-horizontal">
-                                                    <a href="{{ url('nama-undangan/premium-flower/' . $item->id) . '/edit' }}"
+                                                    <a href="{{ url('nama-undangan/modern-silver/' . $item->id) . '/edit' }}"
                                                         class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
                                                             style="color:white;"></i></a>
                                                     <button class="btn btn-danger delete-btn rounded mb-2"
@@ -294,7 +294,7 @@
                     if (result.isConfirmed) {
                         // Replace the delete form action with the correct route and ID
                         document.getElementById('deleteForm').action =
-                            "{{ route('nama-undangan.destroy9', ['id' => ':id']) }}".replace(':id',
+                            "{{ route('nama-undangan.destroy10', ['id' => ':id']) }}".replace(':id',
                                 itemId);
                         document.getElementById('deleteForm').submit();
                         Swal.fire({

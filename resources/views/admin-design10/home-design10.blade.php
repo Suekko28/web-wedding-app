@@ -199,7 +199,7 @@
     <!-- MEMPELAI END -->
 
     <!-- Gallery -->
-    @if (!empty($data->image_cinta || $data->judul_cinta || $data->deskripsi_cinta || $data->link_cinta))
+    @if (!empty($data->image_cinta || $data->link_cinta))
         <section class="animation gallery" id="gallery">
             <div class="anm_mod bottom-bit fast container-gallery">
                 <div class="title">

@@ -6,8 +6,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Meta tags for Open Graph (OGP) -->
-    <meta property="og:title" content="The Wedding Of {{ $data->InformasiDesign9->nama_pasangan }}">
-    <meta property="og:description" content="Undangan Pernikahan {{ $data->InformasiDesign9->nama_pasangan }}">
+    <meta property="og:title" content="The Wedding Of {{ $data->InformasiDesign10->nama_pasangan }}">
+    <meta property="og:description" content="Undangan Pernikahan {{ $data->InformasiDesign10->nama_pasangan }}">
     <meta property="og:image" content="{{ Storage::url('' . $data->banner_img) }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
@@ -15,8 +15,8 @@
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Wedding Of {{ $data->InformasiDesign9->nama_pasangan }}">
-    <meta name="twitter:description" content="Undangan Pernikahan {{ $data->InformasiDesign9->nama_pasangan }}">
+    <meta name="twitter:title" content="The Wedding Of {{ $data->InformasiDesign10->nama_pasangan }}">
+    <meta name="twitter:description" content="Undangan Pernikahan {{ $data->InformasiDesign10->nama_pasangan }}">
     <meta name="twitter:image" content="{{ Storage::url('' . $data->banner_img) }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5">
 
@@ -29,14 +29,14 @@
         type="text/css" media="screen" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
-    <title>The Wedding Of {{ $data->InformasiDesign9->nama_pasangan }}</title>
+    <title>The Wedding Of {{ $data->InformasiDesign10->nama_pasangan }}</title>
 
     <!-- BOOTSTRAP 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- CSS STYLE -->
-    <link href="{{ asset('css/wedding-design9.css') }}?v={{ filemtime(public_path('css/wedding-design9.css')) }}"
+    <link href="{{ asset('css/wedding-design10.css') }}?v={{ filemtime(public_path('css/wedding-design10.css')) }}"
         rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('img/Jejak-Kebabagiaan_Favicon_32px.svg') }}">
@@ -48,29 +48,19 @@
         <div class="overlayDoor"></div>
         <div class="overlayContent">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-            <lottie-player class="animation-loading" src="{{ asset('img/design-9/loading.json') }}"
+            <lottie-player class="animation-loading" src="{{ asset('img/design-10/loading.json') }}"
                 background="transparent" speed="1" style="width: 96px; height: 96px" direction="1" mode="normal"
                 loop autoplay></lottie-player>
         </div>
     </div>
     @if (!session('hide_offcanvas'))
         <div class="offcanvas offcanvas-top show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-            <!-- <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-            <button type="button" class="btn-close" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
-        </div> -->
             <div class="offcanvas-body">
-                <div class="flower-left-cover">
-                    <img class="flower-left object-fit-cover" src="{{ asset('img/design-9/element-1.svg') }}"
-                        alt="background">
-                </div>
-                <div class="flower-right-cover">
-                    <img class="flower-right object-fit-cover" src="{{ asset('img/design-9/element-2.svg') }}"
-                        alt="background">
-                </div>
                 <div class="opening-undangan">
-                    <p>Undangan Pernikahan</p>
-                    <h1>{{ $data->InformasiDesign9->nama_pasangan }}</h1>
+                    <img class="couple-opening object-fit-cover" src="{{ Storage::url('' . $data->foto_prewedding) }}"
+                        alt="background">
+                    <p>THE WEDDING OF</p>
+                    <h1>{{ $data->InformasiDesign10->nama_pasangan }}</h1>
                 </div>
                 <div class="tujuan-undangan">
                     <div class="opening">
@@ -81,97 +71,81 @@
                     <button type="button" onclick="playAudio()" style="display:none" class="btn-primary"
                         id="buttonPage" data-bs-dismiss="offcanvas">Buka Undangan</button>
                 </div>
-                <img class="background-offcanvas object-fit-cover" src="{{ asset('img/design-9/background.jpg') }}"
+                <div class="canvas-overlay"></div>
+                <img class="background-offcanvas object-fit-cover" src="{{ Storage::url('' . $data->banner_img) }}"
                     alt="background">
             </div>
         </div>
     @endif
-
     <audio loop autoplay id="track">
         <source src="{{ Storage::url('' . $data->music) }}" type="audio/mpeg" />
     </audio>
     <button class="btn-float">
-        <img id="play" onclick="toggleAudio()" src="{{ asset('img/design-9/sound-on.svg') }}" class="img-fluid"
+        <img id="play" onclick="toggleAudio()" src="{{ asset('img/design-10/sound-on.svg') }}" class="img-fluid"
             alt="Responsive image">
-        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/design-9/sound-off.svg') }}" class="img-fluid"
+        <img id="pause" onclick="toggleAudio()" src="{{ asset('img/design-10/sound-off.svg') }}" class="img-fluid"
             alt="Responsive image">
     </button>
     <nav class="navigation">
         <ul>
             <li>
                 <a href="#hero">
-                    <img src="{{ asset('img/design-9/home-icon.svg') }}" alt="hero">
+                    <img src="{{ asset('img/design-10/home-icon.svg') }}" alt="hero">
                 </a>
                 <a href="#kedua-mempelai">
-                    <img src="{{ asset('img/design-9/ring-icon.svg') }}" alt="kedua-mempelai">
+                    <img src="{{ asset('img/design-10/ring-icon.svg') }}" alt="kedua-mempelai">
                 </a>
-
-                {{-- <a href="#perjalanan-cinta">
-                    <img src="{{ asset('img/design-9/perjalanan-cinta.svg') }}" alt="perjalanan-cinta">
-                </a> --}}
-
-                @if (!empty($data->judul_cinta) && !empty($data->deskripsi_cinta) && !empty($data->image_cinta))
+                @if (
+                    !empty($data->judul_cinta) &&
+                        !empty($data->deskripsi_cinta) &&
+                        !empty($data->image_cinta) &&
+                        !empty($data->link_cinta))
                     <a href="#gallery">
-                        <img src="{{ asset('img/design-9/gallery-icon.svg') }}" alt="gallery">
+                        <img src="{{ asset('img/design-10/gallery-icon.svg') }}" alt="gallery">
                     </a>
                 @endif
-
                 <a href="#jadwal-pernikahan">
-                    <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="jadwal-pernikahan">
+                    <img src="{{ asset('img/design-10/calendar-icon.svg') }}" alt="jadwal-pernikahan">
                 </a>
                 <a href="#doa-ucapan">
-                    <img src="{{ asset('img/design-9/chat-icon.svg') }}" alt="doa-ucapan">
+                    <img src="{{ asset('img/design-10/chat-icon.svg') }}" alt="doa-ucapan">
                 </a>
             </li>
         </ul>
     </nav>
-    <img class="background-template object-fit-cover" src="{{ asset('img/design-9/background.jpg') }}"
-        alt="background">
+    <!-- <img class="background-template object-fit-cover" src="{{ asset('img/design-10/background.jpg') }}" alt="background"> -->
+    <div class="container">
+        <div id="c-slideshow" class="js-slideshow-template">
+            <div class="c-slideshow-template-img js-slideshow-template-img"></div>
+        </div>
+        <div id="c-overlay">
+        </div>
+    </div>
     <!-- HERO -->
     <section class="hero mw-100" id="hero">
         </div>
         <div class="title">
-            <img src="{{ asset('img/design-9/element-3.svg') }}" class="devider-flower" alt="devider">
+            <img src="{{ asset('img/design-10/element-wdds10-1.svg') }}" class="devider-flower" alt="devider">
             <p>Pernikahan</p>
-            <h1>{{ $data->InformasiDesign9->nama_pasangan }}</h1>
+            <h1>{{ $data->InformasiDesign10->nama_pasangan }}</h1>
+            <p style="font-size:14px;">
+                {{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
+            </p>
         </div>
-        <div class="wedding-timer">
-            <div id="timer">
-                <div class="container-countdown">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row text-center">
-                                <div class="col-3">
-                                    <p id="days" class="display-4">00</p>
-                                    <p>Hari</p>
-                                </div>
-                                <div class="col-3">
-                                    <p id="hours" class="display-4">00</p>
-                                    <p>Jam</p>
-                                </div>
-                                <div class="col-3">
-                                    <p id="minutes" class="display-4">00</p>
-                                    <p>Menit</p>
-                                </div>
-                                <div class="col-3">
-                                    <p id="seconds" class="display-4">00</p>
-                                    <p>Detik</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="date">
-                <p>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
-                </p>
-            </div>
-        </div>
+        <div class="background-overlay"></div>
         <!-- <div class="background-overlay"></div> -->
     </section>
     <!-- HERO END -->
+
     <!-- MEMPELAI -->
     <section class="animation kedua-mempelai" id="kedua-mempelai">
+        @if (!empty($data->judul_quote) && !empty($data->deskripsi_quote))
+            <div class="anm_mod bottom-bit fast prayer-card">
+                <p>{{ $data->deskripsi_quote }}</p>
+                <p>{{ $data->judul_quote }}</p>
+            </div>
+        @endif
+
         <div class="anm_mod bottom-bit fast mempelai-cover">
             <div class="title">
                 <h2>{{ $data->judul_pembuka }}</h2>
@@ -183,8 +157,6 @@
                         <div class="container-image-wanita">
                             <img class="anm_mod left fast mempelai-wanita-img object-fit-cover"
                                 src="{{ Storage::url('' . $data->foto_mempelai_perempuan) }}" alt="mempelai-wanita">
-                            <img class="anm_mod left fast ring-wanita-img object-fit-cover"
-                                src="{{ asset('img/design-9/element-4.svg') }}" alt="mempelai-wanita">
                         </div>
                     @endif
                     <div class="anm_mod bottom fast detail-mempelai-wanita">
@@ -194,8 +166,8 @@
                         </div>
                         @if (!empty($data->link_instagram1 && $data->nama_instagram1))
                             <a href="{{ $data->link_instagram1 }}" target="_blank" class="btn-link">
-                                <img src="{{ asset('img/design-9/icon-instagram-black.svg') }}" alt="instagram">
-                                <span>{{ $data->nama_instagram1 }}</span>
+                                <img src="{{ asset('img/design-10/icon-instagram-outline-black.svg') }}"
+                                    class="icon-button" alt="instagram">
                             </a>
                         @endif
                     </div>
@@ -206,8 +178,6 @@
                         <div class="container-image-pria">
                             <img class="anm_mod right fast mempelai-wanita-img object-fit-cover"
                                 src="{{ Storage::url('' . $data->foto_mempelai_laki) }}" alt="mempelai-pria">
-                            <img class="anm_mod right fast ring-pria-img object-fit-cover"
-                                src="{{ asset('img/design-9/element-4.svg') }}" alt="mempelai-pria">
                         </div>
                     @endif
                     <div class="anm_mod bottom fast detail-mempelai-pria">
@@ -215,10 +185,10 @@
                             <h3>{{ $data->nama_mempelai_laki }}</h3>
                             <p>Anak dari Bapak {{ $data->putra_dari_bpk }} dan Ibu {{ $data->putra_dari_ibu }}</p>
                         </div>
-                        @if (!empty($data->link_instagram2 && $data->link_instagram2))
+                        @if (!empty($data->link_instagram2 && $data->nama_instagram2))
                             <a href="{{ $data->link_instagram2 }}" target="_blank" class="btn-link">
-                                <img src="{{ asset('img/design-9/icon-instagram-black.svg') }}" alt="instagram">
-                                <span>{{ $data->nama_instagram2 }}</span>
+                                <img src="{{ asset('img/design-10/icon-instagram-outline-black.svg') }}"
+                                    class="icon-button" alt="instagram">
                             </a>
                         @endif
                     </div>
@@ -229,27 +199,36 @@
     <!-- MEMPELAI END -->
 
     <!-- Gallery -->
-    @if (!empty($data->image_cinta && $data->judul_cinta && $data->deskripsi_cinta))
+    @if (!empty($data->image_cinta || $data->link_cinta))
         <section class="animation gallery" id="gallery">
             <div class="anm_mod bottom-bit fast container-gallery">
                 <div class="title">
                     <h2>{{ $data->judul_cinta }}</h2>
                     <p>{{ $data->deskripsi_cinta }}</p>
                 </div>
-                @php
-                    $images = is_array($data->image_cinta) ? $data->image_cinta : json_decode($data->image_cinta, true);
-                @endphp
-                <div class="container-card-gallery">
-
-                    @foreach ($images as $image)
-                        <div class="card-gallery">
-                            <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
-                                <img class="gallery-img object-fit-cover" src="{{ Storage::url($image) }}"
-                                    alt="Image Gallery">
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
+                @if (!empty($data->link_cinta))
+                    <iframe class="anm_mod bottom-bit fast my-vidio object-fit-cover" allowfullscreen autoplay muted
+                        loop src="{{ $data->link_cinta }}">
+                    </iframe>
+                @endif
+                @if (!empty($data->image_cinta))
+                    @php
+                        $images = is_array($data->image_cinta)
+                            ? $data->image_cinta
+                            : json_decode($data->image_cinta, true);
+                    @endphp
+                    <div class="container-card-gallery">
+                        @foreach ($images as $image)
+                            <div class="card-gallery">
+                                <a href="{{ Storage::url($image) }}" data-fancybox="gallery">
+                                    <img class="gallery-img object-fit-cover" src="{{ Storage::url($image) }}"
+                                        alt="Image Gallery">
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
         </section>
     @endif
     <!-- GALLERY END -->
@@ -257,30 +236,57 @@
     <!-- JADWAL PERNIKAHAN -->
     <section class="animation jadwal-pernikahan" id="jadwal-pernikahan">
         <div class="anm_mod bottom-bit fast container-jadwal-pernikahan">
-            <h2 class="anm_mod bottom-bit fast">{{ $data->judul_jadwal }}</h2>
+            <h2 class="anm_mod bottom-bit fast" style="color:#292929 !important;">{{ $data->judul_jadwal }}</h2>
+            <div class="wedding-timer">
+                <div id="timer">
+                    <div class="container-countdown">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row text-center">
+                                    <div class="col-3">
+                                        <p id="days" class="display-4">00</p>
+                                        <p style="color:#aeaeae !important;">Hari</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p id="hours" class="display-4">00</p>
+                                        <p style="color:#aeaeae !important;">Jam</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p id="minutes" class="display-4">00</p>
+                                        <p style="color:#aeaeae !important;">Menit</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p id="seconds" class="display-4">00</p>
+                                        <p style="color:#aeaeae !important;">Detik</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @if (!empty($data->akad_img))
                 <div class="container-img-jadwal anm_mod bottom-bit fast">
                     <img src="{{ Storage::url('' . $data->akad_img) }}"
-                        class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story"
-                        width="328" height="328">
-                    <img src="{{ asset('img/design-9/element-5.svg') }}" class="element-flower" alt="devider">
+                        class="anm_mod bottom-bit fast d-block jadwal-img object-fit-cover" alt="story">
                 </div>
             @endif
             <div class="akad-resepsi">
                 <div class="anm_mod left fast jadwal-detail">
+                    <!-- <img class="element-jadwal-nikah" src="{{ asset('img/design-10/element-3.svg') }}" alt="calendar"> -->
                     @if (!empty($data->judul_akad))
                         <h3>{{ $data->judul_akad }}<h3>
                     @endif
                     <div class="detail">
                         <div class="info">
-                            <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-10/calendar-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span
                                     class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_akad)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/design-9/clock-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-10/clock-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">
                                     {{ \Carbon\Carbon::parse($data->mulai_akad)->format('H:i') }} -
@@ -298,7 +304,7 @@
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/design-9/location-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-10/location-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">{{ $data->lokasi_akad }}</span>
                                 <p>{{ $data->deskripsi_akad }}</p>
@@ -312,21 +318,22 @@
                             class="btn-primary">Simpan Tanggal</a>
                     </div>
                 </div>
-                <span class="vertical-line"></span>
+                <!-- <span class="vertical-line"></span> -->
                 <div class="anm_mod right fast jadwal-detail">
+                    <!-- <img class="element-jadwal-nikah" src="{{ asset('img/design-10/element-4.svg') }}" alt="calendar"> -->
                     @if (!empty($data->judul_resepsi))
                         <h3>{{ $data->judul_resepsi }}<h3>
                     @endif
                     <div class="detail">
                         <div class="info">
-                            <img src="{{ asset('img/design-9/calendar-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-10/calendar-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span
                                     class="label">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $data->tgl_resepsi)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/design-9/clock-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-10/clock-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">
                                     {{ \Carbon\Carbon::parse($data->mulai_resepsi)->format('H:i') }} -
@@ -344,7 +351,7 @@
                             </div>
                         </div>
                         <div class="info">
-                            <img src="{{ asset('img/design-9/location-icon.svg') }}" alt="calendar">
+                            <img src="{{ asset('img/design-10/location-icon.svg') }}" alt="calendar">
                             <div class="detail-info">
                                 <span class="label">{{ $data->lokasi_resepsi }}</span>
                                 <p>{{ $data->deskripsi_resepsi }}</p>
@@ -359,15 +366,54 @@
                     </div>
                 </div>
             </div>
-            @if (!empty($data->link_streaming))
+            @if (!empty($data->instagram_streaming || $data->youtube_streaming || $data->zoom_streaming))
                 <div class="anm_mod bottom-bit fast live-streaming">
                     <div class="detail-info">
-                        <h3>Live Streaming</h3>
+                        <h3 style="color:#292929 !important;">Live Streaming</h3>
                         <p>Kami mengajak anda yang tidak hadir langsung untuk bergabung pada momen spesial kami melalui
                             siaran langsung secara live virtual di platform berikut</p>
                     </div>
-                    <a type="button" target="_blank" href="{{ $data->link_streaming }}" class="btn-secondary">Buka
-                        Link</a>
+                    <div class="button-button">
+                        @if (!empty($data->instagram_streaming))
+                            <a type="button" target="_blank" href="{{ $data->instagram_streaming }}"
+                                class="btn-secondary">Join on
+                                Instagram
+                            </a>
+                        @endif
+                        @if (!empty($data->youtube_streaming))
+                            <a type="button" target="_blank" href="{{ $data->youtube_streaming }}"
+                                class="btn-secondary">Join on
+                                Youtube
+                            </a>
+                        @endif
+                        @if (!empty($data->zoom_streaming))
+                            <a type="button" target="_blank" href="{{ $data->zoom_streaming }}"
+                                class="btn-secondary">Zoom
+                                Meeting
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            @endif
+            @if ($data->DresscodeDesign10->isNotEmpty())
+                <div class="anm_mod bottom-bit fast dresscode">
+                    <div class="detail-info">
+                        <h3 style="color:#292929 !important;">Dresscode</h3>
+                        <p>Kami dengan hormat menganjurkan para tamu kami untuk mengenakan warna-warna ini untuk hari
+                            istimewa kami.</p>
+                    </div>
+                    <div class="info-dresscode">
+                        @foreach ($data->DresscodeDesign10 as $index => $item)
+                            <div class="detail">
+                                <img src="{{ Storage::url('' . $item->image) }}" alt="dresscode"
+                                    class="img-dresscode">
+                                <div class="word">
+                                    <h4>{{ $item->judul_dresscode }}</h4>
+                                    <p>{{ $item->deskripsi_dresscode }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             @endif
         </div>
@@ -377,7 +423,7 @@
     <!-- DOA & UCAPAN -->
     <section class="animation doa-ucapan" id="doa-ucapan">
         <div class="anm_mod bottom-bit fast custom-cover">
-            <h3 class="anm_mod bottom-bit fast">Doa & Ucapan</h3>
+            <h3 class="anm_mod bottom-bit fast" style="color:#292929 !important;">Doa & Ucapan</h3>
             <div class="container-inner anm_mod bottom-bit fast">
                 <div class="container-dashboard anm_mod bottom-bit fast">
                     <div class="card-dashboard-hadir">
@@ -392,11 +438,11 @@
                 <div class="container-doa-ucapan anm_mod bottom-bit fast">
                     <div class="form-input">
                         <form id="algin-form" class="rsvp-mobile3" method="POST"
-                        action="{{ route('wedding-design9-post', [
-                            'id_weddingdesign9' => $id_weddingdesign9,
-                            'slug_nama_pasangan' => $slug_nama_pasangan,
-                            'slug_nama_undangan' => $slug_nama_undangan,
-                        ]) }}">
+                            action="{{ route('wedding-design10-post', [
+                                'id_weddingdesign10' => $id_weddingdesign10,
+                                'slug_nama_pasangan' => $slug_nama_pasangan,
+                                'slug_nama_undangan' => $slug_nama_undangan,
+                            ]) }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nama</label>
@@ -426,17 +472,18 @@
                             </div>
                         </form>
                     </div>
-                    @if ($alt9models->isNotEmpty())
+                    @if ($alt10models->isNotEmpty())
                         <div class="comment-list">
-                            @foreach ($alt9models as $item)
+                            @foreach ($alt10models as $item)
                                 <div class="card-comment">
                                     <div class="title">
                                         <div class="name">
                                             <h4>{{ $item->nama }}</h4>
                                             @if ($item->kehadiran == 1)
-                                                <img src="{{ asset('img/design-8/hadir-icon.svg') }}" alt="hadir">
+                                                <img src="{{ asset('img/design-10/hadir-icon.svg') }}"
+                                                    alt="hadir">
                                             @else
-                                                <img src="{{ asset('img/design-8/tidak-hadir-icon.svg') }}"
+                                                <img src="{{ asset('img/design-10/tidak-hadir-icon.svg') }}"
                                                     alt="tidak hadir">
                                             @endif
 
@@ -453,7 +500,7 @@
                     @endif
                 </div>
             </div>
-            @if ($data->DirectTransferdesign9->isNotEmpty() || $data->KirimHadiahdesign9->isNotEmpty())
+            @if ($data->DirectTransferDesign10->isNotEmpty() || $data->KirimHadiahDesign10->isNotEmpty())
                 <div class="kirim-hadiah anm_mod bottom-bit fast">
                     <div class="info">
                         <h3>Kirim Hadiah</h3>
@@ -461,29 +508,31 @@
                     </div>
 
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        @if ($data->DirectTransferdesign9->isNotEmpty())
+                        @if ($data->DirectTransferDesign10->isNotEmpty())
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-home" type="button" role="tab"
                                     aria-controls="pills-home" aria-selected="true">Direct Transfer</button>
                             </li>
                         @endif
-                        @if ($data->KirimHadiahdesign9->isNotEmpty())
+                        @if ($data->KirimHadiahDesign10->isNotEmpty())
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link {{ $data->DirectTransferdesign9->isEmpty() ? 'active' : '' }}"
+                                <button
+                                    class="nav-link {{ $data->DirectTransferDesign10->isEmpty() ? 'active' : '' }}"
                                     id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
                                     type="button" role="tab" aria-controls="pills-profile"
-                                    aria-selected="{{ $data->DirectTransferdesign9->isEmpty() ? 'true' : 'false' }}">
+                                    aria-selected="{{ $data->DirectTransferDesign10->isEmpty() ? 'true' : 'false' }}">
                                     Kirim Hadiah
                                 </button>
                             </li>
                         @endif
                     </ul>
+
                     <div class="tab-content" id="pills-tabContent">
-                        @if ($data->DirectTransferdesign9->isNotEmpty())
+                        @if ($data->DirectTransferDesign10->isNotEmpty())
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                 aria-labelledby="pills-home-tab">
-                                @foreach ($data->DirectTransferdesign9 as $index => $item)
+                                @foreach ($data->DirectTransferDesign10 as $index => $item)
                                     <div class="card">
                                         <div class="card-body">
                                             @if (!empty($item->bank) || !empty($item->no_rek) || !empty($item->nama_rek))
@@ -510,10 +559,10 @@
                             </div>
                         @endif
 
-                        @if ($data->KirimHadiahdesign9->isNotEmpty())
-                            <div class="tab-pane fade {{ $data->DirectTransferdesign9->isEmpty() ? 'show active' : '' }}"
+                        @if ($data->KirimHadiahDesign10->isNotEmpty())
+                            <div class="tab-pane fade {{ $data->DirectTransferDesign10->isEmpty() ? 'show active' : '' }}"
                                 id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                @foreach ($data->KirimHadiahdesign9 as $item)
+                                @foreach ($data->KirimHadiahDesign10 as $item)
                                     <div class="card">
                                         <div class="card-body">
                                             @if (!empty($item->alamat) || !empty($item->deskripsi_alamat))
@@ -529,18 +578,17 @@
                 </div>
             @endif
         </div>
-        </div>
     </section>
     <!-- DOA & UCAPAN -->
 
     <!-- ENDING -->
     <section class="animation akhir-undangan" id="akhir-undangan">
         <div class="info">
-            <p class="anm_mod bottom-bit fast">{{ $data->deskripsi_penutup }}</p>
-            <h3 class="anm_mod bottom-bit fast">{{ $data->nama_penutup }}</h3>
+            <h3 style="text-align:center;color:#fff !important" class="anm_mod bottom-bit fast">
+                {{ $data->deskripsi_penutup }}</h4>
+                <h2 class="anm_mod bottom-bit fast">{{ $data->nama_penutup }}
+            </h3>
         </div>
-        <img class="ending-background object-fit-cover" src="{{ asset('img/design-9/element-6.svg') }}"
-            alt="background">
     </section>
     <!-- ENDING END -->
 
@@ -548,20 +596,24 @@
     <section class="footer" id="footer">
         <div class="follow-us">
             <p>Powered By</p>
-            <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:32px" src="{{ asset('img/design-9/logo-jejakkebahagiaan.svg') }}" alt="Facebook">
+            <a href="https://www.jejakkebahagiaan.com/" target="_blank" class="btn-link">
+                <img style="height:32px"
+                    src="{{ asset('img/design-10/logo-jejakkebahagiaan-horizontal-white.svg') }}" alt="Facebook">
             </a>
         </div>
         <div class="follow-us">
             <p>Follow Us</p>
-            <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank">
-                <img style="height:24px" src="{{ asset('img/design-9/icon-facebook.svg') }}" alt="Facebook">
+            <a href="https://www.facebook.com/jejakkebahagiaan" target="_blank" class="btn-link">
+                <img style="height:24px" src="{{ asset('img/design-10/icon-facebook-filled-white.svg') }}"
+                    alt="Facebook">
             </a>
-            <a href="https://www.instagram.com/jejakkebahagiaan/" target="_blank">
-                <img style="height:24px" src="{{ asset('img/design-9/icon-instagram.svg') }}" alt="Instagram">
+            <a href="https://www.instagram.com/jejakkebahagiaan/" target="_blank" class="btn-link">
+                <img style="height:24px" src="{{ asset('img/design-10/icon-instagram-filled-white.svg') }}"
+                    alt="Instagram">
             </a>
-            <a href="https://www.tiktok.com/@jejakkebahagiaan?_t=8pjtPh8o2JL&_r=1" target="_blank">
-                <img style="height:24px" src="{{ asset('img/design-9/icon-tiktok.svg') }}" alt="Tiktok">
+            <a href="https://www.tiktok.com/@jejakkebahagiaan?_t=8pjtPh8o2JL&_r=1" target="_blank" class="btn-link">
+                <img style="height:24px" src="{{ asset('img/design-10/icon-tiktok-filled-white.svg') }}"
+                    alt="Tiktok">
             </a>
         </div>
     </section>
@@ -899,6 +951,43 @@
             });
         })
         (jQuery);
+    </script>
+
+    @php
+        $imageHero = json_decode($data->image_hero, true);
+    @endphp
+    <script>
+        const array = @json(array_map(fn($path) => Storage::url($path), $imageHero));
+    </script>
+
+
+    <script>
+        let fragment = document.createDocumentFragment();
+        for (let i = 0; i < array.length; i++) {
+            let $template = $('.js-slideshow-template-img').first().clone();
+            let url = 'url(' + array[i] + ')';
+            $template.css('background-image', url);
+            fragment.appendChild($template.get(0));
+        }
+
+        $('.js-slideshow-template').empty();
+        $('.js-slideshow-template').get(0).appendChild(fragment);
+
+        const $images = $('.js-slideshow-template-img');
+        const time = 7500;
+        let imgNumber = 0;
+        $images.eq(0).addClass('is-show');
+
+        setInterval(changeImg, time);
+
+        function changeImg() {
+            $images.eq(imgNumber).removeClass("is-show");
+            imgNumber++;
+            if (imgNumber >= $images.length) {
+                imgNumber = 0;
+            }
+            $images.eq(imgNumber).addClass("is-show");
+        }
     </script>
 
     @if (session('hide_offcanvas'))

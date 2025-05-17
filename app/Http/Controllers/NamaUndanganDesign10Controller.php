@@ -140,7 +140,7 @@ class NamaUndanganDesign10Controller extends Controller
             'string' => 'Kolom :attribute harus berupa teks.',
         ];
 
-        $validator = Validatorx::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'nama_undangan' => 'required|string',
         ], $messages);
 
