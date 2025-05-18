@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('dresscode_design10', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->string('judul_dresscode');
-            $table->text('deskripsi_dresscode');
+            $table->string('judul_dresscode')->nullable();
+            $table->text('deskripsi_dresscode')->nullable();
             $table->unsignedBigInteger('informasi_design10_id');
             $table->foreign('informasi_design10_id')
                 ->references('id')

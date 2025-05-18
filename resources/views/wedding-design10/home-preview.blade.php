@@ -284,7 +284,7 @@
             <div class="anm_mod bottom-bit fast dresscode">
                 <div class="detail-info">
                     <h3 style="color:#292929 !important;">Dresscode</h3>
-                    <p>Kami dengan hormat menganjurkan para tamu kami untuk mengenakan warna-warna ini untuk hari istimewa kami.</p>
+                    <p>Kami dengan hormat menganjurkan para tamu kami untuk mengenakan pakaian ini untuk hari istimewa kami.</p>
                 </div>
                 <div class="info-dresscode">
                     <div class="detail">

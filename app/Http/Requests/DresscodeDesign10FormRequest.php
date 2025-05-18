@@ -24,8 +24,8 @@ class DresscodeDesign10FormRequest extends FormRequest
         $method = $this->method(); // Ambil metode HTTP dari request (POST untuk create, PUT/PATCH untuk update)
 
         $rules = [
-            'judul_dresscode' => ['required'],
-            'deskripsi_dresscode' => ['required'],
+            'judul_dresscode' => ['nullable', 'max:255'],
+            'deskripsi_dresscode' => ['nullable'],
 
         ];
 
@@ -44,9 +44,7 @@ class DresscodeDesign10FormRequest extends FormRequest
     {
         return [
 
-            'judul_dresscode.required' => 'Judul cerita wajib diisi.',
-
-            'deskripsi_dresscode.required' => 'Deskripsi cerita wajib diisi.',
+            'judul_dresscode.max' => 'Judul cerita tidak boleh lebih dari 255 karakter.',
 
             'image.required' => 'Gambar wajib diupload',
             'image.image' => 'Gambar harus berupa file gambar.',

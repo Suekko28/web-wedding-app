@@ -481,14 +481,16 @@
                                     <div class="col-sm-4 mb-3">
                                         <label for="youtube_streaming">Streaming Youtube<span class="fst-italic">
                                                 (Opsional)</span></label>
-                                        <input type="text" class="form-control" id="youtube_streaming" name="youtube_streaming"
-                                            placeholder="Masukkan link" value="{{ $data->youtube_streaming }}">
+                                        <input type="text" class="form-control" id="youtube_streaming"
+                                            name="youtube_streaming" placeholder="Masukkan link"
+                                            value="{{ $data->youtube_streaming }}">
                                     </div>
                                     <div class="col-sm-4 mb-3">
                                         <label for="zoom_streaming">Streaming Zoom<span class="fst-italic">
                                                 (Opsional)</span></label>
-                                        <input type="text" class="form-control" id="zoom_streaming" name="zoom_streaming"
-                                            placeholder="Masukkan link" value="{{ $data->zoom_streaming }}">
+                                        <input type="text" class="form-control" id="zoom_streaming"
+                                            name="zoom_streaming" placeholder="Masukkan link"
+                                            value="{{ $data->zoom_streaming }}">
                                     </div>
                                 </div>
                             </div>
@@ -815,13 +817,15 @@
 
 
                         <div class="form-group mb-2">
-                            <label for="judul_dresscode">Judul<span class="mandatory">*</span></label>
+                            <label for="judul_dresscode">Judul<span class="fst-italic">
+                                    (Opsional)</span></label>
                             <input type="text" name="judul_dresscode" id="judul_dresscode" class="form-control"
                                 value="{{ old('judul_dresscode') }}" placeholder="Masukkan judul cerita">
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="deskripsi_dresscode">Deskripsi<span class="mandatory">*</span></label>
+                            <label for="deskripsi_dresscode">Deskripsi<span class="fst-italic">
+                                    (Opsional)</span></label>
                             <textarea class="form-control" rows="10" id="deskripsi_dresscode" name="deskripsi_dresscode"
                                 placeholder="Masukkan isi deskripsi">{{ old('deskripsi_dresscode') }}</textarea>
                         </div>

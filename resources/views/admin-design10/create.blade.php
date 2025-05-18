@@ -742,13 +742,15 @@
 
 
                         <div class="form-group mb-2">
-                            <label for="judul_dresscode">Judul<span class="mandatory">*</span></label>
+                            <label for="judul_dresscode">Judul<span class="fst-italic">
+                                (Opsional)</span></label>
                             <input type="text" name="judul_dresscode" id="judul_dresscode" class="form-control"
                                 value="{{ old('judul_dresscode') }}" placeholder="Masukkan judul cerita">
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="deskripsi_dresscode">Deskripsi<span class="mandatory">*</span></label>
+                            <label for="deskripsi_dresscode">Deskripsi<span class="fst-italic">
+                                (Opsional)</span></label>
                             <textarea class="form-control" rows="10" id="deskripsi_dresscode" name="deskripsi_dresscode"
                                 placeholder="Masukkan isi deskripsi">{{ old('deskripsi_dresscode') }}</textarea>
                         </div>
